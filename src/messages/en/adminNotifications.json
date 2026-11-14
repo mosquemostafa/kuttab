@@ -1,0 +1,40 @@
+{
+  "errors": {},
+  "roles": {},
+  "topicPush": {
+    "title": "Push to FCM topic",
+    "description": "Send a web push to devices subscribed to a Firebase topic (all users, a role, or a segment). Users must have registered tokens and correct topic subscriptions.",
+    "targetLabel": "Audience",
+    "targetAll": "All users",
+    "targetRole": "By role",
+    "targetSegment": "By segment",
+    "targetCustom": "Custom topic",
+    "roleLabel": "Role topic",
+    "segmentLabel": "Segment topic",
+    "customTopicLabel": "Custom topic",
+    "loadingSegments": "Loading segments…",
+    "loadingCustomTopics": "Loading custom topics…",
+    "noSegments": "No segments exist yet. Create segments under Admin → Segments.",
+    "noCustomTopics": "No custom topics are available.",
+    "loadSegmentsError": "Could not load segments.",
+    "loadCustomTopicsError": "Could not load custom topics.",
+    "fieldTitle": "Title",
+    "fieldBody": "Body",
+    "fieldUrl": "Open URL (optional)",
+    "fieldImageUrl": "Image URL (optional)",
+    "send": "Send push",
+    "validationRequired": "Enter title and body.",
+    "sendError": "Send failed.",
+    "successAudience": "Sent successfully to {audience}.",
+    "confirmTitle": "Send push notification?",
+    "confirmAll": "This will send to every device subscribed to the all_users topic. Continue?",
+    "confirmRole": "This will send to every device subscribed to the topic for role: {role}. Continue?",
+    "confirmSegment": "This will send to every device subscribed to the segment topic for “{name}”. Continue?",
+    "confirmCustom": "This will send to every device subscribed to custom topic: {topic}. Continue?",
+    "customTopics": {
+      "product_updates": "Product updates"
+    },
+    "cancel": "Cancel",
+    "confirmSend": "Send"
+  }
+}

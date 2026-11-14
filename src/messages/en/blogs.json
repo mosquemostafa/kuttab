@@ -1,0 +1,151 @@
+{
+  "editor": {
+    "createTitle": "Create blog",
+    "editTitle": "Edit blog",
+    "createDescription": "Add a new multilingual blog post.",
+    "editDescription": "Update the selected blog post.",
+    "titleAr": "Arabic title",
+    "titleEn": "English title",
+    "descriptionAr": "Arabic description",
+    "descriptionEn": "English description",
+    "slug": "Slug",
+    "contentAr": "Arabic content",
+    "contentEn": "English content",
+    "coverImageUrl": "Cover image URL",
+    "excerptAr": "Arabic excerpt",
+    "excerptEn": "English excerpt",
+    "readingMinutes": "Reading minutes",
+    "tags": "Tags",
+    "tagsHint": "Type a tag then press Enter",
+    "tagsInputPlaceholder": "Add a tag",
+    "tagsCount": "{count}/{max} tags",
+    "noTags": "No tags yet.",
+    "removeTagAria": "Remove tag {tag}",
+    "tagsErrors": {
+      "empty": "Tag cannot be empty.",
+      "maxLength": "Tag must be at most {max} characters.",
+      "maxCount": "You can add up to {max} tags.",
+      "duplicate": "This tag is already added."
+    },
+    "status": "Status",
+    "publishDate": "Publish date",
+    "isFeatured": "Featured blog",
+    "isFeaturedHint": "Highlight this blog as featured content.",
+    "submitCreate": "Create blog",
+    "submitUpdate": "Update blog",
+    "submitting": "Saving...",
+    "cancelEdit": "Cancel edit"
+  },
+  "filters": {
+    "search": "Search title/description",
+    "tag": "Filter by tag",
+    "status": "Filter by status",
+    "allStatuses": "All statuses",
+    "refresh": "Refresh"
+  },
+  "table": {
+    "title": "Blogs list",
+    "description": "{total} blog(s)",
+    "create": "Create",
+    "empty": "No blogs found.",
+    "loadFailed": "Failed to load blogs.",
+    "columns": {
+      "featured": "Featured",
+      "publishDate": "Publish date",
+      "readingMinutes": "Reading time",
+      "updatedAt": "Updated"
+    },
+    "edit": "Edit",
+    "delete": "Delete",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "status": {
+    "draft": "Draft",
+    "published": "Published",
+    "archived": "Archived"
+  },
+  "gallery": {
+    "noImage": "No cover image"
+  },
+  "public": {
+    "listTitle": "Blog",
+    "listDescription": "Read our latest updates, stories, and practical insights.",
+    "listEyebrow": "Stories & insights",
+    "breadcrumbHome": "Home",
+    "breadcrumbBlog": "Blog",
+    "tagFilterTitleLead": "Articles tagged ",
+    "tagFilterDescription": "All published Articles that include this tag.",
+    "clearTagFilter": "All Articles",
+    "empty": "No published blogs yet.",
+    "loadFailed": "Failed to load blogs right now.",
+    "readMore": "Read more",
+    "backToList": "Back to blogs",
+    "readingMinutesUnit": "min read",
+    "author": "Author",
+    "tags": "Tags",
+    "popularTags": "Popular topics",
+    "relatedPosts": "Related articles",
+    "readingProgressAria": "Reading progress through this article",
+    "share": {
+      "label": "Share",
+      "ariaLabel": "Share this article",
+      "copyLink": "Copy link",
+      "copySuccess": "Link copied to clipboard.",
+      "copyFailed": "Could not copy the link.",
+      "facebook": "Facebook",
+      "x": "X",
+      "linkedin": "LinkedIn"
+    }
+  },
+  "comments": {
+    "title": "Discussion",
+    "subtitle": "Comments on this article",
+    "composerLabel": "Write a comment",
+    "composerPlaceholder": "Share your thoughts…",
+    "postComment": "Post comment",
+    "posting": "Posting…",
+    "empty": "No comments yet. Start the conversation.",
+    "you": "You",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "loadMore": "Load more",
+    "loadingMore": "Loading…",
+    "deleteDialogTitle": "Delete this comment?",
+    "deleteDialogDescription": "This cannot be undone.",
+    "confirmDelete": "Delete",
+    "teaser": {
+      "title": "Comments",
+      "lockedBadge": "Sign in to view",
+      "description": "Join the discussion — sign in to read comments and add your own.",
+      "signInCta": "Sign in to view comments"
+    },
+    "toast": {
+      "loadFailed": "Could not load comments.",
+      "emptyBody": "Please write something first.",
+      "createSuccess": "Comment posted.",
+      "createFailed": "Could not post comment.",
+      "updateSuccess": "Comment updated.",
+      "updateFailed": "Could not update comment.",
+      "deleteSuccess": "Comment deleted.",
+      "deleteFailed": "Could not delete comment."
+    }
+  },
+  "deleteDialog": {
+    "title": "Delete blog",
+    "description": "This will permanently delete \"{title}\".",
+    "confirm": "Delete",
+    "deleting": "Deleting...",
+    "cancel": "Cancel"
+  },
+  "toasts": {
+    "required": "Please fill all required fields.",
+    "createSuccess": "Blog created successfully.",
+    "updateSuccess": "Blog updated successfully.",
+    "deleteSuccess": "Blog deleted successfully.",
+    "saveFailed": "Failed to save blog.",
+    "deleteFailed": "Failed to delete blog."
+  }
+}

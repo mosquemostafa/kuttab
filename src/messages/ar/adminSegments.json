@@ -1,0 +1,53 @@
+{
+  "title": "الشرائح",
+  "description": "إنشاء وإدارة شرائح المستخدمين.",
+  "controls": {
+    "search": "ابحث في الشرائح...",
+    "name": "اسم الشريحة",
+    "icon": "الإيموجي",
+    "create": "إنشاء شريحة",
+    "creating": "جارٍ الإنشاء...",
+    "refresh": "تحديث"
+  },
+  "columns": {
+    "segment": "الشريحة",
+    "name": "الاسم",
+    "emoji": "الإيموجي",
+    "createdAt": "تاريخ الإنشاء",
+    "actions": "الإجراءات"
+  },
+  "actions": {
+    "edit": "تعديل",
+    "delete": "حذف"
+  },
+  "dialogs": {
+    "editTitle": "تحديث الشريحة",
+    "editDescription": "قم بتحديث تفاصيل الشريحة.",
+    "name": "الاسم",
+    "icon": "الإيموجي",
+    "save": "حفظ التغييرات",
+    "saving": "جارٍ الحفظ...",
+    "deleteTitle": "حذف الشريحة",
+    "deleteDescription": "سيتم حذف \"{name}\" نهائيًا.",
+    "deleteFallback": "هذه الشريحة",
+    "confirmDelete": "حذف",
+    "deleting": "جارٍ الحذف...",
+    "cancel": "إلغاء"
+  },
+  "states": {
+    "empty": "لا توجد شرائح.",
+    "loadFailed": "فشل تحميل الشرائح."
+  },
+  "toasts": {
+    "created": "تم إنشاء الشريحة بنجاح.",
+    "updated": "تم تحديث الشريحة بنجاح.",
+    "deleted": "تم حذف الشريحة بنجاح."
+  },
+  "summary": "عرض {count} من {total} شريحة",
+  "pagination": {
+    "previous": "السابق",
+    "next": "التالي",
+    "previousAria": "الانتقال إلى الصفحة السابقة",
+    "nextAria": "الانتقال إلى الصفحة التالية"
+  }
+}

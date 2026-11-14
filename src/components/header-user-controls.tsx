@@ -1,0 +1,335 @@
+"use client";
+
+import * as React from "react";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
+import {
+  Bell,
+  Globe,
+  House,
+  LifeBuoy,
+  LogOut,
+  Mail,
+  MessageSquare,
+  Moon,
+  Palette,
+  Sparkles,
+  Sun,
+  Settings,
+  Shield,
+} from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
+import { useTheme } from "@/components/theme-provider";
+
+import { useSignOut } from "@/hooks/use-sign-out";
+import { SubscriptionPlanEnum } from "@/shared/enums/subscription-plan.enum";
+import { UserRole } from "@/shared/enums/user-role.enum";
+import { NotificationMenuBadge } from "@/components/notifications/notification-menu-badge";
+import { useNotifications } from "@/components/notifications/notification-provider";
+import { useSubscription } from "@/components/subscription/subscription-provider";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  PLAN_CONFIG,
+  resolveEntitlementPlan,
+} from "@/server/modules/subscriptions/subscription-entitlements";
+
+type HeaderUser = {
+  name?: string | null;
+  email?: string | null;
+  image?: string | null;
+  role?: string | null;
+};
+
+type HeaderUserControlsProps = {
+  user: HeaderUser;
+};
+
+const ACCENT_STORAGE_KEY = "accentColor" as const;
+
+type DevAccentColor = "neutral" | "purple";
+
+function getDevAccentColorFromStorage(): DevAccentColor {
+  if (typeof window === "undefined") {
+    return "neutral";
+  }
+
+  const raw = window.localStorage.getItem(ACCENT_STORAGE_KEY);
+  return raw === "purple" ? "purple" : "neutral";
+}
+
+function applyDevAccentColor(color: DevAccentColor) {
+  if (typeof window !== "undefined") {
+    window.localStorage.setItem(ACCENT_STORAGE_KEY, color);
+    window.dispatchEvent(new CustomEvent("accent-change", { detail: color }));
+  }
+}
+
+export function HeaderUserControls({ user }: HeaderUserControlsProps) {
+  const isAdmin = user.role === UserRole.ADMIN;
+  const isSupport = user.role === UserRole.SUPPORT;
+  const isContentManager = user.role === UserRole.CONTENT_MANAGER;
+  const t = useTranslations();
+  const { unreadCount } = useNotifications();
+  const { subscription } = useSubscription();
+  const { isSigningOut, handleSignOut } = useSignOut();
+  const entitlementPlan = resolveEntitlementPlan(subscription);
+  const currentPlanEmoji = PLAN_CONFIG[entitlementPlan].emoji;
+  const showUpgradeBadge = entitlementPlan === SubscriptionPlanEnum.FREE;
+
+  const { resolvedTheme, setTheme } = useTheme();
+  const locale = useLocale();
+  const pathname = usePathname();
+  const router = useRouter();
+  const [isSwitchingLocale, startTransition] = React.useTransition();
+  const [accentColor, setAccentColor] =
+    React.useState<DevAccentColor>("neutral");
+  const selectedTheme = resolvedTheme === "dark" ? "dark" : "light";
+  const selectedLocale = locale === "ar" ? "ar" : "en";
+  const isDevMode = process.env.NODE_ENV === "development";
+
+  const getDirection = (nextLocale: "ar" | "en") =>
+    nextLocale === "ar" ? "rtl" : "ltr";
+
+  React.useEffect(() => {
+    setAccentColor(getDevAccentColorFromStorage());
+  }, []);
+
+  const handleToggleAccentColor = () => {
+    const nextColor = accentColor === "purple" ? "neutral" : "purple";
+    setAccentColor(nextColor);
+    applyDevAccentColor(nextColor);
+  };
+
+  const handleLocaleSwitch = (nextLocale: "ar" | "en") => {
+    if (nextLocale === selectedLocale) {
+      return;
+    }
+
+    const root = document.documentElement;
+    root.lang = nextLocale;
+    root.dir = getDirection(nextLocale);
+
+    startTransition(() => {
+      void router.push(pathname ?? "/", { locale: nextLocale });
+    });
+  };
+
+  return (
+    <div className="flex items-center gap-3">
+      {(isAdmin || isSupport || isContentManager) && (
+        <Badge
+          variant="secondary"
+          className="hidden sm:flex items-center gap-1"
+        >
+          <Shield className="h-3 w-3" />
+          {isAdmin
+            ? t("header.adminBadge")
+            : isSupport
+              ? t("header.supportBadge")
+              : t("header.contentManagerBadge")}
+        </Badge>
+      )}
+
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button
+            variant="ghost"
+            className="relative h-8 w-8 rounded-full cursor-pointer"
+            aria-label={
+              unreadCount > 0
+                ? t("header.avatarHasUnreadNotifications")
+                : undefined
+            }
+          >
+            {unreadCount > 0 ? (
+              <span
+                className="absolute inset-e-0 top-0 z-10 h-2.5 w-2.5 rounded-full bg-destructive ring-2 ring-background"
+                aria-hidden
+              />
+            ) : null}
+            <Avatar className="h-8 w-8">
+              <AvatarImage src={user.image || ""} alt={user.name || ""} />
+              <AvatarFallback className="text-xs">
+                {user.name?.charAt(0)?.toUpperCase() ||
+                  user.email?.charAt(0)?.toUpperCase() ||
+                  "U"}
+              </AvatarFallback>
+            </Avatar>
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="w-56" align="end" forceMount>
+          <DropdownMenuLabel className="font-normal">
+            <div className="flex flex-col space-y-1">
+              <p className="text-sm font-medium leading-none">
+                {user.name || t("header.defaultUser")}
+              </p>
+              <p className="text-xs leading-none text-muted-foreground">
+                {user.email ? user.email.replace(/^[^@]+/, "***") : ""}
+              </p>
+            </div>
+          </DropdownMenuLabel>
+          <DropdownMenuSeparator />
+
+          <DropdownMenuLabel className="text-xs text-muted-foreground">
+            {t("header.dashboardSection")}
+          </DropdownMenuLabel>
+          <DropdownMenuGroup>
+            <DropdownMenuItem asChild>
+              <Link href="/dashboard/overview" className="cursor-pointer">
+                <House className="mr-2 h-4 w-4" />
+                {t("header.dashboard")}
+              </Link>
+            </DropdownMenuItem>
+
+            <DropdownMenuItem asChild>
+              <Link href="/dashboard/settings" className="cursor-pointer">
+                <Settings className="mr-2 h-4 w-4" />
+                {t("header.settings")}
+              </Link>
+            </DropdownMenuItem>
+
+            <DropdownMenuItem asChild>
+              <Link
+                href="/dashboard/notifications"
+                className="flex w-full cursor-pointer flex-col gap-0.5 items-stretch"
+              >
+                <span className="flex w-full items-center gap-2">
+                  <Bell className="mr-2 h-4 w-4 shrink-0" />
+                  <span className="flex-1 text-start">
+                    {t("header.notifications")}
+                  </span>
+                  <NotificationMenuBadge />
+                </span>
+                {unreadCount > 0 ? (
+                  <span className="ps-6 text-start text-xs text-muted-foreground">
+                    {t("notifications.unreadSubtitle", { count: unreadCount })}
+                  </span>
+                ) : null}
+              </Link>
+            </DropdownMenuItem>
+
+            <DropdownMenuItem asChild>
+              <Link href="/dashboard/newsletter" className="cursor-pointer">
+                <Mail className="mr-2 h-4 w-4" />
+                {t("header.newsletterChannel")}
+              </Link>
+            </DropdownMenuItem>
+
+            <DropdownMenuItem asChild>
+              <Link
+                href="/dashboard/subscription"
+                className="group flex w-full cursor-pointer items-center gap-2"
+              >
+                <Sparkles className="mr-2 h-4 w-4" />
+                <span>{t("header.subscription")}</span>
+                {showUpgradeBadge ? (
+                  <Badge
+                    variant="secondary"
+                    className="ms-auto transition-colors group-data-highlighted:bg-primary/15 group-data-highlighted:text-foreground dark:group-data-highlighted:bg-primary/30"
+                  >
+                    {t("header.upgrade")}
+                  </Badge>
+                ) : (
+                  <span className="ms-auto text-sm leading-none" aria-hidden>
+                    {currentPlanEmoji}
+                  </span>
+                )}
+              </Link>
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+
+          <DropdownMenuSeparator />
+          <DropdownMenuLabel className="text-xs text-muted-foreground">
+            {t("header.supportSection")}
+          </DropdownMenuLabel>
+          <DropdownMenuGroup>
+            <DropdownMenuItem asChild>
+              <Link href="/dashboard/support/" className="cursor-pointer">
+                <LifeBuoy className="mr-2 h-4 w-4" />
+                {t("header.support")}
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link href="/dashboard/feedbacks" className="cursor-pointer">
+                <MessageSquare className="mr-2 h-4 w-4" />
+                {t("header.feedbacks")}
+              </Link>
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+
+          <DropdownMenuSeparator />
+          <DropdownMenuLabel className="text-xs text-muted-foreground">
+            {t("header.preferencesSection")}
+          </DropdownMenuLabel>
+          <DropdownMenuGroup>
+            <DropdownMenuItem
+              className="cursor-pointer"
+              onClick={() =>
+                setTheme(selectedTheme === "dark" ? "light" : "dark")
+              }
+            >
+              {selectedTheme === "dark" ? (
+                <Sun className="mr-2 h-4 w-4" />
+              ) : (
+                <Moon className="mr-2 h-4 w-4" />
+              )}
+              {selectedTheme === "dark"
+                ? t("header.switchToLight")
+                : t("header.switchToDark")}
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              className="cursor-pointer"
+              onClick={() =>
+                handleLocaleSwitch(selectedLocale === "ar" ? "en" : "ar")
+              }
+              disabled={isSwitchingLocale}
+            >
+              <Globe className="mr-2 h-4 w-4" />
+              {selectedLocale === "ar"
+                ? t("header.switchToEnglish")
+                : t("header.switchToArabic")}
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+
+          {isDevMode ? (
+            <>
+              <DropdownMenuSeparator />
+              <DropdownMenuLabel className="text-xs text-muted-foreground">
+                Dev controls
+              </DropdownMenuLabel>
+              <DropdownMenuGroup>
+                <DropdownMenuItem
+                  className="cursor-pointer"
+                  onClick={handleToggleAccentColor}
+                >
+                  <Palette className="mr-2 h-4 w-4" />
+                  Toggle accent ({accentColor})
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+            </>
+          ) : null}
+
+          <DropdownMenuSeparator />
+          <DropdownMenuItem
+            onClick={handleSignOut}
+            disabled={isSigningOut}
+            className="cursor-pointer text-destructive focus:text-destructive"
+          >
+            <LogOut className="mr-2 h-4 w-4" />
+            {isSigningOut ? t("header.signingOut") : t("header.signOut")}
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
+  );
+}

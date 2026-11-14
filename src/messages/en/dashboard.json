@@ -1,0 +1,613 @@
+{
+  "installPwaBanner": {
+    "ariaLabel": "Suggest installing the app",
+    "message": "Install the app on your device for quick access and a fuller experience.",
+    "install": "Install app",
+    "dismissAria": "Dismiss"
+  },
+  "shell": {
+    "admin": "Admin",
+    "adminPanel": "Admin Panel",
+    "dashboard": "Home",
+    "support": "Support",
+    "content": "Content",
+    "supportPanel": "Support Panel",
+    "contentPanel": "Content Panel",
+    "overview": "Overview",
+    "tickets": "Tickets",
+    "users": "Users",
+    "subscription": "Subscription",
+    "subscriptions": "Subscriptions",
+    "invoices": "Invoices",
+    "segments": "Segments",
+    "events": "Events",
+    "announcements": "Announcements",
+    "newsletter": "Newsletter",
+    "topicPush": "Notifications",
+    "inAppNotifications": "Notifications",
+    "coupons": "Coupons",
+    "todos": "Todos",
+    "tasks": "Tasks",
+    "projects": "Projects",
+    "trial": "Free trial",
+    "checkout": "Checkout",
+    "feedbacks": "Feedbacks",
+    "contentAssets": "Content assets",
+    "blogs": "blogs",
+    "blogReader": "Blog",
+    "settings": "Settings",
+    "logout": "Logout",
+    "signingOut": "Signing Out...",
+    "learningPanel": "Learning",
+    "lifePanel": "Life",
+    "create": "Create",
+    "edit": "Edit",
+    "brandTitle": "SaaS Starter",
+    "brandSubtitle": "All-in-One Productivity Platform",
+    "quickDashboardSwitch": "Quick workspace switch",
+    "staffPanels": "Staff & Management",
+    "mainShort": "Main",
+    "learningShort": "Learning",
+    "lifeShort": "Life"
+  },
+  "overview": {
+    "greeting": {
+      "morning": "Good morning",
+      "afternoon": "Good afternoon",
+      "evening": "Good evening",
+      "defaultName": "there"
+    },
+    "quickCapture": {
+      "addTask": "Quick Task",
+      "addTaskDesc": "Add a new task to today's list",
+      "taskDialog": {
+        "title": "Add Quick Task",
+        "description": "Add a new task and assign its due date, priority, or project.",
+        "taskTitlePlaceholder": "What needs to be done?...",
+        "dueDate": "Due date",
+        "today": "Today",
+        "priority": "Priority",
+        "priorityNone": "No priority",
+        "priorityLow": "Low",
+        "priorityMedium": "Medium",
+        "priorityHigh": "High",
+        "project": "Project",
+        "noProject": "No project",
+        "cancel": "Cancel",
+        "create": "Add Task",
+        "creating": "Adding...",
+        "success": "Task added successfully!"
+      }
+    }
+  },
+  "plans": {
+    "title": "Choose your plan",
+    "subtitle": "Everything you need for tasks and projects — pick the tier that matches how you work.",
+    "chooseAria": "Subscription plans",
+    "billingCycleAria": "Billing cycle selection",
+    "billingMonthly": "Monthly",
+    "billingYearly": "Yearly",
+    "savePercentBadge": "Save {percent}%",
+    "bestValueBadge": "Best Value",
+    "cadencePaid": "Monthly",
+    "cadencePaidYearly": "Billed annually (365 days)",
+    "monthlyEquivalentHint": "Equivalent to {price} / month",
+    "yearlyEncouragementActive": "🎉 Save 240 EGP/year",
+    "yearlyEncouragementPrompt": "💡 Switch to Yearly and save",
+    "taglineFree": "Start organizing your work with core tools",
+    "taglinePro": "Advanced tools to organize your work and scale efficiently",
+    "freePlanPrice": "Free",
+    "expiresInBadge": "Expires in {days, plural, =0 {today} one {# day} other {# days}}",
+    "tryFreeOnPro": "{days}-day free trial on Pro",
+    "ctaTryFree": "Try Pro for free",
+    "ctaSubscribePro": "Subscribe to Pro",
+    "ctaSubscribeYearly": "Get Yearly Pro — Save 40%",
+    "ctaUpgradeToPro": "Upgrade to Pro",
+    "ctaUpgradeToYearlyPro": "Upgrade to Yearly Pro (Save 40%)",
+    "ctaExtendPro": "Extend subscription",
+    "ctaExtendYearlyPro": "Extend Yearly",
+    "ctaSkipTrialAndSubscribe": "Or subscribe directly without trial",
+    "ctaSkipTrialAndSubscribeYearly": "Or subscribe directly to Yearly (Save 40%)",
+    "ctaBusiness": "Choose Business",
+    "trialLimitsNoticeTitle": "Free Trial Notice",
+    "trialLimitsNoticeDescription": "You are currently on the Free Trial, not the Pro subscription. Pro features are active, but item limits (such as projects and tasks) still apply. Subscribe to Pro for unlimited access.",
+    "sections": {
+      "includes": "Includes",
+      "limits": "Limits",
+      "proFeatures": "Pro Features",
+      "unlimited": "Unlimited"
+    },
+    "features": {
+      "free": {
+        "projects": "{count} Projects",
+        "tasks": "Basic Tasks",
+        "editorImages": "{count} Uploaded images",
+        "stats": "Basic Stats",
+        "reminders": "Basic Reminders"
+      },
+      "pro": {
+        "projectsUnlimited": "Unlimited projects",
+        "analytics": "Advanced Analytics",
+        "export": "Export & Backup",
+        "customization": "Customization"
+      }
+    }
+  },
+  "subscription": {
+    "currentPlan": "Current plan",
+    "currentPlanBadge": "Current",
+    "trialPlanBadge": "Free Trial",
+    "trialLimitsNoticeTitle": "Free Trial Notice",
+    "trialLimitsNoticeDescription": "You are currently on the Free Trial, not the Pro subscription. Usage limits (such as projects and tasks) still apply during the trial. Upgrade to Pro for unlimited access.",
+    "freePrice": "Free",
+    "billingCycle": "{days} days",
+    "invoices": "Invoice history",
+    "invoicesDescription": "{count} invoice(s)",
+    "loading": "Loading...",
+    "error": "Could not load subscription details.",
+    "loadingErrorTitle": "Subscription details",
+    "activatedAtLabel": "Activated on",
+    "renewsAtLabel": "Renews on",
+    "expiresNever": "No active renewal date",
+    "upgradeCtaTitle": "Ready for more?",
+    "upgradeCtaDescription": "Unlock premium features and remove Free plan limits.",
+    "upgradeCta": "Explore plans",
+    "upgradeToCheckoutCta": "Upgrade to Pro",
+    "autoRenewTitle": "Auto renewal",
+    "autoRenewOn": "Auto renewal is enabled",
+    "autoRenewOff": "Auto renewal is disabled",
+    "autoRenewUpdated": "Auto renewal preference updated.",
+    "autoRenewError": "Could not update auto renewal preference.",
+    "invoiceEmpty": "No invoices found yet.",
+    "invoiceAmount": "Amount",
+    "invoiceStatus": "Status",
+    "invoicePeriod": "Period",
+    "invoiceCreatedAt": "Created",
+    "statusInvoices": {
+      "paid": "Paid",
+      "pending": "Pending",
+      "failed": "Failed",
+      "refunded": "Refunded",
+      "partially_refunded": "Partially refunded"
+    },
+    "status": {
+      "subscription": {}
+    },
+    "coupons": {
+      "redeemGift": {
+        "title": {
+          "missingCode": "Missing coupon",
+          "success": "Coupon redeemed",
+          "error": "Could not redeem",
+          "loading": "Redeeming coupon"
+        },
+        "description": {
+          "missingCode": "This page expects a coupon code in the URL query string.",
+          "success": "Your subscription was updated. Redirecting…",
+          "error": "Please try again from the link you received.",
+          "loading": "Please wait while we activate your gift."
+        },
+        "content": {
+          "processing": "Processing…",
+          "redirecting": "Redirecting to subscription…"
+        },
+        "missingCode": {
+          "noCodeProvided": "No coupon code provided.",
+          "exampleLabel": "Example:"
+        },
+        "error": {
+          "genericMessage": "Something went wrong while redeeming your coupon.",
+          "alreadyRedeemedMessage": "This coupon code has already been used.",
+          "usageLimitReachedMessage": "This coupon has reached its usage limit.",
+          "codeLabel": "Code:"
+        },
+        "toast": {
+          "success": "Gift coupon redeemed successfully!"
+        },
+        "actions": {
+          "goToSubscription": "Go to subscription"
+        }
+      }
+    }
+  },
+  "checkout": {
+    "title": "Checkout",
+    "subtitle": "Manual activation is currently used for paid plans.",
+    "manualActivationTitle": "Complete your payment manually",
+    "manualActivationDescription": "To subscribe, contact us on WhatsApp, confirm your payment, and we will activate your plan for you.",
+    "step1": "1. Send us a message on WhatsApp and tell us which plan you want.",
+    "step2": "2. Complete the payment and share your payment proof or reference with us.",
+    "step3": "3. After verification, we will manually activate your subscription on your account.",
+    "contactWhatsapp": "Contact us on WhatsApp",
+    "selectedPlanLabel": "Selected plan",
+    "proYearlyTitle": "Pro Plan (Yearly)",
+    "proYearlyPriceDesc": "360 EGP for 1 full year",
+    "proMonthlyTitle": "Pro Plan (Monthly)",
+    "proMonthlyPriceDesc": "50 EGP / month",
+    "save35Badge": "Save 40%"
+  },
+  "trial": {
+    "title": "Start your free trial",
+    "subtitle": "Activate your trial instantly and explore Pro features.",
+    "cardTitle": "Try Pro now",
+    "cardDescription": "Starting a trial immediately activates the trial plan on your account.",
+    "noteOne": "Trial can be started only once per account.",
+    "noteTwo": "If you already have an active paid period, trial cannot start yet.",
+    "noteThree": "Trial automatically ends at the configured trial expiry date.",
+    "noteFour": "Trial accounts include Pro features, but usage limits (such as projects and tasks) still apply.",
+    "startCta": "Start free trial",
+    "starting": "Starting...",
+    "success": "Trial started successfully. Your account is now on the trial plan.",
+    "errorFallback": "Could not start trial. Please try again.",
+    "viewSubscription": "View subscription",
+    "skipTrialCta": "Subscribe directly to Pro",
+    "subscribeNow": "Subscribe to Pro",
+    "loadingSubscription": "Loading your subscription…",
+    "trialUsedTitle": "Free trial already used",
+    "trialUsedDescription": "This account has already used its one-time free trial. You can view or change your plan on the subscription page."
+  },
+  "supportOverview": {
+    "analytics": {
+      "title": "At a glance",
+      "subtitle": "Ticket and feedback volumes for the support workspace.",
+      "loadFailed": "Could not load overview metrics.",
+      "asOf": "Updated {date}",
+      "staleHint": "Stale metrics use a {days}-day window from creation time.",
+      "open": "Open",
+      "resolved": "Resolved",
+      "closed": "Closed",
+      "other": "Other",
+      "new": "New",
+      "reviewed": "Reviewed",
+      "suggestion": "Suggestion",
+      "complaint": "Complaint",
+      "openStale": "Open · stale",
+      "staleNew": "New · stale",
+      "metrics": {
+        "openTickets": "Open tickets",
+        "openTicketsHint": "Current queue awaiting action",
+        "newFeedback": "New feedback",
+        "newFeedbackHint": "Awaiting review",
+        "totalTickets": "All tickets",
+        "totalTicketsHint": "Recorded in the system",
+        "totalFeedbacks": "All feedback",
+        "totalFeedbacksHint": "Suggestions and complaints"
+      },
+      "chartTitle": "Created volume",
+      "chartDescription": "Tickets and feedback submitted per day.",
+      "period7": "7 days",
+      "period30": "30 days",
+      "chartSeriesTickets": "Tickets",
+      "chartSeriesFeedbacks": "Feedbacks",
+      "pieTicketsTitle": "Tickets by status",
+      "pieTicketsDescription": "Share of each status in the current queue.",
+      "pieFeedbackTypesTitle": "Feedback by type",
+      "pieFeedbackTypesDescription": "Suggestions vs complaints (and other).",
+      "pieFeedbackStatusTitle": "Feedback by status",
+      "pieFeedbackStatusDescription": "New, reviewed, closed, and other states.",
+      "pieEmpty": "No data to display yet."
+    }
+  },
+  "adminOverview": {
+    "analytics": {
+      "title": "Admin overview",
+      "subtitle": "A consolidated view of users and segmentation.",
+      "asOf": "Updated {date}",
+      "loadFailed": "Could not load admin overview metrics.",
+      "empty": "No data to display yet.",
+      "rangeLabel": "Series range",
+      "period7": "7 days",
+      "period30": "30 days",
+      "metrics": {
+        "totalUsers": "Total users",
+        "totalUsersHint": "All user accounts",
+        "newUsers7": "New users (7d)",
+        "newUsers7Hint": "Signed up in the last 7 days",
+        "newUsers30": "New users (30d)",
+        "newUsers30Hint": "Signed up in the last 30 days",
+        "verifiedRatio": "Email verified",
+        "verifiedRatioHint": "Verified ratio among all users"
+      },
+      "series": {
+        "signups": "Signups"
+      },
+      "signupsChartTitle": "User signups by day",
+      "signupsChartDescription": "Daily signup volume for the selected range.",
+      "emailPieTitle": "Email verification",
+      "emailPieDescription": "Verified vs unverified users.",
+      "rolesPieTitle": "Users by role",
+      "rolesPieDescription": "Role distribution including unspecified users.",
+      "banningPieTitle": "Access status",
+      "banningPieDescription": "Not banned vs temporary/permanent bans.",
+      "segmentsTitle": "Segment adoption",
+      "segmentsDescription": "Unsegmented users and users per segment.",
+      "segmentsColumns": {
+        "segment": "Segment",
+        "users": "Users"
+      },
+      "verified": "Verified",
+      "unverified": "Unverified",
+      "notBanned": "Not banned",
+      "bannedPermanent": "Permanent ban",
+      "bannedTemporary": "Temporary ban",
+      "unsegmented": "Unsegmented",
+      "role": {
+        "admin": "Admin",
+        "contentManager": "Content manager",
+        "support": "Support",
+        "user": "User",
+        "unspecified": "Unspecified",
+        "other": "Other ({key})"
+      }
+    }
+  },
+  "support": {
+    "create": {
+      "title": "Contact support",
+      "description": "Create a ticket to start a discussion with our support team.",
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "Example: I cannot access my account",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Describe your issue with enough detail so we can help quickly.",
+      "submit": "Create ticket",
+      "sending": "Creating..."
+    },
+    "list": {
+      "title": "Your tickets",
+      "description": "{total} ticket(s) found",
+      "empty": "No tickets yet. Create your first support ticket above.",
+      "createdAt": "Created at: {date}",
+      "pagination": {
+        "page": "Page {page} of {totalPages}",
+        "previous": "Previous",
+        "next": "Next",
+        "previousAria": "Go to previous page",
+        "nextAria": "Go to next page"
+      },
+      "filters": {
+        "status": "Filter by status",
+        "all": "All statuses"
+      },
+      "viewConversation": "View discussion"
+    },
+    "statuses": {
+      "open": "Open",
+      "resolved": "Resolved",
+      "closed": "Closed"
+    },
+    "messages": {
+      "requiredFields": "Subject and description are required.",
+      "ticketCreated": "Support ticket created successfully.",
+      "createFailed": "Could not create support ticket.",
+      "loadFailed": "Failed to load your support tickets."
+    },
+    "chat": {
+      "title": "Discussion thread",
+      "backToTickets": "Back to tickets",
+      "noMessages": "No replies yet. Send a message to start the conversation.",
+      "inputPlaceholder": "Type your reply...",
+      "send": "Send reply",
+      "sending": "Sending...",
+      "you": "You",
+      "supportStaff": "Support Team",
+      "customer": "Customer",
+      "deleteMessage": "Delete message",
+      "deleteMessageConfirm": "Are you sure you want to delete this message?",
+      "delete": "Delete",
+      "deleting": "Deleting...",
+      "cancel": "Cancel",
+      "messageDeleted": "Message deleted.",
+      "messageSent": "Message sent.",
+      "ticketClosedNotice": "This ticket is closed. Sending a message will reopen it."
+    }
+  },
+  "supportDesk": {
+    "title": "Support tickets",
+    "description": "Manage incoming tickets ({total})",
+    "empty": "No tickets found for the selected filter.",
+    "columns": {
+      "subject": "Subject",
+      "userId": "User ID",
+      "userEmail": "User Email",
+      "status": "Status",
+      "createdAt": "Created At",
+      "actions": "Actions"
+    },
+    "filters": {
+      "status": "Filter by status",
+      "all": "All statuses",
+      "sortBy": "Sort by date",
+      "newest": "Newest first",
+      "oldest": "Oldest first"
+    },
+    "actions": {
+      "refresh": "Refresh",
+      "delete": "Delete ticket",
+      "viewDetails": "View details",
+      "startChat": "Start New Chat"
+    },
+    "statuses": {
+      "open": "Open",
+      "resolved": "Resolved",
+      "closed": "Closed"
+    },
+    "messages": {
+      "statusUpdated": "Ticket status updated.",
+      "statusUpdateFailed": "Failed to update ticket status.",
+      "ticketDeleted": "Ticket deleted successfully.",
+      "ticketDeleteFailed": "Failed to delete ticket.",
+      "loadFailed": "Failed to load support tickets."
+    },
+    "deleteDialog": {
+      "title": "Delete ticket",
+      "description": "This will permanently delete \"{subject}\".",
+      "fallbackSubject": "this ticket",
+      "confirm": "Delete",
+      "deleting": "Deleting...",
+      "cancel": "Cancel"
+    },
+    "detailsDialog": {
+      "title": "Ticket details",
+      "description": "Full ticket content and timestamps.",
+      "userId": "User ID",
+      "userEmail": "User Email",
+      "status": "Status",
+      "createdAt": "Created At",
+      "updatedAt": "Updated At",
+      "fullDescription": "Description",
+      "close": "Close"
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next",
+      "previousAria": "Go to previous page",
+      "nextAria": "Go to next page"
+    },
+    "chat": {
+      "backToTickets": "Back to tickets"
+    },
+    "initiateDialog": {
+      "title": "Start Conversation with User",
+      "description": "Initiate a direct support conversation with a registered user.",
+      "userLabel": "Target User",
+      "unknownUser": "User",
+      "changeUser": "Change user",
+      "searchPlaceholder": "Search user by name or email...",
+      "select": "Select",
+      "subjectLabel": "Conversation Subject",
+      "subjectPlaceholder": "e.g. Inquiring about your recent feedback",
+      "messageLabel": "Initial Message",
+      "messagePlaceholder": "Write your message to the user...",
+      "cancel": "Cancel",
+      "submit": "Start Conversation",
+      "submitting": "Starting...",
+      "selectUserRequired": "Please select a user to start a conversation with.",
+      "subjectRequired": "Subject is required.",
+      "messageRequired": "Initial message is required.",
+      "successToast": "Conversation started successfully.",
+      "failedToast": "Failed to start conversation."
+    }
+  },
+  "feedbacks": {
+    "create": {
+      "title": "Share feedback",
+      "description": "Send a suggestion or complaint and our team will review it.",
+      "typeLabel": "Feedback type",
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "Example: Feature request for recurring reminders",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Share enough detail so our team can take clear action.",
+      "submit": "Submit feedback",
+      "sending": "Submitting..."
+    },
+    "list": {
+      "title": "Your feedback",
+      "description": "{total} feedback item(s) found",
+      "empty": "No feedback yet. Submit your first feedback above.",
+      "createdAt": "Created at: {date}",
+      "filters": {
+        "type": "Filter by type",
+        "status": "Filter by status",
+        "allTypes": "All types",
+        "allStatuses": "All statuses"
+      },
+      "pagination": {
+        "page": "Page {page} of {totalPages}",
+        "previous": "Previous",
+        "next": "Next",
+        "previousAria": "Go to previous page",
+        "nextAria": "Go to next page"
+      }
+    },
+    "types": {
+      "suggestion": "Suggestion",
+      "complaint": "Complaint"
+    },
+    "statuses": {
+      "new": "New",
+      "reviewed": "Reviewed",
+      "closed": "Closed"
+    },
+    "messages": {
+      "requiredFields": "Type, subject, and description are required.",
+      "feedbackCreated": "Feedback submitted successfully.",
+      "createFailed": "Could not submit feedback.",
+      "loadFailed": "Failed to load your feedback list."
+    }
+  },
+  "feedbackDesk": {
+    "title": "Feedback management",
+    "description": "Manage incoming feedback ({total})",
+    "empty": "No feedback found for the selected filters.",
+    "columns": {
+      "type": "Type",
+      "subject": "Subject",
+      "userId": "User ID",
+      "userEmail": "User Email",
+      "status": "Status",
+      "createdAt": "Created At",
+      "actions": "Actions"
+    },
+    "filters": {
+      "sortBy": "Sort by date",
+      "newest": "Newest first",
+      "oldest": "Oldest first",
+      "type": "Filter by type",
+      "status": "Filter by status",
+      "allTypes": "All types",
+      "allStatuses": "All statuses"
+    },
+    "actions": {
+      "refresh": "Refresh",
+      "delete": "Delete feedback",
+      "viewDetails": "View details"
+    },
+    "types": {
+      "suggestion": "Suggestion",
+      "complaint": "Complaint"
+    },
+    "statuses": {
+      "new": "New",
+      "reviewed": "Reviewed",
+      "closed": "Closed"
+    },
+    "messages": {
+      "statusUpdated": "Feedback status updated.",
+      "statusUpdateFailed": "Failed to update feedback status.",
+      "itemDeleted": "Feedback deleted successfully.",
+      "itemDeleteFailed": "Failed to delete feedback.",
+      "loadFailed": "Failed to load feedback list."
+    },
+    "deleteDialog": {
+      "title": "Delete feedback",
+      "description": "This will permanently delete \"{subject}\".",
+      "fallbackSubject": "this feedback",
+      "confirm": "Delete",
+      "deleting": "Deleting...",
+      "cancel": "Cancel"
+    },
+    "detailsDialog": {
+      "title": "Feedback details",
+      "description": "Full feedback content and timestamps.",
+      "type": "Type",
+      "userId": "User ID",
+      "userEmail": "User Email",
+      "status": "Status",
+      "createdAt": "Created At",
+      "updatedAt": "Updated At",
+      "fullDescription": "Description",
+      "close": "Close"
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next",
+      "previousAria": "Go to previous page",
+      "nextAria": "Go to next page"
+    }
+  },
+  "comingSoon": {
+    "badge": "Coming soon",
+    "title": "We Are Building Something Lovely",
+    "description": "We are building something lovely here. We can't wait to share it with you."
+  }
+}

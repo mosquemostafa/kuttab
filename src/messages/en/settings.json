@@ -1,0 +1,253 @@
+{
+  "page": {
+    "title": "Account Settings",
+    "description": "Manage your personal preferences and notification settings."
+  },
+  "errors": {
+    "emailDoesntMatch": "Selected provider email must match your current account email.",
+    "unableToLinkAccount": "Unable to link the selected provider account.",
+    "accountAlreadyLinkedToDifferentUser": "This provider account is already linked to another user."
+  },
+  "success": {
+    "linked": "Account linked successfully."
+  },
+  "subscription": {},
+  "personalInformation": {
+    "title": "Personal Information",
+    "description": "Update your account profile details. Additional fields can be added here as your profile grows.",
+    "fields": {
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailHelp": "Email is managed separately and cannot be changed here."
+    },
+    "actions": {
+      "save": "Save Changes",
+      "saving": "Saving..."
+    },
+    "updatedSuccess": "Personal information updated successfully."
+  },
+  "linkedAccounts": {
+    "title": "Linked Accounts",
+    "description": "Connect Google or GitHub for easier sign in. You can also use a linked account profile image.",
+    "profileImage": {
+      "current": "Current profile image",
+      "uploadButton": "Upload photo",
+      "uploadSuccess": "Profile photo updated.",
+      "uploadFailed": "Could not upload photo.",
+      "invalidType": "Choose a JPEG, PNG, WebP, or GIF image. Max {maxMb} MB.",
+      "tooLarge": "Image must be {maxMb} MB or smaller. Use JPEG, PNG, WebP, or GIF.",
+      "providers": "Provider Accounts"
+    },
+    "status": {
+      "notConnected": "Not connected. Link this account to enable quick sign in.",
+      "connectedWithImage": "Connected. Profile image is available.",
+      "connectedWithoutImage": "Connected, but no profile image is available."
+    },
+    "actions": {
+      "linkAccount": "Link {provider} account",
+      "useImage": "Use Image",
+      "disconnect": "Disconnect"
+    },
+    "buttonStates": {
+      "linking": "Linking...",
+      "updating": "Updating...",
+      "disconnecting": "Disconnecting..."
+    },
+    "messages": {
+      "failedLoad": "Failed to load linked accounts.",
+      "failedUpdateImage": "Failed to update profile image.",
+      "callbackMismatch": "OAuth callback mismatch: configured for {{callbackOrigin}}, current site is {{currentOrigin}}.",
+      "invalidRedirectUrl": "Invalid OAuth redirect URL returned by server.",
+      "failedLink": "Failed to link {provider} account.",
+      "alreadyLinked": "{provider} account is already linked.",
+      "keepOneMethod": "You must keep at least one active login method.",
+      "failedDisconnect": "Failed to disconnect account.",
+      "disconnected": "{provider} account disconnected."
+    },
+    "providers": {
+      "google": "Google",
+      "github": "GitHub"
+    }
+  },
+  "accentColor": {
+    "title": "Accent Color",
+    "description": "Select your preferred accent color.",
+    "options": {
+      "neutral": "Neutral",
+      "blue": "Blue",
+      "green": "Green",
+      "red": "Red",
+      "purple": "Purple",
+      "gold": "Gold"
+    }
+  },
+  "theme": {
+    "title": "Theme",
+    "description": "Switch between light and dark mode.",
+    "options": {
+      "light": "Light",
+      "dark": "Dark"
+    }
+  },
+  "language": {
+    "title": "Language",
+    "description": "Choose  the Application language.",
+    "options": {
+      "en": "English",
+      "ar": "Arabic"
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "description": "Control browser push notifications for this account.",
+    "status": {
+      "unsupported": "Not supported",
+      "enabled": "Enabled",
+      "blocked": "Blocked",
+      "notEnabled": "Not enabled",
+      "needsDeviceRegistration": "Needs activation"
+    },
+    "statusDescription": {
+      "unsupported": "Your current browser or device does not support push notifications.",
+      "default": "Turn on notifications to receive reminders and important updates.",
+      "blocked": "Notifications are blocked in your browser settings. Allow them, then check again.",
+      "enabled": "Notifications are active and this device is connected.",
+      "needsDeviceRegistration": "Notifications are allowed, but this device is not connected yet. Enable once to finish setup."
+    },
+    "actions": {
+      "enable": "Enable notifications",
+      "enabling": "Enabling...",
+      "recheck": "Check again",
+      "rechecking": "Checking...",
+      "howToEnable": "How to enable notifications"
+    },
+    "deviceRegistration": {
+      "alertTitle": "One more step to activate this device",
+      "alertBody": "Your browser allows notifications, but this device is not connected. Press Enable notifications to complete setup."
+    },
+    "messages": {
+      "enabledSuccess": "Notifications are now enabled on this device.",
+      "unableToEnable": "Could not enable notifications. Please try again.",
+      "unableToCheckStatus": "Could not check notification status. Please try again."
+    },
+    "customTopics": {
+      "title": "Extra notifications",
+      "description": "Turn on the types you want to receive, and turn off what you do not need.",
+      "enableFirstHint": "Enable notifications on this device first, then choose your extra notification types.",
+      "loading": "Loading available topics…",
+      "empty": "No custom topics are available right now.",
+      "actions": {},
+      "labels": {
+        "product_updates": "Product updates"
+      },
+      "messages": {
+        "loadError": "Could not load custom topics.",
+        "subscribed": "Topic subscribed successfully.",
+        "unsubscribed": "Topic unsubscribed successfully.",
+        "updateError": "Could not update topic subscription."
+      }
+    },
+    "testMessages": {},
+    "helpPage": {
+      "title": "Allow notifications for this application",
+      "lead": "If notifications are blocked, change the setting in your browser for this site. When you are done, open Account Settings again and use Check again next to Notifications so we can refresh the status.",
+      "back": "Back to account settings",
+      "chrome": {
+        "title": "Google Chrome (desktop)",
+        "body": "Click the lock or tune icon in the address bar, open Site settings, find Notifications, and choose Allow. You can also open Chrome Settings → Privacy and security → Site settings → Notifications and allow this site."
+      },
+      "edge": {
+        "title": "Microsoft Edge (desktop)",
+        "body": "Click the lock icon in the address bar → Permissions for this site → Notifications → Allow. Alternatively use Edge Settings → Cookies and site permissions → Notifications."
+      },
+      "firefox": {
+        "title": "Mozilla Firefox (desktop)",
+        "body": "Click the lock icon in the address bar → Clear cookies and site data → Manage more settings, or open Firefox Settings → Privacy & Security → Permissions → Notifications → Settings, and allow this site."
+      },
+      "safari": {
+        "title": "Safari (macOS)",
+        "body": "Safari → Settings → Websites → Notifications. Find this site and set it to Allow. On some versions use Safari → Preferences → Websites → Notifications."
+      },
+      "mobile": {
+        "title": "Chrome or Safari on a phone or tablet",
+        "body": "Open the browser menu, find Site settings or Website settings for this site, and enable notifications. On iOS, you may also need to allow notifications for the browser app in the system Settings app.",
+        "chromeAppNote": "If notifications still do not appear on your phone, Chrome notifications might be disabled for the whole app in system settings. Make sure Chrome app notifications are enabled."
+      }
+    }
+  },
+  "newsletter": {
+    "title": "Email newsletter",
+    "description": "Get occasional product updates and tips. We use your account email below.",
+    "emailLabel": "Email",
+    "preferredLocaleLabel": "Newsletter language",
+    "noEmail": "Your account does not have an email address, so newsletter signup is unavailable.",
+    "status": {
+      "subscribed": "Subscribed",
+      "notSubscribed": "Not subscribed"
+    },
+    "actions": {
+      "subscribe": "Subscribe",
+      "subscribing": "Subscribing…",
+      "unsubscribe": "Unsubscribe",
+      "unsubscribing": "Unsubscribing…"
+    },
+    "messages": {
+      "subscribed": "You are subscribed to the newsletter.",
+      "unsubscribed": "You are unsubscribed from the newsletter.",
+      "localeUpdated": "Newsletter language updated.",
+      "error": "Something went wrong. Try again.",
+      "loadError": "Could not load subscription status."
+    },
+    "unsubscribeDialog": {
+      "title": "Unsubscribe from the newsletter?",
+      "description": "You will stop receiving newsletter emails at your account address. You can subscribe again anytime from here.",
+      "cancel": "Cancel",
+      "confirm": "Unsubscribe"
+    }
+  },
+  "changePassword": {
+    "title": "Password",
+    "description": "Change your password. This will revoke your other active sessions.",
+    "modal": {
+      "enableTitle": "Enable Password Login",
+      "enableDescription": "You currently sign in with OAuth. Set a password to enable email and password login for this same account."
+    },
+    "fields": {
+      "currentPassword": "Current Password",
+      "currentPasswordPlaceholder": "Enter current password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm New Password"
+    },
+    "actions": {
+      "enablePasswordLogin": "Enable Password Login",
+      "updatePassword": "Update Password",
+      "showCurrentPassword": "Show current password",
+      "hideCurrentPassword": "Hide current password"
+    },
+    "buttonStates": {
+      "enabling": "Enabling...",
+      "updating": "Updating..."
+    },
+    "messages": {
+      "passwordUpdated": "Password updated.",
+      "passwordEnabled": "Password login enabled."
+    }
+  },
+  "deleteAccount": {
+    "title": "Delete Account",
+    "description": "Permanently remove your account and all of its contents from our platform. This action is not reversible.",
+    "button": "Delete Account",
+    "deleting": "Deleting...",
+    "dialog": {
+      "title": "Delete Account?",
+      "description": "Are you sure you want to delete your account? This action cannot be undone.",
+      "cancel": "Cancel",
+      "confirm": "Delete Account"
+    },
+    "messages": {
+      "success": "Account deleted successfully",
+      "error": "Failed to delete account"
+    }
+  }
+}

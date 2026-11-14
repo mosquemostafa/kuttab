@@ -1,0 +1,76 @@
+{
+  "title": "Projects",
+  "subtitle": "Group your work and keep Todo, Notes, Resources organized under each project.",
+  "actions": {
+    "success": {
+      "created": "Project created successfully.",
+      "updated": "Project updated successfully.",
+      "deleted": "Project deleted successfully.",
+      "unarchived": "Project restored from archive successfully."
+    },
+    "errors": {
+      "projectLimitReached": "You have reached your plan's project limit. Upgrade to add more projects."
+    }
+  },
+  "projectRoute": {},
+  "tabs": {},
+  "backToProjects": "Back to projects",
+  "overview": {
+    "priority": {}
+  },
+  "list": {
+    "searchPlaceholder": "Search by name…",
+    "createCardTitle": "New project",
+    "createFolderTileHint": "Create a new project",
+    "createProjectHint": "Create a project",
+    "openProjectMenu": "Project actions",
+    "createCardDescription": "Add a project to attach tasks and notes later.",
+    "nameLabel": "Name",
+    "namePlaceholder": "Project name",
+    "descriptionLabel": "Description",
+    "descriptionPlaceholder": "Optional details",
+    "colorLabel": "Color",
+    "colorNone": "None",
+    "emojiClear": "Remove emoji",
+    "submitCreate": "Create project",
+    "creating": "Creating…",
+    "empty": "No projects yet. Create one above.",
+    "emptyArchived": "No archived projects.",
+    "emptyFiltered": "No projects match your filters.",
+    "loadError": "Failed to load projects. Refresh and try again.",
+    "archivedBadge": "Archived",
+    "edit": "Edit",
+    "archive": "Archive",
+    "archivedToast": "Project archived.",
+    "unarchive": "unArchive",
+    "delete": "Delete",
+    "editTitle": "Edit project",
+    "save": "Save changes",
+    "saving": "Saving…",
+    "deleteTitle": "Delete project",
+    "deleteDescription": "This will permanently delete \"{name}\". This cannot be undone.",
+    "cancel": "Cancel",
+    "confirmDelete": "Delete",
+    "deleting": "Deleting…",
+    "pagination": {
+      "page": "Page {page} of {totalPages}",
+      "previous": "Previous",
+      "next": "Next",
+      "previousAria": "Previous page",
+      "nextAria": "Next page"
+    },
+    "colorKeys": {
+      "red": "Red",
+      "orange": "Orange",
+      "yellow": "Yellow",
+      "green": "Green",
+      "teal": "Teal",
+      "blue": "Blue",
+      "darkBlue": "Dark blue",
+      "purple": "Purple",
+      "pink": "Pink",
+      "brown": "Brown",
+      "gray": "Gray"
+    }
+  }
+}

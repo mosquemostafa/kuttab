@@ -1,0 +1,172 @@
+{
+  "title": "SaaS Starter - Production-Ready SaaS Boilerplate",
+  "description": "A modern, robust SaaS starter template powered by Next.js 16, Better Auth, PostgreSQL, Drizzle ORM, multi-language RTL support, and Admin Portal.",
+  "blogs": {
+    "notFoundTitle": "Blog not found",
+    "notFoundDescription": "The requested blog post could not be found.",
+    "tagFilterTitle": "Articles tagged {tag}",
+    "tagFilterDescription": "All published articles that include this tag.",
+    "listTitle": "Blog",
+    "listDescription": "Read our latest updates, stories, and practical insights."
+  },
+  "auth": {
+    "login": {
+      "title": "Sign In | SaaS Starter",
+      "description": "Securely sign in to SaaS Starter and access your dashboard."
+    },
+    "register": {
+      "title": "Create Account | SaaS Starter",
+      "description": "Create your SaaS Starter account and start managing your projects and tasks."
+    },
+    "forgotPassword": {
+      "title": "Forgot Password | SaaS Starter",
+      "description": "Reset your SaaS Starter password securely and regain access to your account."
+    },
+    "resetPassword": {
+      "title": "Reset Password | SaaS Starter",
+      "description": "Set a new password securely and restore access to your SaaS Starter account."
+    }
+  },
+  "dashboard": {
+    "overview": {
+      "title": "Dashboard Overview | SaaS Starter",
+      "description": "View your progress, tasks, projects, and analytics in one focused dashboard."
+    },
+    "settings": {
+      "title": "Dashboard Settings | SaaS Starter",
+      "description": "Manage your profile, preferences, language, and security settings."
+    },
+    "settingsNotificationsHelp": {
+      "title": "Browser notification help | SaaS Starter",
+      "description": "Learn how to allow push notifications for SaaS Starter in your browser."
+    },
+    "todos": {
+      "title": "Tasks | SaaS Starter Dashboard",
+      "description": "Plan, prioritize, and track your daily tasks with list, kanban, and calendar workflows."
+    },
+    "projects": {
+      "title": "Projects | SaaS Starter Dashboard",
+      "description": "Organize work into projects, keep context together, and manage archived projects from one place.",
+      "detailTitle": "{name} | Projects | SaaS Starter Dashboard",
+      "detailDescription": "Open and manage the \"{name}\" project in your dashboard.",
+      "detailNotFoundTitle": "Project not found | SaaS Starter",
+      "detailNotFoundDescription": "This project is unavailable or you do not have access."
+    },
+    "subscription": {
+      "title": "Subscription | SaaS Starter Dashboard",
+      "description": "View your current plan and review invoice history."
+    },
+    "checkout": {
+      "title": "Checkout | SaaS Starter Dashboard",
+      "description": "Complete your subscription manually through WhatsApp payment verification."
+    },
+    "trial": {
+      "title": "Free Trial | SaaS Starter Dashboard",
+      "description": "Start your free trial instantly and activate trial access on your account."
+    },
+    "support": {
+      "title": "Support | SaaS Starter Dashboard",
+      "description": "Create and track support tickets. Our team will follow up with you by email."
+    },
+    "feedbacks": {
+      "title": "Suggestions and Complaints | SaaS Starter Dashboard",
+      "description": "Send suggestions or complaints and track their review status in one place."
+    },
+    "notifications": {
+      "title": "Notifications | SaaS Starter Dashboard",
+      "description": "View and manage your in-app notifications."
+    },
+    "newsletterChannel": {
+      "list": {
+        "title": "Newsletter | SaaS Starter Dashboard",
+        "description": "Read published newsletter issues from your dashboard and manage your email subscription."
+      },
+      "article": {
+        "title": "Newsletter issue | SaaS Starter Dashboard",
+        "description": "Read a published newsletter issue in your current site language."
+      }
+    }
+  },
+  "support": {
+    "overview": {
+      "title": "Support Overview | SaaS Starter",
+      "description": "Handle support workflows and monitor user assistance tasks."
+    },
+    "tickets": {
+      "title": "Support Tickets | SaaS Starter",
+      "description": "Handle support ticket workflows, update status, and follow up with users."
+    },
+    "feedbacks": {
+      "title": "Suggestions and Complaints | SaaS Starter Support",
+      "description": "Review user suggestions and complaints, update status, and follow up by email."
+    }
+  },
+  "content": {
+    "overview": {
+      "title": "Content Overview | SaaS Starter",
+      "description": "Manage the content workspace and track upcoming publishing workflows."
+    },
+    "assets": {
+      "title": "Content Assets | SaaS Starter",
+      "description": "Upload, organize, and manage media assets for your content workflows."
+    },
+    "blogs": {
+      "title": "Content Blogs | SaaS Starter",
+      "description": "Create, edit, and manage multilingual blog content in your publishing workspace."
+    },
+    "newsletter": {
+      "title": "Newsletter | SaaS Starter Content",
+      "description": "Manage newsletter subscribers and email campaigns from the content workspace."
+    },
+    "newsletterCreate": {
+      "title": "New newsletter campaign | SaaS Starter Content",
+      "description": "Compose a bilingual newsletter draft for subscribers."
+    },
+    "newsletterCampaign": {
+      "title": "Newsletter campaign | SaaS Starter Content",
+      "description": "View or edit a newsletter campaign in the content workspace."
+    }
+  },
+  "admin": {
+    "overview": {
+      "title": "Admin Overview | SaaS Starter",
+      "description": "Track user growth and segmentation metrics at a glance."
+    },
+    "users": {
+      "title": "Users | SaaS Starter Admin",
+      "description": "Manage users, access, and roles from the admin dashboard."
+    },
+    "segments": {
+      "title": "Segments | SaaS Starter Admin",
+      "description": "Manage user segments and classify users by custom labels."
+    },
+    "announcements": {
+      "title": "Announcements | SaaS Starter Admin",
+      "description": "Create and manage targeted announcements with seen statistics."
+    },
+    "notifications": {
+      "title": "Notifications | SaaS Starter Admin",
+      "description": "Manage notification settings and tools in the admin dashboard."
+    },
+    "coupons": {
+      "title": "Coupons | SaaS Starter Admin",
+      "description": "Create and manage discount and gift coupons."
+    },
+    "settings": {
+      "title": "Admin Settings | SaaS Starter",
+      "description": "Configure application-wide administration settings and controls."
+    }
+  },
+  "dashboardLearning": {
+    "overview": {
+      "title": "Learning Overview | SaaS Starter",
+      "description": "Explore the learning workspace layout and tools."
+    }
+  },
+  "dashboardLife": {
+    "overview": {
+      "title": "Life Overview | SaaS Starter",
+      "description": "Explore the life workspace layout and tools."
+    }
+  }
+}

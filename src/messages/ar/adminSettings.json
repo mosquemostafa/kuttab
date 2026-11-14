@@ -1,0 +1,36 @@
+{
+  "page": {
+    "title": "إعدادات المسؤول",
+    "description": "قم بتكوين تفضيلات الإدارة والسلوك الافتراضي للنظام."
+  },
+  "card": {
+    "title": "إعدادات المؤسسة",
+    "description": "إدارة إعدادات المؤسسة والتسجيل الافتراضية."
+  },
+  "fields": {
+    "organizationName": "اسم المؤسسة",
+    "allowSelfRegistration": "السماح بالتسجيل الذاتي",
+    "allowSelfRegistrationEnabled": "ممكّن: يمكن للمستخدمين إنشاء حسابات جديدة.",
+    "allowSelfRegistrationDisabled": "معطّل: يمكن للمسؤولين فقط إضافة المستخدمين.",
+    "requireEmailVerification": "يتطلب التحقق من البريد الإلكتروني",
+    "requireEmailVerificationEnabled": "ممكّن: يجب على المستخدمين الجدد التحقق من البريد الإلكتروني.",
+    "requireEmailVerificationDisabled": "معطّل: تتم الموافقة تلقائيًا على المستخدمين الجدد.",
+    "sendSupportTicketConfirmationEmail": "إرسال بريد تأكيد لتذكرة الدعم",
+    "sendSupportTicketConfirmationEmailEnabled": "ممكّن: يتلقى المستخدمون بريد تأكيد بعد إرسال تذكرة الدعم.",
+    "sendSupportTicketConfirmationEmailDisabled": "معطّل: لا يتم إرسال بريد تأكيد بعد إرسال التذكرة.",
+    "sendFeedbackConfirmationEmail": "إرسال بريد تأكيد للملاحظات",
+    "sendFeedbackConfirmationEmailEnabled": "ممكّن: يتلقى المستخدمون بريد تأكيد بعد إرسال الملاحظات.",
+    "sendFeedbackConfirmationEmailDisabled": "معطّل: لا يتم إرسال بريد تأكيد بعد إرسال الملاحظات.",
+    "sendNewsletterWelcomeEmail": "بريد ترحيب للنشرة عند الاشتراك",
+    "sendNewsletterWelcomeEmailEnabled": "ممكّن: عند تفعيل إرسال النشرة، يتلقى المشتركون الجدد والمفعَّلون مرة أخرى بريد ترحيب عبر Resend.",
+    "sendNewsletterWelcomeEmailDisabled": "معطّل: لا يُرسل بريد ترحيب عند الاشتراك.",
+    "forceSingleActiveSession": "فرض جلسة نشطة واحدة",
+    "forceSingleActiveSessionEnabled": "ممكّن: جلسة نشطة واحدة لكل مستخدم.",
+    "forceSingleActiveSessionDisabled": "معطّل: يمكن للمستخدمين البقاء مسجلين الدخول على عدة أجهزة."
+  },
+  "actions": {
+    "save": "حفظ الإعدادات",
+    "saving": "جارٍ الحفظ...",
+    "savedSuccess": "تم حفظ الإعدادات بنجاح."
+  }
+}

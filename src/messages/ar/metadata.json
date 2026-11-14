@@ -1,0 +1,172 @@
+{
+  "title": "ساس ستارتر - قالب تطبيقات ساس المتكامل",
+  "description": "قالب ساس حديث ومتكامل مبني على Next.js 16، Better Auth، PostgreSQL، Drizzle ORM، مع دعم ثنائي اللغة RTL/LTR ولوحة تحكم متقدمة.",
+  "blogs": {
+    "notFoundTitle": "المقال غير موجود",
+    "notFoundDescription": "تعذر العثور على المقال المطلوب.",
+    "tagFilterTitle": "مقالات بالهاشتاج {tag}",
+    "tagFilterDescription": "جميع المقالات المنشورة التي تحتوي على هذا الهاشتاج.",
+    "listTitle": "المدونة",
+    "listDescription": "اطلع على أحدث التحديثات والقصص والرؤى العملية."
+  },
+  "auth": {
+    "login": {
+      "title": "تسجيل الدخول | SaaS Starter",
+      "description": "سجّل الدخول بأمان إلى SaaS Starter للوصول إلى لوحة التحكم."
+    },
+    "register": {
+      "title": "إنشاء حساب | SaaS Starter",
+      "description": "أنشئ حسابك في SaaS Starter وابدأ تنظيم أعمالك ومشاريعك ومهامك."
+    },
+    "forgotPassword": {
+      "title": "نسيت كلمة المرور | SaaS Starter",
+      "description": "أعد تعيين كلمة المرور بأمان لاستعادة الوصول إلى حسابك في SaaS Starter."
+    },
+    "resetPassword": {
+      "title": "إعادة تعيين كلمة المرور | SaaS Starter",
+      "description": "عيّن كلمة مرور جديدة بأمان واستعد الوصول إلى حسابك في SaaS Starter."
+    }
+  },
+  "dashboard": {
+    "overview": {
+      "title": "نظرة عامة على لوحة التحكم | SaaS Starter",
+      "description": "اطلع على تقدمك والمهام والمشاريع والتحليلات من لوحة تحكم واحدة."
+    },
+    "settings": {
+      "title": "إعدادات لوحة التحكم | SaaS Starter",
+      "description": "أدر ملفك الشخصي وتفضيلاتك واللغة وإعدادات الأمان بسهولة."
+    },
+    "settingsNotificationsHelp": {
+      "title": "مساعدة إشعارات المتصفح | SaaS Starter",
+      "description": "تعرّف على كيفية السماح بالإشعارات الفورية لSaaS Starter في متصفحك."
+    },
+    "todos": {
+      "title": "المهام | لوحة تحكم SaaS Starter",
+      "description": "خطط مهامك اليومية ورتب أولوياتك وتابع الإنجاز عبر القوائم وكانبان والتقويم."
+    },
+    "projects": {
+      "title": "المشاريع | لوحة تحكم SaaS Starter",
+      "description": "نظّم عملك في مشاريع، واحتفظ بالسياق في مكان واحد، وأدر المشاريع المؤرشفة بسهولة.",
+      "detailTitle": "{name} | المشاريع | لوحة تحكم SaaS Starter",
+      "detailDescription": "افتح مشروع \"{name}\" وأدارته من لوحة التحكم.",
+      "detailNotFoundTitle": "المشروع غير موجود | SaaS Starter",
+      "detailNotFoundDescription": "هذا المشروع غير متاح أو ليست لديك صلاحية الوصول إليه."
+    },
+    "subscription": {
+      "title": "الخطة | لوحة تحكم SaaS Starter",
+      "description": "اعرض خطتك الحالية وراجع سجل الفواتير."
+    },
+    "checkout": {
+      "title": "إتمام الاشتراك | لوحة تحكم SaaS Starter",
+      "description": "أكمل اشتراكك يدويًا عبر التحقق من الدفع على واتساب."
+    },
+    "trial": {
+      "title": "التجربة المجانية | لوحة تحكم SaaS Starter",
+      "description": "ابدأ تجربتك المجانية فورًا وفعّل وصول التجربة على حسابك."
+    },
+    "support": {
+      "title": "الدعم | لوحة تحكم SaaS Starter",
+      "description": "أنشئ تذاكر الدعم وتابع حالتها، وسيتم التواصل معك عبر البريد الإلكتروني."
+    },
+    "feedbacks": {
+      "title": "المقترحات والشكاوى | لوحة تحكم SaaS Starter",
+      "description": "أرسل اقتراحاتك أو شكاواك وتابع حالة المراجعة من مكان واحد."
+    },
+    "notifications": {
+      "title": "الإشعارات | لوحة تحكم SaaS Starter",
+      "description": "اعرض إشعارات التطبيق وأدرها."
+    },
+    "newsletterChannel": {
+      "list": {
+        "title": "النشرة البريدية | لوحة تحكم SaaS Starter",
+        "description": "اقرأ أعداد النشرة المنشورة من لوحة التحكم وأدر اشتراكك في البريد."
+      },
+      "article": {
+        "title": "عدد النشرة | لوحة تحكم SaaS Starter",
+        "description": "اقرأ عددًا منشورًا من النشرة بلغة الموقع الحالية."
+      }
+    }
+  },
+  "support": {
+    "overview": {
+      "title": "نظرة عامة للدعم | SaaS Starter",
+      "description": "إدارة مهام الدعم ومتابعة عمليات مساعدة المستخدمين."
+    },
+    "tickets": {
+      "title": "تذاكر الدعم | SaaS Starter",
+      "description": "إدارة سير عمل تذاكر الدعم، تحديث الحالة، والمتابعة مع المستخدمين."
+    },
+    "feedbacks": {
+      "title": "لوحة إدارة الملاحظات | دعم SaaS Starter",
+      "description": "راجع اقتراحات وشكاوى المستخدمين، حدّث حالتها، وتابع معهم عبر البريد الإلكتروني."
+    }
+  },
+  "content": {
+    "overview": {
+      "title": "نظرة عامة للمحتوى | SaaS Starter",
+      "description": "إدارة مساحة المحتوى ومتابعة سير عمل النشر القادم."
+    },
+    "assets": {
+      "title": "ملفات المحتوى | SaaS Starter",
+      "description": "رفع الملفات الإعلامية وتنظيمها وإدارتها ضمن سير عمل المحتوى."
+    },
+    "blogs": {
+      "title": "المقالات | SaaS Starter",
+      "description": "إنشاء وتحرير وإدارة محتوى المدونات متعددة اللغات ضمن مساحة النشر."
+    },
+    "newsletter": {
+      "title": "النشرة البريدية | محتوى SaaS Starter",
+      "description": "إدارة مشتركي النشرة وحملات البريد من مساحة المحتوى."
+    },
+    "newsletterCreate": {
+      "title": "حملة نشرة جديدة | محتوى SaaS Starter",
+      "description": "إنشاء مسودة نشرة بريدية بالعربية والإنجليزية للمشتركين."
+    },
+    "newsletterCampaign": {
+      "title": "حملة النشرة | محتوى SaaS Starter",
+      "description": "عرض أو تحرير حملة نشرة بريدية في مساحة المحتوى."
+    }
+  },
+  "admin": {
+    "overview": {
+      "title": "نظرة عامة للإدارة | SaaS Starter",
+      "description": "تابع نمو المستخدمين ومؤشرات الشرائح من لوحة واحدة."
+    },
+    "users": {
+      "title": "المستخدمون | إدارة SaaS Starter",
+      "description": "إدارة المستخدمين والصلاحيات والأدوار من لوحة تحكم المسؤول."
+    },
+    "segments": {
+      "title": "الشرائح | إدارة SaaS Starter",
+      "description": "إدارة شرائح المستخدمين وتصنيفهم بعلامات مخصصة."
+    },
+    "announcements": {
+      "title": "الإعلانات | إدارة SaaS Starter",
+      "description": "إنشاء وإدارة الإعلانات المستهدفة مع إحصائيات المشاهدة."
+    },
+    "notifications": {
+      "title": "الإشعارات | إدارة SaaS Starter",
+      "description": "إدارة إعدادات وأدوات الإشعارات من لوحة المسؤول."
+    },
+    "coupons": {
+      "title": "القسائم | إدارة SaaS Starter",
+      "description": "إنشاء وإدارة قسائم الخصم والهدايا."
+    },
+    "settings": {
+      "title": "إعدادات المسؤول | SaaS Starter",
+      "description": "إدارة إعدادات التطبيق العامة وعناصر التحكم على مستوى النظام."
+    }
+  },
+  "dashboardLearning": {
+    "overview": {
+      "title": "نظرة عامة للتعلم | SaaS Starter",
+      "description": "استكشف مساحة التعلم والأدوات المتاحة."
+    }
+  },
+  "dashboardLife": {
+    "overview": {
+      "title": "نظرة عامة للحياة | SaaS Starter",
+      "description": "استكشف مساحة الحياة الشخصية والأدوات المتاحة."
+    }
+  }
+}

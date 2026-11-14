@@ -1,0 +1,142 @@
+{
+  "uploadActions": {
+    "upload": "Upload",
+    "uploadFiles": "Upload files",
+    "dragDropHint": "Drag and drop files here",
+    "dragDropFilesHint": "Drag and drop documents here",
+    "uploadDisabled": "Uploads are disabled"
+  },
+  "statusBadges": {
+    "pending": "Pending",
+    "uploading": "Uploading",
+    "finalizing": "Finalizing",
+    "error": "Error",
+    "done": "Done"
+  },
+  "progress": {
+    "uploadingN": "Uploading {current}",
+    "ofN": "of {total}"
+  },
+  "toolbar": {
+    "searchPlaceholder": "Search assets...",
+    "filterByResourceType": "Filter by type",
+    "filterByFolder": "Filter by folder",
+    "filterByFormat": "Filter by format",
+    "filterByTag": "Filter by tag",
+    "allFolders": "All folders",
+    "allFormats": "All formats",
+    "resourceTypeAll": "All",
+    "resourceTypeImages": "Images",
+    "resourceTypeFiles": "Files",
+    "clearFilters": "Clear filters"
+  },
+  "assetCard": {
+    "copyUrl": "Copy URL",
+    "copied": "Copied",
+    "deleteAsset": "Delete asset",
+    "folderLabel": "Folder",
+    "renameAsset": "Rename",
+    "moveToFolder": "Move to folder",
+    "filenamePlaceholder": "Enter filename"
+  },
+  "replaceAsset": "Replace Asset",
+  "replaceModalTitle": "Replace Asset",
+  "replaceModalHint": "The asset URL will remain the same. This cannot be undone.",
+  "replaceConfirm": "Replace",
+  "replacingAsset": "Replacing asset...",
+  "replaceSuccess": "Asset replaced successfully",
+  "replaceFailed": "Failed to replace asset",
+  "replaceTypeMismatch": "New file must be the same type as the original",
+  "downloadAsset": "Download",
+  "moveFolder": {
+    "title": "Move to folder",
+    "description": "Moves the file in Cloudinary and updates the library. The public URL will change.",
+    "targetLabel": "Destination folder",
+    "selectPlaceholder": "Choose folder",
+    "confirm": "Move",
+    "moving": "Moving...",
+    "success": "Asset moved successfully",
+    "failed": "Failed to move asset",
+    "noOtherFolders": "There is no other folder to move this asset to."
+  },
+  "confirmationDialog": {
+    "deleteConfirmTitle": "Delete asset",
+    "deleteConfirmBody": "This action cannot be undone. The asset will be removed permanently.",
+    "confirm": "Delete",
+    "deleting": "Deleting...",
+    "cancel": "Cancel"
+  },
+  "emptyState": {
+    "noAssetsFound": "No assets found",
+    "uploadFirst": "Upload your first file to get started"
+  },
+  "panel": {
+    "imagesTitle": "Image Upload",
+    "imagesDescription": "Drop images or choose files, then start upload to Cloudinary with live progress.",
+    "filesTitle": "File Upload",
+    "filesDescription": "Drop documents or choose files, then start upload to Cloudinary with live progress.",
+    "uploadFolderLabel": "Upload folder",
+    "showUpload": "Open upload panel",
+    "hideUpload": "Close upload panel"
+  },
+  "tabs": {
+    "images": "Images",
+    "files": "Files"
+  },
+  "queue": {
+    "filesInQueue": "{count} file(s) in queue",
+    "noFilesQueued": "No files queued yet.",
+    "summary": "{files} file(s) - {completed} completed{inProgressSuffix}{errorsSuffix}",
+    "inProgress": "- in progress",
+    "errors": "- errors",
+    "clearCompleted": "Clear completed",
+    "expand": "Expand",
+    "collapse": "Collapse",
+    "remove": "Remove"
+  },
+  "grid": {
+    "loadingAssets": "Loading assets...",
+    "showingSummary": "Showing {showing} of {total} asset(s)",
+    "previous": "Previous",
+    "next": "Next",
+    "pageOf": "Page {page} of {totalPages}"
+  },
+  "common": {
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "unknown": "unknown"
+  },
+  "errors": {
+    "uploadFailed": "Upload failed",
+    "deleteFailed": "Failed to delete asset",
+    "renameFailed": "Failed to update filename",
+    "updateTagsFailed": "Failed to update tags",
+    "updateAssetFailed": "Failed to update asset",
+    "loadFailed": "Failed to load assets",
+    "unsupportedType": "{fileName}: unsupported type ({fileType})",
+    "exceedsMaxSize": "{fileName}: exceeds {maxSize}"
+  },
+  "toasts": {
+    "deleteSuccess": "Asset deleted successfully",
+    "updateSuccess": "Asset updated successfully",
+    "uploadSuccess": "Uploaded {filename}",
+    "uploadFailed": "Upload failed"
+  },
+  "tags": {
+    "noTags": "No tags",
+    "editorLabel": "Tags",
+    "inputPlaceholder": "Type a tag then press Enter",
+    "count": "{count}/{max}",
+    "removeTagAria": "Remove tag {tag}",
+    "save": "Save tags",
+    "saving": "Saving...",
+    "editModalTitle": "Edit tags",
+    "editModalDescription": "Update tags for this asset.",
+    "errors": {
+      "empty": "Tag cannot be empty",
+      "duplicate": "This tag already exists",
+      "maxLength": "Each tag can be at most {max} characters",
+      "maxCount": "You can add up to {max} tags"
+    }
+  }
+}

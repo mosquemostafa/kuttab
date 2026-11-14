@@ -1,0 +1,101 @@
+{
+  "navbar": {
+    "features": "Features",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "hero": {
+    "badge": "Production-Ready Next.js 16 SaaS Boilerplate",
+    "title": "Build & Scale Your Next SaaS with",
+    "titleHighlight": "Speed and Reliability",
+    "subtitle": "A full-stack, enterprise-grade Next.js 16 starter equipped with Better Auth, PostgreSQL, Drizzle ORM, bilingual Arabic RTL & English LTR, and a comprehensive Admin Portal.",
+    "ctaPrimary": "Get Started",
+    "ctaSecondary": "Sign In",
+    "ctaDashboard": "Open Dashboard",
+    "installApp": "Install App",
+    "installAppIos": "Install on iOS"
+  },
+  "features": {
+    "title": "Engineered for Rapid SaaS Development",
+    "subtitle": "Stop reinventing the wheel. Start with a solid, modular foundation that scales from MVP to production.",
+    "auth": {
+      "title": "Authentication & RBAC",
+      "description": "Better Auth with email/password, OAuth, session management, rate limiting, and role-based guards."
+    },
+    "database": {
+      "title": "PostgreSQL & Drizzle ORM",
+      "description": "Type-safe database schema with zero-lock baseline migrations, seeder utilities, and connection pooling."
+    },
+    "bilingual": {
+      "title": "Bilingual RTL & LTR",
+      "description": "First-class Arabic RTL and English LTR localization powered by next-intl with automated locale routing."
+    },
+    "admin": {
+      "title": "Complete Admin Portal",
+      "description": "Manage users, inspect system analytics, configure application settings, publish blogs, and send announcements."
+    },
+    "architecture": {
+      "title": "Layered Clean Architecture",
+      "description": "Strict modular structure (Route Handler → Guard → Controller → Service → Repository → DTO/Zod)."
+    },
+    "notifications": {
+      "title": "Email & Web Push",
+      "description": "Transactional emails via Resend/SMTP, Web Push FCM notifications, and built-in newsletter engine."
+    }
+  },
+  "cta": {
+    "title": "Ready to Ship Your Next Product?",
+    "subtitle": "Clone this template, add your domain logic, and launch your SaaS with full confidence.",
+    "button": "Get Started Now"
+  },
+  "footer": {
+    "brand": "SaaS Starter",
+    "brandDescription": "A robust full-stack SaaS boilerplate designed for high developer productivity and production reliability.",
+    "product": {
+      "features": "Features"
+    },
+    "company": {
+      "title": "Company",
+      "blog": "Blog",
+      "contact": "Contact"
+    },
+    "legal": {
+      "title": "Legal",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service"
+    },
+    "copyright": "© {year} SaaS Starter. All rights reserved.",
+    "madeWith": "Built with"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "Have questions or feedback? We'd love to hear from you.",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "message": "Message",
+      "messagePlaceholder": "How can we help you?",
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "success": "Your message has been sent successfully. We'll get back to you soon!",
+      "error": "Failed to send your message. Please try again later."
+    }
+  },
+  "pwaInstall": {
+    "description": "Install our web app on your device for fast access and offline support.",
+    "ios": {
+      "title": "Install on iOS",
+      "description": "Follow these steps to install the app on your home screen:",
+      "steps": {
+        "share": "Tap the Share button in Safari toolbar",
+        "scroll": "Scroll down in the share sheet",
+        "addToHomeScreen": "Tap 'Add to Home Screen'"
+      },
+      "actions": {
+        "close": "Close"
+      }
+    }
+  }
+}

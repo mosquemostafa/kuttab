@@ -1,0 +1,19 @@
+export const ErrorCodes = {
+  UNAUTHORIZED: "UNAUTHORIZED",
+  FORBIDDEN: "FORBIDDEN",
+  SESSION_EXPIRED: "SESSION_EXPIRED",
+  USER_NOT_FOUND: "USER_NOT_FOUND",
+  EMAIL_ALREADY_EXISTS: "EMAIL_ALREADY_EXISTS",
+  VALIDATION_ERROR: "VALIDATION_ERROR",
+  INTERNAL_SERVER_ERROR: "INTERNAL_SERVER_ERROR",
+  NOT_FOUND: "NOT_FOUND",
+  /** Resend/QStash cluster not configured — newsletter APIs disabled */
+  NEWSLETTER_DISABLED: "NEWSLETTER_DISABLED",
+  TOO_MANY_REQUESTS: "TOO_MANY_REQUESTS",
+  /** Plan quota reached (habits, journal images, etc.) */
+  PLAN_LIMIT_EXCEEDED: "PLAN_LIMIT_EXCEEDED",
+  CONFLICT: "CONFLICT",
+  TAG_ALREADY_EXISTS: "TAG_ALREADY_EXISTS",
+} as const;
+
+export type ErrorCode = (typeof ErrorCodes)[keyof typeof ErrorCodes];

@@ -1,0 +1,32 @@
+{
+  "i18n-ally.localesPaths": ["src/messages"],
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.pathMatcher": "{locale}/{namespace}.json",
+  "i18n-ally.namespace": true,
+  "i18n-ally.enabledParsers": ["json"],
+  "i18n-ally.sourceLanguage": "ar",
+  "i18n-ally.displayLanguage": "en",
+  "i18n-ally.enabledFrameworks": ["next-intl"],
+  "i18n-ally.annotationInPlace": true,
+  "i18n-ally.extract.autoDetect": true,
+  "i18n-ally.includeSubfolders": true,
+  "i18n-ally.dirStructure": "dir",
+
+  "i18n-ally.review.enabled": true,
+  "i18n-ally.review.gutters": true,
+
+  "i18n-ally.usage.scanningIgnore": [
+    "**/.git/**",
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/.next/**"
+  ],
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#37306B",
+    "titleBar.border": "#37306B",
+    "titleBar.activeForeground": "#D27685",
+    "titleBar.inactiveBackground": "#554f81",
+    "titleBar.inactiveForeground": "#d98b97"
+  }
+}

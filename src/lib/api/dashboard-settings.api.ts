@@ -1,0 +1,39 @@
+import type { DashboardSettingsBootstrap } from "@/lib/api/api-server";
+import { request, requestNoStore } from "@/lib/api/api-core";
+
+interface LinkedAccountDTO {
+  providerId: string;
+  picture?: string;
+}
+
+export const dashboardSettingsApi = {
+  getBootstrap: (): Promise<DashboardSettingsBootstrap> =>
+    requestNoStore<DashboardSettingsBootstrap>("/dashboard/settings"),
+
+  updateProfile: (data: { name: string }) =>
+    request<{ updated: boolean }>("/dashboard/settings", {
+      method: "PATCH",
+      body: JSON.stringify(data),
+    }),
+
+  getLinkedAccounts: () =>
+    requestNoStore<LinkedAccountDTO[]>("/dashboard/settings/linked-accounts"),
+
+  updateImageFromProvider: (providerId: string) =>
+    request<{ updated: boolean }>("/dashboard/settings/image-from-provider", {
+      method: "POST",
+      body: JSON.stringify({ providerId }),
+    }),
+
+  changePassword: (data: { currentPassword: string; newPassword: string }) =>
+    request<{ updated: boolean }>("/dashboard/settings/change-password", {
+      method: "POST",
+      body: JSON.stringify(data),
+    }),
+
+  setPassword: (data: { newPassword: string }) =>
+    request<{ updated: boolean }>("/dashboard/settings/set-password", {
+      method: "POST",
+      body: JSON.stringify(data),
+    }),
+};

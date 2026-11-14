@@ -1,0 +1,41 @@
+{
+  "name": "SaaS Starter",
+  "short_name": "SaaS Starter",
+  "description": "Production-ready SaaS boilerplate and productivity platform.",
+  "id": "/",
+  "start_url": "/ar",
+  "scope": "/",
+  "lang": "ar",
+  "dir": "rtl",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "categories": ["productivity"],
+  "icons": [
+    {
+      "src": "/pwa/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa/icon-192x192-maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/pwa/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/pwa/icon-512x512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

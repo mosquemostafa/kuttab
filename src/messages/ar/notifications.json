@@ -1,0 +1,30 @@
+{
+  "title": "الإشعارات",
+  "description": "تنبيهات وتحديثات غير مقروءة لحسابك.",
+  "descriptionRead": "إشعارات سبق فتحها أو تعليمها كمقروءة.",
+  "tabUnread": "غير مقروء",
+  "tabRead": "مقروء",
+  "tabsAria": "عروض الإشعارات",
+  "emptyRead": "لا توجد إشعارات مقروءة بعد.",
+  "readBadge": "مقروء",
+  "empty": "لا توجد إشعارات غير مقروءة.",
+  "loadError": "تعذر تحميل الإشعارات. حاول مرة أخرى.",
+  "markAllRead": "تعليم الكل كمقروء",
+  "markAllSuccess": "تم تعليم كل الإشعارات كمقروءة",
+  "markAllError": "تعذر تعليم الكل كمقروء",
+  "markRead": "تعليم كمقروء",
+  "markedRead": "تم التعليم كمقروء",
+  "markReadError": "تعذر تحديث هذا الإشعار",
+  "open": "فتح",
+  "loadMore": "تحميل المزيد",
+  "loadingMore": "جارٍ التحميل…",
+  "unreadSubtitle": "{count} غير مقروء",
+  "types": {
+    "subscription": "اشتراك",
+    "system": "النظام",
+    "social": "اجتماعي",
+    "announcement_reference": "إعلان",
+    "support_ticket": "تذكرة دعم",
+    "feedback": "ملاحظات"
+  }
+}

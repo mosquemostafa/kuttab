@@ -1,0 +1,33 @@
+import type { NextRequest } from "next/server";
+
+import { auth } from "@/server/lib/auth";
+import { UserRole } from "@/shared/enums/user-role.enum";
+import type { RouteHandler } from "@/server/decorators/compose";
+import {
+  ForbiddenException,
+  UnauthorizedException,
+} from "@/server/exceptions/exceptions";
+
+function isSupportStaffRole(role: string | null | undefined): boolean {
+  return role === UserRole.ADMIN || role === UserRole.SUPPORT;
+}
+
+export function withSupportStaff<TArgs extends [NextRequest, ...unknown[]]>(
+  handler: RouteHandler<TArgs>,
+): RouteHandler<TArgs> {
+  return (async (...args: TArgs) => {
+    const [req] = args;
+    const session = await auth.api.getSession({ headers: req.headers });
+
+    if (!session?.user) {
+      throw new UnauthorizedException();
+    }
+
+    if (!isSupportStaffRole(session.user.role)) {
+      throw new ForbiddenException();
+    }
+
+    (req as NextRequest & { session: typeof session }).session = session;
+    return handler(...args);
+  }) as RouteHandler<TArgs>;
+}

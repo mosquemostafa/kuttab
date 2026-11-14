@@ -1,0 +1,30 @@
+{
+  "list": {
+    "title": "Newsletter",
+    "intro": "Browse past newsletter issues we have published on the site. Subscribe with your account email to get new issues by email.",
+    "loadError": "Could not load issues.",
+    "empty": "No published newsletter issues yet.",
+    "summary": "Showing {count} of {total}",
+    "dateLabel": "Published",
+    "backToList": "All issues"
+  },
+  "article": {
+    "subscribeFooterTitle": "Get the next issue by email",
+    "subscribeFooterDescription": "Subscribe with your account email. To change newsletter language or unsubscribe, use Settings."
+  },
+  "subscribeCta": {
+    "title": "Email updates",
+    "description": "Subscribe to receive new issues at your account email. New subscriptions use the site language you’re viewing now.",
+    "emailLabel": "Account email",
+    "noEmail": "Add an email address in Settings to subscribe.",
+    "actions": {
+      "subscribe": "Subscribe to newsletter",
+      "subscribing": "Subscribing…"
+    },
+    "messages": {
+      "subscribed": "You’re subscribed to the newsletter.",
+      "error": "Something went wrong. Try again.",
+      "loadError": "Could not load subscription status."
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "lighthouse-bridge": {
+      "source": "community-access/accessibility-agents",
+      "sourceType": "github",
+      "skillPath": "skills/lighthouse-bridge/SKILL.md",
+      "computedHash": "1207cbfe646e1b217c343f9ea22cfd8855e50775662781595d04f8b6171ed1f2"
+    },
+    "tiptap": {
+      "source": "ueberdosis/tiptap",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/tiptap/SKILL.md",
+      "computedHash": "88ea00fb5ca1fed01160dc0baec4767fa0279d037ed9c8ee20a6ea43eb28b8ea"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+# Version control
+
+.git
+.gitignore
+
+# CI / GitHub
+
+.github
+
+# Dependencies (installed fresh inside Docker)
+
+node_modules
+
+# Next.js build output (built inside Docker)
+
+.next
+
+# Environment files — never bake secrets into the image
+
+.env
+.env.\*
+!.env.example
+
+# Test artefacts
+
+playwright-report
+test-results
+coverage
+
+# Local dev tooling
+
+.DS_Store
+_.log
+npm-debug.log_
+pnpm-debug.log\*
+
+# Editor
+
+.vscode
+.idea
+
+# Docker files themselves (no need to COPY)
+
+Dockerfile*
+docker-compose*.yml
+nginx
+
+# Docs
+
+\*.md
+!README.md

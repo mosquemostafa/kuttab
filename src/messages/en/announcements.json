@@ -1,0 +1,18 @@
+{
+  "modal": {
+    "title": "New announcements",
+    "close": "Close",
+    "previous": "Previous",
+    "next": "Next",
+    "progress": "Announcement {current} of {total}"
+  },
+  "updates": {},
+  "types": {
+    "feature": "Feature",
+    "improvement": "Improvement",
+    "fix": "Fix",
+    "maintenance": "Maintenance",
+    "alert": "Alert",
+    "promotion": "Promotion"
+  }
+}

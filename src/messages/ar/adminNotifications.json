@@ -1,0 +1,40 @@
+{
+  "errors": {},
+  "roles": {},
+  "topicPush": {
+    "title": "إرسال إلى موضوع FCM",
+    "description": "إرسال إشعار ويب للأجهزة المشتركة في موضوع Firebase (كل المستخدمين، دور، أو شريحة). يجب أن يكون لدى المستخدمين رموز مسجلة واشتراكات صحيحة في الموضوع.",
+    "targetLabel": "الجمهور",
+    "targetAll": "كل المستخدمين",
+    "targetRole": "حسب الدور",
+    "targetSegment": "حسب الشريحة",
+    "targetCustom": "موضوع مخصص",
+    "roleLabel": "موضوع الدور",
+    "segmentLabel": "موضوع الشريحة",
+    "customTopicLabel": "الموضوع المخصص",
+    "loadingSegments": "جاري تحميل الشرائح…",
+    "loadingCustomTopics": "جاري تحميل المواضيع المخصصة…",
+    "noSegments": "لا توجد شرائح بعد. أنشئ الشرائح من الإدارة ← الشرائح.",
+    "noCustomTopics": "لا توجد مواضيع مخصصة متاحة.",
+    "loadSegmentsError": "تعذر تحميل الشرائح.",
+    "loadCustomTopicsError": "تعذر تحميل المواضيع المخصصة.",
+    "fieldTitle": "العنوان",
+    "fieldBody": "النص",
+    "fieldUrl": "رابط الفتح (اختياري)",
+    "fieldImageUrl": "رابط الصورة (اختياري)",
+    "send": "إرسال الإشعار",
+    "validationRequired": "أدخل العنوان والنص.",
+    "sendError": "فشل الإرسال.",
+    "successAudience": "تم الإرسال بنجاح إلى {audience}.",
+    "confirmTitle": "إرسال إشعار الدفع؟",
+    "confirmAll": "سيُرسل لكل الأجهزة المشتركة في موضوع all_users. المتابعة؟",
+    "confirmRole": "سيُرسل لكل الأجهزة المشتركة في موضوع الدور: {role}. المتابعة؟",
+    "confirmSegment": "سيُرسل لكل الأجهزة المشتركة في موضوع الشريحة «{name}». المتابعة؟",
+    "confirmCustom": "سيُرسل لكل الأجهزة المشتركة في الموضوع المخصص: {topic}. المتابعة؟",
+    "customTopics": {
+      "product_updates": "تحديثات المنتج"
+    },
+    "cancel": "إلغاء",
+    "confirmSend": "إرسال"
+  }
+}

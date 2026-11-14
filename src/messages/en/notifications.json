@@ -1,0 +1,30 @@
+{
+  "title": "Notifications",
+  "description": "Unread alerts and updates for your account.",
+  "descriptionRead": "Notifications you have already opened or marked as read.",
+  "tabUnread": "Unread",
+  "tabRead": "Read",
+  "tabsAria": "Notification views",
+  "emptyRead": "No read notifications yet.",
+  "readBadge": "Read",
+  "empty": "You have no unread notifications.",
+  "loadError": "Could not load notifications. Please try again.",
+  "markAllRead": "Mark all as read",
+  "markAllSuccess": "All notifications marked as read",
+  "markAllError": "Could not mark all as read",
+  "markRead": "Mark as read",
+  "markedRead": "Marked as read",
+  "markReadError": "Could not update this notification",
+  "open": "Open",
+  "loadMore": "Load more",
+  "loadingMore": "Loading…",
+  "unreadSubtitle": "{count, plural, one {# unread} other {# unread}}",
+  "types": {
+    "subscription": "Subscription",
+    "system": "System",
+    "social": "Social",
+    "announcement_reference": "Announcement",
+    "support_ticket": "Support ticket",
+    "feedback": "Feedback"
+  }
+}

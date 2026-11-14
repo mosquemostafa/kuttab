@@ -1,0 +1,149 @@
+{
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: November 2026",
+    "intro": {
+      "p1": "Welcome. We respect your privacy and are committed to protecting your personal data transparently and responsibly.",
+      "p2": "This Privacy Policy explains how we collect, use, store, and safeguard your information when you use our website, application, and services.",
+      "p3": "By using our service, you acknowledge that you have read, understood, and agree to the terms described in this Privacy Policy."
+    },
+    "sections": {
+      "s1": {
+        "title": "1. Information We Collect",
+        "content": {
+          "p1": "We collect information you provide directly to us when you create an account, update your profile, or interact with the service.",
+          "p2": "• Account Details: Name, email address, profile picture, and authentication credentials.",
+          "p3": "• User Content: Data, items, and files you create, manage, or store within your workspace.",
+          "p4": "• Technical Information: IP address, device type, browser metadata, and application telemetry used to maintain service performance."
+        }
+      },
+      "s2": {
+        "title": "2. How We Use Your Information",
+        "content": {
+          "p1": "We use the collected information for the following purposes:",
+          "p2": "• Authenticate your identity and maintain secure account sessions.",
+          "p3": "• Provide, maintain, optimize, and improve service features.",
+          "p4": "• Process billing, subscription plans, and account entitlements.",
+          "p5": "• Send essential security alerts, transactional updates, and support responses.",
+          "p6": "• Deliver newsletters or announcements if you have opted in."
+        }
+      },
+      "s3": {
+        "title": "3. Data Storage & Security",
+        "content": {
+          "p1": "We implement robust technical and organizational measures to safeguard your personal data against unauthorized access, loss, or misuse.",
+          "p2": "Sensitive information such as passwords are encrypted using modern cryptographic hashing algorithms, and data is transmitted using encrypted TLS connections."
+        }
+      },
+      "s4": {
+        "title": "4. Third-Party Services",
+        "content": {
+          "p1": "We may engage trusted third-party providers to facilitate core operations, including database hosting, payment processing, email delivery, and error monitoring.",
+          "p2": "These providers are bound by strict confidentiality and data protection agreements and may only process information as instructed by us."
+        }
+      },
+      "s5": {
+        "title": "5. Cookies & Local Storage",
+        "content": {
+          "p1": "We use essential cookies and browser storage solely for authentication, session persistence, language selection, and UI theme preferences.",
+          "p2": "You can control cookie preferences in your browser settings, though disabling essential cookies may affect service functionality."
+        }
+      },
+      "s6": {
+        "title": "6. Data Retention & User Rights",
+        "content": {
+          "p1": "We retain your personal data for as long as your account is active or as necessary to fulfill legal obligations.",
+          "p2": "You have the right to review, update, export, or request the deletion of your personal data at any time via your account settings.",
+          "p3": "Upon account deletion, all associated personal content is permanently purged from our active databases."
+        }
+      },
+      "s7": {
+        "title": "7. Policy Updates",
+        "content": {
+          "p1": "We may update this Privacy Policy from time to time to reflect operational or legal changes.",
+          "p2": "When updates occur, the 'Last updated' date at the top will be revised. Continued use of the service signifies your acceptance of the updated terms."
+        }
+      },
+      "s8": {
+        "title": "8. Contact Us",
+        "content": {
+          "p1": "If you have questions, inquiries, or privacy requests regarding this Privacy Policy, please contact our support team via our Contact page or at support@example.com."
+        }
+      }
+    }
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated: November 2026",
+    "intro": {
+      "p1": "Welcome to our platform. These Terms of Service ('Terms') govern your access to and use of our website, software, and services (the 'Service').",
+      "p2": "By registering an account, accessing, or using the Service, you agree to be bound by these Terms.",
+      "p3": "If you do not agree to these Terms, please do not use the Service."
+    },
+    "sections": {
+      "s1": {
+        "title": "1. Acceptance of Terms",
+        "content": {
+          "p1": "By using the Service, you represent that you have legal capacity to enter into a binding agreement under applicable laws.",
+          "p2": "If you use the Service on behalf of an entity, you confirm you have authority to bind that entity to these Terms."
+        }
+      },
+      "s2": {
+        "title": "2. User Accounts & Security",
+        "content": {
+          "p1": "To access features of the Service, you must create an account with accurate and complete information.",
+          "p2": "You are solely responsible for maintaining the confidentiality of your login credentials and for all actions taken under your account.",
+          "p3": "You agree to notify us immediately of any unauthorized use or security compromise regarding your account."
+        }
+      },
+      "s3": {
+        "title": "3. Acceptable Use Policy",
+        "content": {
+          "p1": "You agree to use the Service only for lawful purposes and in accordance with these Terms.",
+          "p2": "You agree not to engage in any of the following prohibited behaviors:",
+          "p3": "• Disrupting, hacking, or placing unreasonable load on the Service or server infrastructure.",
+          "p4": "• Distributing malware, viruses, or unsolicited spam messages.",
+          "p5": "• Attempting to access unauthorized accounts, databases, or non-public system interfaces.",
+          "p6": "• Violating the intellectual property or privacy rights of any person or organization."
+        }
+      },
+      "s4": {
+        "title": "4. Subscriptions & Billing",
+        "content": {
+          "p1": "Certain plans and features are offered on a paid subscription basis.",
+          "p2": "Subscription fees are billed in advance on a recurring monthly or annual cycle.",
+          "p3": "You may cancel your subscription at any time through your dashboard. Cancellations become effective at the end of the current billing period."
+        }
+      },
+      "s5": {
+        "title": "5. User Content & Intellectual Property",
+        "content": {
+          "p1": "You retain full ownership of all content, data, and files you create, manage, or store within the Service ('User Content').",
+          "p2": "You grant us a limited, non-exclusive license to host, display, and process your User Content solely to the extent necessary to provide the Service.",
+          "p3": "All intellectual property rights in the Service itself, including code, design, logos, and features, belong exclusively to the Service operators."
+        }
+      },
+      "s6": {
+        "title": "6. Service Availability & Modifications",
+        "content": {
+          "p1": "We make reasonable efforts to keep the Service operational and reliable, but do not guarantee uninterrupted or error-free availability.",
+          "p2": "We reserve the right to modify, improve, or discontinue features of the Service at any time with or without prior notice."
+        }
+      },
+      "s7": {
+        "title": "7. Limitation of Liability & Warranty",
+        "content": {
+          "p1": "The Service is provided on an 'AS IS' and 'AS AVAILABLE' basis without warranties of any kind, whether express or implied.",
+          "p2": "To the maximum extent permitted by law, we shall not be liable for any indirect, incidental, special, or consequential damages resulting from your use of the Service."
+        }
+      },
+      "s8": {
+        "title": "8. Termination & Contact",
+        "content": {
+          "p1": "We reserve the right to suspend or terminate accounts that violate these Terms or engage in fraudulent activities.",
+          "p2": "For any questions or feedback regarding these Terms of Service, please reach out via our Contact page or at support@example.com."
+        }
+      }
+    }
+  }
+}

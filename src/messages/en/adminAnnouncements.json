@@ -1,0 +1,111 @@
+{
+  "analytics": {
+    "title": "Announcements analytics",
+    "subtitle": "Simple ratios for type, active state, and status.",
+    "asOf": "Updated {date}",
+    "loadFailed": "Failed to load announcements analytics.",
+    "empty": "No data to display yet.",
+    "typeTitle": "Ratio by type",
+    "typeDescription": "Distribution across announcement types.",
+    "activeTitle": "Ratio of active vs not active",
+    "activeDescription": "Currently active announcements compared to inactive.",
+    "statusTitle": "Ratio by status",
+    "statusDescription": "Draft versus published announcements.",
+    "active": "Active",
+    "notActive": "Not active"
+  },
+  "create": {
+    "title": "Create Announcement",
+    "description": "Create a draft or publish an announcement for all users, a role, or a segment.",
+    "titleArLabel": "Title (Arabic)",
+    "titleEnLabel": "Title (English)",
+    "contentArLabel": "Content (Arabic)",
+    "contentEnLabel": "Content (English)",
+    "typeLabel": "Type",
+    "targetTypeLabel": "Target type",
+    "targetRoleLabel": "Target role",
+    "targetSegmentLabel": "Target segment",
+    "searchSegmentPlaceholder": "Search segments by name...",
+    "segmentPlaceholder": "Select a segment",
+    "loadingSegments": "Loading segments...",
+    "noSegmentsFound": "No segments found.",
+    "expiresAtLabel": "Expires at",
+    "publishLabel": "Publish now",
+    "publishHint": "If disabled, this announcement will be saved as draft.",
+    "submit": "Create announcement",
+    "saving": "Creating..."
+  },
+  "list": {
+    "title": "Announcements",
+    "description": "Total announcements: {total}",
+    "refresh": "Refresh",
+    "edit": "Edit",
+    "delete": "Delete",
+    "loadFailed": "Failed to load announcements.",
+    "empty": "No announcements found.",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "columns": {
+    "title": "Title",
+    "type": "Type",
+    "target": "Target",
+    "status": "Status",
+    "seenCount": "Seen Count",
+    "createdAt": "Created At",
+    "actions": "Actions"
+  },
+  "edit": {
+    "title": "Edit Announcement",
+    "description": "Update announcement details and publishing dates.",
+    "titleArLabel": "Title (Arabic)",
+    "titleEnLabel": "Title (English)",
+    "contentArLabel": "Content (Arabic)",
+    "contentEnLabel": "Content (English)",
+    "publishedAtLabel": "Published at",
+    "expiresAtLabel": "Expires at",
+    "cancel": "Cancel",
+    "save": "Save changes",
+    "saving": "Saving..."
+  },
+  "delete": {
+    "title": "Delete Announcement",
+    "description": "Are you sure you want to delete \"{title}\"? This action cannot be undone.",
+    "cancel": "Cancel",
+    "confirm": "Delete",
+    "deleting": "Deleting..."
+  },
+  "targets": {
+    "all": "All users",
+    "role": "Role",
+    "segment": "Segment"
+  },
+  "types": {
+    "feature": "Feature",
+    "improvement": "Improvement",
+    "fix": "Fix",
+    "maintenance": "Maintenance",
+    "alert": "Alert",
+    "promotion": "Promotion"
+  },
+  "roles": {
+    "user": "User",
+    "support": "Support",
+    "admin": "Admin"
+  },
+  "statuses": {
+    "draft": "Draft",
+    "published": "Published"
+  },
+  "toasts": {
+    "requiredFields": "Please fill Arabic/English title and content, and type.",
+    "editRequiredFields": "Please fill Arabic/English title and content.",
+    "targetValueRequired": "Target value is required for role or segment targeting.",
+    "created": "Announcement created successfully.",
+    "createFailed": "Failed to create announcement.",
+    "updated": "Announcement updated successfully.",
+    "updateFailed": "Failed to update announcement.",
+    "deleted": "Announcement deleted successfully.",
+    "deleteFailed": "Failed to delete announcement."
+  }
+}

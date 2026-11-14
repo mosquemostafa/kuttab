@@ -1,0 +1,151 @@
+{
+  "editor": {
+    "createTitle": "إنشاء مدونة",
+    "editTitle": "تعديل المدونة",
+    "createDescription": "أضف تدوينة جديدة متعددة اللغات.",
+    "editDescription": "حدّث التدوينة المحددة.",
+    "titleAr": "العنوان العربي",
+    "titleEn": "العنوان الإنجليزي",
+    "descriptionAr": "الوصف العربي",
+    "descriptionEn": "الوصف الإنجليزي",
+    "slug": "الرابط المختصر",
+    "contentAr": "المحتوى العربي",
+    "contentEn": "المحتوى الإنجليزي",
+    "coverImageUrl": "رابط صورة الغلاف",
+    "excerptAr": "المقتطف العربي",
+    "excerptEn": "المقتطف الإنجليزي",
+    "readingMinutes": "دقائق القراءة",
+    "tags": "الهاشتاجات",
+    "tagsHint": "اكتب الهاشتاج ثم اضغط Enter",
+    "tagsInputPlaceholder": "أضف وسمًا",
+    "tagsCount": "{count}/{max} وسم",
+    "noTags": "لا توجد وسوم بعد.",
+    "removeTagAria": "إزالة الهاشتاج {tag}",
+    "tagsErrors": {
+      "empty": "لا يمكن أن يكون الهاشتاج فارغًا.",
+      "maxLength": "يجب ألا يتجاوز الهاشتاج {max} حرفًا.",
+      "maxCount": "يمكنك إضافة حتى {max} وسمًا.",
+      "duplicate": "هذا الهاشتاج مضاف بالفعل."
+    },
+    "status": "الحالة",
+    "publishDate": "تاريخ النشر",
+    "isFeatured": "مدونة مميزة",
+    "isFeaturedHint": "تمييز هذه المدونة كمحتوى مميز.",
+    "submitCreate": "إنشاء المدونة",
+    "submitUpdate": "حفظ التعديلات",
+    "submitting": "جارٍ الحفظ...",
+    "cancelEdit": "إلغاء التعديل"
+  },
+  "filters": {
+    "search": "ابحث في العنوان/الوصف",
+    "tag": "تصفية حسب الهاشتاج",
+    "status": "تصفية حسب الحالة",
+    "allStatuses": "كل الحالات",
+    "refresh": "تحديث"
+  },
+  "table": {
+    "title": "قائمة المدونات",
+    "description": "{total} مدونة",
+    "create": "إنشاء",
+    "empty": "لا توجد مدونات.",
+    "loadFailed": "فشل تحميل المدونات.",
+    "columns": {
+      "featured": "مميز",
+      "publishDate": "تاريخ النشر",
+      "readingMinutes": "مدة القراءة",
+      "updatedAt": "آخر تحديث"
+    },
+    "edit": "تعديل",
+    "delete": "حذف",
+    "previous": "السابق",
+    "next": "التالي"
+  },
+  "status": {
+    "draft": "مسودة",
+    "published": "منشور",
+    "archived": "مؤرشف"
+  },
+  "gallery": {
+    "noImage": "لا توجد صورة غلاف"
+  },
+  "public": {
+    "listTitle": "المدونة",
+    "listDescription": "اطلع على أحدث التحديثات والقصص والرؤى العملية.",
+    "listEyebrow": "قصص ورؤى",
+    "breadcrumbHome": "الرئيسية",
+    "breadcrumbBlog": "المدونة",
+    "tagFilterTitleLead": "مقالات بالهاشتاج ",
+    "tagFilterDescription": "جميع المقالات المنشورة التي تحتوي على هذا الهاشتاج.",
+    "clearTagFilter": "كل المقالات",
+    "empty": "لا توجد مقالات منشورة بعد.",
+    "loadFailed": "تعذر تحميل المقالات حاليًا.",
+    "readMore": "اقرأ المزيد",
+    "backToList": "العودة إلى المدونة",
+    "readingMinutesUnit": "دقيقة قراءة",
+    "author": "الكاتب",
+    "tags": "الهاشتاجات",
+    "popularTags": "مواضيع شائعة",
+    "relatedPosts": "مقالات ذات صلة",
+    "readingProgressAria": "تقدم القراءة في هذا المقال",
+    "share": {
+      "label": "مشاركة",
+      "ariaLabel": "مشاركة هذا المقال",
+      "copyLink": "نسخ الرابط",
+      "copySuccess": "تم نسخ الرابط.",
+      "copyFailed": "تعذر نسخ الرابط.",
+      "facebook": "فيسبوك",
+      "x": "إكس",
+      "linkedin": "لينكد إن"
+    }
+  },
+  "comments": {
+    "title": "النقاش",
+    "subtitle": "تعليقات على هذا المقال",
+    "composerLabel": "اكتب تعليقًا",
+    "composerPlaceholder": "شارك رأيك…",
+    "postComment": "نشر التعليق",
+    "posting": "جارٍ النشر…",
+    "empty": "لا توجد تعليقات بعد. ابدأ النقاش.",
+    "you": "أنت",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "loadMore": "تحميل المزيد",
+    "loadingMore": "جارٍ التحميل…",
+    "deleteDialogTitle": "حذف هذا التعليق؟",
+    "deleteDialogDescription": "لا يمكن التراجع عن هذا الإجراء.",
+    "confirmDelete": "حذف",
+    "teaser": {
+      "title": "التعليقات",
+      "lockedBadge": "سجّل الدخول للعرض",
+      "description": "انضم إلى النقاش — سجّل الدخول لقراءة التعليقات وإضافة تعليقك.",
+      "signInCta": "سجّل الدخول لعرض التعليقات"
+    },
+    "toast": {
+      "loadFailed": "تعذر تحميل التعليقات.",
+      "emptyBody": "يرجى كتابة نص أولًا.",
+      "createSuccess": "تم نشر التعليق.",
+      "createFailed": "تعذر نشر التعليق.",
+      "updateSuccess": "تم تحديث التعليق.",
+      "updateFailed": "تعذر تحديث التعليق.",
+      "deleteSuccess": "تم حذف التعليق.",
+      "deleteFailed": "تعذر حذف التعليق."
+    }
+  },
+  "deleteDialog": {
+    "title": "حذف المدونة",
+    "description": "سيتم حذف \"{title}\" نهائيًا.",
+    "confirm": "حذف",
+    "deleting": "جارٍ الحذف...",
+    "cancel": "إلغاء"
+  },
+  "toasts": {
+    "required": "يرجى تعبئة جميع الحقول المطلوبة.",
+    "createSuccess": "تم إنشاء المدونة بنجاح.",
+    "updateSuccess": "تم تحديث المدونة بنجاح.",
+    "deleteSuccess": "تم حذف المدونة بنجاح.",
+    "saveFailed": "فشل حفظ المدونة.",
+    "deleteFailed": "فشل حذف المدونة."
+  }
+}

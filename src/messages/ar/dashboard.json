@@ -1,0 +1,613 @@
+{
+  "installPwaBanner": {
+    "ariaLabel": "اقتراح لتثبيت التطبيق",
+    "message": "ثبّت التطبيق على جهازك للوصول السريع وتجربة أوضح.",
+    "install": "تثبيت التطبيق",
+    "dismissAria": "إغلاق"
+  },
+  "shell": {
+    "admin": "الإدارة",
+    "adminPanel": "لوحة الإدارة",
+    "dashboard": "الرئيسية",
+    "support": "الدعم الفني",
+    "content": "المحتوى",
+    "supportPanel": "لوحة الدعم",
+    "contentPanel": "لوحة المحتوى",
+    "overview": "نظرة عامة",
+    "tickets": "التذاكر",
+    "users": "المستخدمون",
+    "subscription": "الخطة",
+    "subscriptions": "التخطيط",
+    "segments": "الشرائح",
+    "invoices": "الفواتير",
+    "events": "الأحداث",
+    "announcements": "الإعلانات",
+    "newsletter": "النشرة البريدية",
+    "topicPush": "الإشعارات",
+    "inAppNotifications": "الإشعارات",
+    "coupons": "القسائم",
+    "todos": "المهام",
+    "tasks": "المهام",
+    "projects": "المشاريع",
+    "trial": "التجربة المجانية",
+    "checkout": "إتمام الاشتراك",
+    "feedbacks": "المقترحات والشكاوى",
+    "contentAssets": "ملفات المحتوى",
+    "blogs": "المقالات",
+    "blogReader": "المدونة",
+    "settings": "الإعدادات",
+    "logout": "تسجيل الخروج",
+    "signingOut": "جارٍ تسجيل الخروج...",
+    "learningPanel": "التعلم",
+    "lifePanel": "الحياة",
+    "create": "إنشاء",
+    "edit": "تعديل",
+    "brandTitle": "SaaS Starter",
+    "brandSubtitle": "منصة الإنتاجية المتكاملة",
+    "quickDashboardSwitch": "التبديل السريع للوحات التحكم",
+    "staffPanels": "أدوات الإدارة والتشغيل",
+    "mainShort": "الرئيسية",
+    "learningShort": "التعلم",
+    "lifeShort": "الحياة"
+  },
+  "overview": {
+    "greeting": {
+      "morning": "صباح الخير",
+      "afternoon": "مساء الخير",
+      "evening": "مساء الخير",
+      "defaultName": "صديقي"
+    },
+    "quickCapture": {
+      "addTask": "مهمة سريعة",
+      "addTaskDesc": "إضافة مهمة جديدة لقائمة اليوم",
+      "taskDialog": {
+        "title": "إضافة مهمة سريعة",
+        "description": "أضف مهمة جديدة وحدد موعد استحقاقها أو أولويتها أو مشروعها.",
+        "taskTitlePlaceholder": "ما الذي تود إنجازه؟...",
+        "dueDate": "تاريخ الاستحقاق",
+        "today": "اليوم",
+        "priority": "الأولوية",
+        "priorityNone": "بدون أولوية",
+        "priorityLow": "منخفضة",
+        "priorityMedium": "متوسطة",
+        "priorityHigh": "عالية",
+        "project": "المشروع",
+        "noProject": "بدون مشروع",
+        "cancel": "إلغاء",
+        "create": "إضافة المهمة",
+        "creating": "جارٍ الإضافة...",
+        "success": "تمت إضافة المهمة بنجاح!"
+      }
+    }
+  },
+  "plans": {
+    "title": "اختر خطتك",
+    "subtitle": "كل ما تحتاجه لإدارة مهامك ومشاريعك — اختر الباقة التي تناسب طريقة عملك.",
+    "chooseAria": "خطط الاشتراك",
+    "billingCycleAria": "اختيار دورة الاشتراك",
+    "billingMonthly": "شهريًا",
+    "billingYearly": "سنويًا",
+    "savePercentBadge": "وفّر {percent}%",
+    "bestValueBadge": "الخيار الأفضل",
+    "cadencePaid": "شهريًا",
+    "cadencePaidYearly": "تدفع سنويًا (365 يومًا)",
+    "monthlyEquivalentHint": "ما يعادل {price} / شهريًا",
+    "yearlyEncouragementActive": "🎉 وفّر 240 ج.م سنويًا",
+    "yearlyEncouragementPrompt": "💡 وفّر 40% عند التبديل للاشتراك السنوي",
+    "taglineFree": "ابدأ بتنظيم أعمالك بالأدوات الأساسية",
+    "taglinePro": "أدوات متقدمة لتنظيم أعمالك وإنجاز مشاريعك بكفاءة",
+    "freePlanPrice": "مجانًا",
+    "expiresInBadge": "{days, plural, =0 {تنتهي اليوم} one {تنتهي خلال يوم واحد} two {تنتهي خلال يومين} few {تنتهي خلال # أيام} many {تنتهي خلال # يومًا} other {تنتهي خلال # يوم}}",
+    "tryFreeOnPro": "تجربة مجانية للإحترافية {days} يومًا",
+    "ctaTryFree": "جرّب الإحترافية مجانًا",
+    "ctaSubscribePro": "اشترك في الإحترافية",
+    "ctaSubscribeYearly": "احصل على السنوية — وفّر 40%",
+    "ctaUpgradeToPro": "الترقية إلى الإحترافية",
+    "ctaUpgradeToYearlyPro": "الترقية إلى الباقة السنوية (وفّر 40%)",
+    "ctaExtendPro": "تمديد الاشتراك",
+    "ctaExtendYearlyPro": "تمديد الاشتراك السنوي",
+    "ctaSkipTrialAndSubscribe": "أو اشترك مباشرة بدون تجربة",
+    "ctaSkipTrialAndSubscribeYearly": "أو اشترك سنويًا مباشرةً (وفّر 40%)",
+    "ctaBusiness": "اختر باقة الأعمال",
+    "trialLimitsNoticeTitle": "تنبيه التجربة المجانية",
+    "trialLimitsNoticeDescription": "أنت حاليًا في فترة التجربة المجانية ولست مشتركًا في الباقة الاحترافية. الميزات الاحترافية مفعلة، ولكن حدود العناصر (مثل المشاريع والمهام) لا تزال سارية. اشترك في الباقة الاحترافية للحصول على وصول غير محدود.",
+    "sections": {
+      "includes": "تشمل",
+      "limits": "الحدود",
+      "proFeatures": "ميزات احترافية",
+      "unlimited": "بدون حدود"
+    },
+    "features": {
+      "free": {
+        "projects": "{count} مشروع",
+        "tasks": "إدارة المهام الأساسية",
+        "editorImages": "{count} صورة مرفوعة",
+        "stats": "إحصائيات بسيطة",
+        "reminders": "تذكيرات أساسية"
+      },
+      "pro": {
+        "projectsUnlimited": "مشاريع غير محدودة",
+        "analytics": "إحصائيات وتحليلات متقدمة",
+        "export": "تصدير البيانات والنسخ الاحتياطي",
+        "customization": "تخصيص الشكل والتجربة"
+      }
+    }
+  },
+  "subscription": {
+    "currentPlan": "الخطة الحالية",
+    "currentPlanBadge": "خطتك الحالية",
+    "trialPlanBadge": "تجربة مجانية",
+    "trialLimitsNoticeTitle": "تنبيه التجربة المجانية",
+    "trialLimitsNoticeDescription": "أنت حاليًا في فترة التجربة المجانية ولست مشتركًا في الباقة الاحترافية. حدود العناصر (مثل المشاريع والمهام) لا تزال سارية خلال التجربة. اشترك في الباقة الاحترافية للحصول على وصول غير محدود.",
+    "freePrice": "مجانًا",
+    "billingCycle": "{days} يومًا",
+    "invoices": "سجل الفواتير",
+    "invoicesDescription": "{count} فاتورة",
+    "loading": "جارٍ التحميل...",
+    "error": "تعذر تحميل بيانات الاشتراك.",
+    "loadingErrorTitle": "بيانات الاشتراك",
+    "activatedAtLabel": "تاريخ التفعيل",
+    "renewsAtLabel": "تاريخ التجديد",
+    "expiresNever": "لا يوجد موعد تجديد",
+    "upgradeCtaTitle": "جاهز لميزات أكثر؟",
+    "upgradeCtaDescription": "افتح الميزات المدفوعة وتجاوز حدود الخطة المجانية.",
+    "upgradeCta": "استعرض التخطيط",
+    "upgradeToCheckoutCta": "الترقية إلى الإحترافية",
+    "autoRenewTitle": "التجديد التلقائي",
+    "autoRenewOn": "التجديد التلقائي مفعّل",
+    "autoRenewOff": "التجديد التلقائي متوقف",
+    "autoRenewUpdated": "تم تحديث إعداد التجديد التلقائي.",
+    "autoRenewError": "تعذر تحديث إعداد التجديد التلقائي.",
+    "invoiceEmpty": "لا توجد فواتير حتى الآن.",
+    "invoiceAmount": "المبلغ",
+    "invoiceStatus": "الحالة",
+    "invoicePeriod": "الفترة",
+    "invoiceCreatedAt": "تاريخ الإنشاء",
+    "statusInvoices": {
+      "paid": "مدفوع",
+      "pending": "معلّق",
+      "failed": "فشل",
+      "refunded": "مُسترد",
+      "partially_refunded": "استرداد جزئي"
+    },
+    "status": {
+      "subscription": {}
+    },
+    "coupons": {
+      "redeemGift": {
+        "title": {
+          "missingCode": "رمز القسيمة مفقود",
+          "success": "تم تفعيل القسيمة",
+          "error": "تعذر تفعيل القسيمة",
+          "loading": "جارٍ تفعيل القسيمة"
+        },
+        "description": {
+          "missingCode": "تتوقع هذه الصفحة وجود رمز القسيمة في رابط الصفحة.",
+          "success": "تم تحديث اشتراكك. جارٍ التحويل…",
+          "error": "حاول مرة أخرى باستخدام الرابط الذي استلمته.",
+          "loading": "يرجى الانتظار بينما نفعّل هديتك."
+        },
+        "content": {
+          "processing": "جارٍ المعالجة…",
+          "redirecting": "جارٍ التحويل إلى الاشتراك…"
+        },
+        "missingCode": {
+          "noCodeProvided": "لم يتم توفير رمز القسيمة.",
+          "exampleLabel": "مثال:"
+        },
+        "error": {
+          "genericMessage": "حدث خطأ أثناء تفعيل القسيمة.",
+          "alreadyRedeemedMessage": "تم استخدام رمز القسيمة مسبقًا.",
+          "usageLimitReachedMessage": "تم الوصول إلى الحد الأقصى لاستخدام القسيمة.",
+          "codeLabel": "الرمز:"
+        },
+        "toast": {
+          "success": "تم تفعيل قسيمة الهدية بنجاح!"
+        },
+        "actions": {
+          "goToSubscription": "الانتقال إلى الاشتراك"
+        }
+      }
+    }
+  },
+  "checkout": {
+    "title": "إتمام الاشتراك",
+    "subtitle": "يتم استخدام التفعيل اليدوي حاليًا للخطط المدفوعة.",
+    "manualActivationTitle": "أكمل الدفع بشكل يدوي",
+    "manualActivationDescription": "للاشتراك، تواصل معنا عبر واتساب، وأكّد الدفع، وسنقوم بتفعيل خطتك لك.",
+    "step1": "1. أرسل لنا رسالة على واتساب وحدد الخطة التي تريدها.",
+    "step2": "2. أكمل الدفع ثم أرسل لنا إثبات الدفع أو المرجع الخاص به.",
+    "step3": "3. بعد التحقق، سنفعّل اشتراكك يدويًا على حسابك.",
+    "contactWhatsapp": "تواصل معنا على واتساب",
+    "selectedPlanLabel": "الخطة المحددة",
+    "proYearlyTitle": "الباقة الاحترافية (سنويًا)",
+    "proYearlyPriceDesc": "360 ج.م لمدة عام كامل",
+    "proMonthlyTitle": "الباقة الاحترافية (شهريًا)",
+    "proMonthlyPriceDesc": "50 ج.م / شهريًا",
+    "save35Badge": "وفّر 40%"
+  },
+  "trial": {
+    "title": "ابدأ تجربتك المجانية",
+    "subtitle": "فعّل التجربة فورًا واكتشف مزايا الباقة الإحترافية.",
+    "cardTitle": "جرّب الإحترافية الآن",
+    "cardDescription": "عند بدء التجربة سيتم تفعيل خطة التجربة مباشرة على حسابك.",
+    "noteOne": "يمكن بدء التجربة مرة واحدة فقط لكل حساب.",
+    "noteTwo": "إذا كان لديك اشتراك مدفوع نشط حاليًا فلن تبدأ التجربة الآن.",
+    "noteThree": "تنتهي التجربة تلقائيًا عند تاريخ انتهاء مدة التجربة.",
+    "noteFour": "تشمل فترة التجربة الميزات الاحترافية، ولكن تظل حدود الاستخدام (مثل المشاريع والمهام) سارية.",
+    "startCta": "ابدأ التجربة المجانية",
+    "starting": "جارٍ البدء...",
+    "success": "تم بدء التجربة بنجاح. حسابك الآن على خطة التجربة.",
+    "errorFallback": "تعذر بدء التجربة. حاول مرة أخرى.",
+    "viewSubscription": "عرض الخطة",
+    "skipTrialCta": "اشترك مباشرة في الإحترافية",
+    "subscribeNow": "اشترك في الإحترافية",
+    "loadingSubscription": "جارٍ تحميل بيانات اشتراكك…",
+    "trialUsedTitle": "تم استخدام التجربة المجانية مسبقًا",
+    "trialUsedDescription": "هذا الحساب استخدم تجربته المجانية لمرة واحدة. يمكنك عرض خطتك أو تغييرها من صفحة الاشتراك."
+  },
+  "supportOverview": {
+    "analytics": {
+      "title": "لمحة سريعة",
+      "subtitle": "أحجام التذاكر والملاحظات في مساحة الدعم.",
+      "loadFailed": "تعذر تحميل مؤشرات النظرة العامة.",
+      "asOf": "آخر تحديث {date}",
+      "staleHint": "تُحسب عناصر «القديم» باستخدام نافذة {days} أيام من وقت الإنشاء.",
+      "open": "مفتوحة",
+      "resolved": "تم الحل",
+      "closed": "مغلقة",
+      "other": "أخرى",
+      "new": "جديدة",
+      "reviewed": "تمت المراجعة",
+      "suggestion": "اقتراح",
+      "complaint": "شكوى",
+      "openStale": "مفتوحة · قديمة",
+      "staleNew": "جديدة · قديمة",
+      "metrics": {
+        "openTickets": "تذاكر مفتوحة",
+        "openTicketsHint": "قائمة الانتظار الحالية",
+        "newFeedback": "ملاحظات جديدة",
+        "newFeedbackHint": "بانتظار المراجعة",
+        "totalTickets": "إجمالي التذاكر",
+        "totalTicketsHint": "المسجّلة في النظام",
+        "totalFeedbacks": "إجمالي الملاحظات",
+        "totalFeedbacksHint": "اقتراحات وشكاوى"
+      },
+      "chartTitle": "حجم الإنشاء",
+      "chartDescription": "التذاكر والملاحظات المُرسلة لكل يوم.",
+      "period7": "7 أيام",
+      "period30": "30 يومًا",
+      "chartSeriesTickets": "التذاكر",
+      "chartSeriesFeedbacks": "الملاحظات",
+      "pieTicketsTitle": "التذاكر حسب الحالة",
+      "pieTicketsDescription": "نصيب كل حالة من إجمالي التذاكر.",
+      "pieFeedbackTypesTitle": "الملاحظات حسب النوع",
+      "pieFeedbackTypesDescription": "اقتراحات مقابل شكاوى (وأخرى).",
+      "pieFeedbackStatusTitle": "الملاحظات حسب الحالة",
+      "pieFeedbackStatusDescription": "جديدة، تمت المراجعة، مغلقة، وأخرى.",
+      "pieEmpty": "لا توجد بيانات للعرض بعد."
+    }
+  },
+  "adminOverview": {
+    "analytics": {
+      "title": "نظرة عامة للإدارة",
+      "subtitle": "عرض موحد للمستخدمين والشرائح.",
+      "asOf": "آخر تحديث {date}",
+      "loadFailed": "تعذر تحميل مؤشرات نظرة الإدارة العامة.",
+      "empty": "لا توجد بيانات للعرض بعد.",
+      "rangeLabel": "نطاق السلسلة",
+      "period7": "7 أيام",
+      "period30": "30 يومًا",
+      "metrics": {
+        "totalUsers": "إجمالي المستخدمين",
+        "totalUsersHint": "جميع حسابات المستخدمين",
+        "newUsers7": "مستخدمون جدد (7 أيام)",
+        "newUsers7Hint": "سجلوا خلال آخر 7 أيام",
+        "newUsers30": "مستخدمون جدد (30 يومًا)",
+        "newUsers30Hint": "سجلوا خلال آخر 30 يومًا",
+        "verifiedRatio": "توثيق البريد",
+        "verifiedRatioHint": "نسبة الحسابات الموثقة من الإجمالي"
+      },
+      "series": {
+        "signups": "التسجيلات"
+      },
+      "signupsChartTitle": "تسجيلات المستخدمين يوميًا",
+      "signupsChartDescription": "حجم التسجيل اليومي ضمن النطاق المحدد.",
+      "emailPieTitle": "توثيق البريد الإلكتروني",
+      "emailPieDescription": "المستخدمون الموثقون مقابل غير الموثقين.",
+      "rolesPieTitle": "المستخدمون حسب الدور",
+      "rolesPieDescription": "توزيع الأدوار بما في ذلك غير المحددين.",
+      "banningPieTitle": "حالة الوصول",
+      "banningPieDescription": "غير محظور مقابل حظر مؤقت/دائم.",
+      "segmentsTitle": "اعتماد الشرائح",
+      "segmentsDescription": "المستخدمون غير المربوطين بشريحة والمستخدمون لكل شريحة.",
+      "segmentsColumns": {
+        "segment": "الشريحة",
+        "users": "المستخدمون"
+      },
+      "verified": "موثّق",
+      "unverified": "غير موثّق",
+      "notBanned": "غير محظور",
+      "bannedPermanent": "حظر دائم",
+      "bannedTemporary": "حظر مؤقت",
+      "unsegmented": "غير مصنّف",
+      "role": {
+        "admin": "مسؤول",
+        "contentManager": "مدير المحتوى",
+        "support": "دعم",
+        "user": "مستخدم",
+        "unspecified": "غير محدد",
+        "other": "أخرى ({key})"
+      }
+    }
+  },
+  "support": {
+    "create": {
+      "title": "تواصل مع الدعم",
+      "description": "أنشئ تذكرة لبدء محادثة مباشرة مع فريق الدعم.",
+      "subjectLabel": "الموضوع",
+      "subjectPlaceholder": "مثال: لا أستطيع الوصول إلى حسابي",
+      "descriptionLabel": "الوصف",
+      "descriptionPlaceholder": "اشرح المشكلة بتفاصيل كافية حتى نساعدك بسرعة.",
+      "submit": "إنشاء تذكرة",
+      "sending": "جارٍ الإنشاء..."
+    },
+    "list": {
+      "title": "تذاكرك",
+      "description": "تم العثور على {total} تذكرة",
+      "empty": "لا توجد تذاكر بعد. أنشئ أول تذكرة دعم من الأعلى.",
+      "createdAt": "تاريخ الإنشاء: {date}",
+      "pagination": {
+        "page": "الصفحة {page} من {totalPages}",
+        "previous": "السابق",
+        "next": "التالي",
+        "previousAria": "الانتقال إلى الصفحة السابقة",
+        "nextAria": "الانتقال إلى الصفحة التالية"
+      },
+      "filters": {
+        "status": "التصفية حسب الحالة",
+        "all": "كل الحالات"
+      },
+      "viewConversation": "عرض المحادثة"
+    },
+    "statuses": {
+      "open": "مفتوحة",
+      "resolved": "تم الحل",
+      "closed": "مغلقة"
+    },
+    "messages": {
+      "requiredFields": "الموضوع والوصف مطلوبان.",
+      "ticketCreated": "تم إنشاء تذكرة الدعم بنجاح.",
+      "createFailed": "تعذر إنشاء تذكرة الدعم.",
+      "loadFailed": "فشل تحميل تذاكر الدعم الخاصة بك."
+    },
+    "chat": {
+      "title": "محادثة التذكرة",
+      "backToTickets": "العودة إلى التذاكر",
+      "noMessages": "لا توجد ردود بعد. أرسل رسالة لبدء المحادثة.",
+      "inputPlaceholder": "اكتب ردك هنا...",
+      "send": "إرسال الرد",
+      "sending": "جارٍ الإرسال...",
+      "you": "أنت",
+      "supportStaff": "فريق الدعم",
+      "customer": "العميل",
+      "deleteMessage": "حذف الرسالة",
+      "deleteMessageConfirm": "هل أنت متأكد من رغبتك في حذف هذه الرسالة؟",
+      "delete": "حذف",
+      "deleting": "جارٍ الحذف...",
+      "cancel": "إلغاء",
+      "messageDeleted": "تم حذف الرسالة.",
+      "messageSent": "تم إرسال الرسالة.",
+      "ticketClosedNotice": "هذه التذكرة مغلقة. إرسال رسالة جديدة سيعيد فتحها."
+    }
+  },
+  "supportDesk": {
+    "title": "تذاكر الدعم",
+    "description": "إدارة التذاكر الواردة ({total})",
+    "empty": "لا توجد تذاكر مطابقة للفلتر المحدد.",
+    "columns": {
+      "subject": "الموضوع",
+      "userId": "معرف المستخدم",
+      "userEmail": "بريد المستخدم",
+      "status": "الحالة",
+      "createdAt": "تاريخ الإنشاء",
+      "actions": "الإجراءات"
+    },
+    "filters": {
+      "status": "التصفية حسب الحالة",
+      "all": "كل الحالات",
+      "sortBy": "الترتيب حسب التاريخ",
+      "newest": "الأحدث أولاً",
+      "oldest": "الأقدم أولاً"
+    },
+    "actions": {
+      "refresh": "تحديث",
+      "delete": "حذف التذكرة",
+      "viewDetails": "عرض التفاصيل",
+      "startChat": "بدء محادثة جديدة"
+    },
+    "statuses": {
+      "open": "مفتوحة",
+      "resolved": "تم الحل",
+      "closed": "مغلقة"
+    },
+    "messages": {
+      "statusUpdated": "تم تحديث حالة التذكرة.",
+      "statusUpdateFailed": "فشل تحديث حالة التذكرة.",
+      "ticketDeleted": "تم حذف التذكرة بنجاح.",
+      "ticketDeleteFailed": "فشل حذف التذكرة.",
+      "loadFailed": "فشل تحميل تذاكر الدعم."
+    },
+    "deleteDialog": {
+      "title": "حذف التذكرة",
+      "description": "سيتم حذف \"{subject}\" نهائيًا.",
+      "fallbackSubject": "هذه التذكرة",
+      "confirm": "حذف",
+      "deleting": "جارٍ الحذف...",
+      "cancel": "إلغاء"
+    },
+    "detailsDialog": {
+      "title": "تفاصيل التذكرة",
+      "description": "المحتوى الكامل للتذكرة مع الطوابع الزمنية.",
+      "userId": "معرف المستخدم",
+      "userEmail": "بريد المستخدم",
+      "status": "الحالة",
+      "createdAt": "تاريخ الإنشاء",
+      "updatedAt": "آخر تحديث",
+      "fullDescription": "الوصف",
+      "close": "إغلاق"
+    },
+    "pagination": {
+      "previous": "السابق",
+      "next": "التالي",
+      "previousAria": "الانتقال إلى الصفحة السابقة",
+      "nextAria": "الانتقال إلى الصفحة التالية"
+    },
+    "chat": {
+      "backToTickets": "العودة إلى التذاكر"
+    },
+    "initiateDialog": {
+      "title": "بدء محادثة مع مستخدم",
+      "description": "ابدأ محادثة دعم وتواصل مباشر مع مستخدم مسجل.",
+      "userLabel": "المستخدم المستهدف",
+      "unknownUser": "مستخدم",
+      "changeUser": "تغيير المستخدم",
+      "searchPlaceholder": "ابحث بالاسم أو البريد الإلكتروني...",
+      "select": "اختيار",
+      "subjectLabel": "موضوع المحادثة",
+      "subjectPlaceholder": "مثال: استفسار بخصوص رأيك في الميزة الأخيرة",
+      "messageLabel": "الرسالة الأولى",
+      "messagePlaceholder": "اكتب رسالتك للمستخدم هنا...",
+      "cancel": "إلغاء",
+      "submit": "بدء المحادثة",
+      "submitting": "جارٍ البدء...",
+      "selectUserRequired": "يرجى اختيار مستخدم لبدء المحادثة معه.",
+      "subjectRequired": "يرجى كتابة موضوع للمحادثة.",
+      "messageRequired": "يرجى كتابة نص الرسالة الأولى.",
+      "successToast": "تم بدء المحادثة بنجاح.",
+      "failedToast": "تعذر بدء المحادثة."
+    }
+  },
+  "feedbacks": {
+    "create": {
+      "title": "شاركنا ملاحظاتك",
+      "description": "أرسل اقتراحًا أو شكوى وسيقوم فريقنا بمراجعته.",
+      "typeLabel": "نوع الملاحظة",
+      "subjectLabel": "الموضوع",
+      "subjectPlaceholder": "مثال: اقتراح ميزة للتذكيرات المتكررة",
+      "descriptionLabel": "الوصف",
+      "descriptionPlaceholder": "شارك تفاصيل كافية ليتمكن الفريق من اتخاذ إجراء واضح.",
+      "submit": "إرسال الملاحظة",
+      "sending": "جارٍ الإرسال..."
+    },
+    "list": {
+      "title": "ملاحظاتك",
+      "description": "تم العثور على {total} عنصر",
+      "empty": "لا توجد ملاحظات بعد. أرسل أول ملاحظة من الأعلى.",
+      "createdAt": "تاريخ الإنشاء: {date}",
+      "filters": {
+        "type": "التصفية حسب النوع",
+        "status": "التصفية حسب الحالة",
+        "allTypes": "كل الأنواع",
+        "allStatuses": "كل الحالات"
+      },
+      "pagination": {
+        "page": "الصفحة {page} من {totalPages}",
+        "previous": "السابق",
+        "next": "التالي",
+        "previousAria": "الانتقال إلى الصفحة السابقة",
+        "nextAria": "الانتقال إلى الصفحة التالية"
+      }
+    },
+    "types": {
+      "suggestion": "اقتراح",
+      "complaint": "شكوى"
+    },
+    "statuses": {
+      "new": "جديد",
+      "reviewed": "تمت المراجعة",
+      "closed": "مغلق"
+    },
+    "messages": {
+      "requiredFields": "النوع والموضوع والوصف حقول مطلوبة.",
+      "feedbackCreated": "تم إرسال الملاحظة بنجاح.",
+      "createFailed": "تعذر إرسال الملاحظة.",
+      "loadFailed": "فشل تحميل قائمة الملاحظات الخاصة بك."
+    }
+  },
+  "feedbackDesk": {
+    "title": "إدارة المقترحات والشكاوى",
+    "description": "إدارة الملاحظات الواردة ({total})",
+    "empty": "لا توجد عناصر مطابقة للفلاتر المحددة.",
+    "columns": {
+      "type": "النوع",
+      "subject": "الموضوع",
+      "userId": "معرف المستخدم",
+      "userEmail": "بريد المستخدم",
+      "status": "الحالة",
+      "createdAt": "تاريخ الإنشاء",
+      "actions": "الإجراءات"
+    },
+    "filters": {
+      "sortBy": "الترتيب حسب التاريخ",
+      "newest": "الأحدث أولاً",
+      "oldest": "الأقدم أولاً",
+      "type": "التصفية حسب النوع",
+      "status": "التصفية حسب الحالة",
+      "allTypes": "كل الأنواع",
+      "allStatuses": "كل الحالات"
+    },
+    "actions": {
+      "refresh": "تحديث",
+      "delete": "حذف العنصر",
+      "viewDetails": "عرض التفاصيل"
+    },
+    "types": {
+      "suggestion": "اقتراح",
+      "complaint": "شكوى"
+    },
+    "statuses": {
+      "new": "جديد",
+      "reviewed": "تمت المراجعة",
+      "closed": "مغلق"
+    },
+    "messages": {
+      "statusUpdated": "تم تحديث حالة العنصر.",
+      "statusUpdateFailed": "فشل تحديث حالة العنصر.",
+      "itemDeleted": "تم حذف العنصر بنجاح.",
+      "itemDeleteFailed": "فشل حذف العنصر.",
+      "loadFailed": "فشل تحميل قائمة العناصر."
+    },
+    "deleteDialog": {
+      "title": "حذف العنصر",
+      "description": "سيتم حذف \"{subject}\" نهائيًا.",
+      "fallbackSubject": "هذا العنصر",
+      "confirm": "حذف",
+      "deleting": "جارٍ الحذف...",
+      "cancel": "إلغاء"
+    },
+    "detailsDialog": {
+      "title": "تفاصيل العنصر",
+      "description": "المحتوى الكامل مع الطوابع الزمنية.",
+      "type": "النوع",
+      "userId": "معرف المستخدم",
+      "userEmail": "بريد المستخدم",
+      "status": "الحالة",
+      "createdAt": "تاريخ الإنشاء",
+      "updatedAt": "آخر تحديث",
+      "fullDescription": "الوصف",
+      "close": "إغلاق"
+    },
+    "pagination": {
+      "previous": "السابق",
+      "next": "التالي",
+      "previousAria": "الانتقال إلى الصفحة السابقة",
+      "nextAria": "الانتقال إلى الصفحة التالية"
+    }
+  },
+  "comingSoon": {
+    "badge": "قريبًا",
+    "title": "نحن نبني شيئًا رائعًا",
+    "description": "نعمل الآن على بناء شيء رائع هنا، ونتطلع لمشاركته معك قريبًا."
+  }
+}

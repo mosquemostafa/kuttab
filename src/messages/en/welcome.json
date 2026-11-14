@@ -1,0 +1,35 @@
+{
+  "steps": {
+    "welcome": {
+      "title": "Welcome, {name}!",
+      "intro": "Welcome to your new workspace. Let's get you set up in just a few quick steps."
+    },
+    "demo": {
+      "title": "Explore the Platform",
+      "description": "Discover all the powerful features and tools available in your new workspace."
+    },
+    "language": {
+      "title": "Choose your preferred language"
+    },
+    "appearance": {
+      "title": "Customize your appearance"
+    },
+    "notifications": {
+      "title": "Enable notifications"
+    },
+    "ready": {
+      "title": "You're all set!",
+      "description": "Everything is ready. Welcome to your new workspace."
+    }
+  },
+  "changeLater": "You can change this later in settings",
+  "actions": {
+    "back": "Back",
+    "next": "Next",
+    "skip": "Skip",
+    "getStarted": "Get Started"
+  },
+  "errors": {
+    "completeFailed": "Failed to complete setup. Please try again."
+  }
+}

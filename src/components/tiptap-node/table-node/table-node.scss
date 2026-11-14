@@ -1,0 +1,84 @@
+.tiptap.ProseMirror {
+  --table-border-color: var(--border, var(--tt-gray-light-a-200));
+  --table-header-bg: var(--muted, var(--tt-gray-light-a-50));
+  --table-stripe-bg: color-mix(
+    in oklch,
+    var(--muted, var(--tt-gray-light-a-50)) 40%,
+    transparent
+  );
+  --table-selected-cell-bg: rgba(59, 130, 246, 0.15);
+
+  .dark & {
+    --table-border-color: var(--border, var(--tt-gray-dark-a-200));
+    --table-header-bg: var(--muted, var(--tt-gray-dark-a-50));
+    --table-stripe-bg: color-mix(
+      in oklch,
+      var(--muted, var(--tt-gray-dark-a-50)) 30%,
+      transparent
+    );
+    --table-selected-cell-bg: rgba(59, 130, 246, 0.25);
+  }
+}
+
+/* =====================
+   TABLE
+   ===================== */
+.tiptap.ProseMirror {
+  .tableWrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin: 1.5em 0;
+    border-radius: 8px;
+    border: 1px solid var(--table-border-color);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+    font-size: 0.9375em;
+    line-height: 1.6;
+    text-align: start;
+
+    td,
+    th {
+      min-width: 80px;
+      padding: 10px 14px;
+      border: 1px solid var(--table-border-color);
+      vertical-align: top;
+      box-sizing: border-box;
+      position: relative;
+      text-align: start;
+
+      > p {
+        margin: 0;
+      }
+
+      > p + p {
+        margin-top: 0.5em;
+      }
+    }
+
+    th {
+      font-weight: 700;
+      background-color: var(--table-header-bg);
+      border-bottom: 2px solid var(--table-border-color);
+    }
+
+    tr:nth-child(even) td {
+      background-color: var(--table-stripe-bg);
+    }
+
+    .selectedCell:after {
+      z-index: 2;
+      position: absolute;
+      content: "";
+      inset: 0;
+      background: var(--table-selected-cell-bg);
+      pointer-events: none;
+    }
+  }
+}

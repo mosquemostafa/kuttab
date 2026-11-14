@@ -1,0 +1,18 @@
+{
+  "modal": {
+    "title": "إعلانات جديدة",
+    "close": "إغلاق",
+    "previous": "السابق",
+    "next": "التالي",
+    "progress": "الإعلان {current} من {total}"
+  },
+  "updates": {},
+  "types": {
+    "feature": "ميزة",
+    "improvement": "تحسين",
+    "fix": "إصلاح",
+    "maintenance": "صيانة",
+    "alert": "تنبيه",
+    "promotion": "عرض ترويجي"
+  }
+}

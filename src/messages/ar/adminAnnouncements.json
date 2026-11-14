@@ -1,0 +1,111 @@
+{
+  "analytics": {
+    "title": "تحليلات الإعلانات",
+    "subtitle": "نِسَب مبسطة حسب النوع وحالة النشاط والحالة.",
+    "asOf": "آخر تحديث {date}",
+    "loadFailed": "فشل تحميل تحليلات الإعلانات.",
+    "empty": "لا توجد بيانات للعرض بعد.",
+    "typeTitle": "النسبة حسب النوع",
+    "typeDescription": "توزيع الإعلانات حسب النوع.",
+    "activeTitle": "نسبة النشط مقابل غير النشط",
+    "activeDescription": "الإعلانات النشطة حاليًا مقارنة بغير النشطة.",
+    "statusTitle": "النسبة حسب الحالة",
+    "statusDescription": "الإعلانات المسودة مقابل المنشورة.",
+    "active": "نشط",
+    "notActive": "غير نشط"
+  },
+  "create": {
+    "title": "إنشاء إعلان",
+    "description": "أنشئ مسودة أو انشر إعلانًا لجميع المستخدمين أو لدور أو لشريحة محددة.",
+    "titleArLabel": "العنوان (عربي)",
+    "titleEnLabel": "العنوان (إنجليزي)",
+    "contentArLabel": "المحتوى (عربي)",
+    "contentEnLabel": "المحتوى (إنجليزي)",
+    "typeLabel": "النوع",
+    "targetTypeLabel": "نوع الاستهداف",
+    "targetRoleLabel": "الدور المستهدف",
+    "targetSegmentLabel": "الشريحة المستهدفة",
+    "searchSegmentPlaceholder": "ابحث عن الشريحة بالاسم...",
+    "segmentPlaceholder": "اختر شريحة",
+    "loadingSegments": "جارٍ تحميل الشرائح...",
+    "noSegmentsFound": "لم يتم العثور على شرائح.",
+    "expiresAtLabel": "تاريخ الانتهاء",
+    "publishLabel": "النشر الآن",
+    "publishHint": "عند التعطيل سيتم حفظ الإعلان كمسودة.",
+    "submit": "إنشاء إعلان",
+    "saving": "جارٍ الإنشاء..."
+  },
+  "list": {
+    "title": "الإعلانات",
+    "description": "إجمالي الإعلانات: {total}",
+    "refresh": "تحديث",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "loadFailed": "فشل تحميل الإعلانات.",
+    "empty": "لا توجد إعلانات.",
+    "previous": "السابق",
+    "next": "التالي"
+  },
+  "columns": {
+    "title": "العنوان",
+    "type": "النوع",
+    "target": "الاستهداف",
+    "status": "الحالة",
+    "seenCount": "عدد المشاهدات",
+    "createdAt": "تاريخ الإنشاء",
+    "actions": "الإجراءات"
+  },
+  "edit": {
+    "title": "تعديل الإعلان",
+    "description": "حدّث تفاصيل الإعلان وتواريخ النشر.",
+    "titleArLabel": "العنوان (عربي)",
+    "titleEnLabel": "العنوان (إنجليزي)",
+    "contentArLabel": "المحتوى (عربي)",
+    "contentEnLabel": "المحتوى (إنجليزي)",
+    "publishedAtLabel": "تاريخ النشر",
+    "expiresAtLabel": "تاريخ الانتهاء",
+    "cancel": "إلغاء",
+    "save": "حفظ التغييرات",
+    "saving": "جارٍ الحفظ..."
+  },
+  "delete": {
+    "title": "حذف الإعلان",
+    "description": "هل أنت متأكد من حذف \"{title}\"؟ لا يمكن التراجع عن هذا الإجراء.",
+    "cancel": "إلغاء",
+    "confirm": "حذف",
+    "deleting": "جارٍ الحذف..."
+  },
+  "targets": {
+    "all": "كل المستخدمين",
+    "role": "دور",
+    "segment": "شريحة"
+  },
+  "types": {
+    "feature": "ميزة",
+    "improvement": "تحسين",
+    "fix": "إصلاح",
+    "maintenance": "صيانة",
+    "alert": "تنبيه",
+    "promotion": "عرض ترويجي"
+  },
+  "roles": {
+    "user": "مستخدم",
+    "support": "الدعم",
+    "admin": "مسؤول"
+  },
+  "statuses": {
+    "draft": "مسودة",
+    "published": "منشور"
+  },
+  "toasts": {
+    "requiredFields": "يرجى تعبئة العنوان والمحتوى بالعربية والإنجليزية، مع اختيار النوع.",
+    "editRequiredFields": "يرجى تعبئة العنوان والمحتوى بالعربية والإنجليزية.",
+    "targetValueRequired": "قيمة الاستهداف مطلوبة عند اختيار الدور أو الشريحة.",
+    "created": "تم إنشاء الإعلان بنجاح.",
+    "createFailed": "فشل إنشاء الإعلان.",
+    "updated": "تم تحديث الإعلان بنجاح.",
+    "updateFailed": "فشل تحديث الإعلان.",
+    "deleted": "تم حذف الإعلان بنجاح.",
+    "deleteFailed": "فشل حذف الإعلان."
+  }
+}

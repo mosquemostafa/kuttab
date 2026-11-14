@@ -1,0 +1,201 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+:root {
+  --tt-toolbar-height: 44px;
+}
+
+.tiptap.ProseMirror {
+  font-family: inherit;
+}
+
+.simple-editor-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--card, var(--background, #fff));
+  border: 1px solid var(--border, rgba(0, 0, 0, 0.1));
+  border-radius: var(--radius, 0.75rem);
+  color: var(--foreground, inherit);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+
+  &:focus-within {
+    border-color: var(--ring, #3b82f6);
+  }
+
+  &.is-borderless,
+  &.border-0,
+  &.border-none {
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+
+    &:focus-within {
+      border-color: transparent !important;
+      box-shadow: none !important;
+    }
+  }
+
+  &.rounded-none {
+    border-radius: 0 !important;
+  }
+
+  &.is-standalone {
+    width: 100vw;
+    height: 100vh;
+    border: none;
+    border-radius: 0;
+    overflow: auto;
+    background-color: var(--tt-bg-color, var(--background));
+  }
+}
+
+.simple-editor-wrapper .tiptap-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-start-start-radius: inherit;
+  border-start-end-radius: inherit;
+  border-bottom: 1px solid var(--border, var(--tt-toolbar-border-color));
+  background-color: var(--card, var(--background));
+  width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media (max-width: 480px) {
+    position: sticky !important;
+    top: 0 !important;
+    bottom: auto !important;
+    border-bottom: 1px solid var(--border, var(--tt-toolbar-border-color)) !important;
+    border-top: none !important;
+    height: auto !important;
+    min-height: var(--tt-toolbar-height) !important;
+    padding: 0.25rem 0.5rem !important;
+  }
+}
+
+.simple-editor-wrapper:not(.is-standalone) .tiptap-toolbar {
+  position: sticky !important;
+  top: 0 !important;
+  bottom: auto !important;
+  border-top: none !important;
+  border-bottom: 1px solid var(--border, var(--tt-toolbar-border-color)) !important;
+  background-color: var(--card, var(--background)) !important;
+}
+
+.simple-editor-wrapper.is-standalone .tiptap-toolbar {
+  @media (max-width: 480px) {
+    position: absolute !important;
+    top: auto !important;
+    border-top: 1px solid var(--border, var(--tt-toolbar-border-color)) !important;
+    border-bottom: none !important;
+  }
+}
+
+.simple-editor-search-and-replace {
+  position: fixed;
+  top: calc(var(--tt-toolbar-height) + 0.5rem);
+  inset-inline-end: 0.5rem;
+  z-index: 51;
+  max-height: calc(100dvh - var(--tt-toolbar-height) - 1rem);
+}
+
+.simple-editor-content {
+  width: 100%;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  .is-standalone & {
+    max-width: 648px;
+    width: 100%;
+    margin: 0 auto;
+    height: 100%;
+  }
+}
+
+.simple-editor-content .tiptap.ProseMirror.simple-editor {
+  flex: 1;
+  padding: 1.5rem 2rem;
+  min-height: 180px;
+  outline: none;
+  text-align: start;
+
+  [dir="auto"],
+  [dir="rtl"],
+  [dir="ltr"] {
+    text-align: start;
+  }
+
+  .tableWrapper {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    overflow: hidden;
+  }
+
+  th,
+  td {
+    min-width: 6rem;
+    border: 1px solid var(--tt-gray-light-a-300);
+    padding: 0.5rem 0.75rem;
+    vertical-align: top;
+    position: relative;
+  }
+
+  th {
+    background-color: var(--tt-gray-light-a-100);
+    font-weight: 600;
+    text-align: start;
+  }
+
+  .dark & {
+    th,
+    td {
+      border-color: var(--tt-gray-dark-a-300);
+    }
+
+    th {
+      background-color: var(--tt-gray-dark-a-100);
+    }
+  }
+
+  .selectedCell {
+    background-color: var(--tt-brand-color-50);
+  }
+
+  .is-standalone & {
+    padding: 3rem 3rem 30vh;
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 1rem 1.25rem;
+
+    .is-standalone & {
+      padding: 1rem 1.5rem 30vh;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .simple-editor-search-and-replace {
+    top: 0.5rem;
+    inset-inline-start: 0.5rem;
+    width: auto;
+    max-height: calc(100dvh - 1rem);
+  }
+}

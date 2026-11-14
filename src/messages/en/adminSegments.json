@@ -1,0 +1,53 @@
+{
+  "title": "Segments",
+  "description": "Create and manage user segments.",
+  "controls": {
+    "search": "Search segments...",
+    "name": "Segment name",
+    "icon": "Icon",
+    "create": "Create segment",
+    "creating": "Creating...",
+    "refresh": "Refresh"
+  },
+  "columns": {
+    "segment": "Segment",
+    "name": "Name",
+    "emoji": "Emoji",
+    "createdAt": "Created At",
+    "actions": "Actions"
+  },
+  "actions": {
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "dialogs": {
+    "editTitle": "Update segment",
+    "editDescription": "Update segment details.",
+    "name": "Name",
+    "icon": "Icon",
+    "save": "Save changes",
+    "saving": "Saving...",
+    "deleteTitle": "Delete segment",
+    "deleteDescription": "This will permanently delete \"{name}\".",
+    "deleteFallback": "this segment",
+    "confirmDelete": "Delete",
+    "deleting": "Deleting...",
+    "cancel": "Cancel"
+  },
+  "states": {
+    "empty": "No segments found.",
+    "loadFailed": "Failed to load segments."
+  },
+  "toasts": {
+    "created": "Segment created successfully.",
+    "updated": "Segment updated successfully.",
+    "deleted": "Segment deleted successfully."
+  },
+  "summary": "Showing {count} of {total} segments",
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "previousAria": "Go to previous page",
+    "nextAria": "Go to next page"
+  }
+}

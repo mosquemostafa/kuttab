@@ -1,0 +1,36 @@
+{
+  "page": {
+    "title": "Admin Settings",
+    "description": "Configure administrative preferences and default platform behavior."
+  },
+  "card": {
+    "title": "Organization Settings",
+    "description": "Manage organization and registration defaults."
+  },
+  "fields": {
+    "organizationName": "Organization Name",
+    "allowSelfRegistration": "Allow self-registration",
+    "allowSelfRegistrationEnabled": "Enabled: users can create new accounts.",
+    "allowSelfRegistrationDisabled": "Disabled: only admins can add users.",
+    "requireEmailVerification": "Require email verification",
+    "requireEmailVerificationEnabled": "Enabled: new users must verify email.",
+    "requireEmailVerificationDisabled": "Disabled: new users are auto-approved.",
+    "sendSupportTicketConfirmationEmail": "Send support ticket confirmation email",
+    "sendSupportTicketConfirmationEmailEnabled": "Enabled: users get an acknowledgment email after submitting a support ticket.",
+    "sendSupportTicketConfirmationEmailDisabled": "Disabled: no acknowledgment email is sent after ticket submission.",
+    "sendFeedbackConfirmationEmail": "Send feedback confirmation email",
+    "sendFeedbackConfirmationEmailEnabled": "Enabled: users get an acknowledgment email after submitting feedback.",
+    "sendFeedbackConfirmationEmailDisabled": "Disabled: no acknowledgment email is sent after feedback submission.",
+    "sendNewsletterWelcomeEmail": "Newsletter welcome email on subscribe",
+    "sendNewsletterWelcomeEmailEnabled": "Enabled: when newsletter delivery is configured, new and reactivated subscribers receive a branded welcome email (Resend).",
+    "sendNewsletterWelcomeEmailDisabled": "Disabled: no welcome email is sent on subscribe.",
+    "forceSingleActiveSession": "Force single active session",
+    "forceSingleActiveSessionEnabled": "Enabled: one active session per user.",
+    "forceSingleActiveSessionDisabled": "Disabled: users can stay signed in on multiple devices."
+  },
+  "actions": {
+    "save": "Save Settings",
+    "saving": "Saving...",
+    "savedSuccess": "Settings saved successfully."
+  }
+}

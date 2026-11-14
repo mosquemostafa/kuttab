@@ -1,0 +1,89 @@
+services:
+  modawim-app:
+    image: ghcr.io/abdelrahman-ahmed-nassar/modawim:latest
+    container_name: modawim-app
+
+    env_file:
+      - .env
+
+    ports:
+      - "4011:3000"
+
+    restart: unless-stopped
+
+    depends_on:
+      redis:
+        condition: service_healthy
+
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "wget -qO- --timeout=5 http://127.0.0.1:3000/api/health | grep -q 'success' || exit 1",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  modawim-worker:
+    image: ghcr.io/abdelrahman-ahmed-nassar/modawim:latest
+    container_name: modawim-worker
+
+    env_file:
+      - .env
+
+    command: ["node", "dist/worker.js"]
+
+    restart: unless-stopped
+    stop_grace_period: 60s
+
+    depends_on:
+      redis:
+        condition: service_healthy
+
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  redis:
+    image: redis:7-alpine
+    container_name: modawim-redis
+    restart: unless-stopped
+    command:
+      - redis-server
+      - --appendonly
+      - "yes"
+      - --appendfsync
+      - everysec
+      - --maxmemory-policy
+      - noeviction
+      - --maxmemory
+      - 512mb
+      - --requirepass
+      - "${REDIS_PASSWORD}"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -a \"$REDIS_PASSWORD\" ping | grep -q PONG || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  redis_data:
+    driver: local

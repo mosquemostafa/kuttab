@@ -1,0 +1,88 @@
+.tiptap-button-group {
+  display: flex;
+  width: fit-content;
+  align-items: stretch;
+
+  /* nested tiptap-button-group gets a gap */
+  &:has(> [data-slot="tiptap-button-group"]) {
+    gap: 0.125rem;
+  }
+
+  /* focus-visible children stack correctly */
+  & > *:focus-visible {
+    position: relative;
+    z-index: 10;
+  }
+
+  /* select trigger without explicit width becomes fit-content */
+  & > [data-slot="select-trigger"]:not([class*="w-"]) {
+    width: fit-content;
+  }
+
+  /* input children fill remaining space */
+  & > input {
+    flex: 1;
+  }
+}
+
+/* Corners are only squared where two children meet, so first/last children
+   keep their own size-appropriate radius (e.g. small buttons use
+   --tt-radius-md, default buttons --tt-radius-lg, input-group buttons a
+   pill) instead of a hardcoded group radius. */
+
+/* ─── Horizontal ────────────────────────────────────────── */
+.tiptap-button-group-horizontal {
+  /* [data-slot] children followed by another: remove end radius */
+  & > [data-slot]:has(~ [data-slot]) {
+    border-start-end-radius: 0;
+    border-end-end-radius: 0;
+  }
+
+  /* non-first [data-slot] children: remove start radius + start border */
+  & > [data-slot] ~ [data-slot] {
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
+    border-inline-start-width: 0;
+  }
+}
+
+/* ─── Vertical ──────────────────────────────────────────── */
+.tiptap-button-group-vertical {
+  flex-direction: column;
+
+  /* [data-slot] children followed by another: remove bottom radius */
+  & > [data-slot]:has(~ [data-slot]) {
+    border-end-start-radius: 0;
+    border-end-end-radius: 0;
+  }
+
+  /* non-first [data-slot] children: remove top radius + top border */
+  & > [data-slot] ~ [data-slot] {
+    border-start-start-radius: 0;
+    border-start-end-radius: 0;
+    border-top-width: 0;
+  }
+}
+
+/* ─── Separator ──────────────────────────────────────────── */
+.tiptap-button-group-separator {
+  position: relative;
+  align-self: stretch;
+}
+
+.tiptap-button-group-separator[data-orientation="horizontal"] {
+  margin-inline: 1px;
+}
+
+.tiptap-button-group-separator[data-orientation="horizontal"] {
+  width: auto;
+}
+
+.tiptap-button-group-separator[data-orientation="vertical"] {
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+.tiptap-button-group-separator[data-orientation="vertical"] {
+  height: auto;
+}

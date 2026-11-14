@@ -1,0 +1,140 @@
+{
+  "title": "المهام",
+  "description": "حوّل أفكارك إلى مهام واضحة وأنجزها خطوة بخطوة.",
+  "labels": {
+    "yesterday": "أمس",
+    "today": "اليوم",
+    "tomorrow": "غدًا",
+    "nextWeek": "الأسبوع القادم",
+    "nextMonth": "الشهر القادم"
+  },
+  "groups": {
+    "overdue": "متأخرة",
+    "today": "مهام اليوم",
+    "future": "مهام قادمة",
+    "inbox": "الوارد",
+    "completed": "مكتملة",
+    "high": "عالية",
+    "medium": "متوسطة",
+    "low": "منخفضة",
+    "tasks": "المهام"
+  },
+  "filters": {
+    "sortBy": "ترتيب حسب",
+    "sortDirection": "اتجاه الترتيب",
+    "ascending": "تصاعدي",
+    "descending": "تنازلي",
+    "oldestToNewest": "من الأقدم للأحدث",
+    "newestToOldest": "من الأحدث للأقدم",
+    "lowToHigh": "من الأقل إلى الأعلى",
+    "highToLow": "من الأعلى إلى الأقل",
+    "date": "التاريخ",
+    "priority": "الأولوية",
+    "title": "العنوان",
+    "taskScope": "قائمة المهام",
+    "scopeToday": "اليوم",
+    "scopeInbox": "الوارد",
+    "scopeFuture": "القادمة",
+    "scopeOverdue": "المتأخرة",
+    "scopeAll": "الكل",
+    "scopeLockedAria": "نطاق القائمة يظهر كالكل في هذا العرض؛ لا ينطبق على التقويم أو المصفوفة.",
+    "allProjects": "الكل",
+    "projectFilter": "تصفية حسب المشروع",
+    "projectFilterLocked": "المشروع: {name}"
+  },
+  "view": {
+    "label": "العرض",
+    "list": "قائمة",
+    "kanban": "كانبان",
+    "calendar": "التقويم",
+    "eisenhower": "أيزنهاور"
+  },
+  "matrix": {
+    "axisUrgentImportant": "عاجل + مهم",
+    "axisUrgentNotImportant": "عاجل + غير مهم",
+    "axisNotUrgentImportant": "غير عاجل + مهم",
+    "axisNotUrgentNotImportant": "غير عاجل + غير مهم",
+    "actionDoFirst": "نفّذ أولًا",
+    "actionSchedule": "جدول",
+    "actionDelegate": "فوّض",
+    "actionEliminate": "تخلّص"
+  },
+  "quickCreate": {
+    "placeholder": "أضف مهمة جديدة",
+    "noProject": "بدون مشروع",
+    "createProject": "إنشاء مشروع"
+  },
+  "priority": {
+    "none": "بدون أولوية",
+    "high": "🔥 عالية",
+    "medium": "💧 متوسطة",
+    "low": "🧊 منخفضة"
+  },
+  "checklist": {
+    "steps": "المهام الفرعية",
+    "placeholder": "أضف مهمة فرعية",
+    "progress": "{completed}/{total}",
+    "expand": "توسيع المهام الفرعية",
+    "collapse": "طي المهام الفرعية",
+    "aria": {
+      "toggleStep": "تبديل إكمال المهمة الفرعية",
+      "deleteStep": "حذف المهمة الفرعية",
+      "addStep": "إضافة مهمة فرعية",
+      "editStep": "تعديل عنوان المهمة الفرعية",
+      "dragStep": "إعادة ترتيب المهمة الفرعية"
+    }
+  },
+  "messages": {
+    "todoCreated": "تذكر.. أدومها وإن قل. ",
+    "todoCompleted": "تم إكمال المهمة.",
+    "undo": "تراجع",
+    "taskDeleted": "تم حذف المهمة.",
+    "prioritySet": "تم تعيين أولوية {priority}.",
+    "priorityNoneSelected": "لم يتم تحديد أولوية.",
+    "failedToLoad": "فشل تحميل المهام. حدّث الصفحة وحاول مرة أخرى.",
+    "noTasks": "لا توجد مهام",
+    "unknownProject": "مشروع غير معروف",
+    "projectLinked": "تم الربط بـ «{name}».",
+    "projectUnlinked": "غير مرتبط بمشروع.",
+    "addFirstTask": "أضف مهمتك الأولى وابدأ."
+  },
+  "actions": {
+    "confirm": "تأكيد",
+    "clear": "مسح",
+    "viewAll": "عرض الكل",
+    "goToTodos": "اذهب إلى المهام",
+    "success": {},
+    "errors": {}
+  },
+  "deleteDialog": {
+    "title": "حذف المهمة",
+    "description": "سيؤدي هذا إلى حذف \"{title}\" نهائيًا.",
+    "fallbackTitle": "هذه المهمة",
+    "confirm": "حذف",
+    "deleting": "جارٍ الحذف...",
+    "cancel": "إلغاء"
+  },
+  "aria": {
+    "changePriority": "تغيير أولوية المهمة",
+    "changeProject": "تغيير مشروع المهمة",
+    "nextWeek": "الأسبوع التالي",
+    "prevWeek": "الأسبوع السابق",
+    "editTaskTitle": "تعديل عنوان المهمة",
+    "markAsDone": "تحديد كمكتملة",
+    "markAsNotDone": "تحديد كغير مكتملة",
+    "deleteTask": "حذف المهمة",
+    "taskMenu": "إجراءات المهمة",
+    "sortTasks": "ترتيب المهام",
+    "newTodoTitle": "عنوان مهمة جديدة",
+    "selectedPriority": "الأولوية المحددة {priority}",
+    "selectPriority": "اختر الأولوية",
+    "selectDueDate": "اختر تاريخ الاستحقاق",
+    "selectedDueDate": "تاريخ الاستحقاق المحدد {date}",
+    "addTask": "أضف مهمة",
+    "addingTask": "جارٍ إضافة المهمة",
+    "addTaskForDay": "أضف مهمة ليوم {day}",
+    "selectProject": "اختر مشروعًا",
+    "selectedProject": "المشروع المحدد: {name}",
+    "selectTask": "تبديل اختيار المهمة لبومودورو"
+  }
+}
