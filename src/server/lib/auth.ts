@@ -6,6 +6,7 @@ import { getResetPasswordEmailTemplate } from "@/server/lib/email";
 import { env } from "@/server/lib/env";
 import { routing } from "@/i18n/routing";
 import { hasLocale } from "next-intl";
+import { appSettingsService } from "@/server/modules/app-settings/app-settings.service";
 import {
   flushRateLimitPending,
   getClientIpFromHeaders,
@@ -81,11 +82,63 @@ const rateLimitSensitiveAuthPostsBefore = createAuthMiddleware(async (ctx) => {
   }
 });
 
+const syncAppSettingsAuthMiddleware = createAuthMiddleware(async (ctx) => {
+  let settings;
+  try {
+    settings = await appSettingsService.getSettings();
+  } catch {
+    return;
+  }
+
+  if (
+    ctx.path === "/sign-up/email" &&
+    ctx.method === "POST" &&
+    !settings.allowSelfRegistration
+  ) {
+    throw new APIError("FORBIDDEN", {
+      message: "Self-registration is currently disabled.",
+    });
+  }
+
+  if (ctx.context?.options?.emailAndPassword) {
+    ctx.context.options.emailAndPassword.requireEmailVerification =
+      settings.requireEmailVerification;
+  }
+  if (ctx.context?.options?.emailVerification) {
+    ctx.context.options.emailVerification.sendOnSignUp =
+      settings.requireEmailVerification;
+  }
+});
+
 export const auth = betterAuth({
   trustHost: true,
   trustedOrigins: getAllowedOrigins(),
   hooks: {
-    before: rateLimitSensitiveAuthPostsBefore,
+    before: createAuthMiddleware(async (ctx) => {
+      await syncAppSettingsAuthMiddleware(ctx);
+      await rateLimitSensitiveAuthPostsBefore(ctx);
+    }),
+  },
+  databaseHooks: {
+    user: {
+      create: {
+        before: async (user) => {
+          try {
+            const settings = await appSettingsService.getSettings();
+            if (!settings.requireEmailVerification) {
+              return {
+                data: {
+                  ...user,
+                  emailVerified: true,
+                },
+              };
+            }
+          } catch {
+            // Keep user as-is if app settings cannot be fetched
+          }
+        },
+      },
+    },
   },
   database: drizzleAdapter(db, {
     provider: "pg",

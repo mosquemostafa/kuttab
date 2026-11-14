@@ -4,6 +4,8 @@ import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
+import { useRouter } from "@/i18n/navigation";
+import { DEFAULT_LOGIN_REDIRECT } from "@/lib/config";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -14,6 +16,7 @@ import { FormSuccess, FormError } from "../ui/form-messages";
 
 const RegisterForm = () => {
   const t = useTranslations("auth.register.form");
+  const router = useRouter();
 
   const [formState, setFormState] = React.useState<{
     success?: string;
@@ -32,15 +35,22 @@ const RegisterForm = () => {
 
   const onSubmit = async (data: RegisterSchema) => {
     setFormState({});
-    const { error } = await authClient.signUp.email({
+    const res = await authClient.signUp.email({
       name: data.name,
       email: data.email.trim().toLowerCase(),
       password: data.password,
     });
 
-    if (!error) {
-      setFormState({ success: t("successVerificationNeeded") });
+    if (!res.error) {
+      if (res.data?.token || res.data?.user?.emailVerified) {
+        setFormState({ success: t("successAutoVerified") });
+        router.push(DEFAULT_LOGIN_REDIRECT);
+        router.refresh();
+      } else {
+        setFormState({ success: t("successVerificationNeeded") });
+      }
     } else {
+      const error = res.error;
       if (
         error.status === 422 ||
         (error as { code?: string }).code === "USER_ALREADY_EXISTS"
@@ -48,6 +58,10 @@ const RegisterForm = () => {
         setFormState({ error: t("errors.userExists") });
       } else if (error.status === 400) {
         setFormState({ error: t("errors.invalidEmail") });
+      } else if (error.status === 403) {
+        setFormState({
+          error: error.message || t("errors.registrationDisabled"),
+        });
       } else {
         setFormState({ error: error.message || t("errors.generic") });
       }

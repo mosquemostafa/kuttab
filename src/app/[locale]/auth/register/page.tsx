@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { redirect } from "@/i18n/navigation";
 import { auth } from "@/server/lib/auth";
 import { DEFAULT_LOGIN_REDIRECT } from "@/lib/config";
+import { appSettingsService } from "@/server/modules/app-settings/app-settings.service";
 import RegisterClientPage from "./register-client";
 
 export async function generateMetadata({
@@ -46,6 +47,11 @@ export default async function RegisterPage({
   });
   if (session) {
     redirect({ href: DEFAULT_LOGIN_REDIRECT, locale });
+  }
+
+  const settings = await appSettingsService.getSettings();
+  if (!settings.allowSelfRegistration) {
+    redirect({ href: "/auth/login", locale });
   }
 
   return <RegisterClientPage />;
