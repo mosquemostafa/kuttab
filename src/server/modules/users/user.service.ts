@@ -97,13 +97,6 @@ function toDTO(
     accounts: user.accounts,
     lastSignIn: user.lastSignIn?.toISOString() ?? null,
     avatarUrl: user.image,
-    subscription:
-      user.subscriptionPlan && user.subscriptionPlanExpiresAt
-        ? {
-            plan: user.subscriptionPlan,
-            planExpiresAt: user.subscriptionPlanExpiresAt.toISOString(),
-          }
-        : null,
   };
 }
 

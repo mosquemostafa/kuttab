@@ -4,13 +4,7 @@ import { useMemo } from "react";
 import { format } from "date-fns";
 import toast from "react-hot-toast";
 import { useTranslations } from "next-intl";
-import {
-  FolderOpen,
-  ListChecks,
-  Settings,
-  HelpCircle,
-  CreditCard,
-} from "lucide-react";
+import { FolderOpen, ListChecks, Settings, HelpCircle } from "lucide-react";
 import useSWR from "swr";
 
 import { useApiErrorMessage } from "@/lib/api/use-api-error-message";
@@ -122,11 +116,6 @@ const OverviewPage = ({
       href: "/dashboard/projects",
       icon: FolderOpen,
       title: t("dashboard.shell.projects"),
-    },
-    {
-      href: "/dashboard/subscription",
-      icon: CreditCard,
-      title: t("dashboard.shell.subscription"),
     },
     {
       href: "/dashboard/support",

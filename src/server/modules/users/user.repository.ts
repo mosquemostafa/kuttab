@@ -1,6 +1,5 @@
 import { db } from "@/server/db";
 import { segment } from "@/server/modules/segments/segment.entity";
-import { subscription } from "@/server/modules/subscriptions/subscription.entity";
 import { account, session, user } from "@/server/modules/users/user.entity";
 import {
   and,
@@ -8,13 +7,10 @@ import {
   count,
   desc,
   eq,
-  gt,
   ilike,
   inArray,
   isNotNull,
   isNull,
-  lte,
-  ne,
   or,
   type SQL,
 } from "drizzle-orm";
@@ -24,7 +20,6 @@ import type {
   ParsedPagination,
   ParsedUserFilters,
 } from "@/server/pipes/parse-pagination.pipe";
-import { SubscriptionPlanEnum } from "@/shared/enums/subscription-plan.enum";
 
 function buildAccountMap(
   accounts: { userId: string; providerId: string }[],
@@ -137,45 +132,6 @@ export const userRepository = {
       }
     }
 
-    if (filters.subscriptionPlan && filters.subscriptionPlan !== "all") {
-      if (filters.subscriptionPlan === SubscriptionPlanEnum.FREE) {
-        conditions.push(
-          or(
-            isNull(subscription.id),
-            eq(subscription.plan, SubscriptionPlanEnum.FREE),
-          )!,
-        );
-      } else {
-        conditions.push(
-          eq(
-            subscription.plan,
-            filters.subscriptionPlan as SubscriptionPlanEnum,
-          ),
-        );
-      }
-    }
-
-    if (filters.subscriptionStatus) {
-      const now = new Date();
-      if (filters.subscriptionStatus === "active") {
-        conditions.push(
-          or(
-            isNull(subscription.id),
-            eq(subscription.plan, SubscriptionPlanEnum.FREE),
-            gt(subscription.planExpiresAt, now),
-          )!,
-        );
-      } else if (filters.subscriptionStatus === "inactive") {
-        conditions.push(
-          and(
-            isNotNull(subscription.id),
-            ne(subscription.plan, SubscriptionPlanEnum.FREE),
-            lte(subscription.planExpiresAt, now),
-          )!,
-        );
-      }
-    }
-
     const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
 
     const isAsc = filters.sortDirection === "asc";
@@ -208,11 +164,7 @@ export const userRepository = {
     }
 
     const [totalResult, rows] = await Promise.all([
-      db
-        .select({ total: count() })
-        .from(user)
-        .leftJoin(subscription, eq(subscription.userId, user.id))
-        .where(whereClause),
+      db.select({ total: count() }).from(user).where(whereClause),
       db
         .select({
           id: user.id,
@@ -230,11 +182,8 @@ export const userRepository = {
           banExpires: user.banExpires,
           createdAt: user.createdAt,
           updatedAt: user.updatedAt,
-          subscriptionPlan: subscription.plan,
-          subscriptionPlanExpiresAt: subscription.planExpiresAt,
         })
         .from(user)
-        .leftJoin(subscription, eq(subscription.userId, user.id))
         .leftJoin(segment, eq(segment.id, user.segmentId))
         .where(whereClause)
         .orderBy(orderByClause, direction(user.id))
@@ -282,8 +231,6 @@ export const userRepository = {
       updatedAt: u.updatedAt,
       accounts: accountMap.get(u.id) ?? [],
       lastSignIn: lastSignInMap.get(u.id) ?? null,
-      subscriptionPlan: u.subscriptionPlan ?? null,
-      subscriptionPlanExpiresAt: u.subscriptionPlanExpiresAt ?? null,
     }));
 
     return {
@@ -352,7 +299,7 @@ export const userRepository = {
 
     const u = result[0];
 
-    const [accounts, sessions, subscriptionRow] = await Promise.all([
+    const [accounts, sessions] = await Promise.all([
       db
         .select({ providerId: account.providerId })
         .from(account)
@@ -361,14 +308,6 @@ export const userRepository = {
         .select({ createdAt: session.createdAt })
         .from(session)
         .where(eq(session.userId, id)),
-      db
-        .select({
-          plan: subscription.plan,
-          planExpiresAt: subscription.planExpiresAt,
-        })
-        .from(subscription)
-        .where(eq(subscription.userId, id))
-        .limit(1),
     ]);
 
     const [segmentRow] = await db
@@ -406,8 +345,6 @@ export const userRepository = {
       updatedAt: u.updatedAt,
       accounts: accounts.map((a) => a.providerId),
       lastSignIn,
-      subscriptionPlan: subscriptionRow[0]?.plan ?? null,
-      subscriptionPlanExpiresAt: subscriptionRow[0]?.planExpiresAt ?? null,
     };
   },
 

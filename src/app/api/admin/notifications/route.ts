@@ -21,7 +21,6 @@
  *               type:
  *                 type: string
  *                 enum:
- *                   - subscription
  *                   - system
  *                   - social
  *                   - announcement_reference

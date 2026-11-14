@@ -20,7 +20,6 @@
   "loadingMore": "Loading…",
   "unreadSubtitle": "{count, plural, one {# unread} other {# unread}}",
   "types": {
-    "subscription": "Subscription",
     "system": "System",
     "social": "Social",
     "announcement_reference": "Announcement",

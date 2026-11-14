@@ -39,26 +39,12 @@ export interface ParsedUserFilters {
   email?: string;
   name?: string;
   phone?: string;
-  subscriptionPlan?: string;
-  subscriptionStatus?: "active" | "inactive";
 }
 
 export function parseUserFilters(
   searchParams: URLSearchParams,
 ): ParsedUserFilters {
   const sortDirection = searchParams.get("sortDirection");
-  const subStatusRaw =
-    searchParams.get("subscriptionStatus") ??
-    searchParams.get("subscriptionActivity");
-  const subscriptionStatus =
-    subStatusRaw === "active" || subStatusRaw === "inactive"
-      ? subStatusRaw
-      : undefined;
-
-  const subPlanRaw =
-    searchParams.get("subscriptionPlan") ?? searchParams.get("plan");
-  const subscriptionPlan =
-    subPlanRaw && subPlanRaw !== "all" ? subPlanRaw : undefined;
 
   return {
     sortBy: searchParams.get("sortBy") ?? undefined,
@@ -71,7 +57,5 @@ export function parseUserFilters(
     email: searchParams.get("email") ?? undefined,
     name: searchParams.get("name") ?? undefined,
     phone: searchParams.get("phone") ?? undefined,
-    subscriptionPlan,
-    subscriptionStatus,
   };
 }

@@ -12,7 +12,6 @@ import {
   MessageSquare,
   Moon,
   Palette,
-  Sparkles,
   Sun,
   Settings,
   Shield,
@@ -21,11 +20,9 @@ import { useLocale, useTranslations } from "next-intl";
 import { useTheme } from "@/components/theme-provider";
 
 import { useSignOut } from "@/hooks/use-sign-out";
-import { SubscriptionPlanEnum } from "@/shared/enums/subscription-plan.enum";
 import { UserRole } from "@/shared/enums/user-role.enum";
 import { NotificationMenuBadge } from "@/components/notifications/notification-menu-badge";
 import { useNotifications } from "@/components/notifications/notification-provider";
-import { useSubscription } from "@/components/subscription/subscription-provider";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -38,10 +35,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-  PLAN_CONFIG,
-  resolveEntitlementPlan,
-} from "@/server/modules/subscriptions/subscription-entitlements";
 
 type HeaderUser = {
   name?: string | null;
@@ -80,11 +73,7 @@ export function HeaderUserControls({ user }: HeaderUserControlsProps) {
   const isContentManager = user.role === UserRole.CONTENT_MANAGER;
   const t = useTranslations();
   const { unreadCount } = useNotifications();
-  const { subscription } = useSubscription();
   const { isSigningOut, handleSignOut } = useSignOut();
-  const entitlementPlan = resolveEntitlementPlan(subscription);
-  const currentPlanEmoji = PLAN_CONFIG[entitlementPlan].emoji;
-  const showUpgradeBadge = entitlementPlan === SubscriptionPlanEnum.FREE;
 
   const { resolvedTheme, setTheme } = useTheme();
   const locale = useLocale();
@@ -222,28 +211,6 @@ export function HeaderUserControls({ user }: HeaderUserControlsProps) {
               <Link href="/dashboard/newsletter" className="cursor-pointer">
                 <Mail className="mr-2 h-4 w-4" />
                 {t("header.newsletterChannel")}
-              </Link>
-            </DropdownMenuItem>
-
-            <DropdownMenuItem asChild>
-              <Link
-                href="/dashboard/subscription"
-                className="group flex w-full cursor-pointer items-center gap-2"
-              >
-                <Sparkles className="mr-2 h-4 w-4" />
-                <span>{t("header.subscription")}</span>
-                {showUpgradeBadge ? (
-                  <Badge
-                    variant="secondary"
-                    className="ms-auto transition-colors group-data-highlighted:bg-primary/15 group-data-highlighted:text-foreground dark:group-data-highlighted:bg-primary/30"
-                  >
-                    {t("header.upgrade")}
-                  </Badge>
-                ) : (
-                  <span className="ms-auto text-sm leading-none" aria-hidden>
-                    {currentPlanEmoji}
-                  </span>
-                )}
               </Link>
             </DropdownMenuItem>
           </DropdownMenuGroup>

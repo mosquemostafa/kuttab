@@ -13,5 +13,3 @@ export * from "@/server/modules/blog-comments/blog-comment.entity";
 export * from "@/server/modules/announcements/announcement.entity";
 export * from "@/server/modules/notifications/notification.entity";
 export * from "@/server/modules/newsletter/newsletter.entity";
-export * from "@/server/modules/subscriptions/subscription.entity";
-export * from "@/server/modules/coupons/coupon.entity";

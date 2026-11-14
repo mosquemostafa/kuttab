@@ -14,8 +14,6 @@ import {
   User,
   UserPlus,
   RefreshCw,
-  CreditCard,
-  Activity,
   Phone,
 } from "lucide-react";
 import { format } from "date-fns";
@@ -63,9 +61,7 @@ import {
   PaginationEllipsis,
 } from "@/components/ui/pagination";
 import { UserAddDialog } from "./user-add-dialog";
-import { useLocale, useTranslations } from "next-intl";
-import { SubscriptionPlanEnum } from "@/shared/enums/subscription-plan.enum";
-import { PLAN_CONFIG } from "@/server/modules/subscriptions/subscription-entitlements";
+import { useTranslations } from "next-intl";
 
 // Helper function to render account icons
 const getAccountIcon = (account: string) => {
@@ -83,7 +79,6 @@ const getAccountIcon = (account: string) => {
 
 export function UsersTable() {
   const t = useTranslations("adminUsers");
-  const locale = useLocale();
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
@@ -97,12 +92,6 @@ export function UsersTable() {
   // Filters and sort state, initialized from URL
   const [role, setRole] = useState(searchParams.get("role") || "all");
   const [email, setEmail] = useState(searchParams.get("email") || "");
-  const [subscriptionPlan, setSubscriptionPlan] = useState(
-    searchParams.get("subscriptionPlan") || "all",
-  );
-  const [subscriptionStatus, setSubscriptionStatus] = useState(
-    searchParams.get("subscriptionStatus") || "all",
-  );
   const [sortBy, setSortBy] = useState(
     searchParams.get("sortBy") || "createdAt",
   );
@@ -127,27 +116,12 @@ export function UsersTable() {
     const params = new URLSearchParams();
     if (role && role !== "all") params.set("role", role);
     if (debouncedEmail) params.set("email", debouncedEmail);
-    if (subscriptionPlan && subscriptionPlan !== "all") {
-      params.set("subscriptionPlan", subscriptionPlan);
-    }
-    if (subscriptionStatus && subscriptionStatus !== "all") {
-      params.set("subscriptionStatus", subscriptionStatus);
-    }
     if (sortBy) params.set("sortBy", sortBy);
     if (sortDirection) params.set("sortDirection", sortDirection);
     if (page) params.set("page", String(page));
     params.set("limit", String(limit));
     router.replace(`?${params.toString()}`);
-  }, [
-    role,
-    debouncedEmail,
-    subscriptionPlan,
-    subscriptionStatus,
-    sortBy,
-    sortDirection,
-    page,
-    router,
-  ]);
+  }, [role, debouncedEmail, sortBy, sortDirection, page, router]);
 
   const swrKey = useMemo(
     () =>
@@ -155,49 +129,20 @@ export function UsersTable() {
         "admin-users",
         role,
         debouncedEmail,
-        subscriptionPlan,
-        subscriptionStatus,
         sortBy,
         sortDirection,
         page,
         limit,
       ] as const,
-    [
-      role,
-      debouncedEmail,
-      subscriptionPlan,
-      subscriptionStatus,
-      sortBy,
-      sortDirection,
-      page,
-      limit,
-    ],
+    [role, debouncedEmail, sortBy, sortDirection, page, limit],
   );
 
   const { data, error, mutate, isLoading } = useSWR(
     swrKey,
-    ([
-      ,
-      keyRole,
-      keyEmail,
-      keySubscriptionPlan,
-      keySubscriptionStatus,
-      keySortBy,
-      keySortDirection,
-      keyPage,
-      keyLimit,
-    ]) =>
+    ([, keyRole, keyEmail, keySortBy, keySortDirection, keyPage, keyLimit]) =>
       apiClient.users.list({
         role: keyRole !== "all" ? (keyRole as UserRole) : undefined,
         email: keyEmail || undefined,
-        subscriptionPlan:
-          keySubscriptionPlan !== "all"
-            ? (keySubscriptionPlan as SubscriptionPlanEnum)
-            : undefined,
-        subscriptionStatus:
-          keySubscriptionStatus !== "all"
-            ? (keySubscriptionStatus as "active" | "inactive")
-            : undefined,
         sortBy: keySortBy as
           | "name"
           | "email"
@@ -287,90 +232,6 @@ export function UsersTable() {
               <span className="flex items-center gap-2">
                 <User className="w-4 h-4" />
                 {t("controls.user")}
-              </span>
-            </SelectItem>
-          </SelectContent>
-        </Select>
-
-        {/* Subscription Plan select */}
-        <Select
-          value={subscriptionPlan}
-          onValueChange={(v) => {
-            setSubscriptionPlan(v);
-            setPage(1);
-          }}
-        >
-          <SelectTrigger className="w-36">
-            <SelectValue placeholder={t("controls.allPlans")} />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">
-              <span className="flex items-center gap-2">
-                <CreditCard className="w-4 h-4" />
-                {t("controls.allPlans")}
-              </span>
-            </SelectItem>
-            <SelectItem value={SubscriptionPlanEnum.FREE}>
-              <span className="flex items-center gap-2">
-                {PLAN_CONFIG[SubscriptionPlanEnum.FREE].emoji && (
-                  <span>{PLAN_CONFIG[SubscriptionPlanEnum.FREE].emoji}</span>
-                )}
-                {locale.startsWith("ar")
-                  ? PLAN_CONFIG[SubscriptionPlanEnum.FREE].displayName.ar
-                  : PLAN_CONFIG[SubscriptionPlanEnum.FREE].displayName.en}
-              </span>
-            </SelectItem>
-            <SelectItem value={SubscriptionPlanEnum.TRIAL}>
-              <span className="flex items-center gap-2">
-                {PLAN_CONFIG[SubscriptionPlanEnum.TRIAL].emoji && (
-                  <span>{PLAN_CONFIG[SubscriptionPlanEnum.TRIAL].emoji}</span>
-                )}
-                {locale.startsWith("ar")
-                  ? PLAN_CONFIG[SubscriptionPlanEnum.TRIAL].displayName.ar
-                  : PLAN_CONFIG[SubscriptionPlanEnum.TRIAL].displayName.en}
-              </span>
-            </SelectItem>
-            <SelectItem value={SubscriptionPlanEnum.PRO}>
-              <span className="flex items-center gap-2">
-                {PLAN_CONFIG[SubscriptionPlanEnum.PRO].emoji && (
-                  <span>{PLAN_CONFIG[SubscriptionPlanEnum.PRO].emoji}</span>
-                )}
-                {locale.startsWith("ar")
-                  ? PLAN_CONFIG[SubscriptionPlanEnum.PRO].displayName.ar
-                  : PLAN_CONFIG[SubscriptionPlanEnum.PRO].displayName.en}
-              </span>
-            </SelectItem>
-          </SelectContent>
-        </Select>
-
-        {/* Subscription Activity select */}
-        <Select
-          value={subscriptionStatus}
-          onValueChange={(v) => {
-            setSubscriptionStatus(v);
-            setPage(1);
-          }}
-        >
-          <SelectTrigger className="w-36">
-            <SelectValue placeholder={t("controls.allSubscriptionActivity")} />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">
-              <span className="flex items-center gap-2">
-                <Activity className="w-4 h-4" />
-                {t("controls.allSubscriptionActivity")}
-              </span>
-            </SelectItem>
-            <SelectItem value="active">
-              <span className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-green-600 dark:text-green-400" />
-                {t("controls.subscriptionActive")}
-              </span>
-            </SelectItem>
-            <SelectItem value="inactive">
-              <span className="flex items-center gap-2">
-                <XCircle className="w-4 h-4 text-muted-foreground" />
-                {t("controls.subscriptionInactive")}
               </span>
             </SelectItem>
           </SelectContent>
@@ -613,8 +474,6 @@ export function UsersTable() {
                 { label: t("columns.linkedAccounts") },
                 { label: t("columns.role") },
                 { label: t("columns.segment") },
-                { label: t("columns.plan") },
-                { label: t("columns.planActive") },
                 { label: t("columns.status") },
                 { label: t("columns.lastSignIn") },
                 { label: t("columns.createdAt") },
@@ -662,9 +521,6 @@ export function UsersTable() {
                     </TableCell>
                     <TableCell className="px-4 py-3">
                       <Skeleton className="h-6 w-15" />
-                    </TableCell>
-                    <TableCell className="px-4 py-3">
-                      <Skeleton className="h-6 w-24" />
                     </TableCell>
                     <TableCell className="px-4 py-3">
                       <Skeleton className="h-6 w-24" />
@@ -814,51 +670,6 @@ export function UsersTable() {
                           {t("statuses.noSegment")}
                         </Badge>
                       )}
-                    </TableCell>
-                    <TableCell className="px-4 py-3">
-                      {(() => {
-                        const plan =
-                          user.subscription?.plan ?? SubscriptionPlanEnum.FREE;
-                        const planConfig = PLAN_CONFIG[plan];
-                        const planLabel = locale.startsWith("ar")
-                          ? planConfig.displayName.ar
-                          : planConfig.displayName.en;
-
-                        return (
-                          <Badge
-                            variant="outline"
-                            className="flex w-fit items-center gap-1 px-2 py-1 text-xs"
-                          >
-                            <span>{planConfig.emoji}</span>
-                            <span>{planLabel}</span>
-                          </Badge>
-                        );
-                      })()}
-                    </TableCell>
-                    <TableCell className="px-4 py-3">
-                      {(() => {
-                        const isPlanActive = user.subscription
-                          ? new Date(user.subscription.planExpiresAt) >
-                            new Date()
-                          : true;
-                        return isPlanActive ? (
-                          <Badge
-                            variant="outline"
-                            className="bg-green-50 text-green-700 border-green-200 dark:bg-green-900 dark:text-green-200 dark:border-green-700 flex items-center gap-1 px-2 py-1 text-xs"
-                          >
-                            <CheckCircle className="h-3 w-3" />
-                            {t("statuses.planActive")}
-                          </Badge>
-                        ) : (
-                          <Badge
-                            variant="outline"
-                            className="bg-gray-50 text-gray-700 border-gray-200 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 flex items-center gap-1 px-2 py-1 text-xs"
-                          >
-                            <XCircle className="h-3 w-3" />
-                            {t("statuses.planInactive")}
-                          </Badge>
-                        );
-                      })()}
                     </TableCell>
                     <TableCell className="px-4 py-3">
                       {user.banned ? (

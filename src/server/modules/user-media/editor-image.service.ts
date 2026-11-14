@@ -9,7 +9,6 @@ import {
   presignR2PutObject,
   publicUrlForR2ObjectKey,
 } from "@/server/lib/r2";
-import { assertCanAddEditorImage } from "@/server/modules/subscriptions/entitlement-guards";
 import {
   buildEditorImageObjectKey,
   parseEditorImageObjectKey,
@@ -73,8 +72,6 @@ export const editorImageR2Service = {
       );
     }
 
-    await assertCanAddEditorImage(userId);
-
     const contentType = dto.contentType as UserMediaAllowedImageType;
     const objectKey = buildEditorImageObjectKey(userId, contentType);
     const { uploadUrl, headers } = await presignR2PutObject(
@@ -99,8 +96,6 @@ export const editorImageR2Service = {
         "Invalid object key",
       );
     }
-
-    await assertCanAddEditorImage(userId);
 
     const head = await headR2Object(dto.objectKey);
     const size = head.ContentLength ?? 0;

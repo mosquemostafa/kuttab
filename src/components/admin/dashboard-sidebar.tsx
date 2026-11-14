@@ -20,7 +20,6 @@ import {
   Mail,
   Shield,
   PenSquare,
-  Tag,
   GraduationCap,
   Heart,
 } from "lucide-react";
@@ -177,11 +176,6 @@ export function DashboardSidebar({
           href: "/admin/notifications",
           icon: Bell,
           label: t("shell.topicPush"),
-        },
-        {
-          href: "/admin/coupons",
-          icon: Tag,
-          label: t("shell.coupons"),
         },
       ],
       settingsHref: "/admin/settings",

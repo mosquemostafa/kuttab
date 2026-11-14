@@ -7,10 +7,7 @@ import {
   appSettings,
   blog,
   blogsComment,
-  coupon,
-  couponUsage,
   feedback,
-  invoice,
   mediaFile,
   newsletterCampaign,
   newsletterCampaignSend,
@@ -18,8 +15,6 @@ import {
   notification,
   project,
   segment,
-  subscription,
-  subscriptionEvent,
   supportTicket,
   todo,
   user,
@@ -28,13 +23,6 @@ import {
 import { ForbiddenException } from "@/server/exceptions/exceptions";
 import { env } from "@/server/lib/env";
 import { AnnouncementType } from "@/shared/enums/announcement-type.enum";
-import { CouponDiscountTypeEnum } from "@/shared/enums/coupon-discount-type.enum";
-import { CouponTypeEnum } from "@/shared/enums/coupon-type.enum";
-import { InvoiceCurrencyEnum } from "@/shared/enums/invoice-currency.enum";
-import { InvoicePaymentMethodEnum } from "@/shared/enums/invoice-payment-method.enum";
-import { InvoiceStatusEnum } from "@/shared/enums/invoice-status.enum";
-import { SubscriptionActivatedByEnum } from "@/shared/enums/subscription-activated-by.enum";
-import { SubscriptionPlanEnum } from "@/shared/enums/subscription-plan.enum";
 import { type ColorKey } from "@/shared/constants/color-palette";
 
 import type { SeedInputDTO, SeedResultDTO } from "./seed.dto";
@@ -284,28 +272,18 @@ export const seedService = {
         .where(eq(supportTicket.userId, primaryUserId));
       await db.delete(feedback).where(eq(feedback.userId, primaryUserId));
       await db
-        .delete(subscription)
-        .where(eq(subscription.userId, primaryUserId));
-      await db
         .delete(usersAnnouncement)
         .where(eq(usersAnnouncement.userId, primaryUserId));
-      await db.delete(couponUsage).where(eq(couponUsage.userId, primaryUserId));
       await db.delete(mediaFile).where(eq(mediaFile.uploadedBy, primaryUserId));
 
       // 2. Clean secondary users data so multi-user analytics & tickets refresh with fresh dates
       const secondaryUserIds = secondaryUsers.map((u) => u.id);
-      await db
-        .delete(subscription)
-        .where(inArray(subscription.userId, secondaryUserIds));
       await db
         .delete(supportTicket)
         .where(inArray(supportTicket.userId, secondaryUserIds));
       await db
         .delete(feedback)
         .where(inArray(feedback.userId, secondaryUserIds));
-      await db
-        .delete(couponUsage)
-        .where(inArray(couponUsage.userId, secondaryUserIds));
       await db
         .delete(blogsComment)
         .where(inArray(blogsComment.userId, secondaryUserIds));
@@ -329,9 +307,6 @@ export const seedService = {
           ]),
         );
       await db
-        .delete(coupon)
-        .where(inArray(coupon.code, ["WELCOME20", "STARTER100", "GIFT30PRO"]));
-      await db
         .delete(newsletterCampaign)
         .where(eq(newsletterCampaign.id, "cmp_monthly_digest"));
       await db
@@ -346,116 +321,6 @@ export const seedService = {
           ]),
         );
     }
-
-    // ─── 6. Subscriptions & Invoices ─────────────────────────────────────────
-    const subIdPrimary = `sub_${primaryUserId}_pro`;
-    await db
-      .insert(subscription)
-      .values({
-        id: subIdPrimary,
-        userId: primaryUserId,
-        plan: SubscriptionPlanEnum.PRO,
-        planStartedAt: daysAgo(30),
-        planExpiresAt: daysAhead(335),
-        autoRenew: true,
-        trialUsed: true,
-        activatedBy: SubscriptionActivatedByEnum.MANUAL,
-        activatedByUserId: primaryUserId,
-        activatedAt: daysAgo(30),
-        notes: "Seed: Annual Pro Plan Subscription",
-      })
-      .onConflictDoNothing();
-
-    await db
-      .insert(invoice)
-      .values({
-        id: `inv_${primaryUserId}_pro`,
-        subscriptionId: subIdPrimary,
-        amount: 1200,
-        currency: InvoiceCurrencyEnum.EGP,
-        status: InvoiceStatusEnum.PAID,
-        paymentMethod: InvoicePaymentMethodEnum.INSTAPAY,
-        periodStart: daysAgo(30),
-        periodEnd: daysAhead(335),
-        paidAt: daysAgo(30),
-        paymentReference: "IP-2026-SEED-01",
-      })
-      .onConflictDoNothing();
-
-    await db
-      .insert(subscriptionEvent)
-      .values({
-        id: `sevt_${primaryUserId}_pro`,
-        subscriptionId: subIdPrimary,
-        eventType: "manually_activated",
-        payload: { note: "Initial local seed manual activation" },
-        actorId: primaryUserId,
-      })
-      .onConflictDoNothing();
-
-    // Subscriptions for secondary users (diversity for analytics)
-    const secondarySubs = [
-      {
-        userId: "usr_sarah_jenkins",
-        plan: SubscriptionPlanEnum.PRO,
-        currency: InvoiceCurrencyEnum.USD,
-        amount: 49,
-        method: InvoicePaymentMethodEnum.GATEWAY,
-        activatedBy: SubscriptionActivatedByEnum.GATEWAY,
-      },
-      {
-        userId: "usr_karim_mansour",
-        plan: SubscriptionPlanEnum.PRO,
-        currency: InvoiceCurrencyEnum.EGP,
-        amount: 1200,
-        method: InvoicePaymentMethodEnum.GATEWAY,
-        activatedBy: SubscriptionActivatedByEnum.GATEWAY,
-      },
-      {
-        userId: "usr_layla_ahmed",
-        plan: SubscriptionPlanEnum.TRIAL,
-        currency: InvoiceCurrencyEnum.EGP,
-        amount: 0,
-        method: InvoicePaymentMethodEnum.GATEWAY,
-        activatedBy: SubscriptionActivatedByEnum.TRIAL,
-      },
-    ];
-
-    for (const s of secondarySubs) {
-      const subId = `sub_${s.userId}_plan`;
-      await db
-        .insert(subscription)
-        .values({
-          id: subId,
-          userId: s.userId,
-          plan: s.plan,
-          planStartedAt: daysAgo(15),
-          planExpiresAt: daysAhead(15),
-          autoRenew: true,
-          trialUsed: true,
-          activatedBy: s.activatedBy,
-          activatedAt: daysAgo(15),
-        })
-        .onConflictDoNothing();
-
-      if (s.amount > 0) {
-        await db
-          .insert(invoice)
-          .values({
-            id: `inv_${s.userId}_plan`,
-            subscriptionId: subId,
-            amount: s.amount,
-            currency: s.currency,
-            status: InvoiceStatusEnum.PAID,
-            paymentMethod: s.method,
-            periodStart: daysAgo(15),
-            periodEnd: daysAhead(350),
-            paidAt: daysAgo(15),
-          })
-          .onConflictDoNothing();
-      }
-    }
-    track("subscriptions", secondarySubs.length + 1);
 
     // ─── 7. Projects ─────────────────────────────────────────────────────────
     const primaryProjects = [
@@ -676,17 +541,6 @@ export const seedService = {
         link: "/dashboard/habits",
         isRead: false,
         createdAt: daysAgo(2),
-      },
-      {
-        id: `notif_${primaryUserId}_pro_welcome`,
-        userId: primaryUserId,
-        type: "subscription",
-        title: "Welcome to SaaS Starter Pro!",
-        message:
-          "Your annual Pro membership has been activated. Enjoy unlimited projects and tasks.",
-        link: "/dashboard/subscription",
-        isRead: true,
-        createdAt: daysAgo(30),
       },
       {
         id: `notif_${primaryUserId}_v2_release`,
@@ -937,81 +791,6 @@ export const seedService = {
       await db.insert(blogsComment).values(bc).onConflictDoNothing();
     }
     track("blogComments", blogCommentsList.length);
-
-    // ─── 26. Coupons & Usages ────────────────────────────────────────────────
-    const couponsList = [
-      {
-        id: `cpn_welcome20`,
-        code: "WELCOME20",
-        description: "20% Discount for new members",
-        type: CouponTypeEnum.DISCOUNT,
-        discountType: CouponDiscountTypeEnum.PERCENTAGE,
-        discountValue: 20,
-        usageLimit: 500,
-        usageCount: 45,
-        perUserLimit: 1,
-        isActive: true,
-        createdByUserId: primaryUserId,
-        startsAt: daysAgo(30),
-        expiresAt: daysAhead(180),
-      },
-      {
-        id: `cpn_starter100`,
-        code: "STARTER100",
-        description: "100% Full Access Promo Code",
-        type: CouponTypeEnum.DISCOUNT,
-        discountType: CouponDiscountTypeEnum.PERCENTAGE,
-        discountValue: 100,
-        usageLimit: 50,
-        usageCount: 12,
-        perUserLimit: 1,
-        isActive: true,
-        createdByUserId: primaryUserId,
-        startsAt: daysAgo(15),
-        expiresAt: daysAhead(60),
-      },
-      {
-        id: `cpn_gift30`,
-        code: "GIFT30PRO",
-        description: "Gift 30 Days of Pro Membership",
-        type: CouponTypeEnum.GIFT,
-        giftPlan: SubscriptionPlanEnum.PRO,
-        giftDuration: 30,
-        usageLimit: 200,
-        usageCount: 28,
-        perUserLimit: 1,
-        isActive: true,
-        createdByUserId: primaryUserId,
-        startsAt: daysAgo(20),
-        expiresAt: daysAhead(90),
-      },
-    ];
-
-    for (const cp of couponsList) {
-      await db.insert(coupon).values(cp).onConflictDoNothing();
-    }
-    track("coupons", couponsList.length);
-
-    // Coupon usages
-    const couponUsagesList = [
-      {
-        id: `cpu_${couponsList[0].id}_karim`,
-        couponId: couponsList[0].id,
-        userId: "usr_karim_mansour",
-        usedAt: daysAgo(15),
-      },
-      {
-        id: `cpu_${couponsList[2].id}_layla`,
-        couponId: couponsList[2].id,
-        userId: "usr_layla_ahmed",
-        usedAt: daysAgo(10),
-      },
-    ];
-
-    for (const cu of couponUsagesList) {
-      await db.insert(couponUsage).values(cu).onConflictDoNothing();
-    }
-    track("couponUsages", couponUsagesList.length);
 
     // ─── 27. Newsletter Subscribers & Campaigns ──────────────────────────────
     const subscribersList = [

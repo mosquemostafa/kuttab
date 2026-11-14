@@ -1,13 +1,11 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 import useSWR from "swr";
 import toast from "react-hot-toast";
 import { useTranslations } from "next-intl";
 import { Undo2 } from "lucide-react";
 
-import { isApiClientError } from "@/lib/api/api-error";
 import { useApiErrorMessage } from "@/lib/api/use-api-error-message";
 import { ProjectFormDialog } from "@/components/dashboard/projects/project-form-dialog";
 import { ProjectCreateFolderTile } from "@/components/dashboard/projects/project-create-folder-tile";
@@ -145,8 +143,6 @@ export function ProjectList({
     }, false);
   };
 
-  const router = useRouter();
-
   async function handleCreateSubmit(
     payload: CreateProjectBody,
   ): Promise<boolean> {
@@ -158,12 +154,7 @@ export function ProjectList({
       void mutateProjects();
       return true;
     } catch (error) {
-      if (isApiClientError(error) && error.code === "PLAN_LIMIT_EXCEEDED") {
-        toast.error(t("actions.errors.projectLimitReached"));
-        router.push("/dashboard/subscription");
-      } else {
-        toast.error(getErrorMessage(error));
-      }
+      toast.error(getErrorMessage(error));
       return false;
     } finally {
       setIsCreating(false);

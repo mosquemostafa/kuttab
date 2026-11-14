@@ -9,7 +9,6 @@ import DashboardLayout from "@/components/admin/dashboard-layout";
 import { AnnouncementProvider } from "@/components/announcements/announcement-provider";
 import { NotificationProvider } from "@/components/notifications/notification-provider";
 import { ProjectsStoreInitializer } from "@/components/projects/projects-store";
-import { SubscriptionProvider } from "@/components/subscription/subscription-provider";
 
 export default async function Layout({
   children,
@@ -41,17 +40,15 @@ export default async function Layout({
   return (
     <AnnouncementProvider>
       <NotificationProvider>
-        <SubscriptionProvider>
-          <ProjectsStoreInitializer>
-            <DashboardLayout
-              mode="dashboard-learning"
-              user={session.user}
-              showInstallPwaBanner
-            >
-              {children}
-            </DashboardLayout>
-          </ProjectsStoreInitializer>
-        </SubscriptionProvider>
+        <ProjectsStoreInitializer>
+          <DashboardLayout
+            mode="dashboard-learning"
+            user={session.user}
+            showInstallPwaBanner
+          >
+            {children}
+          </DashboardLayout>
+        </ProjectsStoreInitializer>
       </NotificationProvider>
     </AnnouncementProvider>
   );

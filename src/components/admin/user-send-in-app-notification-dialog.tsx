@@ -44,8 +44,6 @@ export function UserSendInAppNotificationDialog({
   const t = useTranslations("adminUsers");
   const getInAppNotificationTypeLabel = (value: NotificationDto["type"]) => {
     switch (value) {
-      case "subscription":
-        return t("dialogs.inAppNotificationTypes.subscription");
       case "system":
         return t("dialogs.inAppNotificationTypes.system");
       case "social":

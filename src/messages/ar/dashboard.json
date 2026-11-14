@@ -16,21 +16,14 @@
     "overview": "نظرة عامة",
     "tickets": "التذاكر",
     "users": "المستخدمون",
-    "subscription": "الخطة",
-    "subscriptions": "التخطيط",
     "segments": "الشرائح",
-    "invoices": "الفواتير",
-    "events": "الأحداث",
     "announcements": "الإعلانات",
     "newsletter": "النشرة البريدية",
     "topicPush": "الإشعارات",
     "inAppNotifications": "الإشعارات",
-    "coupons": "القسائم",
     "todos": "المهام",
     "tasks": "المهام",
     "projects": "المشاريع",
-    "trial": "التجربة المجانية",
-    "checkout": "إتمام الاشتراك",
     "feedbacks": "المقترحات والشكاوى",
     "contentAssets": "ملفات المحتوى",
     "blogs": "المقالات",
@@ -79,172 +72,6 @@
         "success": "تمت إضافة المهمة بنجاح!"
       }
     }
-  },
-  "plans": {
-    "title": "اختر خطتك",
-    "subtitle": "كل ما تحتاجه لإدارة مهامك ومشاريعك — اختر الباقة التي تناسب طريقة عملك.",
-    "chooseAria": "خطط الاشتراك",
-    "billingCycleAria": "اختيار دورة الاشتراك",
-    "billingMonthly": "شهريًا",
-    "billingYearly": "سنويًا",
-    "savePercentBadge": "وفّر {percent}%",
-    "bestValueBadge": "الخيار الأفضل",
-    "cadencePaid": "شهريًا",
-    "cadencePaidYearly": "تدفع سنويًا (365 يومًا)",
-    "monthlyEquivalentHint": "ما يعادل {price} / شهريًا",
-    "yearlyEncouragementActive": "🎉 وفّر 240 ج.م سنويًا",
-    "yearlyEncouragementPrompt": "💡 وفّر 40% عند التبديل للاشتراك السنوي",
-    "taglineFree": "ابدأ بتنظيم أعمالك بالأدوات الأساسية",
-    "taglinePro": "أدوات متقدمة لتنظيم أعمالك وإنجاز مشاريعك بكفاءة",
-    "freePlanPrice": "مجانًا",
-    "expiresInBadge": "{days, plural, =0 {تنتهي اليوم} one {تنتهي خلال يوم واحد} two {تنتهي خلال يومين} few {تنتهي خلال # أيام} many {تنتهي خلال # يومًا} other {تنتهي خلال # يوم}}",
-    "tryFreeOnPro": "تجربة مجانية للإحترافية {days} يومًا",
-    "ctaTryFree": "جرّب الإحترافية مجانًا",
-    "ctaSubscribePro": "اشترك في الإحترافية",
-    "ctaSubscribeYearly": "احصل على السنوية — وفّر 40%",
-    "ctaUpgradeToPro": "الترقية إلى الإحترافية",
-    "ctaUpgradeToYearlyPro": "الترقية إلى الباقة السنوية (وفّر 40%)",
-    "ctaExtendPro": "تمديد الاشتراك",
-    "ctaExtendYearlyPro": "تمديد الاشتراك السنوي",
-    "ctaSkipTrialAndSubscribe": "أو اشترك مباشرة بدون تجربة",
-    "ctaSkipTrialAndSubscribeYearly": "أو اشترك سنويًا مباشرةً (وفّر 40%)",
-    "ctaBusiness": "اختر باقة الأعمال",
-    "trialLimitsNoticeTitle": "تنبيه التجربة المجانية",
-    "trialLimitsNoticeDescription": "أنت حاليًا في فترة التجربة المجانية ولست مشتركًا في الباقة الاحترافية. الميزات الاحترافية مفعلة، ولكن حدود العناصر (مثل المشاريع والمهام) لا تزال سارية. اشترك في الباقة الاحترافية للحصول على وصول غير محدود.",
-    "sections": {
-      "includes": "تشمل",
-      "limits": "الحدود",
-      "proFeatures": "ميزات احترافية",
-      "unlimited": "بدون حدود"
-    },
-    "features": {
-      "free": {
-        "projects": "{count} مشروع",
-        "tasks": "إدارة المهام الأساسية",
-        "editorImages": "{count} صورة مرفوعة",
-        "stats": "إحصائيات بسيطة",
-        "reminders": "تذكيرات أساسية"
-      },
-      "pro": {
-        "projectsUnlimited": "مشاريع غير محدودة",
-        "analytics": "إحصائيات وتحليلات متقدمة",
-        "export": "تصدير البيانات والنسخ الاحتياطي",
-        "customization": "تخصيص الشكل والتجربة"
-      }
-    }
-  },
-  "subscription": {
-    "currentPlan": "الخطة الحالية",
-    "currentPlanBadge": "خطتك الحالية",
-    "trialPlanBadge": "تجربة مجانية",
-    "trialLimitsNoticeTitle": "تنبيه التجربة المجانية",
-    "trialLimitsNoticeDescription": "أنت حاليًا في فترة التجربة المجانية ولست مشتركًا في الباقة الاحترافية. حدود العناصر (مثل المشاريع والمهام) لا تزال سارية خلال التجربة. اشترك في الباقة الاحترافية للحصول على وصول غير محدود.",
-    "freePrice": "مجانًا",
-    "billingCycle": "{days} يومًا",
-    "invoices": "سجل الفواتير",
-    "invoicesDescription": "{count} فاتورة",
-    "loading": "جارٍ التحميل...",
-    "error": "تعذر تحميل بيانات الاشتراك.",
-    "loadingErrorTitle": "بيانات الاشتراك",
-    "activatedAtLabel": "تاريخ التفعيل",
-    "renewsAtLabel": "تاريخ التجديد",
-    "expiresNever": "لا يوجد موعد تجديد",
-    "upgradeCtaTitle": "جاهز لميزات أكثر؟",
-    "upgradeCtaDescription": "افتح الميزات المدفوعة وتجاوز حدود الخطة المجانية.",
-    "upgradeCta": "استعرض التخطيط",
-    "upgradeToCheckoutCta": "الترقية إلى الإحترافية",
-    "autoRenewTitle": "التجديد التلقائي",
-    "autoRenewOn": "التجديد التلقائي مفعّل",
-    "autoRenewOff": "التجديد التلقائي متوقف",
-    "autoRenewUpdated": "تم تحديث إعداد التجديد التلقائي.",
-    "autoRenewError": "تعذر تحديث إعداد التجديد التلقائي.",
-    "invoiceEmpty": "لا توجد فواتير حتى الآن.",
-    "invoiceAmount": "المبلغ",
-    "invoiceStatus": "الحالة",
-    "invoicePeriod": "الفترة",
-    "invoiceCreatedAt": "تاريخ الإنشاء",
-    "statusInvoices": {
-      "paid": "مدفوع",
-      "pending": "معلّق",
-      "failed": "فشل",
-      "refunded": "مُسترد",
-      "partially_refunded": "استرداد جزئي"
-    },
-    "status": {
-      "subscription": {}
-    },
-    "coupons": {
-      "redeemGift": {
-        "title": {
-          "missingCode": "رمز القسيمة مفقود",
-          "success": "تم تفعيل القسيمة",
-          "error": "تعذر تفعيل القسيمة",
-          "loading": "جارٍ تفعيل القسيمة"
-        },
-        "description": {
-          "missingCode": "تتوقع هذه الصفحة وجود رمز القسيمة في رابط الصفحة.",
-          "success": "تم تحديث اشتراكك. جارٍ التحويل…",
-          "error": "حاول مرة أخرى باستخدام الرابط الذي استلمته.",
-          "loading": "يرجى الانتظار بينما نفعّل هديتك."
-        },
-        "content": {
-          "processing": "جارٍ المعالجة…",
-          "redirecting": "جارٍ التحويل إلى الاشتراك…"
-        },
-        "missingCode": {
-          "noCodeProvided": "لم يتم توفير رمز القسيمة.",
-          "exampleLabel": "مثال:"
-        },
-        "error": {
-          "genericMessage": "حدث خطأ أثناء تفعيل القسيمة.",
-          "alreadyRedeemedMessage": "تم استخدام رمز القسيمة مسبقًا.",
-          "usageLimitReachedMessage": "تم الوصول إلى الحد الأقصى لاستخدام القسيمة.",
-          "codeLabel": "الرمز:"
-        },
-        "toast": {
-          "success": "تم تفعيل قسيمة الهدية بنجاح!"
-        },
-        "actions": {
-          "goToSubscription": "الانتقال إلى الاشتراك"
-        }
-      }
-    }
-  },
-  "checkout": {
-    "title": "إتمام الاشتراك",
-    "subtitle": "يتم استخدام التفعيل اليدوي حاليًا للخطط المدفوعة.",
-    "manualActivationTitle": "أكمل الدفع بشكل يدوي",
-    "manualActivationDescription": "للاشتراك، تواصل معنا عبر واتساب، وأكّد الدفع، وسنقوم بتفعيل خطتك لك.",
-    "step1": "1. أرسل لنا رسالة على واتساب وحدد الخطة التي تريدها.",
-    "step2": "2. أكمل الدفع ثم أرسل لنا إثبات الدفع أو المرجع الخاص به.",
-    "step3": "3. بعد التحقق، سنفعّل اشتراكك يدويًا على حسابك.",
-    "contactWhatsapp": "تواصل معنا على واتساب",
-    "selectedPlanLabel": "الخطة المحددة",
-    "proYearlyTitle": "الباقة الاحترافية (سنويًا)",
-    "proYearlyPriceDesc": "360 ج.م لمدة عام كامل",
-    "proMonthlyTitle": "الباقة الاحترافية (شهريًا)",
-    "proMonthlyPriceDesc": "50 ج.م / شهريًا",
-    "save35Badge": "وفّر 40%"
-  },
-  "trial": {
-    "title": "ابدأ تجربتك المجانية",
-    "subtitle": "فعّل التجربة فورًا واكتشف مزايا الباقة الإحترافية.",
-    "cardTitle": "جرّب الإحترافية الآن",
-    "cardDescription": "عند بدء التجربة سيتم تفعيل خطة التجربة مباشرة على حسابك.",
-    "noteOne": "يمكن بدء التجربة مرة واحدة فقط لكل حساب.",
-    "noteTwo": "إذا كان لديك اشتراك مدفوع نشط حاليًا فلن تبدأ التجربة الآن.",
-    "noteThree": "تنتهي التجربة تلقائيًا عند تاريخ انتهاء مدة التجربة.",
-    "noteFour": "تشمل فترة التجربة الميزات الاحترافية، ولكن تظل حدود الاستخدام (مثل المشاريع والمهام) سارية.",
-    "startCta": "ابدأ التجربة المجانية",
-    "starting": "جارٍ البدء...",
-    "success": "تم بدء التجربة بنجاح. حسابك الآن على خطة التجربة.",
-    "errorFallback": "تعذر بدء التجربة. حاول مرة أخرى.",
-    "viewSubscription": "عرض الخطة",
-    "skipTrialCta": "اشترك مباشرة في الإحترافية",
-    "subscribeNow": "اشترك في الإحترافية",
-    "loadingSubscription": "جارٍ تحميل بيانات اشتراكك…",
-    "trialUsedTitle": "تم استخدام التجربة المجانية مسبقًا",
-    "trialUsedDescription": "هذا الحساب استخدم تجربته المجانية لمرة واحدة. يمكنك عرض خطتك أو تغييرها من صفحة الاشتراك."
   },
   "supportOverview": {
     "analytics": {

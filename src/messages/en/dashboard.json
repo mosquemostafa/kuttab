@@ -16,21 +16,14 @@
     "overview": "Overview",
     "tickets": "Tickets",
     "users": "Users",
-    "subscription": "Subscription",
-    "subscriptions": "Subscriptions",
-    "invoices": "Invoices",
     "segments": "Segments",
-    "events": "Events",
     "announcements": "Announcements",
     "newsletter": "Newsletter",
     "topicPush": "Notifications",
     "inAppNotifications": "Notifications",
-    "coupons": "Coupons",
     "todos": "Todos",
     "tasks": "Tasks",
     "projects": "Projects",
-    "trial": "Free trial",
-    "checkout": "Checkout",
     "feedbacks": "Feedbacks",
     "contentAssets": "Content assets",
     "blogs": "blogs",
@@ -79,172 +72,6 @@
         "success": "Task added successfully!"
       }
     }
-  },
-  "plans": {
-    "title": "Choose your plan",
-    "subtitle": "Everything you need for tasks and projects — pick the tier that matches how you work.",
-    "chooseAria": "Subscription plans",
-    "billingCycleAria": "Billing cycle selection",
-    "billingMonthly": "Monthly",
-    "billingYearly": "Yearly",
-    "savePercentBadge": "Save {percent}%",
-    "bestValueBadge": "Best Value",
-    "cadencePaid": "Monthly",
-    "cadencePaidYearly": "Billed annually (365 days)",
-    "monthlyEquivalentHint": "Equivalent to {price} / month",
-    "yearlyEncouragementActive": "🎉 Save 240 EGP/year",
-    "yearlyEncouragementPrompt": "💡 Switch to Yearly and save",
-    "taglineFree": "Start organizing your work with core tools",
-    "taglinePro": "Advanced tools to organize your work and scale efficiently",
-    "freePlanPrice": "Free",
-    "expiresInBadge": "Expires in {days, plural, =0 {today} one {# day} other {# days}}",
-    "tryFreeOnPro": "{days}-day free trial on Pro",
-    "ctaTryFree": "Try Pro for free",
-    "ctaSubscribePro": "Subscribe to Pro",
-    "ctaSubscribeYearly": "Get Yearly Pro — Save 40%",
-    "ctaUpgradeToPro": "Upgrade to Pro",
-    "ctaUpgradeToYearlyPro": "Upgrade to Yearly Pro (Save 40%)",
-    "ctaExtendPro": "Extend subscription",
-    "ctaExtendYearlyPro": "Extend Yearly",
-    "ctaSkipTrialAndSubscribe": "Or subscribe directly without trial",
-    "ctaSkipTrialAndSubscribeYearly": "Or subscribe directly to Yearly (Save 40%)",
-    "ctaBusiness": "Choose Business",
-    "trialLimitsNoticeTitle": "Free Trial Notice",
-    "trialLimitsNoticeDescription": "You are currently on the Free Trial, not the Pro subscription. Pro features are active, but item limits (such as projects and tasks) still apply. Subscribe to Pro for unlimited access.",
-    "sections": {
-      "includes": "Includes",
-      "limits": "Limits",
-      "proFeatures": "Pro Features",
-      "unlimited": "Unlimited"
-    },
-    "features": {
-      "free": {
-        "projects": "{count} Projects",
-        "tasks": "Basic Tasks",
-        "editorImages": "{count} Uploaded images",
-        "stats": "Basic Stats",
-        "reminders": "Basic Reminders"
-      },
-      "pro": {
-        "projectsUnlimited": "Unlimited projects",
-        "analytics": "Advanced Analytics",
-        "export": "Export & Backup",
-        "customization": "Customization"
-      }
-    }
-  },
-  "subscription": {
-    "currentPlan": "Current plan",
-    "currentPlanBadge": "Current",
-    "trialPlanBadge": "Free Trial",
-    "trialLimitsNoticeTitle": "Free Trial Notice",
-    "trialLimitsNoticeDescription": "You are currently on the Free Trial, not the Pro subscription. Usage limits (such as projects and tasks) still apply during the trial. Upgrade to Pro for unlimited access.",
-    "freePrice": "Free",
-    "billingCycle": "{days} days",
-    "invoices": "Invoice history",
-    "invoicesDescription": "{count} invoice(s)",
-    "loading": "Loading...",
-    "error": "Could not load subscription details.",
-    "loadingErrorTitle": "Subscription details",
-    "activatedAtLabel": "Activated on",
-    "renewsAtLabel": "Renews on",
-    "expiresNever": "No active renewal date",
-    "upgradeCtaTitle": "Ready for more?",
-    "upgradeCtaDescription": "Unlock premium features and remove Free plan limits.",
-    "upgradeCta": "Explore plans",
-    "upgradeToCheckoutCta": "Upgrade to Pro",
-    "autoRenewTitle": "Auto renewal",
-    "autoRenewOn": "Auto renewal is enabled",
-    "autoRenewOff": "Auto renewal is disabled",
-    "autoRenewUpdated": "Auto renewal preference updated.",
-    "autoRenewError": "Could not update auto renewal preference.",
-    "invoiceEmpty": "No invoices found yet.",
-    "invoiceAmount": "Amount",
-    "invoiceStatus": "Status",
-    "invoicePeriod": "Period",
-    "invoiceCreatedAt": "Created",
-    "statusInvoices": {
-      "paid": "Paid",
-      "pending": "Pending",
-      "failed": "Failed",
-      "refunded": "Refunded",
-      "partially_refunded": "Partially refunded"
-    },
-    "status": {
-      "subscription": {}
-    },
-    "coupons": {
-      "redeemGift": {
-        "title": {
-          "missingCode": "Missing coupon",
-          "success": "Coupon redeemed",
-          "error": "Could not redeem",
-          "loading": "Redeeming coupon"
-        },
-        "description": {
-          "missingCode": "This page expects a coupon code in the URL query string.",
-          "success": "Your subscription was updated. Redirecting…",
-          "error": "Please try again from the link you received.",
-          "loading": "Please wait while we activate your gift."
-        },
-        "content": {
-          "processing": "Processing…",
-          "redirecting": "Redirecting to subscription…"
-        },
-        "missingCode": {
-          "noCodeProvided": "No coupon code provided.",
-          "exampleLabel": "Example:"
-        },
-        "error": {
-          "genericMessage": "Something went wrong while redeeming your coupon.",
-          "alreadyRedeemedMessage": "This coupon code has already been used.",
-          "usageLimitReachedMessage": "This coupon has reached its usage limit.",
-          "codeLabel": "Code:"
-        },
-        "toast": {
-          "success": "Gift coupon redeemed successfully!"
-        },
-        "actions": {
-          "goToSubscription": "Go to subscription"
-        }
-      }
-    }
-  },
-  "checkout": {
-    "title": "Checkout",
-    "subtitle": "Manual activation is currently used for paid plans.",
-    "manualActivationTitle": "Complete your payment manually",
-    "manualActivationDescription": "To subscribe, contact us on WhatsApp, confirm your payment, and we will activate your plan for you.",
-    "step1": "1. Send us a message on WhatsApp and tell us which plan you want.",
-    "step2": "2. Complete the payment and share your payment proof or reference with us.",
-    "step3": "3. After verification, we will manually activate your subscription on your account.",
-    "contactWhatsapp": "Contact us on WhatsApp",
-    "selectedPlanLabel": "Selected plan",
-    "proYearlyTitle": "Pro Plan (Yearly)",
-    "proYearlyPriceDesc": "360 EGP for 1 full year",
-    "proMonthlyTitle": "Pro Plan (Monthly)",
-    "proMonthlyPriceDesc": "50 EGP / month",
-    "save35Badge": "Save 40%"
-  },
-  "trial": {
-    "title": "Start your free trial",
-    "subtitle": "Activate your trial instantly and explore Pro features.",
-    "cardTitle": "Try Pro now",
-    "cardDescription": "Starting a trial immediately activates the trial plan on your account.",
-    "noteOne": "Trial can be started only once per account.",
-    "noteTwo": "If you already have an active paid period, trial cannot start yet.",
-    "noteThree": "Trial automatically ends at the configured trial expiry date.",
-    "noteFour": "Trial accounts include Pro features, but usage limits (such as projects and tasks) still apply.",
-    "startCta": "Start free trial",
-    "starting": "Starting...",
-    "success": "Trial started successfully. Your account is now on the trial plan.",
-    "errorFallback": "Could not start trial. Please try again.",
-    "viewSubscription": "View subscription",
-    "skipTrialCta": "Subscribe directly to Pro",
-    "subscribeNow": "Subscribe to Pro",
-    "loadingSubscription": "Loading your subscription…",
-    "trialUsedTitle": "Free trial already used",
-    "trialUsedDescription": "This account has already used its one-time free trial. You can view or change your plan on the subscription page."
   },
   "supportOverview": {
     "analytics": {

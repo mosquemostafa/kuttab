@@ -454,7 +454,10 @@ async function handleVerify() {
       for (const [, fkData] of Object.entries(tableData.foreignKeys || {})) {
         totalFks++;
         const truncatedFkName = fkData.name.slice(0, 63);
-        if (!existingFks.has(fkData.name) && !existingFks.has(truncatedFkName)) {
+        if (
+          !existingFks.has(fkData.name) &&
+          !existingFks.has(truncatedFkName)
+        ) {
           missingFks.push({ table: tableName, fk: fkData.name });
         }
       }

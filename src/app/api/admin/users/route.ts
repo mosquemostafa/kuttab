@@ -37,12 +37,6 @@
  *       - in: query
  *         name: phone
  *         schema: { type: string }
- *       - in: query
- *         name: subscriptionPlan
- *         schema: { type: string, enum: [all, free, trial, pro] }
- *       - in: query
- *         name: subscriptionStatus
- *         schema: { type: string, enum: [all, active, inactive] }
  *     responses:
  *       200:
  *         description: Paginated list of users

@@ -73,7 +73,11 @@ services:
     volumes:
       - redis_data:/data
     healthcheck:
-      test: ["CMD-SHELL", "redis-cli -a \"$REDIS_PASSWORD\" ping | grep -q PONG || exit 1"]
+      test:
+        [
+          "CMD-SHELL",
+          'redis-cli -a "$REDIS_PASSWORD" ping | grep -q PONG || exit 1',
+        ]
       interval: 5s
       timeout: 3s
       retries: 5

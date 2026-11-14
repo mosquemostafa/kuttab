@@ -75,7 +75,11 @@
           },
           "priority": {
             "type": "string",
-            "enum": ["low", "medium", "high"],
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
             "nullable": true
           },
           "dueDate": {
@@ -89,7 +93,11 @@
             "description": "Embedded steps with completion state",
             "items": {
               "type": "object",
-              "required": ["id", "title", "isCompleted"],
+              "required": [
+                "id",
+                "title",
+                "isCompleted"
+              ],
               "properties": {
                 "id": {
                   "type": "string",
@@ -315,7 +323,11 @@
           },
           "repetitionType": {
             "type": "string",
-            "enum": ["daily", "weekly", "monthly"],
+            "enum": [
+              "daily",
+              "weekly",
+              "monthly"
+            ],
             "nullable": true
           },
           "specificDays": {
@@ -373,7 +385,10 @@
           },
           "role": {
             "type": "string",
-            "enum": ["user", "admin"]
+            "enum": [
+              "user",
+              "admin"
+            ]
           },
           "banned": {
             "type": "boolean"
@@ -452,7 +467,9 @@
             "description": "HTTP status code"
           }
         },
-        "required": ["error"]
+        "required": [
+          "error"
+        ]
       },
       "User": {
         "type": "object",
@@ -477,12 +494,19 @@
           },
           "role": {
             "type": "string",
-            "enum": ["user", "admin"],
+            "enum": [
+              "user",
+              "admin"
+            ],
             "description": "User's role"
           },
           "status": {
             "type": "string",
-            "enum": ["active", "inactive", "banned"],
+            "enum": [
+              "active",
+              "inactive",
+              "banned"
+            ],
             "description": "User's account status"
           },
           "createdAt": {
@@ -496,7 +520,12 @@
             "description": "Last update date"
           }
         },
-        "required": ["id", "email", "name", "role"]
+        "required": [
+          "id",
+          "email",
+          "name",
+          "role"
+        ]
       },
       "PaginationParams": {
         "type": "object",
@@ -515,7 +544,9 @@
       },
       "NewsletterSubscribeRequest": {
         "type": "object",
-        "required": ["email"],
+        "required": [
+          "email"
+        ],
         "properties": {
           "email": {
             "type": "string",
@@ -523,7 +554,10 @@
           },
           "locale": {
             "type": "string",
-            "enum": ["ar", "en"]
+            "enum": [
+              "ar",
+              "en"
+            ]
           }
         }
       },
@@ -538,11 +572,16 @@
             "format": "email"
           }
         },
-        "required": ["subscriberId", "email"]
+        "required": [
+          "subscriberId",
+          "email"
+        ]
       },
       "NewsletterUnsubscribeRequest": {
         "type": "object",
-        "required": ["token"],
+        "required": [
+          "token"
+        ],
         "properties": {
           "token": {
             "type": "string",
@@ -552,7 +591,10 @@
       },
       "FcmRegisterRequest": {
         "type": "object",
-        "required": ["token", "source"],
+        "required": [
+          "token",
+          "source"
+        ],
         "properties": {
           "token": {
             "type": "string",
@@ -573,7 +615,10 @@
           },
           "source": {
             "type": "string",
-            "enum": ["browser", "pwa"],
+            "enum": [
+              "browser",
+              "pwa"
+            ],
             "description": "Token source context"
           }
         }
@@ -590,22 +635,34 @@
             "properties": {
               "status": {
                 "type": "string",
-                "enum": ["already_registered", "registered", "updated"],
+                "enum": [
+                  "already_registered",
+                  "registered",
+                  "updated"
+                ],
                 "description": "Whether the server wrote the token doc and synced topics"
               }
             },
-            "required": ["status"]
+            "required": [
+              "status"
+            ]
           },
           "timestamp": {
             "type": "string",
             "format": "date-time"
           }
         },
-        "required": ["success", "data", "timestamp"]
+        "required": [
+          "success",
+          "data",
+          "timestamp"
+        ]
       },
       "FcmUnregisterRequest": {
         "type": "object",
-        "required": ["token"],
+        "required": [
+          "token"
+        ],
         "properties": {
           "token": {
             "type": "string",
@@ -628,14 +685,20 @@
                 "example": true
               }
             },
-            "required": ["unregistered"]
+            "required": [
+              "unregistered"
+            ]
           },
           "timestamp": {
             "type": "string",
             "format": "date-time"
           }
         },
-        "required": ["success", "data", "timestamp"]
+        "required": [
+          "success",
+          "data",
+          "timestamp"
+        ]
       },
       "FcmUnregisterAllResponse": {
         "type": "object",
@@ -656,18 +719,29 @@
                 "example": 3
               }
             },
-            "required": ["unregisteredAll", "deletedCount"]
+            "required": [
+              "unregisteredAll",
+              "deletedCount"
+            ]
           },
           "timestamp": {
             "type": "string",
             "format": "date-time"
           }
         },
-        "required": ["success", "data", "timestamp"]
+        "required": [
+          "success",
+          "data",
+          "timestamp"
+        ]
       },
       "FcmSendUserRequest": {
         "type": "object",
-        "required": ["userId", "title", "body"],
+        "required": [
+          "userId",
+          "title",
+          "body"
+        ],
         "properties": {
           "userId": {
             "type": "string"
@@ -697,7 +771,11 @@
       },
       "FcmSendTokenRequest": {
         "type": "object",
-        "required": ["token", "title", "body"],
+        "required": [
+          "token",
+          "title",
+          "body"
+        ],
         "properties": {
           "token": {
             "type": "string"
@@ -727,7 +805,11 @@
       },
       "FcmSendRoleTopicRequest": {
         "type": "object",
-        "required": ["role", "title", "body"],
+        "required": [
+          "role",
+          "title",
+          "body"
+        ],
         "properties": {
           "role": {
             "type": "string",
@@ -758,7 +840,11 @@
       },
       "FcmSendSegmentTopicRequest": {
         "type": "object",
-        "required": ["segmentId", "title", "body"],
+        "required": [
+          "segmentId",
+          "title",
+          "body"
+        ],
         "properties": {
           "segmentId": {
             "type": "string"
@@ -788,7 +874,10 @@
       },
       "FcmSendAllUsersTopicRequest": {
         "type": "object",
-        "required": ["title", "body"],
+        "required": [
+          "title",
+          "body"
+        ],
         "properties": {
           "title": {
             "type": "string"
@@ -815,7 +904,11 @@
       },
       "FcmSendCustomTopicRequest": {
         "type": "object",
-        "required": ["topic", "title", "body"],
+        "required": [
+          "topic",
+          "title",
+          "body"
+        ],
         "properties": {
           "topic": {
             "type": "string",
@@ -882,7 +975,11 @@
                       "type": "string"
                     }
                   },
-                  "required": ["token", "code", "message"]
+                  "required": [
+                    "token",
+                    "code",
+                    "message"
+                  ]
                 }
               }
             },
@@ -898,7 +995,11 @@
             "format": "date-time"
           }
         },
-        "required": ["success", "data", "timestamp"]
+        "required": [
+          "success",
+          "data",
+          "timestamp"
+        ]
       },
       "FcmSendTokenResponse": {
         "type": "object",
@@ -914,14 +1015,20 @@
                 "type": "string"
               }
             },
-            "required": ["messageId"]
+            "required": [
+              "messageId"
+            ]
           },
           "timestamp": {
             "type": "string",
             "format": "date-time"
           }
         },
-        "required": ["success", "data", "timestamp"]
+        "required": [
+          "success",
+          "data",
+          "timestamp"
+        ]
       },
       "FcmSendTopicResponse": {
         "type": "object",
@@ -940,14 +1047,21 @@
                 "type": "string"
               }
             },
-            "required": ["messageId", "topic"]
+            "required": [
+              "messageId",
+              "topic"
+            ]
           },
           "timestamp": {
             "type": "string",
             "format": "date-time"
           }
         },
-        "required": ["success", "data", "timestamp"]
+        "required": [
+          "success",
+          "data",
+          "timestamp"
+        ]
       },
       "FcmTokenRecord": {
         "type": "object",
@@ -968,14 +1082,21 @@
           },
           "source": {
             "type": "string",
-            "enum": ["browser", "pwa"]
+            "enum": [
+              "browser",
+              "pwa"
+            ]
           },
           "topics": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "example": ["all_users", "role_user", "segment_default"]
+            "example": [
+              "all_users",
+              "role_user",
+              "segment_default"
+            ]
           },
           "isActive": {
             "type": "boolean",
@@ -1020,11 +1141,18 @@
             "format": "date-time"
           }
         },
-        "required": ["success", "data", "timestamp"]
+        "required": [
+          "success",
+          "data",
+          "timestamp"
+        ]
       },
       "FcmCustomTopicSubscriptionRequest": {
         "type": "object",
-        "required": ["topic", "subscribed"],
+        "required": [
+          "topic",
+          "subscribed"
+        ],
         "properties": {
           "topic": {
             "type": "string",
@@ -1051,24 +1179,35 @@
                 "items": {
                   "type": "string"
                 },
-                "example": ["product_updates"]
+                "example": [
+                  "product_updates"
+                ]
               },
               "subscribedTopics": {
                 "type": "array",
                 "items": {
                   "type": "string"
                 },
-                "example": ["product_updates"]
+                "example": [
+                  "product_updates"
+                ]
               }
             },
-            "required": ["availableTopics", "subscribedTopics"]
+            "required": [
+              "availableTopics",
+              "subscribedTopics"
+            ]
           },
           "timestamp": {
             "type": "string",
             "format": "date-time"
           }
         },
-        "required": ["success", "data", "timestamp"]
+        "required": [
+          "success",
+          "data",
+          "timestamp"
+        ]
       },
       "FcmCustomTopicSubscriptionResponse": {
         "type": "object",
@@ -1098,17 +1237,27 @@
                     "example": 1
                   }
                 },
-                "required": ["scannedTokens", "updatedTokens"]
+                "required": [
+                  "scannedTokens",
+                  "updatedTokens"
+                ]
               }
             },
-            "required": ["customTopics", "syncResult"]
+            "required": [
+              "customTopics",
+              "syncResult"
+            ]
           },
           "timestamp": {
             "type": "string",
             "format": "date-time"
           }
         },
-        "required": ["success", "data", "timestamp"]
+        "required": [
+          "success",
+          "data",
+          "timestamp"
+        ]
       },
       "NewsletterSubscriber": {
         "type": "object",
@@ -1124,11 +1273,17 @@
           "locale": {
             "type": "string",
             "nullable": true,
-            "enum": ["ar", "en"]
+            "enum": [
+              "ar",
+              "en"
+            ]
           },
           "status": {
             "type": "string",
-            "enum": ["active", "unsubscribed"]
+            "enum": [
+              "active",
+              "unsubscribed"
+            ]
           },
           "createdAt": {
             "type": "string",
@@ -1140,7 +1295,12 @@
             "nullable": true
           }
         },
-        "required": ["id", "email", "status", "createdAt"]
+        "required": [
+          "id",
+          "email",
+          "status",
+          "createdAt"
+        ]
       },
       "NewsletterCampaign": {
         "type": "object",
@@ -1166,7 +1326,13 @@
           },
           "status": {
             "type": "string",
-            "enum": ["draft", "queued", "sending", "completed", "failed"]
+            "enum": [
+              "draft",
+              "queued",
+              "sending",
+              "completed",
+              "failed"
+            ]
           },
           "failureReason": {
             "type": "string",
@@ -1216,7 +1382,13 @@
           },
           "status": {
             "type": "string",
-            "enum": ["draft", "queued", "sending", "completed", "failed"]
+            "enum": [
+              "draft",
+              "queued",
+              "sending",
+              "completed",
+              "failed"
+            ]
           },
           "failureReason": {
             "type": "string",
@@ -1270,7 +1442,13 @@
           },
           "status": {
             "type": "string",
-            "enum": ["draft", "queued", "sending", "completed", "failed"]
+            "enum": [
+              "draft",
+              "queued",
+              "sending",
+              "completed",
+              "failed"
+            ]
           },
           "failureReason": {
             "type": "string",
@@ -1314,7 +1492,12 @@
       },
       "CreateNewsletterCampaignRequest": {
         "type": "object",
-        "required": ["subjectAr", "subjectEn", "bodyAr", "bodyEn"],
+        "required": [
+          "subjectAr",
+          "subjectEn",
+          "bodyAr",
+          "bodyEn"
+        ],
         "properties": {
           "subjectAr": {
             "type": "string",
@@ -1361,2054 +1544,13 @@
     }
   },
   "paths": {
-    "/api/plans": {
-      "get": {
-        "summary": "List subscription plans and feature gates",
-        "tags": ["Subscriptions"],
-        "responses": {
-          "200": {
-            "description": "Plan features and billing configuration keyed by plan id",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": true
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "features": {
-                          "type": "object",
-                          "properties": {
-                            "free": {
-                              "type": "object",
-                              "properties": {
-                                "maxProjects": {
-                                  "type": "integer",
-                                  "nullable": true
-                                },
-                                "maxTodos": {
-                                  "type": "integer",
-                                  "nullable": true
-                                },
-                                "maxEditorImages": {
-                                  "type": "integer",
-                                  "nullable": true
-                                },
-                                "analytics": {
-                                  "type": "boolean"
-                                },
-                                "csvExport": {
-                                  "type": "boolean"
-                                }
-                              }
-                            },
-                            "trial": {
-                              "type": "object",
-                              "properties": {
-                                "maxProjects": {
-                                  "type": "integer",
-                                  "nullable": true
-                                },
-                                "maxTodos": {
-                                  "type": "integer",
-                                  "nullable": true
-                                },
-                                "maxEditorImages": {
-                                  "type": "integer",
-                                  "nullable": true
-                                },
-                                "analytics": {
-                                  "type": "boolean"
-                                },
-                                "csvExport": {
-                                  "type": "boolean"
-                                }
-                              }
-                            },
-                            "pro": {
-                              "type": "object",
-                              "properties": {
-                                "maxProjects": {
-                                  "type": "integer",
-                                  "nullable": true
-                                },
-                                "maxTodos": {
-                                  "type": "integer",
-                                  "nullable": true
-                                },
-                                "maxEditorImages": {
-                                  "type": "integer",
-                                  "nullable": true
-                                },
-                                "analytics": {
-                                  "type": "boolean"
-                                },
-                                "csvExport": {
-                                  "type": "boolean"
-                                }
-                              }
-                            }
-                          }
-                        },
-                        "config": {
-                          "type": "object",
-                          "properties": {
-                            "free": {
-                              "type": "object",
-                              "properties": {
-                                "price": {
-                                  "type": "integer"
-                                },
-                                "currency": {
-                                  "type": "string",
-                                  "enum": ["EGP", "USD"]
-                                },
-                                "renewalDays": {
-                                  "type": "integer"
-                                },
-                                "emoji": {
-                                  "type": "string"
-                                },
-                                "displayName": {
-                                  "type": "object",
-                                  "properties": {
-                                    "ar": {
-                                      "type": "string"
-                                    },
-                                    "en": {
-                                      "type": "string"
-                                    }
-                                  }
-                                }
-                              }
-                            },
-                            "trial": {
-                              "type": "object",
-                              "properties": {
-                                "price": {
-                                  "type": "integer"
-                                },
-                                "currency": {
-                                  "type": "string",
-                                  "enum": ["EGP", "USD"]
-                                },
-                                "renewalDays": {
-                                  "type": "integer"
-                                },
-                                "emoji": {
-                                  "type": "string"
-                                },
-                                "displayName": {
-                                  "type": "object",
-                                  "properties": {
-                                    "ar": {
-                                      "type": "string"
-                                    },
-                                    "en": {
-                                      "type": "string"
-                                    }
-                                  }
-                                }
-                              }
-                            },
-                            "pro": {
-                              "type": "object",
-                              "properties": {
-                                "price": {
-                                  "type": "integer"
-                                },
-                                "currency": {
-                                  "type": "string",
-                                  "enum": ["EGP", "USD"]
-                                },
-                                "renewalDays": {
-                                  "type": "integer"
-                                },
-                                "emoji": {
-                                  "type": "string"
-                                },
-                                "displayName": {
-                                  "type": "object",
-                                  "properties": {
-                                    "ar": {
-                                      "type": "string"
-                                    },
-                                    "en": {
-                                      "type": "string"
-                                    }
-                                  }
-                                }
-                              }
-                            },
-                            "business": {
-                              "type": "object",
-                              "properties": {
-                                "price": {
-                                  "type": "integer"
-                                },
-                                "currency": {
-                                  "type": "string",
-                                  "enum": ["EGP", "USD"]
-                                },
-                                "renewalDays": {
-                                  "type": "integer"
-                                },
-                                "emoji": {
-                                  "type": "string"
-                                },
-                                "displayName": {
-                                  "type": "object",
-                                  "properties": {
-                                    "ar": {
-                                      "type": "string"
-                                    },
-                                    "en": {
-                                      "type": "string"
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "timestamp": {
-                      "type": "string",
-                      "format": "date-time"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/entitlements": {
-      "get": {
-        "summary": "Get current user entitlements",
-        "tags": ["Subscriptions"],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Current resolved plan and feature gates",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": true
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "plan": {
-                          "type": "string",
-                          "enum": ["free", "trial", "pro", "business"]
-                        },
-                        "features": {
-                          "type": "object",
-                          "properties": {
-                            "maxProjects": {
-                              "type": "integer",
-                              "nullable": true
-                            },
-                            "maxTodos": {
-                              "type": "integer",
-                              "nullable": true
-                            },
-                            "maxEditorImages": {
-                              "type": "integer",
-                              "nullable": true
-                            },
-                            "analytics": {
-                              "type": "boolean"
-                            },
-                            "csvExport": {
-                              "type": "boolean"
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "timestamp": {
-                      "type": "string",
-                      "format": "date-time"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/subscription": {
-      "get": {
-        "summary": "Get current user subscription",
-        "tags": ["Subscriptions"],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Current user subscription or null if not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": true
-                    },
-                    "data": {
-                      "nullable": true,
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "string"
-                        },
-                        "userId": {
-                          "type": "string"
-                        },
-                        "plan": {
-                          "type": "string",
-                          "enum": ["free", "trial", "pro", "business"]
-                        },
-                        "planStartedAt": {
-                          "type": "string",
-                          "format": "date-time"
-                        },
-                        "planExpiresAt": {
-                          "type": "string",
-                          "format": "date-time"
-                        },
-                        "autoRenew": {
-                          "type": "boolean"
-                        },
-                        "trialUsed": {
-                          "type": "boolean"
-                        },
-                        "activatedBy": {
-                          "type": "string",
-                          "enum": ["gateway", "manual", "trial"]
-                        },
-                        "activatedByUserId": {
-                          "type": "string",
-                          "nullable": true
-                        },
-                        "activatedAt": {
-                          "type": "string",
-                          "format": "date-time"
-                        },
-                        "notes": {
-                          "type": "string",
-                          "nullable": true
-                        },
-                        "gateway": {
-                          "type": "string",
-                          "enum": ["paymob", "kashier"],
-                          "nullable": true
-                        },
-                        "gatewaySubscriptionId": {
-                          "type": "string",
-                          "nullable": true
-                        },
-                        "gatewayCustomerId": {
-                          "type": "string",
-                          "nullable": true
-                        },
-                        "createdAt": {
-                          "type": "string",
-                          "format": "date-time"
-                        },
-                        "updatedAt": {
-                          "type": "string",
-                          "format": "date-time"
-                        }
-                      }
-                    },
-                    "timestamp": {
-                      "type": "string",
-                      "format": "date-time"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/subscription/invoices": {
-      "get": {
-        "summary": "List current user invoices",
-        "tags": ["Subscriptions"],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Current user invoices ordered by newest first",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": true
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string"
-                          },
-                          "subscriptionId": {
-                            "type": "string"
-                          },
-                          "amount": {
-                            "type": "integer"
-                          },
-                          "currency": {
-                            "type": "string",
-                            "enum": ["EGP", "USD"]
-                          },
-                          "status": {
-                            "type": "string",
-                            "enum": [
-                              "paid",
-                              "pending",
-                              "failed",
-                              "refunded",
-                              "partially_refunded"
-                            ]
-                          },
-                          "refundedAmount": {
-                            "type": "integer",
-                            "nullable": true
-                          },
-                          "paymentMethod": {
-                            "type": "string",
-                            "enum": [
-                              "gateway",
-                              "bank_transfer",
-                              "vodafone_cash",
-                              "instapay",
-                              "complimentary",
-                              "fix"
-                            ]
-                          },
-                          "gateway": {
-                            "type": "string",
-                            "enum": ["paymob", "kashier"],
-                            "nullable": true
-                          },
-                          "gatewayPaymentId": {
-                            "type": "string",
-                            "nullable": true
-                          },
-                          "paymentReference": {
-                            "type": "string",
-                            "nullable": true
-                          },
-                          "periodStart": {
-                            "type": "string",
-                            "format": "date-time",
-                            "nullable": true
-                          },
-                          "periodEnd": {
-                            "type": "string",
-                            "format": "date-time",
-                            "nullable": true
-                          },
-                          "paidAt": {
-                            "type": "string",
-                            "format": "date-time",
-                            "nullable": true
-                          },
-                          "createdAt": {
-                            "type": "string",
-                            "format": "date-time"
-                          }
-                        }
-                      }
-                    },
-                    "timestamp": {
-                      "type": "string",
-                      "format": "date-time"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/subscription/checkout": {
-      "post": {
-        "summary": "Create subscription checkout session",
-        "tags": ["Subscriptions"],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Checkout payload returned"
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/subscription/cancel": {
-      "post": {
-        "summary": "Disable auto-renew for current user subscription",
-        "tags": ["Subscriptions"],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Cancellation flag updated",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": false
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "updated": {
-                          "type": "boolean",
-                          "example": false
-                        },
-                        "subscriptionId": {
-                          "type": "string"
-                        },
-                        "autoRenew": {
-                          "type": "boolean",
-                          "example": false
-                        }
-                      }
-                    },
-                    "timestamp": {
-                      "type": "string",
-                      "format": "date-time"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Subscription not found for current user",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        },
-        "description": "Toggles autoRenew to false for the authenticated user's subscription."
-      }
-    },
-    "/api/subscription/resume": {
-      "post": {
-        "summary": "Resume current user subscription",
-        "tags": ["Subscriptions"],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Resume flag updated",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": true
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "updated": {
-                          "type": "boolean",
-                          "example": true
-                        },
-                        "subscriptionId": {
-                          "type": "string"
-                        },
-                        "autoRenew": {
-                          "type": "boolean",
-                          "example": true
-                        }
-                      }
-                    },
-                    "timestamp": {
-                      "type": "string",
-                      "format": "date-time"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Subscription not found for current user",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        },
-        "description": "Toggles autoRenew to true for the authenticated user's subscription."
-      }
-    },
-    "/api/webhooks/paymob": {
-      "post": {
-        "summary": "Paymob webhook receiver",
-        "tags": ["Webhooks"],
-        "responses": {
-          "200": {
-            "description": "Webhook accepted"
-          }
-        }
-      }
-    },
-    "/api/webhooks/kashier": {
-      "post": {
-        "summary": "Kashier webhook receiver",
-        "tags": ["Webhooks"],
-        "responses": {
-          "200": {
-            "description": "Webhook accepted"
-          }
-        }
-      }
-    },
-    "/api/admin/subscriptions": {
-      "get": {
-        "summary": "List subscriptions (admin)",
-        "tags": ["Subscriptions Admin"],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Paginated list of subscriptions",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": true
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string"
-                          },
-                          "userId": {
-                            "type": "string"
-                          },
-                          "plan": {
-                            "type": "string",
-                            "enum": ["free", "trial", "pro", "business"]
-                          },
-                          "planStartedAt": {
-                            "type": "string",
-                            "format": "date-time"
-                          },
-                          "planExpiresAt": {
-                            "type": "string",
-                            "format": "date-time"
-                          },
-                          "autoRenew": {
-                            "type": "boolean"
-                          },
-                          "trialUsed": {
-                            "type": "boolean"
-                          },
-                          "activatedBy": {
-                            "type": "string",
-                            "enum": ["gateway", "manual", "trial"]
-                          },
-                          "activatedByUserId": {
-                            "type": "string",
-                            "nullable": true
-                          },
-                          "activatedAt": {
-                            "type": "string",
-                            "format": "date-time"
-                          },
-                          "notes": {
-                            "type": "string",
-                            "nullable": true
-                          },
-                          "gateway": {
-                            "type": "string",
-                            "enum": ["paymob", "kashier"],
-                            "nullable": true
-                          },
-                          "gatewaySubscriptionId": {
-                            "type": "string",
-                            "nullable": true
-                          },
-                          "gatewayCustomerId": {
-                            "type": "string",
-                            "nullable": true
-                          },
-                          "createdAt": {
-                            "type": "string",
-                            "format": "date-time"
-                          },
-                          "updatedAt": {
-                            "type": "string",
-                            "format": "date-time"
-                          }
-                        }
-                      }
-                    },
-                    "meta": {
-                      "$ref": "#/components/schemas/PaginationMeta"
-                    },
-                    "timestamp": {
-                      "type": "string",
-                      "format": "date-time"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden - admin role required",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        },
-        "parameters": [
-          {
-            "in": "query",
-            "name": "plan",
-            "schema": {
-              "type": "string",
-              "enum": ["free", "trial", "pro", "business"]
-            }
-          },
-          {
-            "in": "query",
-            "name": "activatedBy",
-            "schema": {
-              "type": "string",
-              "enum": ["gateway", "manual", "trial"]
-            }
-          },
-          {
-            "in": "query",
-            "name": "page",
-            "schema": {
-              "type": "integer",
-              "default": 1
-            }
-          },
-          {
-            "in": "query",
-            "name": "limit",
-            "schema": {
-              "type": "integer",
-              "default": 10,
-              "maximum": 100
-            }
-          }
-        ]
-      }
-    },
-    "/api/admin/subscriptions/user/{userId}": {
-      "get": {
-        "summary": "Get one user's subscription by user ID (admin)",
-        "description": "Uses the user ID from auth/users table, not subscription UUID.\n",
-        "tags": ["Subscriptions Admin"],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "userId",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "User ID"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Subscription details returned"
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "User not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/admin/subscriptions/{id}": {
-      "get": {
-        "summary": "Get one subscription by subscription ID (admin)",
-        "description": "Uses the subscription row ID (UUID), not user ID.\n",
-        "tags": ["Subscriptions Admin"],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Subscription ID (UUID)"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Subscription details returned"
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Subscription not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/admin/subscriptions/activate": {
-      "post": {
-        "summary": "Manually activate a subscription for a user (admin)",
-        "description": "Creates a manual active subscription for a user, logs a manually_activated event, and creates an initial invoice.",
-        "tags": ["Subscriptions Admin"],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": ["userId", "plan", "paymentMethod"],
-                "properties": {
-                  "userId": {
-                    "type": "string"
-                  },
-                  "plan": {
-                    "type": "string",
-                    "enum": ["pro", "business"]
-                  },
-                  "autoRenew": {
-                    "type": "boolean",
-                    "default": false
-                  },
-                  "notes": {
-                    "type": "string",
-                    "maxLength": 1000
-                  },
-                  "paymentMethod": {
-                    "type": "string",
-                    "enum": [
-                      "gateway",
-                      "bank_transfer",
-                      "vodafone_cash",
-                      "instapay",
-                      "complimentary",
-                      "fix"
-                    ]
-                  },
-                  "paymentReference": {
-                    "type": "string",
-                    "maxLength": 255,
-                    "nullable": true
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Subscription activated and all related records created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": true
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "activated": {
-                          "type": "boolean",
-                          "example": true
-                        },
-                        "subscriptionId": {
-                          "type": "string"
-                        },
-                        "eventId": {
-                          "type": "string",
-                          "nullable": true
-                        },
-                        "invoiceId": {
-                          "type": "string",
-                          "nullable": true
-                        }
-                      }
-                    },
-                    "timestamp": {
-                      "type": "string",
-                      "format": "date-time"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid request body",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden - admin role required",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "User not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict - user already has a subscription row",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/admin/subscriptions/{id}/extend": {
-      "patch": {
-        "summary": "Extend subscription period (admin)",
-        "description": "Extends subscription expiry by added days. If current expiry is in the past, extension starts from now.",
-        "tags": ["Subscriptions Admin"],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Subscription ID"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": ["addedDays"],
-                "properties": {
-                  "addedDays": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "description": "Number of days to add to subscription period."
-                  },
-                  "notes": {
-                    "type": "string",
-                    "maxLength": 1000
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Subscription extended successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": true
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "extended": {
-                          "type": "boolean",
-                          "example": true
-                        },
-                        "subscriptionId": {
-                          "type": "string"
-                        },
-                        "planStartedAt": {
-                          "type": "string",
-                          "format": "date-time"
-                        },
-                        "previousExpiresAt": {
-                          "type": "string",
-                          "format": "date-time"
-                        },
-                        "newExpiresAt": {
-                          "type": "string",
-                          "format": "date-time"
-                        },
-                        "addedDays": {
-                          "type": "integer",
-                          "minimum": 1
-                        },
-                        "eventId": {
-                          "type": "string",
-                          "nullable": true
-                        }
-                      }
-                    },
-                    "timestamp": {
-                      "type": "string",
-                      "format": "date-time"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid request body",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden - admin role required",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Subscription not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/admin/subscriptions/{id}/change-plan": {
-      "patch": {
-        "summary": "Change subscription plan (admin)",
-        "description": "Changes an existing subscription to a new plan, resets the billing period from now based on target plan renewal days, records an admin_plan_changed event, and creates a new invoice for the new cycle.",
-        "tags": ["Subscriptions Admin"],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": ["plan", "paymentMethod"],
-                "properties": {
-                  "plan": {
-                    "type": "string",
-                    "enum": ["pro", "business"],
-                    "description": "Target plan to switch to."
-                  },
-                  "notes": {
-                    "type": "string",
-                    "maxLength": 1000,
-                    "description": "Optional internal note for the change event."
-                  },
-                  "paymentMethod": {
-                    "type": "string",
-                    "enum": [
-                      "gateway",
-                      "bank_transfer",
-                      "vodafone_cash",
-                      "instapay",
-                      "complimentary",
-                      "fix"
-                    ]
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Plan changed and related records created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": true
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "changed": {
-                          "type": "boolean",
-                          "example": true
-                        },
-                        "subscriptionId": {
-                          "type": "string"
-                        },
-                        "fromPlan": {
-                          "type": "string"
-                        },
-                        "toPlan": {
-                          "type": "string"
-                        },
-                        "planStartedAt": {
-                          "type": "string",
-                          "format": "date-time"
-                        },
-                        "planExpiresAt": {
-                          "type": "string",
-                          "format": "date-time"
-                        },
-                        "eventId": {
-                          "type": "string",
-                          "nullable": true
-                        },
-                        "invoiceId": {
-                          "type": "string",
-                          "nullable": true
-                        }
-                      }
-                    },
-                    "timestamp": {
-                      "type": "string",
-                      "format": "date-time"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid request body",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden - admin role required",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Subscription not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/admin/subscriptions/{id}/cancel": {
-      "post": {
-        "summary": "Cancel subscription (admin)",
-        "description": "Cancels a subscription immediately by setting plan expiry to now, then records an admin_cancelled event.",
-        "tags": ["Subscriptions Admin"],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Subscription ID"
-          }
-        ],
-        "requestBody": {
-          "required": false,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": ["paymentMethod"],
-                "properties": {
-                  "paymentMethod": {
-                    "type": "string",
-                    "enum": [
-                      "gateway",
-                      "bank_transfer",
-                      "vodafone_cash",
-                      "instapay",
-                      "complimentary",
-                      "fix"
-                    ]
-                  },
-                  "paymentReference": {
-                    "type": "string",
-                    "maxLength": 255
-                  },
-                  "notes": {
-                    "type": "string",
-                    "maxLength": 1000,
-                    "description": "Optional internal admin note for this cancellation."
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Subscription cancelled",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": true
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "cancelled": {
-                          "type": "boolean",
-                          "example": true
-                        },
-                        "subscriptionId": {
-                          "type": "string"
-                        },
-                        "eventId": {
-                          "type": "string",
-                          "nullable": true
-                        }
-                      }
-                    },
-                    "timestamp": {
-                      "type": "string",
-                      "format": "date-time"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid request body",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden - admin role required",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Subscription not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/admin/subscriptions/{id}/events": {
-      "get": {
-        "summary": "List subscription events timeline (admin)",
-        "tags": ["Subscriptions Admin"],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Events returned"
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/admin/invoices/{id}/refund": {
-      "patch": {
-        "summary": "Manually refund an invoice (admin)",
-        "description": "Refunds an invoice amount, optionally revokes subscription access by setting expiry to now, and records a payment_refunded event.",
-        "tags": ["Subscriptions Admin"],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Invoice ID"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": ["refundedAmount", "reason", "revokeAccess"],
-                "properties": {
-                  "refundedAmount": {
-                    "type": "integer",
-                    "minimum": 1
-                  },
-                  "reason": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 1000
-                  },
-                  "notes": {
-                    "type": "string",
-                    "maxLength": 1000
-                  },
-                  "revokeAccess": {
-                    "type": "boolean"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Invoice refunded successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": true
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "refunded": {
-                          "type": "boolean",
-                          "example": true
-                        },
-                        "invoiceId": {
-                          "type": "string"
-                        },
-                        "invoiceStatus": {
-                          "type": "string",
-                          "enum": ["refunded", "partially_refunded"]
-                        },
-                        "refundedAmount": {
-                          "type": "integer"
-                        },
-                        "refundReason": {
-                          "type": "string"
-                        },
-                        "revokeAccess": {
-                          "type": "boolean"
-                        },
-                        "accessRevoked": {
-                          "type": "boolean"
-                        },
-                        "eventId": {
-                          "type": "string",
-                          "nullable": true
-                        }
-                      }
-                    },
-                    "timestamp": {
-                      "type": "string",
-                      "format": "date-time"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid request body",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden - admin role required",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Invoice not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Refund amount exceeds allowed invoice amount",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/admin/subscriptions/{id}/notes": {
-      "patch": {
-        "summary": "Update subscription notes (admin)",
-        "description": "Updates the internal notes field on a subscription by subscription ID.",
-        "tags": ["Subscriptions Admin"],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Subscription ID"
-          }
-        ],
-        "requestBody": {
-          "required": false,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "notes": {
-                    "type": "string",
-                    "maxLength": 1000,
-                    "nullable": true,
-                    "description": "Optional internal notes. Send null to clear existing notes."
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Subscription notes updated successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": true
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "updated": {
-                          "type": "boolean",
-                          "example": true
-                        },
-                        "subscriptionId": {
-                          "type": "string"
-                        },
-                        "notes": {
-                          "type": "string",
-                          "nullable": true
-                        }
-                      }
-                    },
-                    "timestamp": {
-                      "type": "string",
-                      "format": "date-time"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid request body",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden - admin role required",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Subscription not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/admin/subscriptions/{id}/renew": {
-      "post": {
-        "summary": "Renew subscription by plan renewal period (admin)",
-        "description": "Renews a subscription using the current plan renewalDays from plan config. If current expiry is in the past, renewal starts from now.",
-        "tags": ["Subscriptions Admin"],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Subscription ID"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "notes": {
-                    "type": "string",
-                    "maxLength": 1000
-                  },
-                  "paymentMethod": {
-                    "type": "string",
-                    "enum": [
-                      "gateway",
-                      "bank_transfer",
-                      "vodafone_cash",
-                      "instapay",
-                      "complimentary",
-                      "fix"
-                    ]
-                  },
-                  "paymentReference": {
-                    "type": "string",
-                    "maxLength": 255,
-                    "nullable": true
-                  }
-                },
-                "required": ["paymentMethod"]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Subscription renewed successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": true
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "renewed": {
-                          "type": "boolean",
-                          "example": true
-                        },
-                        "subscriptionId": {
-                          "type": "string",
-                          "example": "95de6e96-fbd8-4ca9-a11e-8936f6037390"
-                        },
-                        "planStartedAt": {
-                          "type": "string",
-                          "format": "date-time",
-                          "example": "2026-04-15T13:40:00.000Z"
-                        },
-                        "previousExpiresAt": {
-                          "type": "string",
-                          "format": "date-time",
-                          "example": "2026-04-20T13:40:00.000Z"
-                        },
-                        "newExpiresAt": {
-                          "type": "string",
-                          "format": "date-time",
-                          "example": "2026-05-20T13:40:00.000Z"
-                        },
-                        "addedDays": {
-                          "type": "integer",
-                          "minimum": 1,
-                          "example": 30
-                        },
-                        "eventId": {
-                          "type": "string",
-                          "nullable": true,
-                          "example": "d4dfe0d0-7fbc-4f46-8082-f818d2ecfd6e"
-                        },
-                        "invoiceId": {
-                          "type": "string",
-                          "nullable": true,
-                          "example": "95de6e96-fbd8-4ca9-a11e-8936f6037390"
-                        }
-                      }
-                    },
-                    "timestamp": {
-                      "type": "string",
-                      "format": "date-time",
-                      "example": "2026-04-15T13:40:00.000Z"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden - admin role required",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Subscription not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/admin/announcements/{id}": {
       "patch": {
         "summary": "Update announcement fields",
-        "tags": ["Announcements", "Admin"],
+        "tags": [
+          "Announcements",
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -3430,7 +1572,10 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["title", "content"],
+                "required": [
+                  "title",
+                  "content"
+                ],
                 "properties": {
                   "title": {
                     "type": "string"
@@ -3470,7 +1615,10 @@
       },
       "delete": {
         "summary": "Delete announcement",
-        "tags": ["Announcements", "Admin"],
+        "tags": [
+          "Announcements",
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -3506,7 +1654,10 @@
       "get": {
         "summary": "Announcements analytics ratios",
         "description": "Simple announcement ratios by type, active state, and status (admin only).",
-        "tags": ["Announcements", "Admin"],
+        "tags": [
+          "Announcements",
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -3517,7 +1668,10 @@
     "/api/admin/announcements": {
       "get": {
         "summary": "List all announcements with seen stats",
-        "tags": ["Announcements", "Admin"],
+        "tags": [
+          "Announcements",
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -3555,7 +1709,10 @@
       },
       "post": {
         "summary": "Create announcement draft or published item",
-        "tags": ["Announcements", "Admin"],
+        "tags": [
+          "Announcements",
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -3567,7 +1724,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["title", "content", "type", "targetType"],
+                "required": [
+                  "title",
+                  "content",
+                  "type",
+                  "targetType"
+                ],
                 "properties": {
                   "title": {
                     "type": "string"
@@ -3588,7 +1750,11 @@
                   },
                   "targetType": {
                     "type": "string",
-                    "enum": ["all", "role", "segment"]
+                    "enum": [
+                      "all",
+                      "role",
+                      "segment"
+                    ]
                   },
                   "targetValue": {
                     "type": "string",
@@ -3624,7 +1790,10 @@
     "/api/admin/blog-comments/{id}": {
       "patch": {
         "summary": "Update any blog comment (admin or content manager)",
-        "tags": ["Blogs", "Admin"],
+        "tags": [
+          "Blogs",
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -3646,7 +1815,9 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["body"],
+                "required": [
+                  "body"
+                ],
                 "properties": {
                   "body": {
                     "type": "string"
@@ -3673,7 +1844,10 @@
       },
       "delete": {
         "summary": "Delete any blog comment (admin or content manager)",
-        "tags": ["Blogs", "Admin"],
+        "tags": [
+          "Blogs",
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -3705,449 +1879,13 @@
         }
       }
     },
-    "/api/admin/coupons/{id}": {
-      "get": {
-        "summary": "Get coupon by id (admin)",
-        "tags": ["Coupons Admin"],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Coupon details"
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden - admin role required",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Coupon not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "summary": "Update coupon (admin)",
-        "tags": ["Coupons Admin"],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "description": {
-                    "type": "string",
-                    "nullable": true
-                  },
-                  "usageLimit": {
-                    "type": "integer",
-                    "nullable": true
-                  },
-                  "perUserLimit": {
-                    "type": "integer"
-                  },
-                  "startsAt": {
-                    "type": "string",
-                    "format": "date-time",
-                    "nullable": true
-                  },
-                  "expiresAt": {
-                    "type": "string",
-                    "format": "date-time",
-                    "nullable": true
-                  },
-                  "isActive": {
-                    "type": "boolean"
-                  },
-                  "giftDuration": {
-                    "type": "integer"
-                  },
-                  "discountType": {
-                    "type": "string",
-                    "enum": ["percentage", "fixed"]
-                  },
-                  "discountValue": {
-                    "type": "integer"
-                  },
-                  "currency": {
-                    "type": "string",
-                    "enum": ["EGP", "USD"],
-                    "nullable": true
-                  },
-                  "applicablePlans": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "enum": ["free", "trial", "pro"]
-                    },
-                    "nullable": true
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Coupon updated"
-          },
-          "400": {
-            "description": "Invalid request body",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden - admin role required",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Coupon not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete coupon (admin)",
-        "tags": ["Coupons Admin"],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Coupon deleted"
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden - admin role required",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Coupon not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/admin/coupons": {
-      "get": {
-        "summary": "List coupons (admin)",
-        "tags": ["Coupons Admin"],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "q",
-            "schema": {
-              "type": "string"
-            },
-            "description": "Search in code/description"
-          },
-          {
-            "in": "query",
-            "name": "type",
-            "schema": {
-              "type": "string",
-              "enum": ["gift", "discount"]
-            }
-          },
-          {
-            "in": "query",
-            "name": "isActive",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "in": "query",
-            "name": "page",
-            "schema": {
-              "type": "integer",
-              "default": 1
-            }
-          },
-          {
-            "in": "query",
-            "name": "limit",
-            "schema": {
-              "type": "integer",
-              "default": 10,
-              "maximum": 100
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Paginated list of coupons"
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden - admin role required",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "summary": "Create coupon (admin)",
-        "tags": ["Coupons Admin"],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": ["type"],
-                "properties": {
-                  "code": {
-                    "type": "string",
-                    "description": "Optional. If omitted, server generates an uppercase code."
-                  },
-                  "description": {
-                    "type": "string",
-                    "nullable": true
-                  },
-                  "type": {
-                    "type": "string",
-                    "enum": ["gift", "discount"]
-                  },
-                  "giftPlan": {
-                    "type": "string",
-                    "enum": ["pro"]
-                  },
-                  "giftDuration": {
-                    "type": "integer",
-                    "description": "In days"
-                  },
-                  "discountType": {
-                    "type": "string",
-                    "enum": ["percentage", "fixed"]
-                  },
-                  "discountValue": {
-                    "type": "integer"
-                  },
-                  "currency": {
-                    "type": "string",
-                    "enum": ["EGP", "USD"],
-                    "nullable": true
-                  },
-                  "applicablePlans": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "enum": ["free", "trial", "pro"]
-                    },
-                    "nullable": true
-                  },
-                  "usageLimit": {
-                    "type": "integer",
-                    "nullable": true
-                  },
-                  "perUserLimit": {
-                    "type": "integer"
-                  },
-                  "startsAt": {
-                    "type": "string",
-                    "format": "date-time",
-                    "nullable": true
-                  },
-                  "expiresAt": {
-                    "type": "string",
-                    "format": "date-time",
-                    "nullable": true
-                  },
-                  "isActive": {
-                    "type": "boolean"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Coupon created"
-          },
-          "400": {
-            "description": "Invalid request body",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden - admin role required",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict - duplicate code",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/admin/fcm/send-all": {
       "post": {
         "summary": "Send push notification to all users topic",
         "description": "Admin only. Sends a notification to the `all_users` topic.",
-        "tags": ["FCM"],
+        "tags": [
+          "FCM"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4181,7 +1919,9 @@
       "post": {
         "summary": "Send push notification to a custom topic",
         "description": "Admin only. Sends a notification to a user-opt-in custom FCM topic (for example `product_updates`).",
-        "tags": ["FCM"],
+        "tags": [
+          "FCM"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4215,7 +1955,9 @@
       "post": {
         "summary": "Send push notification to all tokens in a role topic",
         "description": "Admin only. Sends a notification to `role_<role>` topic.",
-        "tags": ["FCM"],
+        "tags": [
+          "FCM"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4249,7 +1991,9 @@
       "post": {
         "summary": "Send push notification to all tokens in a segment topic",
         "description": "Admin only. Sends a notification to `segment_<segmentId>` topic.",
-        "tags": ["FCM"],
+        "tags": [
+          "FCM"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4283,7 +2027,9 @@
       "post": {
         "summary": "Send push notification to a specific token",
         "description": "Admin only. Sends a push notification to one FCM token.",
-        "tags": ["FCM"],
+        "tags": [
+          "FCM"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4347,7 +2093,9 @@
       "post": {
         "summary": "Send push notification to all active tokens of a user",
         "description": "Admin only. Sends one multicast notification to all active FCM tokens for the target user.",
-        "tags": ["FCM"],
+        "tags": [
+          "FCM"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4407,68 +2155,13 @@
         }
       }
     },
-    "/api/admin/invoices/{id}": {
-      "get": {
-        "summary": "Get invoice by ID (admin)",
-        "description": "Returns a single invoice using invoice row ID (UUID).",
-        "tags": ["Subscriptions Admin"],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Invoice ID (UUID)"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Invoice returned"
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Invoice not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/admin/notifications": {
       "post": {
         "summary": "Create an in-app notification for a user",
-        "tags": ["Notifications", "Admin"],
+        "tags": [
+          "Notifications",
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4480,7 +2173,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["userId", "type", "title", "message"],
+                "required": [
+                  "userId",
+                  "type",
+                  "title",
+                  "message"
+                ],
                 "properties": {
                   "userId": {
                     "type": "string"
@@ -4488,7 +2186,6 @@
                   "type": {
                     "type": "string",
                     "enum": [
-                      "subscription",
                       "system",
                       "social",
                       "announcement_reference",
@@ -4538,7 +2235,9 @@
       "get": {
         "summary": "Admin dashboard overview analytics",
         "description": "Aggregated users and segments metrics (admin only).",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4550,7 +2249,10 @@
             "name": "range",
             "schema": {
               "type": "string",
-              "enum": [7, 30]
+              "enum": [
+                7,
+                30
+              ]
             },
             "description": "Calendar days for daily signups series (default 30)."
           }
@@ -4560,7 +2262,9 @@
     "/api/admin/segments/{id}": {
       "get": {
         "summary": "Get segment by id",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4584,7 +2288,9 @@
       },
       "patch": {
         "summary": "Update segment",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4626,7 +2332,9 @@
       },
       "delete": {
         "summary": "Delete segment",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4652,7 +2360,9 @@
     "/api/admin/segments": {
       "get": {
         "summary": "List segments with pagination",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4692,7 +2402,9 @@
       },
       "post": {
         "summary": "Create a segment",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4704,7 +2416,10 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["name", "emoji"],
+                "required": [
+                  "name",
+                  "emoji"
+                ],
                 "properties": {
                   "name": {
                     "type": "string"
@@ -4727,7 +2442,9 @@
     "/api/admin/settings": {
       "get": {
         "summary": "Get application registration and security settings",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4747,7 +2464,9 @@
       },
       "put": {
         "summary": "Update application registration and security settings",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4799,95 +2518,12 @@
         }
       }
     },
-    "/api/admin/subscriptions/{id}/invoices": {
-      "get": {
-        "summary": "List subscription invoices by subscription ID (admin)",
-        "description": "Returns the invoices timeline for a subscription using the subscription row ID (UUID).\n",
-        "tags": ["Subscriptions Admin"],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Subscription ID (UUID)"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Subscription invoices returned"
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/admin/subscriptions/events/{id}": {
-      "get": {
-        "summary": "Get subscription event by ID (admin)",
-        "description": "Returns a single subscription event using event row ID (UUID).",
-        "tags": ["Subscriptions Admin"],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Subscription event ID (UUID)"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Subscription event returned"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Subscription event not found"
-          }
-        }
-      }
-    },
     "/api/admin/users/{id}/ban": {
       "patch": {
         "summary": "Ban a user",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4992,7 +2628,9 @@
     "/api/admin/users/{id}/impersonate": {
       "post": {
         "summary": "Impersonate a user (create session as user)",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5047,7 +2685,9 @@
     "/api/admin/users/{id}/revoke-sessions": {
       "post": {
         "summary": "Revoke all user sessions",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5123,7 +2763,9 @@
     "/api/admin/users/{id}/role": {
       "patch": {
         "summary": "Update user role",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5145,11 +2787,18 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["role"],
+                "required": [
+                  "role"
+                ],
                 "properties": {
                   "role": {
                     "type": "string",
-                    "enum": ["user", "admin", "support", "content_manager"]
+                    "enum": [
+                      "user",
+                      "admin",
+                      "support",
+                      "content_manager"
+                    ]
                   }
                 }
               }
@@ -5226,7 +2875,9 @@
     "/api/admin/users/{id}": {
       "get": {
         "summary": "Get user by id",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5310,7 +2961,9 @@
       },
       "delete": {
         "summary": "Delete a user",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5396,7 +3049,9 @@
     "/api/admin/users/{id}/segment": {
       "patch": {
         "summary": "Update user segment",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5438,7 +3093,9 @@
     "/api/admin/users/{id}/unban": {
       "patch": {
         "summary": "Unban a user",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5514,7 +3171,9 @@
     "/api/admin/users": {
       "get": {
         "summary": "List users with pagination and filtering",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5558,7 +3217,10 @@
             "name": "sortDirection",
             "schema": {
               "type": "string",
-              "enum": ["asc", "desc"]
+              "enum": [
+                "asc",
+                "desc"
+              ]
             }
           },
           {
@@ -5566,7 +3228,12 @@
             "name": "role",
             "schema": {
               "type": "string",
-              "enum": ["user", "admin", "support", "content_manager"]
+              "enum": [
+                "user",
+                "admin",
+                "support",
+                "content_manager"
+              ]
             }
           },
           {
@@ -5574,7 +3241,10 @@
             "name": "status",
             "schema": {
               "type": "string",
-              "enum": ["active", "banned"]
+              "enum": [
+                "active",
+                "banned"
+              ]
             }
           },
           {
@@ -5596,22 +3266,6 @@
             "name": "phone",
             "schema": {
               "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "subscriptionPlan",
-            "schema": {
-              "type": "string",
-              "enum": ["all", "free", "trial", "pro"]
-            }
-          },
-          {
-            "in": "query",
-            "name": "subscriptionStatus",
-            "schema": {
-              "type": "string",
-              "enum": ["all", "active", "inactive"]
             }
           }
         ],
@@ -5679,7 +3333,9 @@
       },
       "post": {
         "summary": "Create a new user",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5691,7 +3347,11 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["name", "email", "password"],
+                "required": [
+                  "name",
+                  "email",
+                  "password"
+                ],
                 "properties": {
                   "name": {
                     "type": "string"
@@ -5709,7 +3369,12 @@
                   },
                   "role": {
                     "type": "string",
-                    "enum": ["user", "admin", "support", "content_manager"]
+                    "enum": [
+                      "user",
+                      "admin",
+                      "support",
+                      "content_manager"
+                    ]
                   },
                   "data": {
                     "type": "object",
@@ -5793,7 +3458,9 @@
     "/api/announcements/mark-seen": {
       "post": {
         "summary": "Mark targeted announcements as seen",
-        "tags": ["Announcements"],
+        "tags": [
+          "Announcements"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5805,7 +3472,9 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["announcementIds"],
+                "required": [
+                  "announcementIds"
+                ],
                 "properties": {
                   "announcementIds": {
                     "type": "array",
@@ -5831,7 +3500,9 @@
     "/api/announcements": {
       "get": {
         "summary": "List targeted announcements history",
-        "tags": ["Announcements"],
+        "tags": [
+          "Announcements"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5868,7 +3539,9 @@
     "/api/announcements/unseen-count": {
       "get": {
         "summary": "Get unseen targeted announcements count",
-        "tags": ["Announcements"],
+        "tags": [
+          "Announcements"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5913,7 +3586,9 @@
     "/api/announcements/unseen": {
       "get": {
         "summary": "List unseen targeted announcements",
-        "tags": ["Announcements"],
+        "tags": [
+          "Announcements"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5933,7 +3608,9 @@
       "post": {
         "summary": "Register a new user account",
         "description": "Better Auth email/password sign-up. All POST /api/auth requests require Content-Type application/json (Swagger sends it when a JSON body is defined).",
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -5960,7 +3637,11 @@
                     "description": "Optional redirect after sign-up (path or absolute URL)"
                   }
                 },
-                "required": ["email", "password", "name"]
+                "required": [
+                  "email",
+                  "password",
+                  "name"
+                ]
               }
             }
           }
@@ -5982,7 +3663,9 @@
       "post": {
         "summary": "Sign in to user account",
         "description": "Better Auth email/password sign-in. Requires application/json. Session is set via Set-Cookie; sign in first in this browser to reuse cookies on other Auth calls.",
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -6009,7 +3692,10 @@
                     "description": "Optional redirect after sign-in"
                   }
                 },
-                "required": ["email", "password"]
+                "required": [
+                  "email",
+                  "password"
+                ]
               }
             }
           }
@@ -6031,7 +3717,9 @@
       "post": {
         "summary": "Sign out from user account",
         "description": "Terminate the session. Better Auth requires Content-Type application/json; send body {}. Requires the session cookie (sign in via POST /api/auth/sign-in/email in this browser first).",
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "security": [
           {
             "cookieAuth": []
@@ -6066,7 +3754,9 @@
       "get": {
         "summary": "Get current session (Better Auth)",
         "description": "Better Auth exposes GET /get-session (not /session). Send the session cookie. Returns { session, user } or null when unauthenticated.",
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "security": [
           {
             "cookieAuth": []
@@ -6120,7 +3810,9 @@
       "post": {
         "summary": "Request password reset",
         "description": "Send a password reset email. Requires application/json. Optional redirectTo should match your reset page path (e.g. with locale).",
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -6138,7 +3830,9 @@
                     "description": "URL (or path) to open after reset link (token in query)"
                   }
                 },
-                "required": ["email"]
+                "required": [
+                  "email"
+                ]
               }
             }
           }
@@ -6157,7 +3851,9 @@
       "post": {
         "summary": "Reset user password (Better Auth)",
         "description": "POST /reset-password under /api/auth. Requires application/json. Body must use newPassword and token (from reset email query string), not password.",
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -6175,7 +3871,10 @@
                     "description": "Reset token from email link (?token=…)"
                   }
                 },
-                "required": ["newPassword", "token"]
+                "required": [
+                  "newPassword",
+                  "token"
+                ]
               }
             }
           }
@@ -6194,7 +3893,9 @@
       "post": {
         "summary": "Change user password (Better Auth)",
         "description": "POST /change-password under /api/auth. Requires application/json and session cookie. Body uses currentPassword and newPassword (not oldPassword). Optional revokeOtherSessions invalidates other devices.",
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "security": [
           {
             "cookieAuth": []
@@ -6222,7 +3923,10 @@
                     "description": "If true, sign out other sessions (default false if omitted)"
                   }
                 },
-                "required": ["currentPassword", "newPassword"]
+                "required": [
+                  "currentPassword",
+                  "newPassword"
+                ]
               }
             }
           }
@@ -6244,18 +3948,25 @@
       "post": {
         "summary": "Start OAuth / social sign-in (Better Auth)",
         "description": "POST /sign-in/social — initiates GitHub or Google OAuth (returns JSON with redirect URL or sets Location). Requires application/json. Not GET /oauth/{provider}.",
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["provider"],
+                "required": [
+                  "provider"
+                ],
                 "properties": {
                   "provider": {
                     "type": "string",
-                    "enum": ["google", "github"],
+                    "enum": [
+                      "google",
+                      "github"
+                    ],
                     "description": "Social provider id"
                   },
                   "callbackURL": {
@@ -6296,7 +4007,9 @@
       "get": {
         "summary": "OAuth callback (Better Auth)",
         "description": "Provider redirects here after authorization (e.g. /api/auth/callback/github). Query parameters include code and state; do not call manually from Swagger unless completing a real OAuth round-trip.",
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -6304,7 +4017,10 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": ["google", "github"]
+              "enum": [
+                "google",
+                "github"
+              ]
             },
             "description": "OAuth provider id"
           },
@@ -6338,7 +4054,9 @@
     "/api/blog-comments/{id}": {
       "patch": {
         "summary": "Update own blog comment",
-        "tags": ["Blogs"],
+        "tags": [
+          "Blogs"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -6360,7 +4078,9 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["body"],
+                "required": [
+                  "body"
+                ],
                 "properties": {
                   "body": {
                     "type": "string"
@@ -6387,7 +4107,9 @@
       },
       "delete": {
         "summary": "Delete own blog comment",
-        "tags": ["Blogs"],
+        "tags": [
+          "Blogs"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -6422,7 +4144,9 @@
     "/api/blogs/{slug}/comments": {
       "get": {
         "summary": "List comments for a published blog (authenticated)",
-        "tags": ["Blogs"],
+        "tags": [
+          "Blogs"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -6469,7 +4193,9 @@
       },
       "post": {
         "summary": "Create a comment on a published blog (authenticated)",
-        "tags": ["Blogs"],
+        "tags": [
+          "Blogs"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -6491,7 +4217,9 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["body"],
+                "required": [
+                  "body"
+                ],
                 "properties": {
                   "body": {
                     "type": "string"
@@ -6517,7 +4245,9 @@
     "/api/blogs/{slug}": {
       "get": {
         "summary": "Get published blog by slug",
-        "tags": ["Blogs"],
+        "tags": [
+          "Blogs"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -6541,7 +4271,9 @@
     "/api/blogs/featured": {
       "get": {
         "summary": "List featured published blogs",
-        "tags": ["Blogs"],
+        "tags": [
+          "Blogs"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -6586,7 +4318,9 @@
       "get": {
         "summary": "List related published blogs by shared tags",
         "description": "Returns up to three published blogs that share tags with the given post, ordered by how many tags overlap (then newest first). Empty list when the source has no tags or no overlaps. 404 if the blog id is missing or not public.\n",
-        "tags": ["Blogs"],
+        "tags": [
+          "Blogs"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -6610,7 +4344,9 @@
     "/api/blogs": {
       "get": {
         "summary": "List published blogs",
-        "tags": ["Blogs"],
+        "tags": [
+          "Blogs"
+        ],
         "parameters": [
           {
             "in": "query",
@@ -6654,7 +4390,9 @@
     "/api/blogs/slugs": {
       "get": {
         "summary": "List published blog slugs",
-        "tags": ["Blogs"],
+        "tags": [
+          "Blogs"
+        ],
         "responses": {
           "200": {
             "description": "Published blog slugs list"
@@ -6665,7 +4403,9 @@
     "/api/blogs/top-tags": {
       "get": {
         "summary": "Most-used tags on published blogs",
-        "tags": ["Blogs"],
+        "tags": [
+          "Blogs"
+        ],
         "responses": {
           "200": {
             "description": "Up to 15 tag strings (no blog bodies), cached in Redis"
@@ -6676,14 +4416,20 @@
     "/api/contact": {
       "post": {
         "summary": "Submit a contact form message",
-        "tags": ["Contact"],
+        "tags": [
+          "Contact"
+        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["name", "email", "message"],
+                "required": [
+                  "name",
+                  "email",
+                  "message"
+                ],
                 "properties": {
                   "name": {
                     "type": "string"
@@ -6738,7 +4484,9 @@
       "post": {
         "summary": "Move an asset to another folder",
         "description": "Content manager/admin only. Renames the asset in Cloudinary to the target folder path,\nthen updates the database row (public id, URLs, folder label).\n",
-        "tags": ["Content Assets"],
+        "tags": [
+          "Content Assets"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -6761,7 +4509,9 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["folder"],
+                "required": [
+                  "folder"
+                ],
                 "properties": {
                   "folder": {
                     "type": "string",
@@ -6800,7 +4550,9 @@
       "post": {
         "summary": "Finalize an in-place asset replacement and refresh metadata",
         "description": "Content manager/admin only. Re-fetches Cloudinary metadata by the same public_id and updates\nmutable metadata in DB. The asset id/public_id/URL stay unchanged after replace.\n",
-        "tags": ["Content Assets"],
+        "tags": [
+          "Content Assets"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -6823,7 +4575,9 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["publicId"],
+                "required": [
+                  "publicId"
+                ],
                 "properties": {
                   "publicId": {
                     "type": "string",
@@ -6960,7 +4714,9 @@
       "post": {
         "summary": "Generate signed Cloudinary params to replace an existing asset in place",
         "description": "Content manager/admin only. Uses the existing asset public_id and returns signed params\nwith overwrite + invalidate so the asset URL/public_id remains unchanged while content is replaced.\n",
-        "tags": ["Content Assets"],
+        "tags": [
+          "Content Assets"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -6983,7 +4739,11 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["fileName", "fileSize", "mimeType"],
+                "required": [
+                  "fileName",
+                  "fileSize",
+                  "mimeType"
+                ],
                 "properties": {
                   "fileName": {
                     "type": "string",
@@ -7038,7 +4798,10 @@
                             },
                             "resourceType": {
                               "type": "string",
-                              "enum": ["image", "raw"]
+                              "enum": [
+                                "image",
+                                "raw"
+                              ]
                             },
                             "overwrite": {
                               "type": "boolean",
@@ -7118,7 +4881,9 @@
       "get": {
         "summary": "Get asset by ID",
         "description": "Content manager/admin only.",
-        "tags": ["Content Assets"],
+        "tags": [
+          "Content Assets"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -7164,7 +4929,11 @@
                         },
                         "resourceType": {
                           "type": "string",
-                          "enum": ["image", "video", "raw"]
+                          "enum": [
+                            "image",
+                            "video",
+                            "raw"
+                          ]
                         },
                         "format": {
                           "type": "string",
@@ -7254,7 +5023,9 @@
       "delete": {
         "summary": "Delete asset by ID",
         "description": "Content manager/admin only. Deletes the asset in Cloudinary first,\nthen deletes the local DB row.\n",
-        "tags": ["Content Assets"],
+        "tags": [
+          "Content Assets"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -7346,7 +5117,9 @@
       "patch": {
         "summary": "Update asset tags",
         "description": "Content manager/admin only. Updates mutable tags for an asset.\nFor backward compatibility, this endpoint also accepts filename updates.\n",
-        "tags": ["Content Assets"],
+        "tags": [
+          "Content Assets"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -7371,7 +5144,9 @@
                 "oneOf": [
                   {
                     "type": "object",
-                    "required": ["tags"],
+                    "required": [
+                      "tags"
+                    ],
                     "properties": {
                       "tags": {
                         "type": "array",
@@ -7386,7 +5161,9 @@
                   },
                   {
                     "type": "object",
-                    "required": ["filename"],
+                    "required": [
+                      "filename"
+                    ],
                     "properties": {
                       "filename": {
                         "type": "string",
@@ -7489,7 +5266,9 @@
       "get": {
         "summary": "List/search assets",
         "description": "Content manager/admin only. Returns paginated assets with optional filters.",
-        "tags": ["Content Assets"],
+        "tags": [
+          "Content Assets"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -7517,7 +5296,11 @@
             "name": "resourceType",
             "schema": {
               "type": "string",
-              "enum": ["image", "video", "raw"]
+              "enum": [
+                "image",
+                "video",
+                "raw"
+              ]
             },
             "description": "Exact resource type filter"
           },
@@ -7580,7 +5363,11 @@
                           },
                           "resourceType": {
                             "type": "string",
-                            "enum": ["image", "video", "raw"]
+                            "enum": [
+                              "image",
+                              "video",
+                              "raw"
+                            ]
                           },
                           "format": {
                             "type": "string",
@@ -7676,7 +5463,9 @@
       "get": {
         "summary": "List all distinct asset tags",
         "description": "Content manager/admin only. Returns sorted distinct tags used by assets.",
-        "tags": ["Content Assets"],
+        "tags": [
+          "Content Assets"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -7741,7 +5530,9 @@
       "post": {
         "summary": "Finalize image upload and persist verified metadata",
         "description": "Content manager/admin only. Verifies the Cloudinary asset using server-side Admin API,\nthen stores the normalized metadata in media_files.\n",
-        "tags": ["Content Assets"],
+        "tags": [
+          "Content Assets"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -7753,7 +5544,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["publicId", "resourceType", "bytes", "folder"],
+                "required": [
+                  "publicId",
+                  "resourceType",
+                  "bytes",
+                  "folder"
+                ],
                 "properties": {
                   "publicId": {
                     "type": "string",
@@ -7762,7 +5558,11 @@
                   },
                   "resourceType": {
                     "type": "string",
-                    "enum": ["image", "video", "raw"]
+                    "enum": [
+                      "image",
+                      "video",
+                      "raw"
+                    ]
                   },
                   "format": {
                     "type": "string"
@@ -7827,7 +5627,11 @@
                         },
                         "resourceType": {
                           "type": "string",
-                          "enum": ["image", "video", "raw"]
+                          "enum": [
+                            "image",
+                            "video",
+                            "raw"
+                          ]
                         },
                         "format": {
                           "type": "string",
@@ -7939,7 +5743,9 @@
       "post": {
         "summary": "Generate signed Cloudinary upload params for image/file assets",
         "description": "Content manager/admin only. Validates asset metadata and returns signed upload parameters.",
-        "tags": ["Content Assets"],
+        "tags": [
+          "Content Assets"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -7961,7 +5767,10 @@
                 "properties": {
                   "assetType": {
                     "type": "string",
-                    "enum": ["image", "file"]
+                    "enum": [
+                      "image",
+                      "file"
+                    ]
                   },
                   "fileName": {
                     "type": "string",
@@ -8031,7 +5840,10 @@
                             },
                             "resourceType": {
                               "type": "string",
-                              "enum": ["image", "raw"]
+                              "enum": [
+                                "image",
+                                "raw"
+                              ]
                             },
                             "allowedFormats": {
                               "type": "array",
@@ -8095,7 +5907,10 @@
     "/api/content/blogs/{id}": {
       "get": {
         "summary": "Get blog by id for content staff",
-        "tags": ["Blogs", "Content"],
+        "tags": [
+          "Blogs",
+          "Content"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8128,7 +5943,10 @@
       },
       "patch": {
         "summary": "Update blog by id",
-        "tags": ["Blogs", "Content"],
+        "tags": [
+          "Blogs",
+          "Content"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8161,7 +5979,10 @@
       },
       "delete": {
         "summary": "Delete blog by id",
-        "tags": ["Blogs", "Content"],
+        "tags": [
+          "Blogs",
+          "Content"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8196,7 +6017,10 @@
     "/api/content/blogs": {
       "get": {
         "summary": "List blogs for content staff",
-        "tags": ["Blogs", "Content"],
+        "tags": [
+          "Blogs",
+          "Content"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8222,7 +6046,11 @@
             "name": "status",
             "schema": {
               "type": "string",
-              "enum": ["draft", "published", "archived"]
+              "enum": [
+                "draft",
+                "published",
+                "archived"
+              ]
             }
           },
           {
@@ -8271,7 +6099,10 @@
       },
       "post": {
         "summary": "Create blog",
-        "tags": ["Blogs", "Content"],
+        "tags": [
+          "Blogs",
+          "Content"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8344,7 +6175,11 @@
                   },
                   "status": {
                     "type": "string",
-                    "enum": ["draft", "published", "archived"]
+                    "enum": [
+                      "draft",
+                      "published",
+                      "archived"
+                    ]
                   },
                   "publishDate": {
                     "type": "string",
@@ -8373,7 +6208,10 @@
       "post": {
         "summary": "Resume sending an interrupted campaign via BullMQ",
         "description": "Content manager or admin only. Re-enqueues unsent or expired-lease subscribers.",
-        "tags": ["Content", "Newsletter"],
+        "tags": [
+          "Content",
+          "Newsletter"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8403,7 +6241,10 @@
       "get": {
         "summary": "Get newsletter campaign with send stats",
         "description": "Content manager or admin only.",
-        "tags": ["Content", "Newsletter"],
+        "tags": [
+          "Content",
+          "Newsletter"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8428,7 +6269,10 @@
       "patch": {
         "summary": "Update newsletter campaign",
         "description": "Edits bilingual content and website-channel fields at any status (e.g. fix typos or public archive settings after send).",
-        "tags": ["Content", "Newsletter"],
+        "tags": [
+          "Content",
+          "Newsletter"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8453,7 +6297,10 @@
       "delete": {
         "summary": "Delete a draft campaign",
         "description": "Only campaigns in `draft` status can be deleted. Content manager or admin only.",
-        "tags": ["Content", "Newsletter"],
+        "tags": [
+          "Content",
+          "Newsletter"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8486,7 +6333,10 @@
       "post": {
         "summary": "Queue sending a draft campaign via BullMQ",
         "description": "Content manager or admin only.",
-        "tags": ["Content", "Newsletter"],
+        "tags": [
+          "Content",
+          "Newsletter"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8516,7 +6366,10 @@
       "get": {
         "summary": "List newsletter campaigns",
         "description": "Content manager or admin only.\nRows omit bodyAr and bodyEn (subjects and metadata only) to keep payloads small.\n",
-        "tags": ["Content", "Newsletter"],
+        "tags": [
+          "Content",
+          "Newsletter"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8546,7 +6399,10 @@
       },
       "post": {
         "summary": "Create a draft newsletter campaign",
-        "tags": ["Content", "Newsletter"],
+        "tags": [
+          "Content",
+          "Newsletter"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8558,7 +6414,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["subjectAr", "subjectEn", "bodyAr", "bodyEn"],
+                "required": [
+                  "subjectAr",
+                  "subjectEn",
+                  "bodyAr",
+                  "bodyEn"
+                ],
                 "properties": {
                   "subjectAr": {
                     "type": "string"
@@ -8591,7 +6452,10 @@
       "get": {
         "summary": "List newsletter subscribers",
         "description": "Content manager or admin only.",
-        "tags": ["Content", "Newsletter"],
+        "tags": [
+          "Content",
+          "Newsletter"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8620,73 +6484,12 @@
         }
       }
     },
-    "/api/coupons/redeem/gift": {
-      "post": {
-        "summary": "Redeem a gift coupon for current user",
-        "tags": ["Subscriptions"],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": ["code"],
-                "properties": {
-                  "code": {
-                    "type": "string",
-                    "description": "Coupon code"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Gift coupon redeemed"
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Coupon not found / invalid",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Coupon already redeemed or exhausted",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/dashboard/newsletter": {
       "get": {
         "summary": "Newsletter subscription status for the current user (by account email)",
-        "tags": ["Dashboard"],
+        "tags": [
+          "Dashboard"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8700,7 +6503,9 @@
       },
       "post": {
         "summary": "Subscribe the current user's account email to the newsletter",
-        "tags": ["Dashboard"],
+        "tags": [
+          "Dashboard"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8709,7 +6514,9 @@
       },
       "delete": {
         "summary": "Unsubscribe the current user's account email from the newsletter",
-        "tags": ["Dashboard"],
+        "tags": [
+          "Dashboard"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8718,7 +6525,9 @@
       },
       "patch": {
         "summary": "Set preferred newsletter email locale (en or ar) for an active newsletter subscription",
-        "tags": ["Dashboard"],
+        "tags": [
+          "Dashboard"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8729,7 +6538,9 @@
     "/api/dashboard/newsletters/{slug}": {
       "get": {
         "summary": "Get a website-public completed newsletter article by slug (includes both bodies)",
-        "tags": ["Dashboard"],
+        "tags": [
+          "Dashboard"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8759,7 +6570,9 @@
       "get": {
         "summary": "List website-public completed newsletter campaigns (no HTML bodies)",
         "description": "Authenticated users only. Sorted newest first by startedAt (with fallbacks).",
-        "tags": ["Dashboard"],
+        "tags": [
+          "Dashboard"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8794,7 +6607,9 @@
     "/api/dashboard/settings": {
       "get": {
         "summary": "Get dashboard settings bootstrap data for the current user",
-        "tags": ["Dashboard"],
+        "tags": [
+          "Dashboard"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8864,7 +6679,9 @@
     "/api/dashboard/user-media/editor-image/complete": {
       "post": {
         "summary": "Complete Cloudflare R2 upload for rich text editor image",
-        "tags": ["UserMedia"],
+        "tags": [
+          "UserMedia"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8876,7 +6693,9 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["objectKey"],
+                "required": [
+                  "objectKey"
+                ],
                 "properties": {
                   "objectKey": {
                     "type": "string"
@@ -8896,7 +6715,9 @@
     "/api/dashboard/user-media/editor-image/presign": {
       "post": {
         "summary": "Presign Cloudflare R2 upload URL for rich text editor image",
-        "tags": ["UserMedia"],
+        "tags": [
+          "UserMedia"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8908,7 +6729,10 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["contentType", "fileSize"],
+                "required": [
+                  "contentType",
+                  "fileSize"
+                ],
                 "properties": {
                   "contentType": {
                     "type": "string",
@@ -8939,7 +6763,9 @@
     "/api/fcm/custom-topics": {
       "get": {
         "summary": "List available and subscribed custom FCM topics",
-        "tags": ["FCM"],
+        "tags": [
+          "FCM"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8960,7 +6786,9 @@
       },
       "post": {
         "summary": "Subscribe/unsubscribe current user to a custom topic",
-        "tags": ["FCM"],
+        "tags": [
+          "FCM"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8994,7 +6822,9 @@
       "post": {
         "summary": "Register or refresh current user FCM token",
         "description": "Authenticated endpoint. Conditionally upserts a token document at\n`fcm_tokens/{userId}/tokens/{token}` (skip write when unchanged), syncs topic\nsubscriptions, and updates `updatedAt` for Firestore TTL when written.\n",
-        "tags": ["FCM"],
+        "tags": [
+          "FCM"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -9048,7 +6878,9 @@
       "post": {
         "summary": "Send a test push notification to current user",
         "description": "Authenticated endpoint. Sends a predefined test push notification\nto the currently authenticated user only.\n",
-        "tags": ["FCM"],
+        "tags": [
+          "FCM"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -9074,7 +6906,9 @@
     "/api/fcm/tokens": {
       "get": {
         "summary": "List current user registered FCM tokens",
-        "tags": ["FCM"],
+        "tags": [
+          "FCM"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -9107,7 +6941,9 @@
     "/api/fcm/unregister-all": {
       "post": {
         "summary": "Unregister all current user FCM tokens",
-        "tags": ["FCM"],
+        "tags": [
+          "FCM"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -9141,7 +6977,9 @@
       "post": {
         "summary": "Unregister current user FCM token",
         "description": "Authenticated endpoint. Deletes token document at\n`fcm_tokens/{userId}/tokens/{token}`.\n",
-        "tags": ["FCM"],
+        "tags": [
+          "FCM"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -9195,7 +7033,9 @@
       "get": {
         "summary": "Get feedback by ID",
         "description": "Returns a feedback entry by ID.\nUsers can only access their own feedback, while Support/Admin can access any feedback.\n",
-        "tags": ["Feedbacks"],
+        "tags": [
+          "Feedbacks"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -9235,7 +7075,10 @@
                         },
                         "type": {
                           "type": "string",
-                          "enum": ["suggestion", "complaint"]
+                          "enum": [
+                            "suggestion",
+                            "complaint"
+                          ]
                         },
                         "subject": {
                           "type": "string"
@@ -9245,7 +7088,11 @@
                         },
                         "status": {
                           "type": "string",
-                          "enum": ["new", "reviewed", "closed"]
+                          "enum": [
+                            "new",
+                            "reviewed",
+                            "closed"
+                          ]
                         },
                         "createdAt": {
                           "type": "string",
@@ -9291,7 +7138,9 @@
       "delete": {
         "summary": "Delete feedback",
         "description": "Support/Admin only.",
-        "tags": ["Feedbacks"],
+        "tags": [
+          "Feedbacks"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -9349,7 +7198,9 @@
       "patch": {
         "summary": "Update feedback status",
         "description": "Support/Admin only.",
-        "tags": ["Feedbacks"],
+        "tags": [
+          "Feedbacks"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -9372,11 +7223,17 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["status"],
+                "required": [
+                  "status"
+                ],
                 "properties": {
                   "status": {
                     "type": "string",
-                    "enum": ["new", "reviewed", "closed"]
+                    "enum": [
+                      "new",
+                      "reviewed",
+                      "closed"
+                    ]
                   }
                 }
               }
@@ -9403,7 +7260,11 @@
                         },
                         "status": {
                           "type": "string",
-                          "enum": ["new", "reviewed", "closed"]
+                          "enum": [
+                            "new",
+                            "reviewed",
+                            "closed"
+                          ]
                         },
                         "updatedAt": {
                           "type": "string",
@@ -9467,7 +7328,9 @@
       "get": {
         "summary": "List current user's feedback entries",
         "description": "Paginated feedback for the signed-in user only (all roles).\nFor the full queue, use GET /api/support/staff/feedbacks (admin/support).\n",
-        "tags": ["Feedbacks"],
+        "tags": [
+          "Feedbacks"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -9479,7 +7342,11 @@
             "name": "status",
             "schema": {
               "type": "string",
-              "enum": ["new", "reviewed", "closed"]
+              "enum": [
+                "new",
+                "reviewed",
+                "closed"
+              ]
             },
             "description": "Filter by feedback status"
           },
@@ -9488,7 +7355,10 @@
             "name": "type",
             "schema": {
               "type": "string",
-              "enum": ["suggestion", "complaint"]
+              "enum": [
+                "suggestion",
+                "complaint"
+              ]
             },
             "description": "Filter by feedback type"
           },
@@ -9497,7 +7367,10 @@
             "name": "sortDirection",
             "schema": {
               "type": "string",
-              "enum": ["asc", "desc"],
+              "enum": [
+                "asc",
+                "desc"
+              ],
               "default": "desc"
             },
             "description": "Sort by created date direction"
@@ -9552,7 +7425,10 @@
                           },
                           "type": {
                             "type": "string",
-                            "enum": ["suggestion", "complaint"]
+                            "enum": [
+                              "suggestion",
+                              "complaint"
+                            ]
                           },
                           "subject": {
                             "type": "string"
@@ -9562,7 +7438,11 @@
                           },
                           "status": {
                             "type": "string",
-                            "enum": ["new", "reviewed", "closed"]
+                            "enum": [
+                              "new",
+                              "reviewed",
+                              "closed"
+                            ]
                           },
                           "createdAt": {
                             "type": "string",
@@ -9611,7 +7491,9 @@
       },
       "post": {
         "summary": "Create feedback entry",
-        "tags": ["Feedbacks"],
+        "tags": [
+          "Feedbacks"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -9623,11 +7505,18 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["type", "subject", "description"],
+                "required": [
+                  "type",
+                  "subject",
+                  "description"
+                ],
                 "properties": {
                   "type": {
                     "type": "string",
-                    "enum": ["suggestion", "complaint"]
+                    "enum": [
+                      "suggestion",
+                      "complaint"
+                    ]
                   },
                   "subject": {
                     "type": "string",
@@ -9667,7 +7556,10 @@
                         },
                         "type": {
                           "type": "string",
-                          "enum": ["suggestion", "complaint"]
+                          "enum": [
+                            "suggestion",
+                            "complaint"
+                          ]
                         },
                         "subject": {
                           "type": "string"
@@ -9677,7 +7569,11 @@
                         },
                         "status": {
                           "type": "string",
-                          "enum": ["new", "reviewed", "closed"]
+                          "enum": [
+                            "new",
+                            "reviewed",
+                            "closed"
+                          ]
                         },
                         "createdAt": {
                           "type": "string",
@@ -9725,7 +7621,9 @@
       "get": {
         "summary": "Health check endpoint",
         "description": "Returns the health status of the API",
-        "tags": ["Health"],
+        "tags": [
+          "Health"
+        ],
         "responses": {
           "200": {
             "description": "API is healthy",
@@ -9754,14 +7652,18 @@
     "/api/newsletter/subscribe": {
       "post": {
         "summary": "Subscribe to the newsletter (single opt-in)",
-        "tags": ["Newsletter"],
+        "tags": [
+          "Newsletter"
+        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["email"],
+                "required": [
+                  "email"
+                ],
                 "properties": {
                   "email": {
                     "type": "string",
@@ -9769,7 +7671,10 @@
                   },
                   "locale": {
                     "type": "string",
-                    "enum": ["ar", "en"]
+                    "enum": [
+                      "ar",
+                      "en"
+                    ]
                   }
                 }
               }
@@ -9789,14 +7694,18 @@
     "/api/newsletter/unsubscribe": {
       "post": {
         "summary": "Confirm newsletter unsubscribe (POST only — use confirm page first)",
-        "tags": ["Newsletter"],
+        "tags": [
+          "Newsletter"
+        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["token"],
+                "required": [
+                  "token"
+                ],
                 "properties": {
                   "token": {
                     "type": "string"
@@ -9819,7 +7728,9 @@
     "/api/notifications/{id}/read": {
       "patch": {
         "summary": "Mark one in-app notification as read (idempotent)",
-        "tags": ["Notifications"],
+        "tags": [
+          "Notifications"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -9851,7 +7762,9 @@
     "/api/notifications/mark-all-read": {
       "post": {
         "summary": "Mark all in-app notifications as read for the current user",
-        "tags": ["Notifications"],
+        "tags": [
+          "Notifications"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -9870,7 +7783,9 @@
     "/api/notifications/read": {
       "get": {
         "summary": "List read in-app notifications (cursor pagination)",
-        "tags": ["Notifications"],
+        "tags": [
+          "Notifications"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -9912,7 +7827,9 @@
     "/api/notifications": {
       "get": {
         "summary": "List in-app notifications (cursor pagination)",
-        "tags": ["Notifications"],
+        "tags": [
+          "Notifications"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -9924,7 +7841,10 @@
             "name": "unreadOnly",
             "schema": {
               "type": "string",
-              "enum": [true, false]
+              "enum": [
+                true,
+                false
+              ]
             },
             "description": "When true (default), only unread items"
           },
@@ -9963,7 +7883,9 @@
     "/api/notifications/unread-count": {
       "get": {
         "summary": "In-app unread notification count",
-        "tags": ["Notifications"],
+        "tags": [
+          "Notifications"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -9982,7 +7904,9 @@
     "/api/onboarding/complete": {
       "post": {
         "summary": "Mark the current user as onboarded",
-        "tags": ["Onboarding"],
+        "tags": [
+          "Onboarding"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -10001,7 +7925,9 @@
     "/api/projects/{id}/archive": {
       "patch": {
         "summary": "Archive a project",
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -10067,7 +7993,9 @@
     "/api/projects/{id}": {
       "get": {
         "summary": "Get project by ID",
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -10131,7 +8059,9 @@
       },
       "put": {
         "summary": "Update project fields",
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -10255,7 +8185,9 @@
       },
       "delete": {
         "summary": "Delete project",
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -10301,7 +8233,9 @@
     "/api/projects/{id}/unarchive": {
       "patch": {
         "summary": "Unarchive a project",
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -10367,7 +8301,9 @@
     "/api/projects/analytics": {
       "get": {
         "summary": "Return fast todo/note counts for current user",
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -10447,7 +8383,9 @@
     "/api/projects/counts": {
       "get": {
         "summary": "Return fast project count for current user",
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -10527,7 +8465,9 @@
     "/api/projects": {
       "get": {
         "summary": "List projects with pagination and filters",
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -10547,7 +8487,10 @@
             "name": "isArchived",
             "schema": {
               "type": "string",
-              "enum": [true, false]
+              "enum": [
+                true,
+                false
+              ]
             },
             "description": "Filter archived state"
           },
@@ -10556,7 +8499,11 @@
             "name": "sortBy",
             "schema": {
               "type": "string",
-              "enum": ["createdAt", "updatedAt", "name"]
+              "enum": [
+                "createdAt",
+                "updatedAt",
+                "name"
+              ]
             }
           },
           {
@@ -10631,7 +8578,9 @@
       },
       "post": {
         "summary": "Create a project",
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -10643,7 +8592,9 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["name"],
+                "required": [
+                  "name"
+                ],
                 "properties": {
                   "name": {
                     "type": "string",
@@ -10738,7 +8689,9 @@
     "/api/projects/select": {
       "get": {
         "summary": "Search and select projects",
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -10785,80 +8738,13 @@
         }
       }
     },
-    "/api/subscription/trial/start": {
-      "post": {
-        "summary": "Start trial plan for current user",
-        "tags": ["Subscriptions"],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Trial started successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": true
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "started": {
-                          "type": "boolean",
-                          "example": true
-                        },
-                        "subscriptionId": {
-                          "type": "string"
-                        },
-                        "eventId": {
-                          "type": "string",
-                          "nullable": true
-                        }
-                      }
-                    },
-                    "timestamp": {
-                      "type": "string",
-                      "format": "date-time"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Trial already used or current subscription period not expired",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/support/staff/feedbacks": {
       "get": {
         "summary": "List all feedback entries (support desk)",
         "description": "Paginated list of every feedback entry. Restricted to admin and support roles.\n",
-        "tags": ["Feedbacks"],
+        "tags": [
+          "Feedbacks"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -10870,7 +8756,9 @@
       "get": {
         "summary": "Support desk overview analytics",
         "description": "Aggregated ticket and feedback metrics (admin/support only). Two DB round trips with single-pass counts per table.",
-        "tags": ["Support"],
+        "tags": [
+          "Support"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -10882,7 +8770,9 @@
       "get": {
         "summary": "List all support tickets (support desk)",
         "description": "Paginated list of every support ticket. Restricted to admin and support roles.\n",
-        "tags": ["Support"],
+        "tags": [
+          "Support"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -10892,7 +8782,9 @@
       "post": {
         "summary": "Staff initiates a new support ticket/chat with a user",
         "description": "Restricted to admin and support roles. Creates a new ticket assigned to the target user and notifies them.\n",
-        "tags": ["Support"],
+        "tags": [
+          "Support"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -10904,7 +8796,9 @@
       "delete": {
         "summary": "Delete a ticket message",
         "description": "Support or Admin only. Can delete messages sent by the authenticated staff member.",
-        "tags": ["Support"],
+        "tags": [
+          "Support"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -10950,7 +8844,9 @@
       "get": {
         "summary": "List ticket messages",
         "description": "Returns all discussion messages for a ticket. Caller must own the ticket or have support/admin role.",
-        "tags": ["Support"],
+        "tags": [
+          "Support"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -10985,7 +8881,9 @@
       "post": {
         "summary": "Send a ticket message",
         "description": "Adds a new message to the ticket conversation.",
-        "tags": ["Support"],
+        "tags": [
+          "Support"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -11008,7 +8906,9 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["content"],
+                "required": [
+                  "content"
+                ],
                 "properties": {
                   "content": {
                     "type": "string"
@@ -11038,7 +8938,9 @@
       "get": {
         "summary": "Get support ticket by ID",
         "description": "Returns a ticket by ID.\nUsers can only access their own ticket, while Support/Admin can access any ticket.\n",
-        "tags": ["Support"],
+        "tags": [
+          "Support"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -11084,7 +8986,11 @@
                         },
                         "status": {
                           "type": "string",
-                          "enum": ["open", "resolved", "closed"]
+                          "enum": [
+                            "open",
+                            "resolved",
+                            "closed"
+                          ]
                         },
                         "createdAt": {
                           "type": "string",
@@ -11130,7 +9036,9 @@
       "delete": {
         "summary": "Delete support ticket",
         "description": "Support/Admin only.",
-        "tags": ["Support"],
+        "tags": [
+          "Support"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -11188,7 +9096,9 @@
       "patch": {
         "summary": "Update support ticket status",
         "description": "Support/Admin only.",
-        "tags": ["Support"],
+        "tags": [
+          "Support"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -11211,11 +9121,17 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["status"],
+                "required": [
+                  "status"
+                ],
                 "properties": {
                   "status": {
                     "type": "string",
-                    "enum": ["open", "resolved", "closed"]
+                    "enum": [
+                      "open",
+                      "resolved",
+                      "closed"
+                    ]
                   }
                 }
               }
@@ -11242,7 +9158,11 @@
                         },
                         "status": {
                           "type": "string",
-                          "enum": ["open", "resolved", "closed"]
+                          "enum": [
+                            "open",
+                            "resolved",
+                            "closed"
+                          ]
                         },
                         "updatedAt": {
                           "type": "string",
@@ -11306,7 +9226,9 @@
       "get": {
         "summary": "List current user's support tickets",
         "description": "Returns paginated tickets for the signed-in user only (all roles).\nFor the full queue, use GET /api/support/staff/tickets (admin/support).\n",
-        "tags": ["Support"],
+        "tags": [
+          "Support"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -11318,7 +9240,11 @@
             "name": "status",
             "schema": {
               "type": "string",
-              "enum": ["open", "resolved", "closed"]
+              "enum": [
+                "open",
+                "resolved",
+                "closed"
+              ]
             },
             "description": "Filter by ticket status"
           },
@@ -11327,7 +9253,10 @@
             "name": "sortDirection",
             "schema": {
               "type": "string",
-              "enum": ["asc", "desc"],
+              "enum": [
+                "asc",
+                "desc"
+              ],
               "default": "desc"
             },
             "description": "Sort by created date direction"
@@ -11388,7 +9317,11 @@
                           },
                           "status": {
                             "type": "string",
-                            "enum": ["open", "resolved", "closed"]
+                            "enum": [
+                              "open",
+                              "resolved",
+                              "closed"
+                            ]
                           },
                           "createdAt": {
                             "type": "string",
@@ -11437,7 +9370,9 @@
       },
       "post": {
         "summary": "Create support ticket",
-        "tags": ["Support"],
+        "tags": [
+          "Support"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -11449,7 +9384,10 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["subject", "description"],
+                "required": [
+                  "subject",
+                  "description"
+                ],
                 "properties": {
                   "subject": {
                     "type": "string",
@@ -11495,7 +9433,11 @@
                         },
                         "status": {
                           "type": "string",
-                          "enum": ["open", "resolved", "closed"]
+                          "enum": [
+                            "open",
+                            "resolved",
+                            "closed"
+                          ]
                         },
                         "createdAt": {
                           "type": "string",
@@ -11543,7 +9485,9 @@
       "get": {
         "summary": "Get OpenAPI specification",
         "description": "Returns the OpenAPI/Swagger specification for the API",
-        "tags": ["API Documentation"],
+        "tags": [
+          "API Documentation"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -11572,7 +9516,9 @@
     "/api/todos/{id}": {
       "get": {
         "summary": "Get todo by ID",
-        "tags": ["Todos"],
+        "tags": [
+          "Todos"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -11636,7 +9582,9 @@
       },
       "put": {
         "summary": "Update todo fields",
-        "tags": ["Todos"],
+        "tags": [
+          "Todos"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -11676,7 +9624,11 @@
                     "description": "Embedded steps with completion state",
                     "items": {
                       "type": "object",
-                      "required": ["id", "title", "isCompleted"],
+                      "required": [
+                        "id",
+                        "title",
+                        "isCompleted"
+                      ],
                       "properties": {
                         "id": {
                           "type": "string",
@@ -11697,7 +9649,11 @@
                   },
                   "priority": {
                     "type": "string",
-                    "enum": ["low", "medium", "high"],
+                    "enum": [
+                      "low",
+                      "medium",
+                      "high"
+                    ],
                     "nullable": true
                   },
                   "dueDate": {
@@ -11768,7 +9724,9 @@
       },
       "delete": {
         "summary": "Delete todo",
-        "tags": ["Todos"],
+        "tags": [
+          "Todos"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -11814,7 +9772,9 @@
     "/api/todos": {
       "get": {
         "summary": "List todos with pagination and filters",
-        "tags": ["Todos"],
+        "tags": [
+          "Todos"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -11842,7 +9802,11 @@
             "name": "priority",
             "schema": {
               "type": "string",
-              "enum": ["low", "medium", "high"]
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ]
             }
           },
           {
@@ -11850,7 +9814,11 @@
             "name": "sortBy",
             "schema": {
               "type": "string",
-              "enum": ["date", "title", "priority"]
+              "enum": [
+                "date",
+                "title",
+                "priority"
+              ]
             }
           },
           {
@@ -11858,7 +9826,10 @@
             "name": "completed",
             "schema": {
               "type": "string",
-              "enum": [true, false]
+              "enum": [
+                true,
+                false
+              ]
             },
             "description": "Filter by completion status"
           },
@@ -11883,7 +9854,10 @@
             "name": "onlyNoDueDate",
             "schema": {
               "type": "string",
-              "enum": [true, false]
+              "enum": [
+                true,
+                false
+              ]
             },
             "description": "Return only active todos without a due date (inbox)"
           },
@@ -11892,7 +9866,10 @@
             "name": "onlyOverdue",
             "schema": {
               "type": "string",
-              "enum": [true, false]
+              "enum": [
+                true,
+                false
+              ]
             },
             "description": "Return only active overdue todos (due date before today)"
           },
@@ -11977,7 +9954,9 @@
       },
       "post": {
         "summary": "Create a todo",
-        "tags": ["Todos"],
+        "tags": [
+          "Todos"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -11989,7 +9968,9 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["title"],
+                "required": [
+                  "title"
+                ],
                 "properties": {
                   "title": {
                     "type": "string",
@@ -12008,7 +9989,11 @@
                     "description": "Optional embedded steps with completion state",
                     "items": {
                       "type": "object",
-                      "required": ["id", "title", "isCompleted"],
+                      "required": [
+                        "id",
+                        "title",
+                        "isCompleted"
+                      ],
                       "properties": {
                         "id": {
                           "type": "string",
@@ -12026,7 +10011,11 @@
                   },
                   "priority": {
                     "type": "string",
-                    "enum": ["low", "medium", "high"],
+                    "enum": [
+                      "low",
+                      "medium",
+                      "high"
+                    ],
                     "nullable": true
                   },
                   "dueDate": {
@@ -12089,7 +10078,9 @@
     "/api/todos/select": {
       "get": {
         "summary": "Search and select todos",
-        "tags": ["Todos"],
+        "tags": [
+          "Todos"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -12132,7 +10123,9 @@
       "get": {
         "summary": "Redirect to user media public URL by ID",
         "description": "Only the owner of the media file can resolve their media by ID.",
-        "tags": ["User Media"],
+        "tags": [
+          "User Media"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -12168,7 +10161,9 @@
     "/api/user/me": {
       "delete": {
         "summary": "Delete the currently authenticated user's account and all associated data",
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -12237,22 +10232,6 @@
     {
       "name": "FCM",
       "description": "Firebase Cloud Messaging token registration endpoints for authenticated users"
-    },
-    {
-      "name": "Subscriptions",
-      "description": "Subscription plans, entitlements, and user billing endpoints"
-    },
-    {
-      "name": "Subscriptions Admin",
-      "description": "Admin subscription management endpoints"
-    },
-    {
-      "name": "Coupons Admin",
-      "description": "Admin coupon management endpoints"
-    },
-    {
-      "name": "Webhooks",
-      "description": "Inbound webhook receivers for external providers"
     },
     {
       "name": "API Documentation",

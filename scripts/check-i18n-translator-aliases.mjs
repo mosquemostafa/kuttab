@@ -142,7 +142,7 @@ async function main() {
 
   for (const file of files) {
     const content = await readFile(file, "utf8");
-            if (!translatorInitRegex.test(content)) {
+    if (!translatorInitRegex.test(content)) {
       for (const match of content.matchAll(tCallRegex)) {
         const { line, column } = getLineAndColumn(content, match.index ?? 0);
         unscopedTFindings.push({
@@ -294,7 +294,6 @@ async function main() {
       }
     }
 
-
     if (!file.endsWith("layout.tsx")) {
       for (const match of content.matchAll(getMessagesCallRegex)) {
         const { line, column } = getLineAndColumn(content, match.index ?? 0);
@@ -325,7 +324,6 @@ async function main() {
       }
     }
   }
-
 
   const jsonFiles = await collectJsonFiles(MESSAGES_DIR);
   for (const jsonFile of jsonFiles) {
@@ -365,7 +363,7 @@ async function main() {
 
   console.log(`Found ${totalFindings} i18n translator violation(s).`);
 
-      if (unscopedTFindings.length > 0) {
+  if (unscopedTFindings.length > 0) {
     console.log(
       `\nUnscoped t() call violations (${unscopedTFindings.length}) - do not create a fake t() helper in files without useTranslations/getTranslations (causes i18n-ally to report missing root keys):\n`,
     );
@@ -462,13 +460,14 @@ async function main() {
     }
   }
 
-
   if (getMessagesFindings.length > 0) {
     console.log(
       `\ngetMessages() call violations (${getMessagesFindings.length}) - do not use getMessages() to bypass translation keys in components or pages; use explicit t() literals instead so i18n-ally tracks usages:`,
     );
     for (const finding of getMessagesFindings) {
-      console.log(`${finding.file}:${finding.line}:${finding.column} - getMessages() call`);
+      console.log(
+        `${finding.file}:${finding.line}:${finding.column} - getMessages() call`,
+      );
     }
   }
 
@@ -477,7 +476,9 @@ async function main() {
       `\nt.raw() call violations (${rawCallFindings.length}) - do not use t.raw(); use standard t() calls instead:`,
     );
     for (const finding of rawCallFindings) {
-      console.log(`${finding.file}:${finding.line}:${finding.column} - t.raw() call`);
+      console.log(
+        `${finding.file}:${finding.line}:${finding.column} - t.raw() call`,
+      );
     }
   }
 

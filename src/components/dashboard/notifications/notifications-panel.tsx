@@ -107,8 +107,6 @@ function UnreadNotificationsSection() {
   const { mutateUnreadCount } = useNotifications();
   const getNotificationTypeLabel = (value: NotificationDto["type"]) => {
     switch (value) {
-      case "subscription":
-        return t("types.subscription");
       case "system":
         return t("types.system");
       case "social":
@@ -254,8 +252,6 @@ function ReadNotificationsSection() {
   const router = useRouter();
   const getNotificationTypeLabel = (value: NotificationDto["type"]) => {
     switch (value) {
-      case "subscription":
-        return t("types.subscription");
       case "system":
         return t("types.system");
       case "social":

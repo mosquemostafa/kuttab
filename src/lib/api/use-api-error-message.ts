@@ -33,8 +33,6 @@ export function useApiErrorMessage() {
           return t("NEWSLETTER_DISABLED");
         case "TOO_MANY_REQUESTS":
           return t("TOO_MANY_REQUESTS");
-        case "PLAN_LIMIT_EXCEEDED":
-          return t("PLAN_LIMIT_EXCEEDED");
         case "CONFLICT":
           return t("CONFLICT");
         case "TAG_ALREADY_EXISTS":

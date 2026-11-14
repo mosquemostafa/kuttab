@@ -56,21 +56,3 @@ export class RateLimitException extends HttpException {
     super(429, ErrorCodes.TOO_MANY_REQUESTS, message);
   }
 }
-
-type PlanLimitKind = "todos" | "projects" | "editor_images";
-
-/** Subscription / plan numeric limit (todos, projects, editor_images). */
-export class PlanLimitExceededException extends HttpException {
-  constructor(
-    public readonly kind: PlanLimitKind,
-    public readonly limit: number,
-  ) {
-    const message =
-      kind === "todos"
-        ? `Your plan allows at most ${limit} todos.`
-        : kind === "projects"
-          ? `Your plan allows at most ${limit} projects.`
-          : `Your plan allows at most ${limit} editor images.`;
-    super(403, ErrorCodes.PLAN_LIMIT_EXCEEDED, message, { kind, limit });
-  }
-}

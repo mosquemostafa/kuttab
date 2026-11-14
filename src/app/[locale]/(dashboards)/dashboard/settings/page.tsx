@@ -9,7 +9,6 @@ import AccentColorSettings from "@/components/dashboard/accent-color-settings";
 import NewsletterSettings from "@/components/dashboard/newsletter-settings";
 import NotificationSettings from "@/components/dashboard/notification-settings";
 import DeleteAccountCard from "@/components/dashboard/delete-account-card";
-import { CurrentSubscriptionCard } from "@/components/dashboard/subscription/current-subscription-card";
 import { PWAInstallCard } from "@/components/dashboard/pwa-install-card";
 import { getLocale, getTranslations } from "next-intl/server";
 import {
@@ -123,8 +122,6 @@ export default async function UserSettingsPage({
 
       <div className="space-y-6">
         <PersonalInformationForm initialValues={userProfile} />
-
-        <CurrentSubscriptionCard />
 
         <PWAInstallCard />
 

@@ -2,11 +2,6 @@ import { userApi } from "@/lib/api/user.api";
 import { usersApi } from "@/lib/api/users.api";
 import { adminApi } from "@/lib/api/admin.api";
 import { contactApi } from "@/lib/api/contact.api";
-import {
-  subscriptionApi,
-  adminSubscriptionsApi,
-} from "@/lib/api/subscription.api";
-import { couponsApi, adminCouponsApi } from "@/lib/api/coupons.api";
 import { todosApi } from "@/lib/api/todos.api";
 import { projectsApi } from "@/lib/api/projects.api";
 import { supportTicketsApi } from "@/lib/api/support-tickets.api";
@@ -38,10 +33,6 @@ export const apiClient = {
   users: usersApi,
   admin: adminApi,
   contact: contactApi,
-  subscription: subscriptionApi,
-  adminSubscriptions: adminSubscriptionsApi,
-  coupons: couponsApi,
-  adminCoupons: adminCouponsApi,
   todos: todosApi,
   projects: projectsApi,
   supportTickets: supportTicketsApi,

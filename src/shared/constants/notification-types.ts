@@ -1,6 +1,5 @@
 export const NOTIFICATION_TYPES = [
   "system",
-  "subscription",
   "announcement_reference",
   "support_ticket",
   "feedback",

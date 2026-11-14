@@ -206,8 +206,6 @@ function resolveUniqueConstraintMessage(
       return "This video is already in this playlist.";
     case "segment_name_unique":
       return "A segment with this name already exists.";
-    case "coupons_code_unique":
-      return "A coupon with this code already exists.";
     case "blog_slug_unique_idx":
       return "A blog with this slug already exists.";
     case "newsletter_campaigns_slug_unique":
@@ -218,10 +216,7 @@ function resolveUniqueConstraintMessage(
       return "A storage connection for this provider already exists.";
     case "users_announcement_user_announcement_unique":
       return "Announcement already marked as seen.";
-    case "subscriptions_user_id_unique":
-      return "User already has an active subscription record.";
     default:
-      if (table === "coupons") return "A coupon with this code already exists.";
       if (table === "segments")
         return "A segment with this name already exists.";
       if (table === "blogs") return "A blog with this slug already exists.";

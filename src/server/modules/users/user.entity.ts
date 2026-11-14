@@ -1,4 +1,3 @@
-import { SubscriptionPlanEnum } from "@/shared/enums/subscription-plan.enum";
 import { pgTable, text, timestamp, boolean, index } from "drizzle-orm/pg-core";
 
 export interface UserEntity {
@@ -24,8 +23,6 @@ export interface UserEntity {
 export interface UserWithDetailsEntity extends UserEntity {
   accounts: string[];
   lastSignIn: Date | null;
-  subscriptionPlan: SubscriptionPlanEnum | null;
-  subscriptionPlanExpiresAt: Date | null;
 }
 
 export const user = pgTable(

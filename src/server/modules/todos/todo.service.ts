@@ -10,7 +10,6 @@ import type {
 } from "@/server/modules/todos/todo.dto";
 import { NotFoundException } from "@/server/exceptions/exceptions";
 import { projectRepository } from "@/server/modules/projects/project.repository";
-import { assertCanCreateTodo } from "@/server/modules/subscriptions/entitlement-guards";
 import type { ParsedPagination } from "@/server/pipes/parse-pagination.pipe";
 import { todoRepository } from "@/server/modules/todos/todo.repository";
 import type {
@@ -99,7 +98,6 @@ export const todoService = {
   },
 
   async createTodo(userId: string, dto: CreateTodoDTO): Promise<TodoDTO> {
-    await assertCanCreateTodo(userId);
     const projectId = dto.projectId ?? null;
 
     if (projectId) {

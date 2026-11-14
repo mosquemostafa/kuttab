@@ -52,18 +52,6 @@
       "detailNotFoundTitle": "Project not found | SaaS Starter",
       "detailNotFoundDescription": "This project is unavailable or you do not have access."
     },
-    "subscription": {
-      "title": "Subscription | SaaS Starter Dashboard",
-      "description": "View your current plan and review invoice history."
-    },
-    "checkout": {
-      "title": "Checkout | SaaS Starter Dashboard",
-      "description": "Complete your subscription manually through WhatsApp payment verification."
-    },
-    "trial": {
-      "title": "Free Trial | SaaS Starter Dashboard",
-      "description": "Start your free trial instantly and activate trial access on your account."
-    },
     "support": {
       "title": "Support | SaaS Starter Dashboard",
       "description": "Create and track support tickets. Our team will follow up with you by email."
@@ -147,10 +135,6 @@
     "notifications": {
       "title": "Notifications | SaaS Starter Admin",
       "description": "Manage notification settings and tools in the admin dashboard."
-    },
-    "coupons": {
-      "title": "Coupons | SaaS Starter Admin",
-      "description": "Create and manage discount and gift coupons."
     },
     "settings": {
       "title": "Admin Settings | SaaS Starter",

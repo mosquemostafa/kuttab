@@ -52,18 +52,6 @@
       "detailNotFoundTitle": "المشروع غير موجود | SaaS Starter",
       "detailNotFoundDescription": "هذا المشروع غير متاح أو ليست لديك صلاحية الوصول إليه."
     },
-    "subscription": {
-      "title": "الخطة | لوحة تحكم SaaS Starter",
-      "description": "اعرض خطتك الحالية وراجع سجل الفواتير."
-    },
-    "checkout": {
-      "title": "إتمام الاشتراك | لوحة تحكم SaaS Starter",
-      "description": "أكمل اشتراكك يدويًا عبر التحقق من الدفع على واتساب."
-    },
-    "trial": {
-      "title": "التجربة المجانية | لوحة تحكم SaaS Starter",
-      "description": "ابدأ تجربتك المجانية فورًا وفعّل وصول التجربة على حسابك."
-    },
     "support": {
       "title": "الدعم | لوحة تحكم SaaS Starter",
       "description": "أنشئ تذاكر الدعم وتابع حالتها، وسيتم التواصل معك عبر البريد الإلكتروني."
@@ -147,10 +135,6 @@
     "notifications": {
       "title": "الإشعارات | إدارة SaaS Starter",
       "description": "إدارة إعدادات وأدوات الإشعارات من لوحة المسؤول."
-    },
-    "coupons": {
-      "title": "القسائم | إدارة SaaS Starter",
-      "description": "إنشاء وإدارة قسائم الخصم والهدايا."
     },
     "settings": {
       "title": "إعدادات المسؤول | SaaS Starter",

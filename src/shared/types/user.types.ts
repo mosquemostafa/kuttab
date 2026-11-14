@@ -1,5 +1,4 @@
 import { UserRole } from "@/shared/enums/user-role.enum";
-import { SubscriptionPlanEnum } from "../enums/subscription-plan.enum";
 
 export interface UserDTO {
   id: string;
@@ -26,8 +25,4 @@ export interface UserWithDetailsDTO extends UserDTO {
   accounts: string[];
   lastSignIn: string | null;
   avatarUrl: string | null;
-  subscription: {
-    plan: SubscriptionPlanEnum;
-    planExpiresAt: string;
-  } | null;
 }

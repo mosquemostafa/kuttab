@@ -11,7 +11,6 @@ import type {
   UpdateProjectDTO,
 } from "@/server/modules/projects/project.dto";
 import { projectRepository } from "@/server/modules/projects/project.repository";
-import { assertCanCreateProject } from "@/server/modules/subscriptions/entitlement-guards";
 import { NotFoundException } from "@/server/exceptions/exceptions";
 import type { ParsedPagination } from "@/server/pipes/parse-pagination.pipe";
 import { parseStoredTintColorKey } from "@/shared/constants/color-palette";
@@ -79,8 +78,6 @@ export const projectService = {
     userId: string,
     dto: CreateProjectDTO,
   ): Promise<ProjectDTO> {
-    await assertCanCreateProject(userId);
-
     const created = await projectRepository.create({
       userId,
       name: dto.name,

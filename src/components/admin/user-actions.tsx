@@ -5,7 +5,6 @@ import { useLocale } from "next-intl";
 import {
   Ban,
   Bell,
-  CreditCard,
   Megaphone,
   MoreHorizontal,
   Trash2,
@@ -36,7 +35,6 @@ import { UserSendPushNotificationDialog } from "./user-send-push-notification-di
 import { StaffCreateTicketDialog } from "@/components/support/staff-create-ticket-dialog";
 import { useTranslations } from "next-intl";
 import { adminApi } from "@/lib/api/admin.api";
-import { Link } from "@/i18n/navigation";
 
 interface UserActionsProps {
   user: UserWithDetailsDTO;
@@ -130,15 +128,6 @@ export function UserActions({ user, onActionComplete }: UserActionsProps) {
           >
             <MessageSquarePlus className="mr-2 h-4 w-4" />
             <span>{t("actions.startSupportChat")}</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild className="text-xs">
-            <Link
-              href={`/admin/users/${user.id}/subscriptions`}
-              onClick={() => setDropdownOpen(false)}
-            >
-              <CreditCard className="mr-2 h-4 w-4" />
-              <span>{t("actions.viewSubscriptions")}</span>
-            </Link>
           </DropdownMenuItem>
           {process.env.NODE_ENV === "development" && (
             <DropdownMenuItem

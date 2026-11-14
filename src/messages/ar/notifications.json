@@ -20,7 +20,6 @@
   "loadingMore": "جارٍ التحميل…",
   "unreadSubtitle": "{count} غير مقروء",
   "types": {
-    "subscription": "اشتراك",
     "system": "النظام",
     "social": "اجتماعي",
     "announcement_reference": "إعلان",

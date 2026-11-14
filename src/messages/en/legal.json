@@ -23,7 +23,7 @@
           "p1": "We use the collected information for the following purposes:",
           "p2": "• Authenticate your identity and maintain secure account sessions.",
           "p3": "• Provide, maintain, optimize, and improve service features.",
-          "p4": "• Process billing, subscription plans, and account entitlements.",
+          "p4": "• Provide, maintain, and support account access and platform features.",
           "p5": "• Send essential security alerts, transactional updates, and support responses.",
           "p6": "• Deliver newsletters or announcements if you have opted in."
         }
@@ -38,7 +38,7 @@
       "s4": {
         "title": "4. Third-Party Services",
         "content": {
-          "p1": "We may engage trusted third-party providers to facilitate core operations, including database hosting, payment processing, email delivery, and error monitoring.",
+          "p1": "We may engage trusted third-party providers to facilitate core operations, including database hosting, email delivery, and error monitoring.",
           "p2": "These providers are bound by strict confidentiality and data protection agreements and may only process information as instructed by us."
         }
       },
@@ -108,11 +108,11 @@
         }
       },
       "s4": {
-        "title": "4. Subscriptions & Billing",
+        "title": "4. Free Service",
         "content": {
-          "p1": "Certain plans and features are offered on a paid subscription basis.",
-          "p2": "Subscription fees are billed in advance on a recurring monthly or annual cycle.",
-          "p3": "You may cancel your subscription at any time through your dashboard. Cancellations become effective at the end of the current billing period."
+          "p1": "The Service is provided 100% free of charge.",
+          "p2": "There are no subscription fees, paid plans, or billing charges associated with your account.",
+          "p3": "All available features and tools are free for all registered users."
         }
       },
       "s5": {
