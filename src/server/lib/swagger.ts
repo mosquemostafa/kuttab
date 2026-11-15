@@ -50,6 +50,42 @@ const options = {
             totalPages: { type: "integer", example: 5 },
           },
         },
+        Student: {
+          type: "object",
+          properties: {
+            id: { type: "string" },
+            userId: { type: "string", nullable: true },
+            name: { type: "string" },
+            birthDate: { type: "string", format: "date", nullable: true },
+            grade: { type: "string", nullable: true },
+            job: { type: "string", nullable: true },
+            phone: { type: "string", nullable: true },
+            studiedTajweed: { type: "boolean" },
+            previouslyEnrolled: { type: "boolean" },
+            previousEnrolledPlace: { type: "string", nullable: true },
+            memorizedPartsCount: { type: "integer", minimum: 0, maximum: 30 },
+            memorizationDetails: { type: "string", nullable: true },
+            status: {
+              type: "string",
+              enum: ["active", "archived", "rejected"],
+            },
+            registrationDate: { type: "string", format: "date" },
+            notes: { type: "string", nullable: true },
+            createdAt: { type: "string", format: "date-time" },
+            updatedAt: { type: "string", format: "date-time" },
+          },
+          required: [
+            "id",
+            "name",
+            "studiedTajweed",
+            "previouslyEnrolled",
+            "memorizedPartsCount",
+            "status",
+            "registrationDate",
+            "createdAt",
+            "updatedAt",
+          ],
+        },
         Todo: {
           type: "object",
           properties: {
@@ -966,6 +1002,10 @@ const options = {
         name: "FCM",
         description:
           "Firebase Cloud Messaging token registration endpoints for authenticated users",
+      },
+      {
+        name: "Students",
+        description: "Student management endpoints (Admin only)",
       },
       {
         name: "API Documentation",

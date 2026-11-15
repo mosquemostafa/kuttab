@@ -1,0 +1,21 @@
+import type { StudentStatus } from "@/shared/enums/student-status.enum";
+
+export interface StudentDTO {
+  id: string;
+  userId: string | null;
+  name: string;
+  birthDate: string | null;
+  grade: string | null;
+  job: string | null;
+  phone: string | null;
+  studiedTajweed: boolean;
+  previouslyEnrolled: boolean;
+  previousEnrolledPlace: string | null;
+  memorizedPartsCount: number;
+  memorizationDetails: string | null;
+  status: StudentStatus;
+  registrationDate: string;
+  notes: string | null;
+  createdAt: string;
+  updatedAt: string;
+}

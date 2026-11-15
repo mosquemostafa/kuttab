@@ -43,6 +43,13 @@
       "when": 1794782835738,
       "tag": "0005_glamorous_wild_pack",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1794784774086,
+      "tag": "0006_stormy_cammi",
+      "breakpoints": true
     }
   ]
 }

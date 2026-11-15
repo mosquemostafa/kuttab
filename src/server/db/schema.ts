@@ -10,3 +10,4 @@ export * from "@/server/modules/feedbacks/feedback.entity";
 export * from "@/server/modules/announcements/announcement.entity";
 export * from "@/server/modules/notifications/notification.entity";
 export * from "@/server/modules/newsletter/newsletter.entity";
+export * from "@/server/modules/students/student.entity";

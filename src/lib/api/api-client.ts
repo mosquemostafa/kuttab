@@ -25,6 +25,7 @@ import {
 } from "@/lib/api/newsletter.api";
 import { fcmApi, adminFcmApi } from "@/lib/api/fcm.api";
 import { dashboardSettingsApi } from "@/lib/api/dashboard-settings.api";
+import { studentsApi } from "@/lib/api/students.api";
 
 export const apiClient = {
   user: userApi,
@@ -49,4 +50,5 @@ export const apiClient = {
   fcm: fcmApi,
   contentNewsletter: contentNewsletterApi,
   dashboardSettings: dashboardSettingsApi,
+  students: studentsApi,
 };
