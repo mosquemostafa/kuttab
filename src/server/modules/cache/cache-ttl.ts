@@ -4,8 +4,8 @@
  * When adding a new cached route/API: add a key here and use `getCacheTtlSeconds("yourKey")`.
  */
 const cacheTtlDefaultsSeconds = {
-  /** Single-row app settings; invalidated on admin update. */
-  appSettings: 24 * 60 * 60,
+  /** Single-row app settings; invalidated on admin update; 60s TTL ensures fast self-healing. */
+  appSettings: 60,
   blogsFeatured: 24 * 60 * 60,
   /** `/blogs`, `/dashboard/blogs`, `GET /api/blogs` (includes `?tag=` and search) */
   blogsPublished: 24 * 60 * 60,

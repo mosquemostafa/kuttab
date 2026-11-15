@@ -119,6 +119,19 @@ export async function cacheGetOrSet<T>(
   return fresh;
 }
 
+/** Deletes a single cache key directly without SCAN. */
+export async function invalidateCacheKey(key: string): Promise<void> {
+  const redis = getCacheRedis();
+  if (!redis) {
+    return;
+  }
+  try {
+    await redis.del(key);
+  } catch {
+    // ignore
+  }
+}
+
 function isScanComplete(cursor: string | number): boolean {
   return cursor === 0 || cursor === "0";
 }

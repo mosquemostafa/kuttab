@@ -107,6 +107,18 @@ const syncAppSettingsAuthMiddleware = createAuthMiddleware(async (ctx) => {
     ctx.context.options.emailVerification.sendOnSignUp =
       settings.requireEmailVerification;
   }
+
+  // Also sync to the top-level auth instance
+  if (auth?.options?.emailAndPassword) {
+    (
+      auth.options.emailAndPassword as { requireEmailVerification?: boolean }
+    ).requireEmailVerification = settings.requireEmailVerification;
+  }
+  if (auth?.options?.emailVerification) {
+    (
+      auth.options.emailVerification as { sendOnSignUp?: boolean }
+    ).sendOnSignUp = settings.requireEmailVerification;
+  }
 });
 
 export const auth = betterAuth({
