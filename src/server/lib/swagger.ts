@@ -86,6 +86,34 @@ const options = {
             "updatedAt",
           ],
         },
+        Teacher: {
+          type: "object",
+          properties: {
+            id: { type: "string" },
+            userId: { type: "string", nullable: true },
+            name: { type: "string" },
+            phone: { type: "string", nullable: true },
+            studentType: {
+              type: "string",
+              enum: ["foundation", "khatimeen", "children", "adults"],
+              nullable: true,
+            },
+            status: {
+              type: "string",
+              enum: ["active", "archived"],
+            },
+            notes: { type: "string", nullable: true },
+            createdAt: { type: "string", format: "date-time" },
+            updatedAt: { type: "string", format: "date-time" },
+          },
+          required: [
+            "id",
+            "name",
+            "status",
+            "createdAt",
+            "updatedAt",
+          ],
+        },
         Todo: {
           type: "object",
           properties: {
@@ -1006,6 +1034,10 @@ const options = {
       {
         name: "Students",
         description: "Student management endpoints (Admin only)",
+      },
+      {
+        name: "Teachers",
+        description: "Teacher management endpoints (Admin only)",
       },
       {
         name: "API Documentation",

@@ -50,6 +50,13 @@
       "when": 1794784774086,
       "tag": "0006_stormy_cammi",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1794785461057,
+      "tag": "0007_organic_hercules",
+      "breakpoints": true
     }
   ]
 }
