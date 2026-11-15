@@ -148,6 +148,7 @@ export function DashboardSidebar({
           label: t("shell.feedbacks"),
         },
       ],
+      settingsHref: "/dashboard/settings",
     },
     content: {
       title: t("shell.contentPanel"),
@@ -163,6 +164,7 @@ export function DashboardSidebar({
           label: t("shell.newsletter"),
         },
       ],
+      settingsHref: "/dashboard/settings",
     },
     student: {
       title: t("shell.studentPanel"),
@@ -173,6 +175,7 @@ export function DashboardSidebar({
           label: t("shell.overview"),
         },
       ],
+      settingsHref: "/dashboard/settings",
     },
     parent: {
       title: t("shell.parentPanel"),
@@ -183,6 +186,7 @@ export function DashboardSidebar({
           label: t("shell.overview"),
         },
       ],
+      settingsHref: "/dashboard/settings",
     },
   };
   const config = sidebarConfigByMode[mode];

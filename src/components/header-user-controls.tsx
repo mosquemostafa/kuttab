@@ -53,7 +53,6 @@ type HeaderUserControlsProps = {
 export function HeaderUserControls({ user }: HeaderUserControlsProps) {
   const normalizedRole = normalizeUserRole(user.role);
   const isRegularUser = normalizedRole === UserRole.USER;
-  const isAdmin = normalizedRole === UserRole.ADMIN;
   const t = useTranslations();
   const { unreadCount } = useNotifications();
   const { isSigningOut, handleSignOut } = useSignOut();
@@ -169,7 +168,7 @@ export function HeaderUserControls({ user }: HeaderUserControlsProps) {
 
             <DropdownMenuItem asChild>
               <Link
-                href={isAdmin ? "/admin/settings" : "/dashboard/settings"}
+                href="/dashboard/settings"
                 className="cursor-pointer"
               >
                 <Settings className="mr-2 h-4 w-4" />
