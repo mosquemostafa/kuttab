@@ -5,7 +5,7 @@ export const dashboardSettingsApi = {
   getBootstrap: (): Promise<DashboardSettingsBootstrap> =>
     requestNoStore<DashboardSettingsBootstrap>("/dashboard/settings"),
 
-  updateProfile: (data: { name: string }) =>
+  updateProfile: (data: { name: string; phone?: string }) =>
     request<{ updated: boolean }>("/dashboard/settings", {
       method: "PATCH",
       body: JSON.stringify(data),

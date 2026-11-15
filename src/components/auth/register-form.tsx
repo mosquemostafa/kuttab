@@ -30,7 +30,7 @@ const RegisterForm = () => {
     control,
   } = useForm({
     resolver: zodResolver(registerSchema),
-    defaultValues: { name: "", email: "", password: "" },
+    defaultValues: { name: "", email: "", phone: "", password: "" },
   });
 
   const onSubmit = async (data: RegisterSchema) => {
@@ -38,6 +38,7 @@ const RegisterForm = () => {
     const res = await authClient.signUp.email({
       name: data.name,
       email: data.email.trim().toLowerCase(),
+      phone: data.phone.trim(),
       password: data.password,
     });
 
@@ -109,6 +110,31 @@ const RegisterForm = () => {
         />
         {errors.email && (
           <span className="text-xs text-red-500">{t("errors.email")}</span>
+        )}
+      </div>
+      <div className="flex flex-col gap-2">
+        <Label htmlFor="phone">{t("phoneLabel")}</Label>
+        <Input
+          id="phone"
+          dir="ltr"
+          type="tel"
+          inputMode="numeric"
+          maxLength={11}
+          placeholder={t("phonePlaceholder")}
+          autoComplete="tel"
+          {...register("phone", {
+            onChange: (e) => {
+              e.target.value = e.target.value
+                .replace(/[٠-٩]/g, (d: string) =>
+                  (d.charCodeAt(0) - 1632).toString(),
+                )
+                .replace(/\D/g, "")
+                .slice(0, 11);
+            },
+          })}
+        />
+        {errors.phone && (
+          <span className="text-xs text-red-500">{t("errors.phone")}</span>
         )}
       </div>
       <div className="flex flex-col gap-2">

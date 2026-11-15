@@ -87,7 +87,7 @@
  *         application/json:
  *           schema:
  *             type: object
- *             required: [name, email, password]
+ *             required: [name, email, password, phone]
  *             properties:
  *               name:
  *                 type: string
@@ -96,6 +96,8 @@
  *                 format: email
  *               phone:
  *                 type: string
+ *                 pattern: "^01[0125][0-9]{8}$"
+ *                 example: "01012345678"
  *               password:
  *                 type: string
  *                 minLength: 8

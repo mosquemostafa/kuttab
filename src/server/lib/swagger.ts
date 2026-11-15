@@ -224,7 +224,7 @@ const options = {
             id: { type: "string" },
             name: { type: "string" },
             email: { type: "string", format: "email" },
-            phone: { type: "string", nullable: true },
+            phone: { type: "string" },
             emailVerified: { type: "boolean" },
             role: { type: "string", enum: ["user", "admin"] },
             banned: { type: "boolean" },
@@ -284,7 +284,6 @@ const options = {
             },
             phone: {
               type: "string",
-              nullable: true,
               description: "User's phone number",
             },
             name: {

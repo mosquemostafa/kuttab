@@ -16,6 +16,7 @@ import {
 } from "drizzle-orm";
 
 import type { UserWithDetailsEntity } from "@/server/modules/users/user.entity";
+import type { SelectUserItem } from "@/shared/types/select.types";
 import type {
   ParsedPagination,
   ParsedUserFilters,
@@ -66,7 +67,7 @@ export const userRepository = {
     id: string;
     name: string;
     email: string;
-    phone: string | null;
+    phone: string;
     image: string | null;
   } | null> {
     const result = await db
@@ -200,7 +201,7 @@ export const userRepository = {
       id: u.id,
       name: u.name,
       email: u.email,
-      phone: u.phone ?? null,
+      phone: u.phone,
       emailVerified: u.emailVerified,
       role: u.role ?? null,
       segmentId: u.segmentId ?? null,
@@ -219,6 +220,56 @@ export const userRepository = {
     return {
       users: usersWithDetails,
       total,
+    };
+  },
+
+  async findSelectOptions(
+    filters: { q?: string; role?: string },
+    pagination: { limit: number; offset: number },
+  ): Promise<{ items: SelectUserItem[]; total: number }> {
+    const clauses: SQL[] = [];
+
+    if (filters.q?.trim()) {
+      const term = `%${filters.q.trim()}%`;
+      clauses.push(
+        or(
+          ilike(user.name, term),
+          ilike(user.email, term),
+          ilike(user.phone, term),
+        )!,
+      );
+    }
+
+    if (filters.role && filters.role !== "all") {
+      clauses.push(eq(user.role, filters.role));
+    }
+
+    const whereClause = clauses.length > 0 ? and(...clauses) : undefined;
+
+    const [items, totalResult] = await Promise.all([
+      db
+        .select({
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          phone: user.phone,
+          image: user.image,
+          role: user.role,
+        })
+        .from(user)
+        .where(whereClause)
+        .orderBy(asc(user.name))
+        .limit(pagination.limit)
+        .offset(pagination.offset),
+      db
+        .select({ total: count() })
+        .from(user)
+        .where(whereClause),
+    ]);
+
+    return {
+      items,
+      total: totalResult[0]?.total ?? 0,
     };
   },
 
@@ -314,7 +365,7 @@ export const userRepository = {
       id: u.id,
       name: u.name,
       email: u.email,
-      phone: u.phone ?? null,
+      phone: u.phone,
       emailVerified: u.emailVerified,
       role: u.role ?? null,
       segmentId: u.segmentId ?? null,
@@ -361,7 +412,7 @@ export const userRepository = {
       .where(eq(user.email, email));
   },
 
-  async updatePhoneById(userId: string, phone: string | null): Promise<void> {
+  async updatePhoneById(userId: string, phone: string): Promise<void> {
     await db
       .update(user)
       .set({

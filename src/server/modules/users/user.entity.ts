@@ -4,7 +4,7 @@ export interface UserEntity {
   id: string;
   name: string;
   email: string;
-  phone?: string | null;
+  phone: string;
   emailVerified: boolean;
   image: string | null;
   role: string | null;
@@ -31,7 +31,7 @@ export const user = pgTable(
     id: text("id").primaryKey(),
     name: text("name").notNull(),
     email: text("email").notNull().unique(),
-    phone: text("phone"),
+    phone: text("phone").notNull(),
     emailVerified: boolean("email_verified")
       .$defaultFn(() => false)
       .notNull(),

@@ -11,6 +11,7 @@ import { deleteR2Object } from "@/server/lib/r2";
 import {
   NotFoundException,
   UnauthorizedException,
+  ValidationException,
 } from "@/server/exceptions/exceptions";
 import { userRepository } from "@/server/modules/users/user.repository";
 import { fcmService } from "@/server/modules/fcm/fcm.service";
@@ -24,14 +25,20 @@ import type {
   ParsedPagination,
   ParsedUserFilters,
 } from "@/server/pipes/parse-pagination.pipe";
-import type { PaginatedResponse } from "@/shared/types/pagination.types";
+import { buildSelectMeta } from "@/server/dto/select-query.dto";
+import type { ParsedSelectUserQuery } from "@/server/modules/users/dto/select-user.dto";
+import type {
+  PaginatedResponse,
+  PaginationMeta,
+} from "@/shared/types/pagination.types";
+import type { SelectUserItem } from "@/shared/types/select.types";
 import type { UserWithDetailsDTO } from "@/shared/types/user.types";
 import type { CreateUserDTO } from "@/server/modules/users/dto/admin-mutations.dto";
 
 interface DashboardSettingsOverviewDTO {
   name: string;
   email: string;
-  phone: string | null;
+  phone: string;
   image: string | null;
   hasPasswordLogin: boolean;
   /** True when server-side R2 is configured for direct avatar uploads. */
@@ -49,7 +56,7 @@ function toDTO(
     id: user.id,
     name: user.name,
     email: user.email,
-    phone: user.phone ?? null,
+    phone: user.phone,
     emailVerified: user.emailVerified,
     role,
     segmentId: user.segmentId,
@@ -88,7 +95,7 @@ export const userService = {
     return {
       name: profile.name,
       email: profile.email,
-      phone: profile.phone ?? null,
+      phone: profile.phone,
       image: profile.image,
       hasPasswordLogin,
       avatarR2UploadEnabled: r2AvatarStorageEnabled,
@@ -114,6 +121,20 @@ export const userService = {
         total,
         totalPages: Math.ceil(total / pagination.limit),
       },
+    };
+  },
+
+  async getSelectOptions(
+    query: ParsedSelectUserQuery,
+  ): Promise<{ items: SelectUserItem[]; meta: PaginationMeta }> {
+    const { items, total } = await userRepository.findSelectOptions(
+      { q: query.q, role: query.role },
+      { limit: query.limit, offset: query.offset },
+    );
+
+    return {
+      items,
+      meta: buildSelectMeta(total, query.page, query.limit),
     };
   },
 
@@ -253,7 +274,7 @@ export const userService = {
       role: roleForAuth,
       data: {
         ...userData.data,
-        ...(phone !== undefined ? { phone } : {}),
+        phone,
         ...(autoVerify ? { emailVerified: true } : {}),
       },
     };
@@ -263,7 +284,7 @@ export const userService = {
       body: createData,
     });
 
-    if (phone !== undefined && res?.user?.id) {
+    if (res?.user?.id) {
       await userRepository.updatePhoneById(res.user.id, phone);
     }
 
@@ -403,12 +424,18 @@ export const userService = {
 
   async updateUserPhone(
     userId: string,
-    phone: string | null,
+    phone: string,
     headers?: Headers,
-  ): Promise<{ userId: string; phone: string | null }> {
+  ): Promise<{ userId: string; phone: string }> {
     const existing = await userRepository.findById(userId);
     if (!existing) {
       throw new NotFoundException("User", userId);
+    }
+
+    if (!/^01[0125][0-9]{8}$/.test(phone)) {
+      throw new ValidationException(
+        "Phone number must be an 11-digit Egyptian number (e.g. 01012345678)",
+      );
     }
 
     if (headers) {
@@ -424,7 +451,7 @@ export const userService = {
 
   async updateUserProfile(
     userId: string,
-    data: { name: string; phone?: string | null },
+    data: { name: string; phone?: string },
     headers: Headers,
   ): Promise<void> {
     const session = await auth.api.getSession({ headers });
@@ -433,10 +460,17 @@ export const userService = {
       throw new UnauthorizedException();
     }
 
+    if (data.phone !== undefined && !/^01[0125][0-9]{8}$/.test(data.phone)) {
+      throw new ValidationException(
+        "Phone number must be an 11-digit Egyptian number (e.g. 01012345678)",
+      );
+    }
+
     await auth.api.updateUser({
       headers,
       body: {
         name: data.name,
+        ...(data.phone !== undefined ? { phone: data.phone } : {}),
       },
     });
 

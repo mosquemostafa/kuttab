@@ -28,7 +28,6 @@
  *                       format: email
  *                     phone:
  *                       type: string
- *                       nullable: true
  *                     image:
  *                       type: string
  *                       nullable: true
@@ -37,6 +36,51 @@
  *                     avatarR2UploadEnabled:
  *                       type: boolean
  *                       description: Whether direct avatar upload to R2 is available
+ *                 timestamp:
+ *                   type: string
+ *                   format: date-time
+ *       401:
+ *         description: Unauthorized
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ApiError'
+ *   patch:
+ *     summary: Update current user profile
+ *     tags:
+ *       - Dashboard
+ *     security:
+ *       - sessionAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - name
+ *             properties:
+ *               name:
+ *                 type: string
+ *               phone:
+ *                 type: string
+ *                 pattern: "^01[0125][0-9]{8}$"
+ *                 example: "01012345678"
+ *     responses:
+ *       200:
+ *         description: Profile updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     updated:
+ *                       type: boolean
  *                 timestamp:
  *                   type: string
  *                   format: date-time

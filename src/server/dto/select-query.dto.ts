@@ -68,4 +68,6 @@ export type {
   SelectQuery,
   SelectTitleItem,
   SelectNameItem,
+  SelectUserQuery,
+  SelectUserItem,
 } from "@/shared/types/select.types";

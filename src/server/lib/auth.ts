@@ -162,7 +162,8 @@ export const auth = betterAuth({
     additionalFields: {
       phone: {
         type: "string",
-        required: false,
+        required: true,
+        input: true,
       },
     },
   },

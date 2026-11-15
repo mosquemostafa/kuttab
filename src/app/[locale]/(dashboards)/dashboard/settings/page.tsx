@@ -18,6 +18,7 @@ import {
 const emptyDashboardSettings: DashboardSettingsBootstrap = {
   name: "",
   email: "",
+  phone: "",
   image: null,
   hasPasswordLogin: false,
   avatarR2UploadEnabled: false,
@@ -75,6 +76,7 @@ export default async function UserSettingsPage() {
   const userProfile = {
     name: dashboardSettings.name,
     email: dashboardSettings.email,
+    phone: dashboardSettings.phone,
     image: dashboardSettings.image,
   };
   const canUsePasswordLogin = dashboardSettings.hasPasswordLogin;

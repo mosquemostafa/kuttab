@@ -9,7 +9,7 @@ export type DashboardSettingsBootstrap = {
   name: string;
   email: string;
   image: string | null;
-  phone?: string | null;
+  phone: string;
   hasPasswordLogin: boolean;
   avatarR2UploadEnabled: boolean;
 };
@@ -52,7 +52,7 @@ export async function fetchDashboardSettingsBootstrap(init: {
     name: "",
     email: "",
     image: null,
-    phone: null,
+    phone: "",
     hasPasswordLogin: false,
     avatarR2UploadEnabled: false,
   };

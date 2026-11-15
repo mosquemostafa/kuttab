@@ -158,7 +158,7 @@ export const seedService = {
         name: "Abdelrahman Nassar",
         email: "abdelrhman.ahmed.nassar@gmail.com",
         role: "admin",
-        phone: "+201000000000",
+        phone: "01000000000",
         emailVerified: true,
         isPublicKnowledgeProfile: true,
         knowledgeBio:
@@ -231,7 +231,7 @@ export const seedService = {
           email: u.email,
           role: u.role,
           segmentId: u.segmentId,
-          phone: "+201011112222",
+          phone: "01011112222",
           emailVerified: true,
           createdAt: u.createdAt,
           updatedAt: new Date(),

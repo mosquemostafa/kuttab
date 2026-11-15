@@ -1,11 +1,19 @@
 import { z } from "zod";
 import { UserRole } from "@/shared/enums/user-role.enum";
 
+export const EGYPTIAN_PHONE_REGEX = /^01[0125][0-9]{8}$/;
+
 export const createUserSchema = z.object({
   name: z.string().min(1),
   email: z.string().email(),
   password: z.string().min(8),
-  phone: z.string().trim().max(50).nullable().optional(),
+  phone: z
+    .string()
+    .trim()
+    .regex(
+      EGYPTIAN_PHONE_REGEX,
+      "Phone number must be an 11-digit Egyptian number (e.g. 01012345678)",
+    ),
   role: z.nativeEnum(UserRole).optional(),
   data: z.record(z.string(), z.unknown()).optional(),
   autoVerify: z.boolean().optional(),

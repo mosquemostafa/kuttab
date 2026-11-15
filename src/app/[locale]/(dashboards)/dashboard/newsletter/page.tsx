@@ -12,6 +12,7 @@ import {
 const emptyDashboardSettings: DashboardSettingsBootstrap = {
   name: "",
   email: "",
+  phone: "",
   image: null,
   hasPasswordLogin: false,
   avatarR2UploadEnabled: false,

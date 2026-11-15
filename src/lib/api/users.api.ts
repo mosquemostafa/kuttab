@@ -1,9 +1,21 @@
 import type { ListUsersQueryDTO } from "@/server/modules/users/dto/list-users.dto";
 import type { UserRole } from "@/shared/enums/user-role.enum";
+import type { SelectUserItem, SelectUserQuery } from "@/shared/types/select.types";
 import type { UserWithDetailsDTO } from "@/shared/types/user.types";
 import { request, requestNoStore, requestWithMeta } from "@/lib/api/api-core";
 
 export const usersApi = {
+  select: (query?: SelectUserQuery) => {
+    const params = new URLSearchParams();
+    if (query?.q) params.set("q", query.q);
+    if (query?.role) params.set("role", query.role);
+    if (query?.page) params.set("page", String(query.page));
+    if (query?.limit) params.set("limit", String(query.limit));
+
+    return requestWithMeta<SelectUserItem>(
+      `/admin/users/select${params.size ? `?${params.toString()}` : ""}`,
+    );
+  },
   list: (query?: ListUsersQueryDTO) => {
     const params = new URLSearchParams(
       Object.entries(query ?? {})
@@ -48,6 +60,7 @@ export const usersApi = {
     name: string;
     email: string;
     password: string;
+    phone: string;
     role?: UserRole;
     data?: Record<string, unknown>;
     autoVerify?: boolean;

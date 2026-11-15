@@ -46,6 +46,7 @@ export function UserAddDialog({
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     password: "",
     role: UserRole.USER as RoleOption,
     autoVerify: false,
@@ -58,6 +59,7 @@ export function UserAddDialog({
     setFormData({
       name: "",
       email: "",
+      phone: "",
       password: "",
       role: UserRole.USER,
       autoVerify: false,
@@ -67,10 +69,16 @@ export function UserAddDialog({
   const handleCreateUser = async () => {
     const trimmedName = formData.name.trim();
     const trimmedEmail = formData.email.trim();
+    const trimmedPhone = formData.phone.trim();
     const trimmedPassword = formData.password.trim();
 
-    if (!trimmedName || !trimmedEmail || !trimmedPassword) {
+    if (!trimmedName || !trimmedEmail || !trimmedPhone || !trimmedPassword) {
       toast.error(t("dialogs.addUserValidation"));
+      return;
+    }
+
+    if (!/^01[0125][0-9]{8}$/.test(trimmedPhone)) {
+      toast.error(t("dialogs.phoneValidation"));
       return;
     }
 
@@ -79,6 +87,7 @@ export function UserAddDialog({
       await apiClient.users.create({
         name: trimmedName,
         email: trimmedEmail,
+        phone: trimmedPhone,
         password: trimmedPassword,
         role: formData.role,
         autoVerify: formData.autoVerify,
@@ -156,6 +165,29 @@ export function UserAddDialog({
                 setFormData((prev) => ({ ...prev, email: e.target.value }))
               }
               placeholder={t("dialogs.emailPlaceholder")}
+              disabled={isLoading}
+              required
+            />
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="create-user-phone">{t("dialogs.phoneLabel")}</Label>
+            <Input
+              id="create-user-phone"
+              type="tel"
+              inputMode="numeric"
+              dir="ltr"
+              maxLength={11}
+              value={formData.phone}
+              onChange={(e) => {
+                const cleaned = e.target.value
+                  .replace(/[٠-٩]/g, (d) =>
+                    (d.charCodeAt(0) - 1632).toString(),
+                  )
+                  .replace(/\D/g, "")
+                  .slice(0, 11);
+                setFormData((prev) => ({ ...prev, phone: cleaned }));
+              }}
+              placeholder={t("dialogs.phonePlaceholder")}
               disabled={isLoading}
               required
             />

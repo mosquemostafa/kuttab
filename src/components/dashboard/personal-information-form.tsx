@@ -28,6 +28,7 @@ type PersonalInformationFormProps = {
   initialValues: {
     name: string;
     email: string;
+    phone: string;
   };
 };
 
@@ -45,16 +46,20 @@ export default function PersonalInformationForm({
     resolver: zodResolver(personalInformationSchema),
     defaultValues: {
       name: initialValues.name,
+      phone: initialValues.phone,
     },
   });
 
   useEffect(() => {
-    reset({ name: initialValues.name });
-  }, [initialValues.name, reset]);
+    reset({ name: initialValues.name, phone: initialValues.phone });
+  }, [initialValues.name, initialValues.phone, reset]);
 
   const onSubmit = async (data: PersonalInformationSchema) => {
     try {
-      await apiClient.dashboardSettings.updateProfile({ name: data.name });
+      await apiClient.dashboardSettings.updateProfile({
+        name: data.name,
+        phone: data.phone,
+      });
       toast.success(t("updatedSuccess"));
     } catch (error) {
       toast.error(getErrorMessage(error));
@@ -106,6 +111,34 @@ export default function PersonalInformationForm({
             <p className="text-xs text-muted-foreground">
               {t("fields.emailHelp")}
             </p>
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="settings-phone">{t("fields.phone")}</Label>
+            <Input
+              id="settings-phone"
+              type="tel"
+              inputMode="numeric"
+              dir="ltr"
+              maxLength={11}
+              placeholder={t("fields.phonePlaceholder")}
+              autoComplete="tel"
+              {...register("phone", {
+                onChange: (e) => {
+                  e.target.value = e.target.value
+                    .replace(/[٠-٩]/g, (d: string) =>
+                      (d.charCodeAt(0) - 1632).toString(),
+                    )
+                    .replace(/\D/g, "")
+                    .slice(0, 11);
+                },
+              })}
+            />
+            {errors.phone && (
+              <span className="text-xs text-red-500">
+                {errors.phone.message}
+              </span>
+            )}
           </div>
 
           <Button type="submit" disabled={isSubmitting}>

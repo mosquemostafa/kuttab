@@ -25,10 +25,19 @@ export type PasswordWithConfirmationSchema = z.infer<
   typeof passwordWithConfirmationSchema
 >;
 
+export const EGYPTIAN_PHONE_REGEX = /^01[0125][0-9]{8}$/;
+
 export const registerSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
   password: passwordSchema,
   name: z.string().min(2).max(100),
+  phone: z
+    .string()
+    .trim()
+    .regex(EGYPTIAN_PHONE_REGEX, {
+      message:
+        "Phone number must be an 11-digit Egyptian number (e.g. 01012345678)",
+    }),
 });
 
 export type RegisterSchema = z.infer<typeof registerSchema>;
@@ -66,6 +75,13 @@ export type SetPasswordSchema = z.infer<typeof setPasswordSchema>;
 
 export const personalInformationSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters" }),
+  phone: z
+    .string()
+    .trim()
+    .regex(EGYPTIAN_PHONE_REGEX, {
+      message:
+        "Phone number must be an 11-digit Egyptian number (e.g. 01012345678)",
+    }),
 });
 
 export type PersonalInformationSchema = z.infer<

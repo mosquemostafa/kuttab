@@ -5,6 +5,7 @@ import {
   parsePagination,
   parseUserFilters,
 } from "@/server/pipes/parse-pagination.pipe";
+import { parseSelectUserQuery } from "@/server/modules/users/dto/select-user.dto";
 import { userService } from "@/server/modules/users/user.service";
 import type { ApiSuccess } from "@/shared/types/api-response.types";
 import type { PaginationMeta } from "@/shared/types/pagination.types";
@@ -37,6 +38,13 @@ export const userController = {
       req.headers,
     );
 
+    return ok(result.items, result.meta);
+  },
+
+  async select(req: NextRequest): Promise<NextResponse> {
+    const { searchParams } = new URL(req.url);
+    const query = parseSelectUserQuery(searchParams);
+    const result = await userService.getSelectOptions(query);
     return ok(result.items, result.meta);
   },
 

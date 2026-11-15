@@ -12,7 +12,9 @@
       "name": "Name",
       "namePlaceholder": "Your name",
       "email": "Email",
-      "emailHelp": "Email is managed separately and cannot be changed here."
+      "emailHelp": "Email is managed separately and cannot be changed here.",
+      "phone": "Phone Number",
+      "phonePlaceholder": "01012345678"
     },
     "actions": {
       "save": "Save Changes",
