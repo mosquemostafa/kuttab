@@ -22,7 +22,7 @@ import {
   PenSquare,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Logo } from "@/components/landing/logo";
+import { Logo } from "@/components/logo";
 import { useSignOut } from "@/hooks/use-sign-out";
 import { UserRole } from "@/shared/enums/user-role.enum";
 
@@ -316,19 +316,14 @@ export function DashboardSidebar({
                     "group/tab flex flex-col items-center justify-center gap-1 rounded-lg py-1.5 px-0.5 text-center transition-all cursor-pointer border",
                     isActive
                       ? cn(tabColor.active, "font-bold")
-                      : cn(
-                          "border-transparent font-medium",
-                          tabColor.inactive,
-                        ),
+                      : cn("border-transparent font-medium", tabColor.inactive),
                   )}
                   title={tab.label}
                 >
                   <Icon
                     className={cn(
                       "size-4 shrink-0 transition-transform group-hover/tab:scale-110",
-                      isActive
-                        ? tabColor.iconActive
-                        : tabColor.iconInactive,
+                      isActive ? tabColor.iconActive : tabColor.iconInactive,
                     )}
                   />
                   <span className="text-[10px] leading-tight truncate w-full px-0.5">

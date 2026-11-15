@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
-import Navbar from "@/components/landing/navbar";
-import { Footer } from "@/components/landing/footer";
+import { PublicHeader } from "@/components/public-header";
+import { PublicFooter } from "@/components/public-footer";
 
 interface Section {
   title: string;
@@ -87,7 +87,7 @@ export default async function TermsPage({
 
   return (
     <div className="min-h-screen w-full bg-background flex flex-col justify-between">
-      <Navbar />
+      <PublicHeader />
       <main className="w-full pt-16 flex-1">
         <div className="container mx-auto px-4 py-20 max-w-3xl">
           <h1 className="text-4xl font-bold mb-4">{t("title")}</h1>
@@ -127,7 +127,7 @@ export default async function TermsPage({
           </div>
         </div>
       </main>
-      <Footer />
+      <PublicFooter />
     </div>
   );
 }

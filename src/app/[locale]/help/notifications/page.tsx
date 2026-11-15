@@ -5,7 +5,6 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 
 export const dynamic = "force-static";
-import Navbar from "@/components/landing/navbar";
 
 export async function generateMetadata({
   params,
@@ -61,8 +60,7 @@ export default async function NotificationsHelpPage({
   ] as const;
 
   return (
-    <div className="container mx-auto  px-4 py-8">
-      <Navbar />
+    <div className="container mx-auto px-4 py-8">
       <Link
         href="/dashboard/settings"
         className="mb-6 inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"

@@ -6,7 +6,7 @@ import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from "@/lib/locale-config";
 import { env } from "@/server/lib/env";
 import { blogService } from "@/server/modules/blogs/blog.service";
 
-const staticRoutes = ["/", "/blogs", "/contact", "/privacy", "/terms"];
+const staticRoutes = ["/blogs", "/contact", "/privacy", "/terms"];
 
 const trimmedAppUrl = env.NEXT_PUBLIC_APP_URL.replace(/\/$/, "");
 
@@ -41,24 +41,13 @@ function sitemapEntriesForRoute(
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
-  const homeAlternates = hreflangLanguages("/");
-
-  const staticEntries: MetadataRoute.Sitemap = [
-    {
-      url: trimmedAppUrl,
+  const staticEntries: MetadataRoute.Sitemap = staticRoutes.flatMap((route) =>
+    sitemapEntriesForRoute(route, {
       lastModified: now,
-      changeFrequency: "daily",
-      priority: 1,
-      alternates: { languages: homeAlternates },
-    },
-    ...staticRoutes.flatMap((route) =>
-      sitemapEntriesForRoute(route, {
-        lastModified: now,
-        changeFrequency: route === "/" ? "daily" : "weekly",
-        priority: route === "/" ? 1 : 0.7,
-      }),
-    ),
-  ];
+      changeFrequency: "weekly",
+      priority: 0.7,
+    }),
+  );
 
   let publishedBlogSlugs: Array<{ slug: string; updatedAt: string }> = [];
 

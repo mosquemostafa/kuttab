@@ -24,9 +24,9 @@ test.describe("smoke", () => {
         expect(healthResponse.ok()).toBeTruthy();
       });
 
-      await test.step("English locale landing", async () => {
+      await test.step("English locale redirect to login", async () => {
         await page.goto("/en");
-        await expect(page).toHaveURL(/\/en\/?$/);
+        await expect(page).toHaveURL(/\/en\/auth\/login/);
       });
 
       await test.step("Email login", async () => {

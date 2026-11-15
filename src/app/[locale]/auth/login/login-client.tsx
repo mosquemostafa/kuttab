@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl";
 import LoginForm from "@/components/auth/login-form";
 import { Card, CardContent } from "@/components/ui/card";
 import { sanitizeInternalCallbackPath } from "@/lib/auth/safe-callback-url";
-import { Logo } from "@/components/landing/logo";
+import { Logo } from "@/components/logo";
 
 function LoginWithCallback() {
   const searchParams = useSearchParams();

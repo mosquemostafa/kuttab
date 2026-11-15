@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
-import { Logo } from "@/components/landing/logo";
+import { Logo } from "@/components/logo";
 
 import ResetPasswordForm from "@/components/auth/reset-password-form";
 import { Card, CardContent } from "@/components/ui/card";

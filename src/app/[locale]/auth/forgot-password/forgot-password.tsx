@@ -2,7 +2,7 @@
 
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
-import { Logo } from "@/components/landing/logo";
+import { Logo } from "@/components/logo";
 
 import ForgotPasswordForm from "@/components/auth/forgot-password-form";
 import { Card, CardContent } from "@/components/ui/card";

@@ -9,14 +9,11 @@
  */
 const routingPathConfig = {
   public: {
-    exactPaths: ["/", "/contact", "/privacy", "/terms"],
+    exactPaths: ["/contact", "/privacy", "/terms"],
     prefixes: [
       "/auth/",
       "/blogs/",
       "/help/",
-      "/newsletter/",
-      "/p/",
-      "/api/public/",
     ],
   },
 };

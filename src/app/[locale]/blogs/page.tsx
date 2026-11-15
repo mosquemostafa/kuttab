@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
-import Navbar from "@/components/landing/navbar";
+import { PublicHeader } from "@/components/public-header";
 import { BlogListView } from "@/components/blogs/blog-list-view";
 import { JsonLd } from "@/components/seo/json-ld";
 import { BLOG_READER_PATHS } from "@/lib/blogs/blog-reader-paths";
@@ -119,7 +119,7 @@ export default async function BlogsPage({
   return (
     <div className="min-h-screen w-full bg-background">
       <JsonLd data={blogsIndexJsonLd} />
-      <Navbar />
+      <PublicHeader />
       <BlogListView
         locale={locale}
         tagFilter={tagFilter}

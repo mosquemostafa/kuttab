@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 
-import Navbar from "@/components/landing/navbar";
+import { PublicHeader } from "@/components/public-header";
 import { BlogPostView } from "@/components/blogs/blog-post-view";
 import { JsonLd } from "@/components/seo/json-ld";
 import { fetchBlogAuthorDisplay } from "@/lib/blogs/fetch-blog-author";
@@ -73,7 +73,7 @@ export default async function BlogDetailsPage({
   return (
     <div className="min-h-screen w-full bg-background">
       <JsonLd data={postJsonLd} />
-      <Navbar />
+      <PublicHeader />
       <BlogPostView
         locale={locale}
         blog={blog}

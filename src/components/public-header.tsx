@@ -5,21 +5,14 @@ import { useTranslations } from "next-intl";
 
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { LanguageSwitcher } from "@/components/language-switcher";
-import { Link, usePathname } from "@/i18n/navigation";
-import { Logo } from "@/components/landing/logo";
-import { NavbarAuthActions } from "@/components/landing/navbar-auth-actions";
+import { Link } from "@/i18n/navigation";
+import { Logo } from "@/components/logo";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-interface NavbarProps {
-  checkAuth?: boolean;
-}
-
-const Navbar = ({ checkAuth }: NavbarProps = {}) => {
+export function PublicHeader() {
   const t = useTranslations();
-  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-
-  const shouldCheckAuth = checkAuth ?? pathname?.startsWith("/p/") ?? false;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -28,13 +21,12 @@ const Navbar = ({ checkAuth }: NavbarProps = {}) => {
   }, []);
 
   const navLinks = [
-    { href: "/#features", label: t("landing.navbar.features") },
     { href: "/blogs", label: t("landing.navbar.blog") },
     { href: "/contact", label: t("landing.navbar.contact") },
   ];
 
   return (
-    <nav
+    <header
       className={cn(
         "sticky top-0 z-50 w-full border-b transition-all duration-300",
         scrolled
@@ -52,8 +44,8 @@ const Navbar = ({ checkAuth }: NavbarProps = {}) => {
             </span>
           </Link>
 
-          {/* Desktop nav links */}
-          <div className="hidden md:flex items-center gap-1">
+          {/* Nav links */}
+          <nav className="flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -64,25 +56,22 @@ const Navbar = ({ checkAuth }: NavbarProps = {}) => {
                 {link.label}
               </Link>
             ))}
-          </div>
+          </nav>
         </div>
 
-        {/* Right side — mobile (clean controls: Theme, Language, Auth) */}
-        <div className="flex items-center gap-2 md:hidden">
+        {/* Right side controls */}
+        <div className="flex items-center gap-2">
           <ThemeToggle />
           <LanguageSwitcher />
-          <NavbarAuthActions isMobile shouldCheckAuth={shouldCheckAuth} />
-        </div>
-
-        {/* Right side — desktop */}
-        <div className="hidden items-center gap-3 md:flex">
-          <ThemeToggle />
-          <LanguageSwitcher />
-          <NavbarAuthActions shouldCheckAuth={shouldCheckAuth} />
+          <Button asChild size="sm" variant="outline">
+            <Link href="/auth/login" prefetch={false}>
+              {t("header.signIn")}
+            </Link>
+          </Button>
         </div>
       </div>
-    </nav>
+    </header>
   );
-};
+}
 
-export default Navbar;
+export default PublicHeader;

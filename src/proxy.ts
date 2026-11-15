@@ -123,12 +123,12 @@ export async function proxy(request: NextRequest) {
 
   const sessionCookie = getSessionCookie(request);
 
-  // 1. Logged-in users hitting root: Single-hop redirect straight to the dashboard
-  if (sessionCookie && internalPath === "/") {
-    const targetUrl = new URL(
-      `/${locale}${DEFAULT_LOGIN_REDIRECT}${request.nextUrl.search}`,
-      request.url,
-    );
+  // 1. Main page ("/" or "/{locale}"): Single-hop redirect straight to dashboard (if auth) or login (if not auth)
+  if (internalPath === "/") {
+    const destination = sessionCookie
+      ? `/${locale}${DEFAULT_LOGIN_REDIRECT}${request.nextUrl.search}`
+      : `/${locale}/auth/login${request.nextUrl.search}`;
+    const targetUrl = new URL(destination, request.url);
     return finalizeResponse(NextResponse.redirect(targetUrl), request);
   }
 

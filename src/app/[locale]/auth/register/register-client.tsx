@@ -4,7 +4,7 @@ import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { Card, CardContent } from "@/components/ui/card";
 import RegisterForm from "@/components/auth/register-form";
-import { Logo } from "@/components/landing/logo";
+import { Logo } from "@/components/logo";
 
 export default function RegisterClientPage() {
   const t = useTranslations("auth.register.page");
