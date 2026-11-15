@@ -59,28 +59,6 @@ const envSchema = z
       z.string().email("CONTACT_EMAIL must be a valid email").optional(),
     ),
 
-    // Cloudinary
-    CLOUDINARY_CLOUD_NAME: z
-      .string()
-      .min(1, "CLOUDINARY_CLOUD_NAME is required"),
-    CLOUDINARY_API_KEY: z.string().min(1, "CLOUDINARY_API_KEY is required"),
-    CLOUDINARY_API_SECRET: z
-      .string()
-      .min(1, "CLOUDINARY_API_SECRET is required"),
-    CLOUDINARY_ROOT_FOLDER: z
-      .string()
-      .min(1, "CLOUDINARY_ROOT_FOLDER is required"),
-    ASSETS_MAX_IMAGE_UPLOAD_SIZE_BYTES: z.coerce
-      .number()
-      .int()
-      .positive()
-      .default(10 * 1024 * 1024),
-    ASSETS_MAX_DOCUMENT_UPLOAD_SIZE_BYTES: z.coerce
-      .number()
-      .int()
-      .positive()
-      .default(50 * 1024 * 1024),
-
     /**
      * Cloudflare R2 (S3 API). Optional cluster — set all five to enable user avatar / journal cover uploads to R2.
      * `R2_PUBLIC_BASE_URL` must be the public origin for objects (custom domain recommended), no trailing slash.

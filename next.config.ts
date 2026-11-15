@@ -96,10 +96,6 @@ const withPWA = withPWAInit({
   ],
 });
 
-const cloudinaryPathname = process.env.CLOUDINARY_CLOUD_NAME
-  ? `/${process.env.CLOUDINARY_CLOUD_NAME}/**`
-  : "/**";
-
 type AppImageRemotePattern = {
   protocol: "http" | "https";
   hostname: string;
@@ -140,11 +136,6 @@ const nextConfig: NextConfig = {
   },
   images: {
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "res.cloudinary.com",
-        pathname: cloudinaryPathname,
-      },
       ...appOriginImagePatterns(),
       {
         protocol: "https",

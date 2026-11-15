@@ -196,7 +196,6 @@ The goal of this plan is to eliminate all artificial `100` limits, enforce SQL `
 - [`public-knowledge.repository.ts`](file:///Users/aanassar/Documents/projects/modawim/modawim-codebase/src/server/modules/public-knowledge/public-knowledge.repository.ts#L76-L140) queries:
   - `findPublicBooksByUserId`: `SELECT ... FROM books WHERE userId = ? AND isPublic = true` (NO limit)
   - `findPublicCoursesByUserId`: `SELECT ... FROM courses WHERE userId = ? AND isPublic = true` (NO limit)
-  - `findPublicArticlesByUserId`: `SELECT ... FROM user_blogs WHERE userId = ? AND isPublic = true` (NO limit)
 - If a curator publishes 100+ books or articles, the public server component SSR fetches all of them simultaneously, resulting in slow TTFB and excessive memory consumption.
 
 #### Proposed Solution:

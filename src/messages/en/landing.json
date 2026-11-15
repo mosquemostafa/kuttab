@@ -1,7 +1,6 @@
 {
   "navbar": {
     "features": "Programs & Features",
-    "blog": "Articles & Blog",
     "contact": "Contact"
   },
   "hero": {
@@ -56,7 +55,6 @@
     },
     "company": {
       "title": "Institute",
-      "blog": "Blog",
       "contact": "Contact"
     },
     "legal": {

@@ -19,8 +19,6 @@ const localesWithNamespaces = [
   "adminAnnouncements",
   "adminNotifications",
   "notifications",
-  "contentAssets",
-  "blogs",
   "metadata",
   "landing",
   "newsletter",

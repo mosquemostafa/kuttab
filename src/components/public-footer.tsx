@@ -27,13 +27,6 @@ export function PublicFooter() {
 
           <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
             <Link
-              href="/blogs"
-              prefetch={false}
-              className="hover:text-foreground transition-colors"
-            >
-              {t("landing.navbar.blog")}
-            </Link>
-            <Link
               href="/contact"
               prefetch={false}
               className="hover:text-foreground transition-colors"

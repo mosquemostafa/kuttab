@@ -141,7 +141,7 @@ export async function proxy(request: NextRequest) {
     );
   }
 
-  // 3. Public paths: Allow access without authentication (includes /blogs, /contact, etc.)
+  // 3. Public paths: Allow access without authentication (includes /contact, /privacy, etc.)
   if (isPublicPath(internalPath)) {
     return finalizeResponse(handleI18nRouting(request), request);
   }

@@ -1,6 +1,6 @@
 # Cloudflare R2: user avatar storage
 
-This document describes how **user profile photos (avatars)** are stored in **Cloudflare R2** using the **S3-compatible API**, how that coexists with **Cloudinary** for admin/content assets, and how to configure and operate it.
+This document describes how **user profile photos (avatars)** are stored in **Cloudflare R2** using the **S3-compatible API**, and how to configure and operate it.
 
 It reflects the implementation in the repository as of the authoring date; when in doubt, prefer the source files listed in [Source map](#source-map).
 
@@ -10,12 +10,11 @@ It reflects the implementation in the repository as of the authoring date; when 
 
 | Area                                                                   | Storage             | Notes                                                                                                                                                     |
 | ---------------------------------------------------------------------- | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Admin / content manager media (`media_files`, `/api/content/assets/*`) | **Cloudinary**      | Unchanged; signed uploads, DB rows in `media_files`.                                                                                                      |
 | End-user profile image (`users.image`) when using “Upload photo”       | **Cloudflare R2**   | Presigned **PUT** from the browser; URL persisted via Better Auth `updateUser`.                                                                           |
 | OAuth profile images (Google / GitHub)                                 | External HTTPS URLs | Still written to `users.image`; not stored in R2 unless the user uploads a custom photo.                                                                  |
 | **Journal daily cover** (per calendar day)                             | **Cloudflare R2**   | Same bucket and env gate as avatars; metadata in `user_media_files`, FK on `journal_daily`. See [R2_JOURNAL_DAILY_COVER.md](./R2_JOURNAL_DAILY_COVER.md). |
 
-**Out of scope for this doc:** a dedicated `avatars` database table (the URL lives on `users.image` only). Journal covers are documented in the journal R2 doc above (not Cloudinary `media_files`).
+**Out of scope for this doc:** a dedicated `avatars` database table (the URL lives on `users.image` only). Journal covers are documented in the journal R2 doc above.
 
 ---
 
@@ -255,7 +254,6 @@ From [`package.json`](../../package.json):
 | UI                                           | `src/components/dashboard/linked-accounts.tsx`, settings page                                                                                     |
 | Bootstrap flag                               | `src/server/modules/users/user.service.ts`, `src/lib/api/api-server.ts`                                                                           |
 | `next/image` allowlist                       | `next.config.ts`                                                                                                                                  |
-| Admin Cloudinary (unchanged)                 | `src/server/modules/assets/*`, `src/lib/assets/upload.ts`                                                                                         |
 
 ---
 

@@ -6,11 +6,6 @@
 const cacheTtlDefaultsSeconds = {
   /** Single-row app settings; invalidated on admin update; 60s TTL ensures fast self-healing. */
   appSettings: 60,
-  blogsFeatured: 24 * 60 * 60,
-  /** `/blogs`, `/dashboard/blogs`, `GET /api/blogs` (includes `?tag=` and search) */
-  blogsPublished: 24 * 60 * 60,
-  /** `GET /api/blogs/top-tags` — top tag strings for published posts only */
-  blogsTopTags: 24 * 60 * 60,
 } as const;
 
 type CacheTtlRoute = keyof typeof cacheTtlDefaultsSeconds;

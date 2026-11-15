@@ -10,7 +10,6 @@ When in doubt, use the [Source map](#source-map) below.
 
 | Area                                                        | Storage                                         | Notes                                                                                    |
 | ----------------------------------------------------------- | ----------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| Admin / CMS media (`media_files`, Cloudinary)               | **Cloudinary**                                  | Unchanged.                                                                               |
 | User profile photo                                          | **R2** under `avatars/…`                        | See [R2_USER_AVATAR_STORAGE.md](./R2_USER_AVATAR_STORAGE.md).                            |
 | **Journal daily cover** (one image per `journal_daily` row) | **R2** under `user-media/journal_daily_cover/…` | Presigned **PUT** from the browser; DB row in `user_media_files`; FK on `journal_daily`. |
 

@@ -33,9 +33,8 @@ A production-ready platform for Almostafa — Islamic institute for teaching the
 - **Entitlement Checking**: Server-side feature guards (`assertCanCreateProject`, `assertCanCreateTodo`, `assertCanAddEditorImage`).
 - **Pricing & Checkout UI**: Interactive pricing table and upgrade modals.
 
-### 📝 CMS & Marketing Blog
+### 📝 Content Management
 
-- **Marketing Blog**: Categories, tags, image covers, comment threads.
 - **Tiptap Rich Text Editor**: Markdown support, code blocks, typography, presigned image uploads.
 
 ### 🌐 Internationalization (i18n) & RTL

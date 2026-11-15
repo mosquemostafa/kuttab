@@ -4,9 +4,8 @@ import type { MetadataRoute } from "next";
 
 import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from "@/lib/locale-config";
 import { env } from "@/server/lib/env";
-import { blogService } from "@/server/modules/blogs/blog.service";
 
-const staticRoutes = ["/blogs", "/contact", "/privacy", "/terms"];
+const staticRoutes = ["/contact", "/privacy", "/terms"];
 
 const trimmedAppUrl = env.NEXT_PUBLIC_APP_URL.replace(/\/$/, "");
 
@@ -49,25 +48,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }),
   );
 
-  let publishedBlogSlugs: Array<{ slug: string; updatedAt: string }> = [];
-
-  try {
-    publishedBlogSlugs = await blogService.listPublishedSlugs();
-  } catch (error) {
-    console.error("Failed to fetch blog slugs for sitemap:", error);
-  }
-
-  const blogEntries: MetadataRoute.Sitemap = publishedBlogSlugs.flatMap(
-    (post) => {
-      const route = `/blogs/${encodeURIComponent(post.slug)}`;
-
-      return sitemapEntriesForRoute(route, {
-        lastModified: post.updatedAt ? new Date(post.updatedAt) : now,
-        changeFrequency: "weekly",
-        priority: 0.8,
-      });
-    },
-  );
-
-  return [...staticEntries, ...blogEntries];
+  return staticEntries;
 }

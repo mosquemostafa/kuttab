@@ -21,7 +21,6 @@ export const USER_MEDIA_USAGE_TYPE = {
   COURSE_THUMBNAIL: "course_thumbnail",
   VIDEO_THUMBNAIL: "video_thumbnail",
   VIDEO_PLAYLIST_COVER: "video_playlist_cover",
-  USER_BLOG_COVER: "user_blog_cover",
   EDITOR_IMAGE: "editor_image",
 } as const;
 

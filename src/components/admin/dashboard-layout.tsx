@@ -117,8 +117,6 @@ const DashboardLayoutContent = ({
     settings: t("shell.settings"),
     support: t("shell.support"),
     content: t("shell.content"),
-    assets: t("shell.contentAssets"),
-    blogs: t("shell.blogs"),
     tickets: t("shell.tickets"),
     feedbacks: t("shell.feedbacks"),
     create: t("shell.create"),
@@ -140,9 +138,6 @@ const DashboardLayoutContent = ({
       return mode === "admin"
         ? t("shell.topicPush")
         : t("shell.inAppNotifications");
-    }
-    if (segment === "blogs" && mode === "dashboard") {
-      return t("shell.blogReader");
     }
     return segmentLabelMap[segment] ?? segment.replace(/-/g, " ");
   };

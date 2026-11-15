@@ -206,8 +206,6 @@ function resolveUniqueConstraintMessage(
       return "This video is already in this playlist.";
     case "segment_name_unique":
       return "A segment with this name already exists.";
-    case "blog_slug_unique_idx":
-      return "A blog with this slug already exists.";
     case "newsletter_campaigns_slug_unique":
       return "This newsletter slug is already in use.";
     case "newsletter_campaign_send_campaign_subscriber_unique":
@@ -219,7 +217,6 @@ function resolveUniqueConstraintMessage(
     default:
       if (table === "segments")
         return "A segment with this name already exists.";
-      if (table === "blogs") return "A blog with this slug already exists.";
       return "This item already exists.";
   }
 }

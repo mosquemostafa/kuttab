@@ -33,27 +33,3 @@ export function sanitizeInternalCallbackPath(
 
   return decoded;
 }
-
-/**
- * Maps a public blog post path to the dashboard reader URL where interactive comments load.
- * Returns a **locale-free** path (`/dashboard/blogs/slug`) for use with next-intl `router.push` / `Link`.
- * Supports pathname without locale (`/blogs/slug`) and with locale (`/ar/blogs/slug`).
- */
-export function dashboardBlogCommentsPathFromBlogReaderPath(
-  pathname: string,
-): string | null {
-  const trimmed = pathname.replace(/\/$/, "") || "/";
-
-  const withLocale = trimmed.match(/^\/([^/]+)\/blogs\/([^/]+)$/);
-  if (withLocale) {
-    const slug = withLocale[2];
-    return `/dashboard/blogs/${slug}`;
-  }
-
-  const noLocale = trimmed.match(/^\/blogs\/([^/]+)$/);
-  if (noLocale) {
-    return `/dashboard/blogs/${noLocale[1]}`;
-  }
-
-  return null;
-}

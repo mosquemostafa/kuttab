@@ -15,8 +15,6 @@ import {
   Megaphone,
   Bell,
   LifeBuoy,
-  Image,
-  FileText,
   Mail,
   Shield,
   PenSquare,
@@ -202,16 +200,6 @@ export function DashboardSidebar({
           href: "/content/overview",
           icon: Home,
           label: t("shell.overview"),
-        },
-        {
-          href: "/content/assets",
-          icon: Image,
-          label: t("shell.contentAssets"),
-        },
-        {
-          href: "/content/blogs",
-          icon: FileText,
-          label: t("shell.blogs"),
         },
         {
           href: "/content/newsletter",

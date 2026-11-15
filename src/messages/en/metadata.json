@@ -1,14 +1,6 @@
 {
   "title": "Almostafa - Islamic Institute for Teaching Quran",
   "description": "Almostafa is a premier Islamic institute dedicated to teaching the Holy Quran, Tajweed, recitation, and memorization for students worldwide.",
-  "blogs": {
-    "notFoundTitle": "Blog not found",
-    "notFoundDescription": "The requested blog post could not be found.",
-    "tagFilterTitle": "Articles tagged {tag}",
-    "tagFilterDescription": "All published articles that include this tag.",
-    "listTitle": "Blog",
-    "listDescription": "Read our latest Quranic reflections, tajweed lessons, and academic updates."
-  },
   "auth": {
     "login": {
       "title": "Sign In | Almostafa",
@@ -93,14 +85,6 @@
     "overview": {
       "title": "Content Overview | Almostafa",
       "description": "Manage the educational content workspace and track publishing workflows."
-    },
-    "assets": {
-      "title": "Content Assets | Almostafa",
-      "description": "Upload, organize, and manage media and audio recordings for your Quran courses."
-    },
-    "blogs": {
-      "title": "Quranic Articles | Almostafa",
-      "description": "Create, edit, and manage multilingual Quranic blogs, Tajweed guides, and insights."
     },
     "newsletter": {
       "title": "Newsletter | Almostafa Content",

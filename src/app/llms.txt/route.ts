@@ -38,7 +38,7 @@ export async function GET() {
     "### Admin Portal",
     "- User management and analytics",
     "- Global application settings",
-    "- Announcement broadcasting and marketing blogs",
+    "- Announcement broadcasting",
     "",
     "### Architecture",
     "- Strict feature-first layered architecture (Route Handler → Guard → Controller → Service → Repository → DTO/Zod)",

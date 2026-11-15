@@ -11,7 +11,7 @@ import {
 import { user } from "@/server/modules/users/user.entity";
 
 /**
- * User-owned media (R2). Admin/system assets remain in `media_files` (Cloudinary).
+ * User-owned media (R2).
  */
 export const userMediaFile = pgTable(
   "user_media_files",

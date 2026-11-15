@@ -937,10 +937,6 @@ const options = {
         description: "Project management endpoints",
       },
       {
-        name: "Blogs",
-        description: "Blog content management and public blog endpoints",
-      },
-      {
         name: "Support",
         description: "Support tickets management endpoints",
       },
@@ -956,7 +952,7 @@ const options = {
       {
         name: "Content",
         description:
-          "Content workspace — assets, blogs, newsletter (content manager or admin)",
+          "Content workspace — newsletter (content manager or admin)",
       },
       {
         name: "Dashboard",

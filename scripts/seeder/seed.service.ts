@@ -5,10 +5,7 @@ import { db } from "@/server/db";
 import {
   announcement,
   appSettings,
-  blog,
-  blogsComment,
   feedback,
-  mediaFile,
   newsletterCampaign,
   newsletterCampaignSend,
   newsletterSubscriber,
@@ -84,18 +81,6 @@ export const seedService = {
     const summary: Record<string, number> = {};
     const track = (key: string, count: number) => {
       summary[key] = (summary[key] || 0) + count;
-    };
-
-    // User tags collection across all seed steps
-    const userTagsMap = new Map<string, Set<string>>();
-    const registerUserTags = (userId: string, tags: string[]) => {
-      if (!userTagsMap.has(userId)) {
-        userTagsMap.set(userId, new Set());
-      }
-      const set = userTagsMap.get(userId)!;
-      for (const t of tags) {
-        if (t && t.trim()) set.add(t.trim());
-      }
     };
 
     // ─── 1. App Settings ─────────────────────────────────────────────────────
@@ -271,7 +256,6 @@ export const seedService = {
       await db
         .delete(usersAnnouncement)
         .where(eq(usersAnnouncement.userId, primaryUserId));
-      await db.delete(mediaFile).where(eq(mediaFile.uploadedBy, primaryUserId));
 
       // 2. Clean secondary users data so multi-user analytics & tickets refresh with fresh dates
       const secondaryUserIds = secondaryUsers.map((u) => u.id);
@@ -281,19 +265,8 @@ export const seedService = {
       await db
         .delete(feedback)
         .where(inArray(feedback.userId, secondaryUserIds));
-      await db
-        .delete(blogsComment)
-        .where(inArray(blogsComment.userId, secondaryUserIds));
 
       // 3. Clean system-level seed items so their publishedAt / startsAt dates are refreshed to today
-      await db
-        .delete(blog)
-        .where(
-          inArray(blog.slug, [
-            "the-one-percent-habit-rule",
-            "the-architecture-of-deep-focus",
-          ]),
-        );
       await db
         .delete(announcement)
         .where(
@@ -363,7 +336,7 @@ export const seedService = {
       {
         id: `prj_${primaryUserId}_archived`,
         userId: primaryUserId,
-        name: "Legacy Blog Archive",
+        name: "Legacy Project Archive",
         description: "Archived content and completed migration tasks.",
         colorKey: "gray" as ColorKey,
         icon: "📦",
@@ -701,94 +674,6 @@ export const seedService = {
       })
       .onConflictDoNothing();
 
-    // ─── 25. Public Marketing Blogs & Comments ───────────────────────────────
-    const publicBlogsList = [
-      {
-        id: `blg_one_percent_rule`,
-        slug: "the-one-percent-habit-rule",
-        titleEn: "The 1% Rule: Compounding Small Daily Habits",
-        titleAr: "قاعدة الـ ١٪: كيف تتضاعف العادات اليومية البسيطة",
-        descriptionEn:
-          "Why getting 1% better every day yields astronomical growth over time.",
-        descriptionAr:
-          "لماذا يُحدث التحسن بنسبة ١٪ يومياً نتائج هائلة على المدى الطويل.",
-        excerptEn:
-          "Small habits don't add up, they compound. Discover the mathematics behind sustainable self-mastery.",
-        excerptAr:
-          "العادات الصغيرة لا تُجمع بل تتضاعف هندسياً. اكتشف الأثر التراكمي للالتزام اليومي البسيط.",
-        contentEn: `# The 1% Rule: Compounding Small Daily Habits\n\nIt is so easy to overestimate the importance of one defining moment and underestimate the value of making small improvements on a daily basis.\n\n### The Math of Compounding\n- If you get 1% better each day for one year, you'll end up **37.78 times better**.\n- If you get 1% worse each day, you decline nearly down to zero.\n\nHabits are the compound interest of self-improvement.`,
-        contentAr: `# قاعدة الـ ١٪: كيف تتضاعف العادات اليومية\n\nمن السهل جداً المبالغة في تقدير أهمية لحظة فارقة واحدة، والتقليل من شأن التحسينات الصغيرة المتراكمة يومياً.\n\n### رياضيات المضاعفة\n- إذا تحسنت بنسبة ١٪ يومياً لمدة عام، ستصبح **أفضل بـ ٣٧ ضعفاً**.\n- وإذا تراجعت بنسبة ١٪ يومياً، فستنحدر إلى الصفر تقريباً.\n\nالعادات هي الفائدة المركبة لتطوير الذات.`,
-        coverImageUrl:
-          "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&auto=format&fit=crop&q=60",
-        readingMinutes: 4,
-        authorId: primaryUserId,
-        tags: ["habits", "growth", "mindset"],
-        status: "published" as const,
-        isFeatured: true,
-        publishDate: daysAgo(14),
-      },
-      {
-        id: `blg_deep_work_focus`,
-        slug: "the-architecture-of-deep-focus",
-        titleEn: "The Architecture of Deep Focus in a Distracted World",
-        titleAr: "فن التركيز العميق في عصر التشتت",
-        descriptionEn:
-          "How to engineer environments that protect deep cognitive flow.",
-        descriptionAr:
-          "كيف تصمم بيئة عمل تحمي ذهنك من التشتت وتطلق العنان للإبداع.",
-        excerptEn:
-          "Depth is rare and high-value. Learn how to reclaim your undivided attention.",
-        excerptAr:
-          "التركيز العميق أصبح نادراً وعالي القيمة. تعلم كيف تستعيد سيطرتك الكاملة على انتباهك.",
-        contentEn: `# The Architecture of Deep Focus\n\nDeep work is the ability to focus without distraction on a cognitively demanding task. It's a skill that allows you to quickly master complicated information and produce better results in less time.\n\n### Practical Rules:\n1. Work deeply for 90-minute intervals.\n2. Embrace boredom; resist reaching for your phone.\n3. Drain the shallows: limit non-essential communication.`,
-        contentAr: `# فن التركيز العميق\n\nالعمل العميق هو القدرة على التركيز الخالي من التشتت في المهام التي تتطلب مجهوداً ذهنياً معقداً.\n\n### قواعد عملية:\n١. خصص فترات تركيز مدتها ٩٠ دقيقة.\n٢. تقبل الملل ولا تلجأ لهاتفك مع أول إشارة للملل.\n٣. قلل الأعمال السطحية ورسائل الدردشة غير العاجلة.`,
-        coverImageUrl:
-          "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&auto=format&fit=crop&q=60",
-        readingMinutes: 5,
-        authorId: primaryUserId,
-        tags: ["focus", "productivity", "deep-work"],
-        status: "published" as const,
-        isFeatured: false,
-        publishDate: daysAgo(7),
-      },
-    ];
-
-    for (const b of publicBlogsList) {
-      await db.insert(blog).values(b).onConflictDoNothing();
-      registerUserTags(primaryUserId, b.tags);
-    }
-    track("blogs", publicBlogsList.length);
-
-    // Blog Comments from diverse users
-    const blogCommentsList = [
-      {
-        id: `bcm_${publicBlogsList[0].id}_sarah`,
-        blogId: publicBlogsList[0].id,
-        userId: "usr_sarah_jenkins",
-        body: "Consistent daily Quran recitation has transformed my life. Tracking my daily wird inside Almostafa has made this real for me!",
-        createdAt: daysAgo(12),
-      },
-      {
-        id: `bcm_${publicBlogsList[0].id}_karim`,
-        blogId: publicBlogsList[0].id,
-        userId: "usr_karim_mansour",
-        body: "مقال رائع وملهم جداً، فكرة بناء الهوية أولاً غيّرت طريقة التزامي بالمذاكرة والرياضة تماماً.",
-        createdAt: daysAgo(10),
-      },
-      {
-        id: `bcm_${publicBlogsList[1].id}_layla`,
-        blogId: publicBlogsList[1].id,
-        userId: "usr_layla_ahmed",
-        body: "Leaving the phone outside my bedroom transformed my mornings completely. Highly recommend this practice.",
-        createdAt: daysAgo(5),
-      },
-    ];
-
-    for (const bc of blogCommentsList) {
-      await db.insert(blogsComment).values(bc).onConflictDoNothing();
-    }
-    track("blogComments", blogCommentsList.length);
-
     // ─── 27. Newsletter Subscribers & Campaigns ──────────────────────────────
     const subscribersList = [
       {
@@ -874,30 +759,6 @@ export const seedService = {
         .onConflictDoNothing();
     }
     track("newsletterCampaignSends", 4);
-
-    // ─── 28. Sample Media Asset (assets table) ───────────────────────────────
-    await db
-      .insert(mediaFile)
-      .values({
-        id: `med_${primaryUserId}_sample_cover`,
-        publicId: "sample_cover_public_id",
-        cloudinaryUrl:
-          "https://images.unsplash.com/photo-1499750310107-5fef28a66643",
-        secureUrl:
-          "https://images.unsplash.com/photo-1499750310107-5fef28a66643",
-        resourceType: "image",
-        format: "jpg",
-        width: 1200,
-        height: 800,
-        bytes: 184500,
-        folder: "blog-covers",
-        filename: "habits_cover.jpg",
-        originalFilename: "habits_cover.jpg",
-        tags: ["habits", "seed"],
-        uploadedBy: primaryUserId,
-      })
-      .onConflictDoNothing();
-    track("mediaFiles", 1);
 
     return {
       success: true,

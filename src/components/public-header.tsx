@@ -21,7 +21,6 @@ export function PublicHeader() {
   }, []);
 
   const navLinks = [
-    { href: "/blogs", label: t("landing.navbar.blog") },
     { href: "/contact", label: t("landing.navbar.contact") },
   ];
 

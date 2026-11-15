@@ -1,6 +1,6 @@
 # Implementation Plan: Editor Image Upload & Subscription Entitlements
 
-> **Specification Reference:** Adheres to [`docs/BACKEND_MODULE_GUIDE.md`](../BACKEND_MODULE_GUIDE.md), [`docs/storage/R2_JOURNAL_DAILY_COVER.md`](../storage/R2_JOURNAL_DAILY_COVER.md), and existing direct-to-storage R2 patterns across `books`, `courses`, `user-blogs`, and `journal_daily`.
+> **Specification Reference:** Adheres to [`docs/BACKEND_MODULE_GUIDE.md`](../BACKEND_MODULE_GUIDE.md), [`docs/storage/R2_JOURNAL_DAILY_COVER.md`](../storage/R2_JOURNAL_DAILY_COVER.md), and existing direct-to-storage R2 patterns across `books`, `courses`, and `journal_daily`.
 
 ---
 
@@ -12,7 +12,7 @@ Enable users to upload images directly from inside the rich-text editor ([`Simpl
 - **Trial Plan Limit:** 20 editor images (`maxEditorImages: 20`)
 - **Pro Plan Limit:** Unlimited (`maxEditorImages: null`)
 - **File Constraints:** Max 5MB (`USER_MEDIA_MAX_IMAGE_BYTES`), allowed formats: JPEG, PNG, WebP, JPG, AVIF.
-- **Scope:** Universally active anywhere [`SimpleEditor`](file:///Users/aanassar/Documents/projects/modawim/modawim-codebase/src/components/tiptap-templates/simple/simple-editor.tsx) is used (Notes, Daily Journal entries, Course lessons, Books reviews, User blogs, Plans).
+- **Scope:** Universally active anywhere [`SimpleEditor`](file:///Users/aanassar/Documents/projects/modawim/modawim-codebase/src/components/tiptap-templates/simple/simple-editor.tsx) is used (Notes, Daily Journal entries, Course lessons, Books reviews, Plans).
 
 ---
 
