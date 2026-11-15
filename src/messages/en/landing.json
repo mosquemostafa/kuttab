@@ -1,69 +1,24 @@
 {
   "navbar": {
-    "features": "Programs & Features",
     "contact": "Contact"
   },
   "hero": {
-    "badge": "Almostafa Islamic Institute for Quran Studies",
-    "title": "Learn & Memorize the Holy Quran with",
-    "titleHighlight": "Excellence and Understanding",
-    "subtitle": "A premier Islamic institute dedicated to teaching the Holy Quran recitation, Tajweed, and memorization under certified teachers, with flexible programs tailored for all levels.",
-    "ctaPrimary": "Get Started",
-    "ctaSecondary": "Sign In",
-    "ctaDashboard": "Open Dashboard",
     "installApp": "Install App",
     "installAppIos": "Install on iOS"
   },
   "features": {
-    "title": "Why Choose Almostafa Institute?",
-    "subtitle": "A comprehensive Quranic learning environment blending authentic scholarly transmission with modern educational tools.",
-    "auth": {
-      "title": "Certified Quran Instructors",
-      "description": "Learn from distinguished male and female Quran teachers holding verified Ijazah with authentic sanad."
-    },
-    "database": {
-      "title": "Structured Quranic Curriculum",
-      "description": "Progressive learning tracks spanning Tajweed rules, recitation correction, intensive memorization (Hifz), and Tafseer."
-    },
-    "bilingual": {
-      "title": "Global Bilingual Support (Arabic & English)",
-      "description": "Accessible to Quran students and families worldwide with full support for both Arabic and English."
-    },
-    "admin": {
-      "title": "Continuous Progress Tracking",
-      "description": "Dedicated dashboards for students and parents to track recitation attendance, memorization milestones, and evaluations."
-    },
-    "architecture": {
-      "title": "Flexible Study Circles",
-      "description": "Individual one-on-one sessions and group circles designed around your schedule and learning speed."
-    },
-    "notifications": {
-      "title": "Session Reminders & Announcements",
-      "description": "Timely alerts for class times, teacher notes, exam dates, and institute announcements."
-    }
+    "auth": {},
+    "database": {},
+    "bilingual": {},
+    "admin": {},
+    "architecture": {},
+    "notifications": {}
   },
-  "cta": {
-    "title": "Ready to Start Your Quranic Journey?",
-    "subtitle": "Join Almostafa Institute today and begin learning the Book of Allah with dedicated mentors.",
-    "button": "Join Now for Free"
-  },
+  "cta": {},
   "footer": {
-    "brand": "Almostafa",
-    "brandDescription": "A leading Islamic institute for teaching the Holy Quran, Tajweed, and Islamic studies worldwide.",
-    "product": {
-      "features": "Programs"
-    },
-    "company": {
-      "title": "Institute",
-      "contact": "Contact"
-    },
-    "legal": {
-      "title": "Legal",
-      "privacy": "Privacy Policy",
-      "terms": "Terms of Service"
-    },
-    "copyright": "© {year} Almostafa. All rights reserved.",
-    "madeWith": "Built with"
+    "product": {},
+    "company": {},
+    "legal": {}
   },
   "contact": {
     "title": "Contact Us",

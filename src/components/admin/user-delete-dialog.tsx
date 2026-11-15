@@ -47,6 +47,7 @@ export function UserDeleteDialog({
           ? t("dialogs.processing", { defaultValue: "Processing..." })
           : t("dialogs.deleteConfirm")
       }
+      cancelText={t("dialogs.cancel")}
       confirmVariant="destructive"
     />
   );

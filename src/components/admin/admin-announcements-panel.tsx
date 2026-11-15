@@ -180,6 +180,27 @@ export function AdminAnnouncementsPanel() {
     }
   };
 
+  const getTargetRoleLabel = (role: string | null) => {
+    if (!role) return "-";
+    switch (role) {
+      case UserRole.USER:
+        return t("roles.user");
+      case UserRole.STUDENT:
+        return t("roles.student");
+      case UserRole.PARENT:
+        return t("roles.parent");
+      case UserRole.SUPPORT:
+        return t("roles.support");
+      case UserRole.CONTENT:
+      case "contentManager":
+        return t("roles.content");
+      case UserRole.ADMIN:
+        return t("roles.admin");
+      default:
+        return role;
+    }
+  };
+
   const resetForm = () => {
     setTitleAr("");
     setTitleEn("");
@@ -483,7 +504,7 @@ export function AdminAnnouncementsPanel() {
                       {t("roles.support")}
                     </SelectItem>
                     <SelectItem value={UserRole.CONTENT}>
-                      {t("roles.contentManager")}
+                      {t("roles.content")}
                     </SelectItem>
                     <SelectItem value={UserRole.ADMIN}>
                       {t("roles.admin")}
@@ -671,7 +692,7 @@ export function AdminAnnouncementsPanel() {
                           ? t("targets.all")
                           : item.targetType === "segment"
                             ? `${t("targets.segment")}: ${item.targetLabel ?? item.targetValue ?? "-"}`
-                            : `${t("targets.role")}: ${item.targetValue ?? "-"}`}
+                            : `${t("targets.role")}: ${getTargetRoleLabel(item.targetValue)}`}
                       </TableCell>
                       <TableCell>
                         {item.publishedAt

@@ -50,6 +50,7 @@ export function UserRevokeSessionsDialog({
           ? t("dialogs.processing", { defaultValue: "Processing..." })
           : t("dialogs.revokeConfirm")
       }
+      cancelText={t("dialogs.cancel")}
       confirmVariant="destructive"
     />
   );

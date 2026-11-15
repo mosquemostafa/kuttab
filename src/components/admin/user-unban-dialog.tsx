@@ -47,6 +47,7 @@ export function UserUnbanDialog({
           ? t("dialogs.processing", { defaultValue: "Processing..." })
           : t("dialogs.unbanConfirm")
       }
+      cancelText={t("dialogs.cancel")}
     />
   );
 }

@@ -35,8 +35,7 @@
     "create": "إنشاء",
     "edit": "تعديل",
     "brandTitle": "المصطفى",
-    "brandSubtitle": "معهد تعليم القرآن الكريم",
-    "staffPanels": "أدوات الإدارة والتشغيل"
+    "brandSubtitle": "معهد تعليم القرآن الكريم"
   },
   "overview": {
     "greeting": {
@@ -155,6 +154,7 @@
       "unsegmented": "غير مصنّف",
       "role": {
         "admin": "مسؤول",
+        "content": "محتوى",
         "contentManager": "محتوى",
         "support": "دعم",
         "student": "طالب",

@@ -10,14 +10,18 @@
     "sortDesc": "Descending",
     "admin": "Admin",
     "support": "Support",
-    "contentManager": "Content manager",
+    "content": "Content",
+    "contentManager": "Content",
     "student": "Student",
     "parent": "Parent",
     "user": "User",
-    "addUser": "Add a user"
+    "addUser": "Add a user",
+    "refresh": "Refresh"
   },
   "actions": {
     "menuLabel": "Actions",
+    "copyUserId": "Copy user ID",
+    "copiedUserId": "Copied user ID",
     "updateRole": "Update Role",
     "updateSegment": "Update Segment",
     "banUser": "Ban User",
@@ -31,6 +35,18 @@
     "startSupportChat": "Start Support Chat"
   },
   "dialogs": {
+    "addUserTitle": "Add New User",
+    "addUserDescription": "Create a new user account with the following details.",
+    "addUserConfirm": "Create User",
+    "addUserCreating": "Creating...",
+    "addUserValidation": "Name, email, and password are required.",
+    "nameLabel": "Name",
+    "namePlaceholder": "Enter user's name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Enter user's email",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter user's password",
+    "autoVerifyLabel": "Auto-verify email",
     "banTitle": "Ban User: {name}",
     "banDescription": "This will prevent the user from accessing the platform.",
     "banConfirm": "Ban User",
@@ -110,13 +126,16 @@
     "roleUpdated": "User role updated to {role}.",
     "segmentUpdated": "User segment updated to {segment}.",
     "pushSentToToken": "Push sent: {successCount}/{targetedTokens} successful.",
-    "inAppNotificationSent": "In-app notification sent."
+    "inAppNotificationSent": "In-app notification sent.",
+    "userCreatedVerified": "User created and verified successfully.",
+    "userCreated": "User created successfully. Verification email sent."
   },
   "errors": {
     "failedToLoadUsers": "Failed to load users",
     "unknownSendError": "Unknown send error."
   },
   "columns": {
+    "id": "ID",
     "name": "Name",
     "verification": "Verification",
     "linkedAccounts": "Linked Accounts",
@@ -134,15 +153,23 @@
     "noSegment": "No segment",
     "banned": "Banned",
     "never": "Never",
-    "reason": "Reason"
+    "reason": "Reason",
+    "expires": "Expires: {date}"
   },
   "roles": {
     "admin": "Admin",
     "support": "Support",
-    "contentManager": "Content manager",
+    "content": "Content",
+    "contentManager": "Content",
     "student": "Student",
     "parent": "Parent",
     "user": "User"
   },
-  "summary": "Showing {count} of {total} users"
+  "summary": "Showing {count} of {total} users",
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "previousAria": "Go to previous page",
+    "nextAria": "Go to next page"
+  }
 }

@@ -3,14 +3,8 @@
     "title": "Account Settings",
     "description": "Manage your personal preferences and notification settings."
   },
-  "errors": {
-    "emailDoesntMatch": "Selected provider email must match your current account email.",
-    "unableToLinkAccount": "Unable to link the selected provider account.",
-    "accountAlreadyLinkedToDifferentUser": "This provider account is already linked to another user."
-  },
-  "success": {
-    "linked": "Account linked successfully."
-  },
+  "errors": {},
+  "success": {},
   "personalInformation": {
     "title": "Personal Information",
     "description": "Update your account profile details. Additional fields can be added here as your profile grows.",

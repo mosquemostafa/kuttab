@@ -57,7 +57,7 @@ export function AdminFcmTopicPushPanel() {
       case UserRole.SUPPORT:
         return t("adminUsers.roles.support");
       case UserRole.CONTENT:
-        return t("adminUsers.roles.contentManager");
+        return t("adminUsers.roles.content");
       case UserRole.STUDENT:
         return t("adminUsers.roles.student");
       case UserRole.PARENT:

@@ -19,6 +19,8 @@ import {
   UserCheck,
 } from "lucide-react";
 import { format } from "date-fns";
+import { ar } from "date-fns/locale/ar";
+import { enUS } from "date-fns/locale/en-US";
 import useSWR from "swr";
 import { useState, useEffect, useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -62,7 +64,7 @@ import {
   PaginationEllipsis,
 } from "@/components/ui/pagination";
 import { UserAddDialog } from "./user-add-dialog";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 // Helper function to render account icons
 const getAccountIcon = (account: string) => {
@@ -76,6 +78,8 @@ const getAccountIcon = (account: string) => {
 
 export function UsersTable() {
   const t = useTranslations("adminUsers");
+  const locale = useLocale();
+  const dateLocale = locale.startsWith("ar") ? ar : enUS;
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
@@ -177,11 +181,11 @@ export function UsersTable() {
       <div className="flex flex-wrap gap-2 items-end">
         {/* Search by email */}
         <div className="relative">
-          <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Search className="absolute start-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <input
             type="text"
             placeholder={t("controls.searchEmail")}
-            className="pl-8 pr-2 py-2 border rounded-md text-sm bg-background w-50"
+            className="ps-8 pe-2.5 py-2 border rounded-md text-sm bg-background w-50"
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
@@ -222,7 +226,7 @@ export function UsersTable() {
             <SelectItem value="content">
               <span className="flex items-center gap-2">
                 <PenSquare className="w-4 h-4" />
-                {t("controls.contentManager")}
+                {t("controls.content")}
               </span>
             </SelectItem>
             <SelectItem value="student">
@@ -288,8 +292,8 @@ export function UsersTable() {
           onClick={() => mutate()}
           type="button"
         >
-          <RefreshCw className="h-4 w-4 " />
-          Refresh
+          <RefreshCw className="h-4 w-4" />
+          {t("controls.refresh")}
         </button>
         <button
           className="bg-primary text-primary-foreground rounded-md px-4 py-2 text-sm font-medium shadow-xs hover:bg-primary/90 transition-colors flex items-center gap-2"
@@ -313,14 +317,12 @@ export function UsersTable() {
             <TableHeader>
               <TableRow>
                 {[
-                  { label: "ID" },
+                  { label: t("columns.id") },
                   { label: t("columns.name") },
                   { label: t("columns.verification") },
                   { label: t("columns.linkedAccounts") },
                   { label: t("columns.role") },
                   { label: t("columns.segment") },
-                  { label: t("columns.plan") },
-                  { label: t("columns.planActive") },
                   { label: t("columns.status") },
                   { label: t("columns.lastSignIn") },
                   { label: t("columns.createdAt") },
@@ -367,9 +369,6 @@ export function UsersTable() {
                   </TableCell>
                   <TableCell className="px-4 py-3">
                     <Skeleton className="h-6 w-15" />
-                  </TableCell>
-                  <TableCell className="px-4 py-3">
-                    <Skeleton className="h-6 w-24" />
                   </TableCell>
                   <TableCell className="px-4 py-3">
                     <Skeleton className="h-6 w-24" />
@@ -424,6 +423,8 @@ export function UsersTable() {
               aria-disabled={page === 1}
               tabIndex={page === 1 ? -1 : 0}
               className={page === 1 ? "pointer-events-none opacity-50" : ""}
+              text={t("pagination.previous")}
+              ariaLabel={t("pagination.previousAria")}
             />
           </PaginationItem>
           {startPage > 1 && (
@@ -462,6 +463,8 @@ export function UsersTable() {
               className={
                 page === totalPages ? "pointer-events-none opacity-50" : ""
               }
+              text={t("pagination.next")}
+              ariaLabel={t("pagination.nextAria")}
             />
           </PaginationItem>
         </PaginationContent>
@@ -477,7 +480,7 @@ export function UsersTable() {
           <TableHeader className="bg-muted sticky top-0 z-10">
             <TableRow>
               {[
-                { label: "ID" },
+                { label: t("columns.id") },
                 { label: t("columns.name") },
                 { label: t("columns.verification") },
                 { label: t("columns.linkedAccounts") },
@@ -555,11 +558,11 @@ export function UsersTable() {
                         type="button"
                         onClick={() => handleCopyUserId(user.id)}
                         className="inline-flex items-center text-muted-foreground hover:text-foreground cursor-pointer transition-colors"
-                        aria-label="Copy user ID"
+                        aria-label={t("actions.copyUserId")}
                         title={
                           copiedUserId === user.id
-                            ? "Copied user ID"
-                            : "Copy user ID"
+                            ? t("actions.copiedUserId")
+                            : t("actions.copyUserId")
                         }
                       >
                         {copiedUserId === user.id ? (
@@ -666,7 +669,7 @@ export function UsersTable() {
                           ? user.role === UserRole.ADMIN
                             ? t("roles.admin")
                             : user.role === UserRole.CONTENT
-                              ? t("roles.contentManager")
+                              ? t("roles.content")
                               : user.role === UserRole.SUPPORT
                                 ? t("roles.support")
                                 : user.role === UserRole.STUDENT
@@ -715,8 +718,11 @@ export function UsersTable() {
                           </TooltipProvider>
                           {user.banExpires && (
                             <span className="text-xs text-muted-foreground">
-                              Expires:{" "}
-                              {format(new Date(user.banExpires), "MMM d, yyyy")}
+                              {t("statuses.expires", {
+                                date: format(new Date(user.banExpires), "PP", {
+                                  locale: dateLocale,
+                                }),
+                              })}
                             </span>
                           )}
                         </div>
@@ -732,17 +738,15 @@ export function UsersTable() {
                     </TableCell>
                     <TableCell className="px-4 py-3 text-xs text-muted-foreground">
                       {user.lastSignIn
-                        ? format(
-                            new Date(user.lastSignIn),
-                            "MMM d, yyyy 'at' h:mm a",
-                          )
+                        ? format(new Date(user.lastSignIn), "PPp", {
+                            locale: dateLocale,
+                          })
                         : t("statuses.never")}
                     </TableCell>
                     <TableCell className="px-4 py-3 text-xs text-muted-foreground">
-                      {format(
-                        new Date(user.createdAt),
-                        "MMM d, yyyy 'at' h:mm a",
-                      )}
+                      {format(new Date(user.createdAt), "PPp", {
+                        locale: dateLocale,
+                      })}
                     </TableCell>
                     <TableCell className="px-4 py-3">
                       <UserActions

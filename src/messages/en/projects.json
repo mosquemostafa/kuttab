@@ -8,9 +8,7 @@
       "deleted": "Project deleted successfully.",
       "unarchived": "Project restored from archive successfully."
     },
-    "errors": {
-      "projectLimitReached": "You have reached your plan's project limit. Upgrade to add more projects."
-    }
+    "errors": {}
   },
   "projectRoute": {},
   "tabs": {},

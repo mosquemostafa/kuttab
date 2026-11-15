@@ -31,7 +31,7 @@ export function UserRoleDialog({ user, isOpen, onClose }: UserRoleDialogProps) {
       case UserRole.SUPPORT:
         return t("roles.support");
       case UserRole.CONTENT:
-        return t("roles.contentManager");
+        return t("roles.content");
       case UserRole.STUDENT:
         return t("roles.student");
       case UserRole.PARENT:
@@ -76,6 +76,7 @@ export function UserRoleDialog({ user, isOpen, onClose }: UserRoleDialogProps) {
           ? t("dialogs.processing", { defaultValue: "Processing..." })
           : t("dialogs.updateRoleConfirm")
       }
+      cancelText={t("dialogs.cancel")}
     >
       <div className="grid gap-4 py-4">
         <div className="grid gap-2">
@@ -98,7 +99,7 @@ export function UserRoleDialog({ user, isOpen, onClose }: UserRoleDialogProps) {
                 value={UserRole.CONTENT}
                 className="hover:bg-muted"
               >
-                {t("roles.contentManager")}
+                {t("roles.content")}
               </SelectItem>
               <SelectItem value={UserRole.STUDENT} className="hover:bg-muted">
                 {t("roles.student")}

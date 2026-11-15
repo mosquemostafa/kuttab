@@ -82,6 +82,7 @@ export function UserSegmentDialog({
           ? t("dialogs.processing", { defaultValue: "Processing..." })
           : t("dialogs.updateSegmentConfirm")
       }
+      cancelText={t("dialogs.cancel")}
     >
       <div className="grid gap-4 py-4">
         <div className="grid gap-2">

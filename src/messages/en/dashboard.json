@@ -35,8 +35,7 @@
     "create": "Create",
     "edit": "Edit",
     "brandTitle": "Almostafa",
-    "brandSubtitle": "Quran Teaching Institute",
-    "staffPanels": "Staff & Management"
+    "brandSubtitle": "Quran Teaching Institute"
   },
   "overview": {
     "greeting": {
@@ -155,6 +154,7 @@
       "unsegmented": "Unsegmented",
       "role": {
         "admin": "Admin",
+        "content": "Content",
         "contentManager": "Content",
         "support": "Support",
         "student": "Student",

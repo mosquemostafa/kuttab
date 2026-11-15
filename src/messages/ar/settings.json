@@ -3,14 +3,8 @@
     "title": "إعدادات الحساب",
     "description": "قم بإدارة تفضيلاتك الشخصية وإعدادات الإشعارات."
   },
-  "errors": {
-    "emailDoesntMatch": "يجب أن يتطابق بريد مزود الخدمة مع بريدك الإلكتروني الحالي.",
-    "unableToLinkAccount": "تعذر ربط حساب المزود المحدد.",
-    "accountAlreadyLinkedToDifferentUser": "هذا الحساب مرتبط بالفعل بمستخدم آخر."
-  },
-  "success": {
-    "linked": "تم ربط الحساب بنجاح."
-  },
+  "errors": {},
+  "success": {},
   "personalInformation": {
     "title": "المعلومات الشخصية",
     "description": "قم بتحديث تفاصيل ملفك الشخصي. يمكن إضافة حقول إضافية هنا مع نمو ملفك.",

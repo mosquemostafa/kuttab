@@ -10,14 +10,18 @@
     "sortDesc": "تنازلي",
     "admin": "مسؤول",
     "support": "الدعم",
-    "contentManager": "مدير المحتوى",
+    "content": "المحتوى",
+    "contentManager": "المحتوى",
     "student": "طالب",
     "parent": "ولي أمر",
     "user": "مستخدم",
-    "addUser": "إضافة مستخدم"
+    "addUser": "إضافة مستخدم",
+    "refresh": "تحديث"
   },
   "actions": {
     "menuLabel": "الإجراءات",
+    "copyUserId": "نسخ معرّف المستخدم",
+    "copiedUserId": "تم نسخ معرّف المستخدم",
     "updateRole": "تحديث الدور",
     "updateSegment": "تحديث الشريحة",
     "banUser": "حظر المستخدم",
@@ -31,6 +35,18 @@
     "startSupportChat": "بدء محادثة دعم"
   },
   "dialogs": {
+    "addUserTitle": "إضافة مستخدم جديد",
+    "addUserDescription": "إنشاء حساب مستخدم جديد بالتفاصيل التالية.",
+    "addUserConfirm": "إنشاء مستخدم",
+    "addUserCreating": "جارٍ الإنشاء...",
+    "addUserValidation": "الاسم والبريد الإلكتروني وكلمة المرور مطلوبة.",
+    "nameLabel": "الاسم",
+    "namePlaceholder": "أدخل اسم المستخدم",
+    "emailLabel": "البريد الإلكتروني",
+    "emailPlaceholder": "أدخل البريد الإلكتروني للمستخدم",
+    "passwordLabel": "كلمة المرور",
+    "passwordPlaceholder": "أدخل كلمة المرور للمستخدم",
+    "autoVerifyLabel": "التحقق التلقائي من البريد الإلكتروني",
     "banTitle": "حظر المستخدم: {name}",
     "banDescription": "سيمنع هذا المستخدم من الوصول إلى المنصة.",
     "banConfirm": "حظر المستخدم",
@@ -110,13 +126,16 @@
     "roleUpdated": "تم تحديث دور المستخدم إلى {role}.",
     "segmentUpdated": "تم تحديث شريحة المستخدم إلى {segment}.",
     "pushSentToToken": "تم إرسال الإشعار: {successCount}/{targetedTokens} بنجاح.",
-    "inAppNotificationSent": "تم إرسال الإشعار داخل التطبيق."
+    "inAppNotificationSent": "تم إرسال الإشعار داخل التطبيق.",
+    "userCreatedVerified": "تم إنشاء المستخدم وتأكيد حسابه بنجاح.",
+    "userCreated": "تم إنشاء المستخدم بنجاح. تم إرسال رسالة التحقق إلى البريد الإلكتروني."
   },
   "errors": {
     "failedToLoadUsers": "فشل تحميل المستخدمين",
     "unknownSendError": "حدث خطأ غير معروف أثناء الإرسال."
   },
   "columns": {
+    "id": "المعرّف",
     "name": "الاسم",
     "verification": "التحقق",
     "linkedAccounts": "الحسابات المرتبطة",
@@ -134,15 +153,23 @@
     "noSegment": "بدون شريحة",
     "banned": "محظور",
     "never": "أبداً",
-    "reason": "السبب"
+    "reason": "السبب",
+    "expires": "ينتهي: {date}"
   },
   "roles": {
     "admin": "مسؤول",
     "support": "الدعم",
-    "contentManager": "مدير المحتوى",
+    "content": "المحتوى",
+    "contentManager": "المحتوى",
     "student": "طالب",
     "parent": "ولي أمر",
     "user": "مستخدم"
   },
-  "summary": "عرض {count} من {total} مستخدم"
+  "summary": "عرض {count} من {total} مستخدم",
+  "pagination": {
+    "previous": "السابق",
+    "next": "التالي",
+    "previousAria": "الانتقال إلى الصفحة السابقة",
+    "nextAria": "الانتقال إلى الصفحة التالية"
+  }
 }

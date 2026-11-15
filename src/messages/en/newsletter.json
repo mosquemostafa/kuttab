@@ -1,12 +1,5 @@
 {
-  "signup": {
-    "title": "Stay productive — get weekly insights on your tasks and projects",
-    "description": "Get a weekly report of your productivity, plus tips to stay on track. Short, useful, and you can unsubscribe anytime.",
-    "emailLabel": "Email",
-    "submit": "Get weekly insights",
-    "success": "You are subscribed.",
-    "error": "Something went wrong. Try again later."
-  },
+  "signup": {},
   "unsubscribe": {
     "pageTitle": "Unsubscribe",
     "intro": "You are about to unsubscribe this address from our newsletter:",

@@ -65,7 +65,7 @@ export function HeaderUserControls({ user }: HeaderUserControlsProps) {
       case UserRole.SUPPORT:
         return t("header.supportBadge");
       case UserRole.CONTENT:
-        return t("header.contentManagerBadge");
+        return t("header.contentBadge");
       case UserRole.STUDENT:
         return t("header.studentBadge");
       case UserRole.PARENT:

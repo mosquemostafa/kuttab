@@ -86,7 +86,7 @@ export function UserActions({ user, onActionComplete }: UserActionsProps) {
               setShowRoleDialog(true);
             }}
           >
-            <Shield className="mr-2 h-4 w-4" />
+            <Shield className="me-2 h-4 w-4" />
             <span>{t("actions.updateRole")}</span>
           </DropdownMenuItem>
           <DropdownMenuItem
@@ -96,7 +96,7 @@ export function UserActions({ user, onActionComplete }: UserActionsProps) {
               setShowSegmentDialog(true);
             }}
           >
-            <Shapes className="mr-2 h-4 w-4" />
+            <Shapes className="me-2 h-4 w-4" />
             <span>{t("actions.updateSegment")}</span>
           </DropdownMenuItem>
           <DropdownMenuItem
@@ -106,7 +106,7 @@ export function UserActions({ user, onActionComplete }: UserActionsProps) {
               setShowInAppNotificationDialog(true);
             }}
           >
-            <Bell className="mr-2 h-4 w-4" />
+            <Bell className="me-2 h-4 w-4" />
             <span>{t("actions.sendInAppNotification")}</span>
           </DropdownMenuItem>
           <DropdownMenuItem
@@ -116,7 +116,7 @@ export function UserActions({ user, onActionComplete }: UserActionsProps) {
               setShowPushNotificationDialog(true);
             }}
           >
-            <Megaphone className="mr-2 h-4 w-4" />
+            <Megaphone className="me-2 h-4 w-4" />
             <span>{t("actions.sendPush")}</span>
           </DropdownMenuItem>
           <DropdownMenuItem
@@ -126,7 +126,7 @@ export function UserActions({ user, onActionComplete }: UserActionsProps) {
               setShowCreateTicketDialog(true);
             }}
           >
-            <MessageSquarePlus className="mr-2 h-4 w-4" />
+            <MessageSquarePlus className="me-2 h-4 w-4" />
             <span>{t("actions.startSupportChat")}</span>
           </DropdownMenuItem>
           {process.env.NODE_ENV === "development" && (
@@ -151,7 +151,7 @@ export function UserActions({ user, onActionComplete }: UserActionsProps) {
                 }
               }}
             >
-              <User className="mr-2 h-4 w-4" />
+              <User className="me-2 h-4 w-4" />
               <span>
                 {isImpersonating
                   ? t("actions.loggingIn")
@@ -168,7 +168,7 @@ export function UserActions({ user, onActionComplete }: UserActionsProps) {
                 setShowUnbanDialog(true);
               }}
             >
-              <Ban className="mr-2 h-4 w-4" />
+              <Ban className="me-2 h-4 w-4" />
               <span>{t("actions.unbanUser")}</span>
             </DropdownMenuItem>
           ) : (
@@ -179,7 +179,7 @@ export function UserActions({ user, onActionComplete }: UserActionsProps) {
                 setShowBanDialog(true);
               }}
             >
-              <Ban className="mr-2 h-4 w-4" />
+              <Ban className="me-2 h-4 w-4" />
               <span>{t("actions.banUser")}</span>
             </DropdownMenuItem>
           )}
@@ -190,7 +190,7 @@ export function UserActions({ user, onActionComplete }: UserActionsProps) {
               setShowDeleteDialog(true);
             }}
           >
-            <Trash2 className="mr-2 h-4 w-4" />
+            <Trash2 className="me-2 h-4 w-4" />
             <span>{t("actions.deleteUser")}</span>
           </DropdownMenuItem>
           <DropdownMenuItem
@@ -200,7 +200,7 @@ export function UserActions({ user, onActionComplete }: UserActionsProps) {
               setShowRevokeSessionsDialog(true);
             }}
           >
-            <LogOut className="mr-2 h-4 w-4" />
+            <LogOut className="me-2 h-4 w-4" />
             <span>{t("actions.revokeSessions")}</span>
           </DropdownMenuItem>
         </DropdownMenuContent>

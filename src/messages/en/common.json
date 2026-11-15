@@ -27,7 +27,6 @@
     "NOT_FOUND": "The requested item was not found.",
     "NEWSLETTER_DISABLED": "Newsletter service is currently unavailable.",
     "TOO_MANY_REQUESTS": "Too many requests. Please try again later.",
-    "PLAN_LIMIT_EXCEEDED": "You have reached your plan limit for this feature.",
     "CONFLICT": "This item already exists.",
     "TAG_ALREADY_EXISTS": "A tag with this name already exists.",
     "goal_already_completed": "Goal is already completed. No more progress can be added.",
