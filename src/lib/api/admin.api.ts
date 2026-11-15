@@ -1,17 +1,6 @@
-import type { AdminOverviewDTO } from "@/shared/types/admin-overview.types";
 import { requestNoStore } from "@/lib/api/api-core";
 
 export const adminApi = {
-  overview: (query?: { range?: 7 | 30 }) => {
-    const params = new URLSearchParams(
-      Object.entries(query ?? {})
-        .filter(([, value]) => value !== undefined)
-        .map(([key, value]) => [key, String(value)]),
-    );
-    return requestNoStore<AdminOverviewDTO>(
-      `/admin/overview${params.size ? `?${params.toString()}` : ""}`,
-    );
-  },
   impersonateUser: async (userId: string) => {
     const res = await fetch(
       `/api/admin/users/${encodeURIComponent(userId)}/impersonate`,

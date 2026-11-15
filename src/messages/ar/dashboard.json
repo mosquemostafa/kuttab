@@ -109,62 +109,6 @@
       "pieEmpty": "لا توجد بيانات للعرض بعد."
     }
   },
-  "adminOverview": {
-    "analytics": {
-      "title": "نظرة عامة للإدارة",
-      "subtitle": "عرض موحد للمستخدمين والشرائح.",
-      "asOf": "آخر تحديث {date}",
-      "loadFailed": "تعذر تحميل مؤشرات نظرة الإدارة العامة.",
-      "empty": "لا توجد بيانات للعرض بعد.",
-      "rangeLabel": "نطاق السلسلة",
-      "period7": "7 أيام",
-      "period30": "30 يومًا",
-      "metrics": {
-        "totalUsers": "إجمالي المستخدمين",
-        "totalUsersHint": "جميع حسابات المستخدمين",
-        "newUsers7": "مستخدمون جدد (7 أيام)",
-        "newUsers7Hint": "سجلوا خلال آخر 7 أيام",
-        "newUsers30": "مستخدمون جدد (30 يومًا)",
-        "newUsers30Hint": "سجلوا خلال آخر 30 يومًا",
-        "verifiedRatio": "توثيق البريد",
-        "verifiedRatioHint": "نسبة الحسابات الموثقة من الإجمالي"
-      },
-      "series": {
-        "signups": "التسجيلات"
-      },
-      "signupsChartTitle": "تسجيلات المستخدمين يوميًا",
-      "signupsChartDescription": "حجم التسجيل اليومي ضمن النطاق المحدد.",
-      "emailPieTitle": "توثيق البريد الإلكتروني",
-      "emailPieDescription": "المستخدمون الموثقون مقابل غير الموثقين.",
-      "rolesPieTitle": "المستخدمون حسب الدور",
-      "rolesPieDescription": "توزيع الأدوار بما في ذلك غير المحددين.",
-      "banningPieTitle": "حالة الوصول",
-      "banningPieDescription": "غير محظور مقابل حظر مؤقت/دائم.",
-      "segmentsTitle": "اعتماد الشرائح",
-      "segmentsDescription": "المستخدمون غير المربوطين بشريحة والمستخدمون لكل شريحة.",
-      "segmentsColumns": {
-        "segment": "الشريحة",
-        "users": "المستخدمون"
-      },
-      "verified": "موثّق",
-      "unverified": "غير موثّق",
-      "notBanned": "غير محظور",
-      "bannedPermanent": "حظر دائم",
-      "bannedTemporary": "حظر مؤقت",
-      "unsegmented": "غير مصنّف",
-      "role": {
-        "admin": "مسؤول",
-        "content": "محتوى",
-        "contentManager": "محتوى",
-        "support": "دعم",
-        "student": "طالب",
-        "parent": "ولي أمر",
-        "user": "مستخدم",
-        "unspecified": "غير محدد",
-        "other": "أخرى ({key})"
-      }
-    }
-  },
   "support": {
     "create": {
       "title": "تواصل مع الدعم",

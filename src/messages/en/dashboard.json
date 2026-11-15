@@ -109,62 +109,6 @@
       "pieEmpty": "No data to display yet."
     }
   },
-  "adminOverview": {
-    "analytics": {
-      "title": "Admin overview",
-      "subtitle": "A consolidated view of users and segmentation.",
-      "asOf": "Updated {date}",
-      "loadFailed": "Could not load admin overview metrics.",
-      "empty": "No data to display yet.",
-      "rangeLabel": "Series range",
-      "period7": "7 days",
-      "period30": "30 days",
-      "metrics": {
-        "totalUsers": "Total users",
-        "totalUsersHint": "All user accounts",
-        "newUsers7": "New users (7d)",
-        "newUsers7Hint": "Signed up in the last 7 days",
-        "newUsers30": "New users (30d)",
-        "newUsers30Hint": "Signed up in the last 30 days",
-        "verifiedRatio": "Email verified",
-        "verifiedRatioHint": "Verified ratio among all users"
-      },
-      "series": {
-        "signups": "Signups"
-      },
-      "signupsChartTitle": "User signups by day",
-      "signupsChartDescription": "Daily signup volume for the selected range.",
-      "emailPieTitle": "Email verification",
-      "emailPieDescription": "Verified vs unverified users.",
-      "rolesPieTitle": "Users by role",
-      "rolesPieDescription": "Role distribution including unspecified users.",
-      "banningPieTitle": "Access status",
-      "banningPieDescription": "Not banned vs temporary/permanent bans.",
-      "segmentsTitle": "Segment adoption",
-      "segmentsDescription": "Unsegmented users and users per segment.",
-      "segmentsColumns": {
-        "segment": "Segment",
-        "users": "Users"
-      },
-      "verified": "Verified",
-      "unverified": "Unverified",
-      "notBanned": "Not banned",
-      "bannedPermanent": "Permanent ban",
-      "bannedTemporary": "Temporary ban",
-      "unsegmented": "Unsegmented",
-      "role": {
-        "admin": "Admin",
-        "content": "Content",
-        "contentManager": "Content",
-        "support": "Support",
-        "student": "Student",
-        "parent": "Parent",
-        "user": "User",
-        "unspecified": "Unspecified",
-        "other": "Other ({key})"
-      }
-    }
-  },
   "support": {
     "create": {
       "title": "Contact support",

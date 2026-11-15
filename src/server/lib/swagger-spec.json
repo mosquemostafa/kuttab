@@ -2139,34 +2139,6 @@
         }
       }
     },
-    "/api/admin/overview": {
-      "get": {
-        "summary": "Admin dashboard overview analytics",
-        "description": "Aggregated users and segments metrics (admin only).",
-        "tags": [
-          "Admin"
-        ],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "range",
-            "schema": {
-              "type": "string",
-              "enum": [
-                7,
-                30
-              ]
-            },
-            "description": "Calendar days for daily signups series (default 30)."
-          }
-        ]
-      }
-    },
     "/api/admin/segments/{id}": {
       "get": {
         "summary": "Get segment by id",

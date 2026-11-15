@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { AdminOverviewAnalytics } from "@/components/admin/admin-overview-analytics";
+
+import { ComingSoon } from "@/components/dashboard/coming-soon";
 
 export async function generateMetadata({
   params,
@@ -30,10 +31,10 @@ export async function generateMetadata({
   };
 }
 
-export default function AdminOverviewPage() {
+export default async function AdminOverviewPage() {
   return (
-    <section className="container mx-auto max-w-7xl px-4 py-8">
-      <AdminOverviewAnalytics />
+    <section className="container mx-auto max-w-6xl px-4 py-8">
+      <ComingSoon />
     </section>
   );
 }
