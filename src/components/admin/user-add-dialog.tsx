@@ -157,7 +157,6 @@ export function UserAddDialog({
               }
               placeholder={t("dialogs.emailPlaceholder")}
               disabled={isLoading}
-              dir="ltr"
               required
             />
           </div>
@@ -174,7 +173,6 @@ export function UserAddDialog({
               }
               placeholder={t("dialogs.passwordPlaceholder")}
               disabled={isLoading}
-              dir="ltr"
               required
             />
           </div>
