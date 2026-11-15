@@ -28,10 +28,7 @@ export default async function SupportLayout({
     return notFound();
   }
 
-  if (
-    session.user.role !== UserRole.SUPPORT &&
-    session.user.role !== UserRole.ADMIN
-  ) {
+  if (session.user.role !== UserRole.SUPPORT) {
     return notFound();
   }
 

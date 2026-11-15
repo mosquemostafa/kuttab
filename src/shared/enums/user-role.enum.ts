@@ -43,3 +43,73 @@ export function mapRoleForAuth(
 
   return role === UserRole.ADMIN ? "admin" : "user";
 }
+
+function stripLocale(pathname: string): string {
+  return pathname.replace(/^\/(ar|en)(?=\/|$)/, "") || "/";
+}
+
+/** Check if a given pathname belongs to any of the 4 dashboard surface families. */
+export function isDashboardPath(pathname: string): boolean {
+  const cleanPath = stripLocale(pathname);
+  return (
+    cleanPath === "/admin" ||
+    cleanPath.startsWith("/admin/") ||
+    cleanPath === "/content" ||
+    cleanPath.startsWith("/content/") ||
+    cleanPath === "/support" ||
+    cleanPath.startsWith("/support/") ||
+    cleanPath === "/dashboard" ||
+    cleanPath.startsWith("/dashboard/")
+  );
+}
+
+/** Get the root overview path for a given user role. */
+export function getDashboardPathForRole(
+  role: string | null | undefined,
+): string {
+  switch (role) {
+    case UserRole.ADMIN:
+      return "/admin/overview";
+    case UserRole.SUPPORT:
+      return "/support/overview";
+    case UserRole.CONTENT_MANAGER:
+    case "content":
+      return "/content/overview";
+    case UserRole.USER:
+    default:
+      return "/dashboard/overview";
+  }
+}
+
+/**
+ * Validate whether a user with the given role is authorized to access a dashboard pathname.
+ * Returns true if the pathname is not a dashboard path, or if the role matches the dashboard.
+ */
+export function isAllowedDashboardForRole(
+  role: string | null | undefined,
+  pathname: string,
+): boolean {
+  const cleanPath = stripLocale(pathname);
+
+  if (cleanPath === "/admin" || cleanPath.startsWith("/admin/")) {
+    return role === UserRole.ADMIN;
+  }
+  if (cleanPath === "/support" || cleanPath.startsWith("/support/")) {
+    return role === UserRole.SUPPORT;
+  }
+  if (cleanPath === "/content" || cleanPath.startsWith("/content/")) {
+    return role === UserRole.CONTENT_MANAGER || role === "content";
+  }
+  if (cleanPath === "/dashboard" || cleanPath.startsWith("/dashboard/")) {
+    return (
+      normalizeUserRole(role) === UserRole.USER &&
+      role !== UserRole.ADMIN &&
+      role !== UserRole.SUPPORT &&
+      role !== UserRole.CONTENT_MANAGER &&
+      role !== "content"
+    );
+  }
+
+  return true;
+}
+

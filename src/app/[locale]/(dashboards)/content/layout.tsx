@@ -30,7 +30,7 @@ export default async function ContentLayout({
 
   if (
     session.user.role !== UserRole.CONTENT_MANAGER &&
-    session.user.role !== UserRole.ADMIN
+    session.user.role !== "content"
   ) {
     return notFound();
   }

@@ -4,6 +4,10 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { useRouter, Link } from "@/i18n/navigation";
 import { DEFAULT_LOGIN_REDIRECT } from "@/lib/config";
+import {
+  getDashboardPathForRole,
+  isAllowedDashboardForRole,
+} from "@/shared/enums/user-role.enum";
 import { useTranslations } from "next-intl";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -59,15 +63,22 @@ const LoginForm = ({ redirectAfterLogin }: LoginFormProps) => {
 
   const onSubmit = async (data: FormData) => {
     setFormState({});
-    const { error } = await authClient.signIn.email({
+    const { data: authData, error } = await authClient.signIn.email({
       email: data.email.trim().toLowerCase(),
       password: data.password,
-      callbackURL: redirectAfterLogin ?? DEFAULT_LOGIN_REDIRECT,
     });
 
     if (!error) {
       setFormState({ success: t("success") });
-      router.push(redirectAfterLogin ?? DEFAULT_LOGIN_REDIRECT);
+      const role = (authData as { user?: { role?: string | null } } | null)
+        ?.user?.role;
+      const roleDashboard = getDashboardPathForRole(role);
+      const destination =
+        redirectAfterLogin &&
+        isAllowedDashboardForRole(role, redirectAfterLogin)
+          ? redirectAfterLogin
+          : roleDashboard;
+      router.push(destination);
     } else {
       const isForbiddenOrUnverified =
         error.status === 403 ||

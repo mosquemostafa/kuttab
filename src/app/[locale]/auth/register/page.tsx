@@ -3,7 +3,7 @@ import { headers } from "next/headers";
 import { getTranslations } from "next-intl/server";
 import { redirect } from "@/i18n/navigation";
 import { auth } from "@/server/lib/auth";
-import { DEFAULT_LOGIN_REDIRECT } from "@/lib/config";
+import { getDashboardPathForRole } from "@/shared/enums/user-role.enum";
 import { appSettingsService } from "@/server/modules/app-settings/app-settings.service";
 import RegisterClientPage from "./register-client";
 
@@ -46,7 +46,7 @@ export default async function RegisterPage({
     headers: await headers(),
   });
   if (session) {
-    redirect({ href: DEFAULT_LOGIN_REDIRECT, locale });
+    redirect({ href: getDashboardPathForRole(session.user.role), locale });
   }
 
   const settings = await appSettingsService.getSettings();

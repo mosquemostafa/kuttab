@@ -19,7 +19,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { useTheme } from "@/components/theme-provider";
 
 import { useSignOut } from "@/hooks/use-sign-out";
-import { UserRole } from "@/shared/enums/user-role.enum";
+import { UserRole, getDashboardPathForRole } from "@/shared/enums/user-role.enum";
 import { NotificationMenuBadge } from "@/components/notifications/notification-menu-badge";
 import { useNotifications } from "@/components/notifications/notification-provider";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -140,65 +140,82 @@ export function HeaderUserControls({ user }: HeaderUserControlsProps) {
           </DropdownMenuLabel>
           <DropdownMenuGroup>
             <DropdownMenuItem asChild>
-              <Link href="/dashboard/overview" className="cursor-pointer">
+              <Link href={getDashboardPathForRole(user.role)} className="cursor-pointer">
                 <House className="mr-2 h-4 w-4" />
                 {t("header.dashboard")}
               </Link>
             </DropdownMenuItem>
 
-            <DropdownMenuItem asChild>
-              <Link href="/dashboard/settings" className="cursor-pointer">
-                <Settings className="mr-2 h-4 w-4" />
-                {t("header.settings")}
-              </Link>
-            </DropdownMenuItem>
+            {isAdmin ? (
+              <DropdownMenuItem asChild>
+                <Link href="/admin/settings" className="cursor-pointer">
+                  <Settings className="mr-2 h-4 w-4" />
+                  {t("header.settings")}
+                </Link>
+              </DropdownMenuItem>
+            ) : !isSupport && !isContentManager ? (
+              <DropdownMenuItem asChild>
+                <Link href="/dashboard/settings" className="cursor-pointer">
+                  <Settings className="mr-2 h-4 w-4" />
+                  {t("header.settings")}
+                </Link>
+              </DropdownMenuItem>
+            ) : null}
 
-            <DropdownMenuItem asChild>
-              <Link
-                href="/dashboard/notifications"
-                className="flex w-full cursor-pointer flex-col gap-0.5 items-stretch"
-              >
-                <span className="flex w-full items-center gap-2">
-                  <Bell className="mr-2 h-4 w-4 shrink-0" />
-                  <span className="flex-1 text-start">
-                    {t("header.notifications")}
-                  </span>
-                  <NotificationMenuBadge />
-                </span>
-                {unreadCount > 0 ? (
-                  <span className="ps-6 text-start text-xs text-muted-foreground">
-                    {t("notifications.unreadSubtitle", { count: unreadCount })}
-                  </span>
-                ) : null}
-              </Link>
-            </DropdownMenuItem>
+            {!isAdmin && !isSupport && !isContentManager ? (
+              <>
+                <DropdownMenuItem asChild>
+                  <Link
+                    href="/dashboard/notifications"
+                    className="flex w-full cursor-pointer flex-col gap-0.5 items-stretch"
+                  >
+                    <span className="flex w-full items-center gap-2">
+                      <Bell className="mr-2 h-4 w-4 shrink-0" />
+                      <span className="flex-1 text-start">
+                        {t("header.notifications")}
+                      </span>
+                      <NotificationMenuBadge />
+                    </span>
+                    {unreadCount > 0 ? (
+                      <span className="ps-6 text-start text-xs text-muted-foreground">
+                        {t("notifications.unreadSubtitle", { count: unreadCount })}
+                      </span>
+                    ) : null}
+                  </Link>
+                </DropdownMenuItem>
 
-            <DropdownMenuItem asChild>
-              <Link href="/dashboard/newsletter" className="cursor-pointer">
-                <Mail className="mr-2 h-4 w-4" />
-                {t("header.newsletterChannel")}
-              </Link>
-            </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/dashboard/newsletter" className="cursor-pointer">
+                    <Mail className="mr-2 h-4 w-4" />
+                    {t("header.newsletterChannel")}
+                  </Link>
+                </DropdownMenuItem>
+              </>
+            ) : null}
           </DropdownMenuGroup>
 
-          <DropdownMenuSeparator />
-          <DropdownMenuLabel className="text-xs text-muted-foreground">
-            {t("header.supportSection")}
-          </DropdownMenuLabel>
-          <DropdownMenuGroup>
-            <DropdownMenuItem asChild>
-              <Link href="/dashboard/support/" className="cursor-pointer">
-                <LifeBuoy className="mr-2 h-4 w-4" />
-                {t("header.support")}
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <Link href="/dashboard/feedbacks" className="cursor-pointer">
-                <MessageSquare className="mr-2 h-4 w-4" />
-                {t("header.feedbacks")}
-              </Link>
-            </DropdownMenuItem>
-          </DropdownMenuGroup>
+          {!isAdmin && !isSupport && !isContentManager ? (
+            <>
+              <DropdownMenuSeparator />
+              <DropdownMenuLabel className="text-xs text-muted-foreground">
+                {t("header.supportSection")}
+              </DropdownMenuLabel>
+              <DropdownMenuGroup>
+                <DropdownMenuItem asChild>
+                  <Link href="/dashboard/support/" className="cursor-pointer">
+                    <LifeBuoy className="mr-2 h-4 w-4" />
+                    {t("header.support")}
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/dashboard/feedbacks" className="cursor-pointer">
+                    <MessageSquare className="mr-2 h-4 w-4" />
+                    {t("header.feedbacks")}
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+            </>
+          ) : null}
 
           <DropdownMenuSeparator />
           <DropdownMenuLabel className="text-xs text-muted-foreground">
