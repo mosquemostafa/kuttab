@@ -2,6 +2,7 @@ import { z } from "zod";
 
 export const createStudentSchema = z.object({
   userId: z.string().trim().min(1).max(255).optional().nullable(),
+  classId: z.string().trim().min(1).max(255).optional().nullable(),
   name: z.string().trim().min(1, "Name is required").max(255),
   birthDate: z.iso.date().optional().nullable(),
   grade: z.string().trim().max(100).optional().nullable(),
@@ -27,6 +28,7 @@ export const updateStudentSchema = createStudentSchema.partial();
 export const listStudentsQuerySchema = z.object({
   q: z.string().trim().max(255).optional(),
   userId: z.string().trim().max(255).optional(),
+  classId: z.string().trim().max(255).optional(),
   status: z.enum(["active", "archived", "rejected"]).optional(),
   studiedTajweed: z
     .enum(["true", "false"])

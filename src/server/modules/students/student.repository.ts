@@ -21,6 +21,7 @@ export type StudentRow = typeof student.$inferSelect;
 
 export type CreateStudentInput = {
   userId?: string | null;
+  classId?: string | null;
   name: string;
   birthDate?: string | null;
   grade?: string | null;
@@ -56,6 +57,10 @@ function toWhereClause(filters: Partial<ListStudentsQueryDTO>): SQL | undefined 
 
   if (filters.userId) {
     clauses.push(eq(student.userId, filters.userId));
+  }
+
+  if (filters.classId) {
+    clauses.push(eq(student.classId, filters.classId));
   }
 
   if (filters.status) {
@@ -140,12 +145,21 @@ export const studentRepository = {
       .orderBy(desc(student.createdAt));
   },
 
+  async findByClassId(classId: string): Promise<StudentRow[]> {
+    return db
+      .select()
+      .from(student)
+      .where(eq(student.classId, classId))
+      .orderBy(desc(student.createdAt));
+  },
+
   async create(data: CreateStudentInput): Promise<StudentRow> {
     const [created] = await db
       .insert(student)
       .values({
         id: createId(),
         userId: data.userId ?? null,
+        classId: data.classId ?? null,
         name: data.name,
         birthDate: data.birthDate ?? null,
         grade: data.grade ?? null,

@@ -61,6 +61,7 @@
  *             type: object
  *             properties:
  *               userId: { type: string, nullable: true }
+ *               classId: { type: string, nullable: true }
  *               name: { type: string }
  *               birthDate: { type: string, format: date, nullable: true }
  *               grade: { type: string, nullable: true }

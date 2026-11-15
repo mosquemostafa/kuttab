@@ -64,6 +64,10 @@
             "type": "string",
             "nullable": true
           },
+          "classId": {
+            "type": "string",
+            "nullable": true
+          },
           "name": {
             "type": "string"
           },
@@ -7428,6 +7432,10 @@
                     "type": "string",
                     "nullable": true
                   },
+                  "classId": {
+                    "type": "string",
+                    "nullable": true
+                  },
                   "name": {
                     "type": "string"
                   },
@@ -7641,6 +7649,14 @@
           },
           {
             "in": "query",
+            "name": "classId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by class ID"
+          },
+          {
+            "in": "query",
             "name": "status",
             "schema": {
               "type": "string",
@@ -7806,6 +7822,10 @@
                 ],
                 "properties": {
                   "userId": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "classId": {
                     "type": "string",
                     "nullable": true
                   },

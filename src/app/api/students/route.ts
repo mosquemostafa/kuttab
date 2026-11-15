@@ -17,6 +17,10 @@
  *         schema: { type: string }
  *         description: Filter by linked user ID
  *       - in: query
+ *         name: classId
+ *         schema: { type: string }
+ *         description: Filter by class ID
+ *       - in: query
  *         name: status
  *         schema:
  *           type: string
@@ -92,6 +96,7 @@
  *             required: [name]
  *             properties:
  *               userId: { type: string, nullable: true }
+ *               classId: { type: string, nullable: true }
  *               name: { type: string }
  *               birthDate: { type: string, format: date, nullable: true }
  *               grade: { type: string, nullable: true }

@@ -11,6 +11,7 @@ import {
 } from "drizzle-orm/pg-core";
 
 import { user } from "@/server/modules/users/user.entity";
+import { classes } from "@/server/modules/classes/class.entity";
 
 export const studentStatusEnum = pgEnum("student_status", [
   "active",
@@ -25,6 +26,9 @@ export const student = pgTable(
       .primaryKey()
       .$defaultFn(() => createId()),
     userId: text("user_id").references(() => user.id, {
+      onDelete: "set null",
+    }),
+    classId: text("class_id").references(() => classes.id, {
       onDelete: "set null",
     }),
     name: text("name").notNull(),
@@ -51,6 +55,7 @@ export const student = pgTable(
   },
   (table) => [
     index("students_user_id_idx").on(table.userId),
+    index("students_class_id_idx").on(table.classId),
     index("students_status_idx").on(table.status),
     index("students_name_idx").on(table.name),
     index("students_phone_idx").on(table.phone),

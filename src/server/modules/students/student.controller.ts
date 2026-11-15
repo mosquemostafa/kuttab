@@ -34,6 +34,7 @@ export const studentController = {
     const parsedQuery = listStudentsQuerySchema.parse({
       q: searchParams.get("q") ?? undefined,
       userId: searchParams.get("userId") ?? undefined,
+      classId: searchParams.get("classId") ?? undefined,
       status: searchParams.get("status") ?? undefined,
       studiedTajweed: searchParams.get("studiedTajweed") ?? undefined,
       previouslyEnrolled: searchParams.get("previouslyEnrolled") ?? undefined,

@@ -22,6 +22,7 @@ function toDTO(row: StudentRow): StudentDTO {
   return {
     id: row.id,
     userId: row.userId,
+    classId: row.classId,
     name: row.name,
     birthDate: row.birthDate,
     grade: row.grade,
@@ -73,6 +74,7 @@ export const studentService = {
   async createStudent(dto: CreateStudentDTO): Promise<StudentDTO> {
     const created = await studentRepository.create({
       userId: dto.userId,
+      classId: dto.classId,
       name: dto.name,
       birthDate: dto.birthDate,
       grade: dto.grade,

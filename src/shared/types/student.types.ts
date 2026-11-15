@@ -3,6 +3,7 @@ import type { StudentStatus } from "@/shared/enums/student-status.enum";
 export interface StudentDTO {
   id: string;
   userId: string | null;
+  classId: string | null;
   name: string;
   birthDate: string | null;
   grade: string | null;
