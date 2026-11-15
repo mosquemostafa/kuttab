@@ -1,4 +1,4 @@
-# Modawim — Developer & DevOps Command Reference
+# Almostafa — Developer & DevOps Command Reference
 
 Quick reference for all commands used in local development, queue worker execution, database migrations, testing, and production Docker operations.
 

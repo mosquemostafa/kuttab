@@ -1,4 +1,4 @@
-# Modawim Architecture
+# Almostafa Architecture
 
 This document describes the current modular, feature-first backend architecture.
 

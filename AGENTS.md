@@ -4,7 +4,7 @@ This file provides guidance to Codex (claude.ai/code) when working with code in 
 
 ## Project Overview
 
-Modawim is a habit tracker and task management application with multilingual support (Arabic RTL and English LTR). It uses a modern tech stack: Next.js 16, React 19, PostgreSQL + Drizzle ORM, and Better Auth for authentication. The codebase follows a strict modular, feature-first backend architecture.
+Almostafa is an Islamic institute and educational platform for teaching the Holy Quran with multilingual support (Arabic RTL and English LTR). It uses a modern tech stack: Next.js 16, React 19, PostgreSQL + Drizzle ORM, and Better Auth for authentication. The codebase follows a strict modular, feature-first backend architecture.
 
 Read `ARCHITECTURE.md` for comprehensive architectural details. The README also provides local setup instructions, deployment info, and a full command reference.
 

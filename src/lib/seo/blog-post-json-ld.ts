@@ -55,7 +55,7 @@ export function buildBlogPostJsonLd(options: {
       }
     : {
         "@type": "Organization",
-        name: "SaaS Starter",
+        name: "Almostafa",
       };
 
   const blogPosting: Record<string, unknown> = {

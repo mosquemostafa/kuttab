@@ -9,11 +9,11 @@ const options = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "SaaS Starter API",
+      title: "Almostafa API",
       version: "1.0.0",
-      description: "API documentation for SaaS Starter",
+      description: "API documentation for Almostafa Quran Institute",
       contact: {
-        name: "SaaS Starter Team",
+        name: "Almostafa Team",
       },
     },
     servers: [

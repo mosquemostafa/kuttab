@@ -11,13 +11,13 @@ export async function GET() {
   ).join("\n");
 
   const body = [
-    "# SaaS Starter",
+    "# Almostafa",
     "",
-    "> Production-ready, modular full-stack SaaS boilerplate built on Next.js 16, React 19, Better Auth, PostgreSQL, and Drizzle ORM.",
+    "> Almostafa is an Islamic Institute for teaching the Holy Quran, Tajweed, and Islamic studies, built on Next.js 16, React 19, Better Auth, PostgreSQL, and Drizzle ORM.",
     "",
     "## Overview",
     "",
-    "This template provides a production-grade foundation for building modern web applications with built-in authentication, multi-tenant RBAC, bilingual Arabic RTL & English LTR localization, and an administrative portal.",
+    "Almostafa provides a comprehensive platform for Quranic education, featuring structured memorization circles, student and teacher management, bilingual Arabic RTL & English LTR localization, and an administrative portal.",
     "",
     "## Core Features",
     "",

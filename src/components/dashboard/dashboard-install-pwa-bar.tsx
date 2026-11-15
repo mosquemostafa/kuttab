@@ -24,7 +24,7 @@ import {
   type BeforeInstallPromptEvent,
 } from "@/lib/pwa-install-prompt";
 
-const STORAGE_KEY = "saas-dashboard-pwa-install-dismissed";
+const STORAGE_KEY = "almostafa-dashboard-pwa-install-dismissed";
 
 export function DashboardInstallPwaBar() {
   const t = useTranslations();

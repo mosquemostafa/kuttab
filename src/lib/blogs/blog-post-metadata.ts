@@ -13,8 +13,8 @@ function localizedBlogFields(locale: string, blog: BlogDTO) {
   };
 }
 
-function localizedAppName(_locale: string): string {
-  return "SaaS Starter";
+function localizedAppName(locale: string): string {
+  return locale.startsWith("ar") ? "معهد المصطفى" : "Almostafa";
 }
 
 function absoluteCoverUrl(
@@ -66,7 +66,7 @@ export function buildBlogPostMetadata(options: {
       url: publicCanonical,
       type: "article",
       locale,
-      siteName: "SaaS Starter",
+      siteName: localizedAppName(locale),
       publishedTime: blog.publishDate ?? blog.createdAt,
       modifiedTime: blog.updatedAt,
       ...(blog.tags.length > 0 ? { tags: blog.tags } : {}),

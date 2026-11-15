@@ -9,7 +9,7 @@ export function organizationNode(appUrl: string): Record<string, unknown> {
   return {
     "@type": "Organization",
     "@id": `${base}/#organization`,
-    name: "SaaS Starter",
+    name: "Almostafa",
     url: base,
     logo: {
       "@type": "ImageObject",
@@ -48,8 +48,8 @@ export function softwareApplicationNode(options: {
   return {
     "@type": "SoftwareApplication",
     "@id": `${localeUrl}/#software`,
-    name: options.name ?? "SaaS Starter",
-    applicationCategory: "ProductivityApplication",
+    name: options.name ?? "Almostafa",
+    applicationCategory: "EducationalApplication",
     operatingSystem: "Web",
     url: localeUrl,
     description: options.description,

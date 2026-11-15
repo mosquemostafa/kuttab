@@ -1,14 +1,14 @@
-# Modawim | مداوم
+# Almostafa | معهد المصطفى
 
-Modawim is a proprietary habit tracker and task management application with a modern, clean interface that helps users stay consistent, track progress, and manage tasks in both Arabic (RTL) and English (LTR).
+Almostafa is an Islamic institute and digital learning platform for teaching the Holy Quran, Tajweed, recitation, and memorization, with full multilingual support for Arabic (RTL) and English (LTR).
 
 This source code is **not** open source. Use, copying, modification, and distribution are restricted; see `LICENSE`.
 
-Homepage: https://modawim.com
+Homepage: https://almostafa.org
 
-## Why Modawim
+## About Almostafa
 
-The project focuses on consistency, and practical daily planning with a clean UX and scalable architecture.
+The platform provides a comprehensive learning environment for Quranic studies, study circles, daily recitation tracking, and academic management with a clean UX and scalable architecture.
 
 - Smart Habit Tracking: Track daily habits with intentions and motivational notes.
 - Measurable Goals: Set target counts and monitor progress.

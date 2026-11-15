@@ -1,6 +1,6 @@
 "use client";
 
-const PREFIX = "saas:draft:";
+const PREFIX = "almostafa:draft:";
 const TTL_MS = 14 * 24 * 60 * 60 * 1000; // 14 days
 
 export interface Draft {

@@ -11,13 +11,13 @@ export async function GET() {
   ).join("\n");
 
   const body = [
-    "# SaaS Starter — Full Platform & Technical Documentation",
+    "# Almostafa — Full Platform & Technical Documentation",
     "",
-    "> Production-grade full-stack Next.js 16 SaaS boilerplate equipped with Better Auth, PostgreSQL + Drizzle ORM, multi-tenant RBAC, bilingual Arabic RTL & English LTR localization, and a comprehensive Admin Portal.",
+    "> Production-grade platform for Almostafa Islamic Institute for Quran teaching, equipped with Better Auth, PostgreSQL + Drizzle ORM, multi-tenant RBAC, bilingual Arabic RTL & English LTR localization, and a comprehensive Admin Portal.",
     "",
     "## 1. Product Overview",
     "",
-    "SaaS Starter provides a production-ready boilerplate to rapidly build and deploy modern web applications.",
+    "Almostafa provides a comprehensive platform for teaching the Holy Quran, Tajweed, and Islamic studies.",
     "It follows a strict feature-first, layered architecture (Route Handler → Guard → Controller → Service → Repository → DTO/Zod).",
     "",
     "## 2. Core Modules & Capabilities",

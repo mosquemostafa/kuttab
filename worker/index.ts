@@ -101,7 +101,7 @@ try {
         return;
       }
 
-      const title = "SaaS Starter";
+      const title = "Almostafa";
       const body = "";
       const clickUrl = payload?.data?.url || "/dashboard/overview";
 

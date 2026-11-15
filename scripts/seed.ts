@@ -42,7 +42,7 @@ async function promptUser(question: string): Promise<string> {
 }
 
 async function main() {
-  console.log("\n🌱 SaaS Starter Database Seeder (target: local)");
+  console.log("\n🌱 Almostafa Database Seeder (target: local)");
   console.log("=".repeat(50));
 
   // Dynamically import seedService after env is loaded

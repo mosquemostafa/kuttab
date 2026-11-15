@@ -103,7 +103,7 @@ export const seedService = {
     if (existingSettings.length === 0) {
       await db.insert(appSettings).values({
         id: "default",
-        organizationName: "SaaS Starter",
+        organizationName: "Almostafa",
         allowSelfRegistration: true,
         requireEmailVerification: true,
         sendSupportTicketConfirmationEmail: true,
@@ -546,7 +546,7 @@ export const seedService = {
         id: `notif_${primaryUserId}_v2_release`,
         userId: primaryUserId,
         type: "system",
-        title: "SaaS Starter 2.0 Update Released",
+        title: "Almostafa Platform Update Released",
         message:
           "Explore enhanced analytics, dark mode, and full Arabic RTL support.",
         link: "/dashboard/overview",
@@ -648,11 +648,11 @@ export const seedService = {
       {
         id: `ann_v2_release`,
         titleAr: "إطلاق الإصدار ٢.٠ من المنصة",
-        titleEn: "SaaS Starter 2.0 Official Release",
+        titleEn: "Almostafa Platform Official Release",
         contentAr:
-          "يسعدنا الإعلان عن إطلاق الإصدار الجديد بميزات محسّنة وتحليلات متطورة ودعم كامل لنمط الظلام.",
+          "يسعدنا الإعلان عن إطلاق المنصة التعليمية لمعهد المصطفى لتعليم القرآن الكريم بميزات محسّنة وتحليلات متطورة.",
         contentEn:
-          "We are thrilled to launch SaaS Starter 2.0 with enhanced analytics, dark mode, and improved productivity workflows.",
+          "We are thrilled to launch the Almostafa learning portal with enhanced study circle tracking and improved student experience.",
         type: AnnouncementType.FEATURE,
         targetType: "all" as const,
         createdBy: primaryUserId,
@@ -768,7 +768,7 @@ export const seedService = {
         id: `bcm_${publicBlogsList[0].id}_sarah`,
         blogId: publicBlogsList[0].id,
         userId: "usr_sarah_jenkins",
-        body: "The math of 1% improvement is eye-opening. Tracking daily habits inside Modawim has made this real for me!",
+        body: "Consistent daily Quran recitation has transformed my life. Tracking my daily wird inside Almostafa has made this real for me!",
         createdAt: daysAgo(12),
       },
       {
@@ -846,7 +846,7 @@ export const seedService = {
         id: campaignId,
         subjectAr: "النشرة الدورية: أفضل الممارسات لتنظيم وإنجاز الأعمال",
         subjectEn:
-          "SaaS Starter Monthly: Best Practices for Productivity and Scaling",
+          "Almostafa Monthly: Best Practices for Quran Memorization and Tajweed",
         bodyAr:
           "مرحباً بكم في نشرتنا الشهرية. نستعرض هذا الشهر أهم استراتيجيات تنظيم المشاريع وإدارة الأولويات...",
         bodyEn:

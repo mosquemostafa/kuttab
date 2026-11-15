@@ -1,14 +1,14 @@
 {
   "navbar": {
-    "features": "Features",
-    "blog": "Blog",
+    "features": "Programs & Features",
+    "blog": "Articles & Blog",
     "contact": "Contact"
   },
   "hero": {
-    "badge": "Production-Ready Next.js 16 SaaS Boilerplate",
-    "title": "Build & Scale Your Next SaaS with",
-    "titleHighlight": "Speed and Reliability",
-    "subtitle": "A full-stack, enterprise-grade Next.js 16 starter equipped with Better Auth, PostgreSQL, Drizzle ORM, bilingual Arabic RTL & English LTR, and a comprehensive Admin Portal.",
+    "badge": "Almostafa Islamic Institute for Quran Studies",
+    "title": "Learn & Memorize the Holy Quran with",
+    "titleHighlight": "Excellence and Understanding",
+    "subtitle": "A premier Islamic institute dedicated to teaching the Holy Quran recitation, Tajweed, and memorization under certified teachers, with flexible programs tailored for all levels.",
     "ctaPrimary": "Get Started",
     "ctaSecondary": "Sign In",
     "ctaDashboard": "Open Dashboard",
@@ -16,46 +16,46 @@
     "installAppIos": "Install on iOS"
   },
   "features": {
-    "title": "Engineered for Rapid SaaS Development",
-    "subtitle": "Stop reinventing the wheel. Start with a solid, modular foundation that scales from MVP to production.",
+    "title": "Why Choose Almostafa Institute?",
+    "subtitle": "A comprehensive Quranic learning environment blending authentic scholarly transmission with modern educational tools.",
     "auth": {
-      "title": "Authentication & RBAC",
-      "description": "Better Auth with email/password, session management, rate limiting, and role-based guards."
+      "title": "Certified Quran Instructors",
+      "description": "Learn from distinguished male and female Quran teachers holding verified Ijazah with authentic sanad."
     },
     "database": {
-      "title": "PostgreSQL & Drizzle ORM",
-      "description": "Type-safe database schema with zero-lock baseline migrations, seeder utilities, and connection pooling."
+      "title": "Structured Quranic Curriculum",
+      "description": "Progressive learning tracks spanning Tajweed rules, recitation correction, intensive memorization (Hifz), and Tafseer."
     },
     "bilingual": {
-      "title": "Bilingual RTL & LTR",
-      "description": "First-class Arabic RTL and English LTR localization powered by next-intl with automated locale routing."
+      "title": "Global Bilingual Support (Arabic & English)",
+      "description": "Accessible to Quran students and families worldwide with full support for both Arabic and English."
     },
     "admin": {
-      "title": "Complete Admin Portal",
-      "description": "Manage users, inspect system analytics, configure application settings, publish blogs, and send announcements."
+      "title": "Continuous Progress Tracking",
+      "description": "Dedicated dashboards for students and parents to track recitation attendance, memorization milestones, and evaluations."
     },
     "architecture": {
-      "title": "Layered Clean Architecture",
-      "description": "Strict modular structure (Route Handler → Guard → Controller → Service → Repository → DTO/Zod)."
+      "title": "Flexible Study Circles",
+      "description": "Individual one-on-one sessions and group circles designed around your schedule and learning speed."
     },
     "notifications": {
-      "title": "Email & Web Push",
-      "description": "Transactional emails via Resend/SMTP, Web Push FCM notifications, and built-in newsletter engine."
+      "title": "Session Reminders & Announcements",
+      "description": "Timely alerts for class times, teacher notes, exam dates, and institute announcements."
     }
   },
   "cta": {
-    "title": "Ready to Ship Your Next Product?",
-    "subtitle": "Clone this template, add your domain logic, and launch your SaaS with full confidence.",
-    "button": "Get Started Now"
+    "title": "Ready to Start Your Quranic Journey?",
+    "subtitle": "Join Almostafa Institute today and begin learning the Book of Allah with dedicated mentors.",
+    "button": "Join Now for Free"
   },
   "footer": {
-    "brand": "SaaS Starter",
-    "brandDescription": "A robust full-stack SaaS boilerplate designed for high developer productivity and production reliability.",
+    "brand": "Almostafa",
+    "brandDescription": "A leading Islamic institute for teaching the Holy Quran, Tajweed, and Islamic studies worldwide.",
     "product": {
-      "features": "Features"
+      "features": "Programs"
     },
     "company": {
-      "title": "Company",
+      "title": "Institute",
       "blog": "Blog",
       "contact": "Contact"
     },
@@ -64,12 +64,12 @@
       "privacy": "Privacy Policy",
       "terms": "Terms of Service"
     },
-    "copyright": "© {year} SaaS Starter. All rights reserved.",
+    "copyright": "© {year} Almostafa. All rights reserved.",
     "madeWith": "Built with"
   },
   "contact": {
     "title": "Contact Us",
-    "description": "Have questions or feedback? We'd love to hear from you.",
+    "description": "Have questions about our Quran courses or study circles? We'd love to hear from you.",
     "form": {
       "name": "Name",
       "namePlaceholder": "Your name",
@@ -84,7 +84,7 @@
     }
   },
   "pwaInstall": {
-    "description": "Install our web app on your device for fast access and offline support.",
+    "description": "Install Almostafa app on your device for fast access and offline support.",
     "ios": {
       "title": "Install on iOS",
       "description": "Follow these steps to install the app on your home screen:",

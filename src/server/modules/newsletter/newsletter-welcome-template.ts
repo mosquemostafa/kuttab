@@ -37,8 +37,8 @@ export function buildWelcomeEmailBundle(params: {
       "سعداء بانضمامك إلى النشرة البريدية.",
       "",
       "من الآن فصاعدًا، سيصلك بشكل دوري:",
-      "• تحديثات مستمرة وأخبار جديدة",
-      "• أفكار عملية تساعدك في إنجاز أعمالك",
+      "• دروس وتوجيهات في تلاوة وحفظ وتجويد القرآن الكريم",
+      "• مستجدات الحلقات والبرامج التعليمية في معهد المصطفى",
       "",
       "⸻",
       "",
@@ -66,7 +66,7 @@ export function buildWelcomeEmailBundle(params: {
         <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:560px;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #e4e4e7;box-shadow:0 1px 2px rgba(0,0,0,0.04);">
           <tr>
             <td style="padding:28px 28px 8px 28px;text-align:right;">
-              <p style="margin:0;font-size:13px;font-weight:600;letter-spacing:0.02em;color:#52525b;text-transform:uppercase;">SaaS Starter</p>
+              <p style="margin:0;font-size:13px;font-weight:600;letter-spacing:0.02em;color:#52525b;text-transform:uppercase;">المصطفى</p>
               <h1 style="margin:8px 0 0 0;font-size:22px;line-height:1.35;font-weight:700;color:#18181b;">📬 أهلاً بك في النشرة البريدية</h1>
             </td>
           </tr>
@@ -82,8 +82,8 @@ export function buildWelcomeEmailBundle(params: {
                 من الآن فصاعدًا، سيصلك بشكل دوري:
               </p>
               <p style="margin:0 0 20px 0;font-size:15px;line-height:1.85;color:#52525b;">
-                • تحديثات مستمرة وأخبار جديدة<br>
-                • أفكار عملية تساعدك في إنجاز أعمالك
+                • دروس وتوجيهات في تلاوة وحفظ وتجويد القرآن الكريم<br>
+                • مستجدات الحلقات والبرامج التعليمية في معهد المصطفى
               </p>
               <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 0 24px 0;">
                 <tr>
@@ -132,8 +132,8 @@ export function buildWelcomeEmailBundle(params: {
     "Welcome to the newsletter — we’re glad you’re here.",
     "",
     "Starting now, you’ll receive periodic updates with:",
-    "• Product news and new features",
-    "• Practical tips and guides",
+    "• Quran recitation, memorization, and Tajweed insights",
+    "• Updates on courses, study circles, and programs at Almostafa",
     "",
     "⸻",
     "",
@@ -161,7 +161,7 @@ export function buildWelcomeEmailBundle(params: {
         <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:560px;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #e4e4e7;box-shadow:0 1px 2px rgba(0,0,0,0.04);">
           <tr>
             <td style="padding:28px 28px 8px 28px;">
-              <p style="margin:0;font-size:13px;font-weight:600;letter-spacing:0.04em;color:#52525b;text-transform:uppercase;">SaaS Starter</p>
+              <p style="margin:0;font-size:13px;font-weight:600;letter-spacing:0.04em;color:#52525b;text-transform:uppercase;">Almostafa</p>
               <h1 style="margin:8px 0 0 0;font-size:22px;line-height:1.3;font-weight:700;color:#18181b;">📬 Welcome to the newsletter</h1>
             </td>
           </tr>
@@ -177,8 +177,8 @@ export function buildWelcomeEmailBundle(params: {
                 Starting now, you’ll receive periodic updates with:
               </p>
               <p style="margin:0 0 20px 0;font-size:15px;line-height:1.85;color:#52525b;">
-                • Product news and new features<br>
-                • Practical tips and guides
+                • Quran recitation, memorization, and Tajweed insights<br>
+                • Updates on courses, study circles, and programs at Almostafa
               </p>
               <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 0 24px 0;">
                 <tr>

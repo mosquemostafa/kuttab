@@ -1,6 +1,6 @@
-# 🚀 SaaS Starter Boilerplate
+# 📖 Almostafa Quran Institute
 
-A production-ready, feature-first Next.js 16 SaaS starter template engineered with PostgreSQL, Drizzle ORM, Better Auth, and bilingual Arabic (RTL) / English (LTR) localization.
+A production-ready platform for Almostafa — Islamic institute for teaching the Holy Quran, engineered with Next.js 16, PostgreSQL, Drizzle ORM, Better Auth, and bilingual Arabic (RTL) / English (LTR) localization.
 
 ---
 
