@@ -19,6 +19,15 @@ export const studentStatusEnum = pgEnum("student_status", [
   "rejected",
 ]);
 
+export const studentPaymentMethodEnum = pgEnum("student_payment_method", [
+  "exempt_poor",
+  "installments",
+  "exempt_staff_kids",
+  "special",
+  "monthly",
+  "sponsored",
+]);
+
 export const student = pgTable(
   "students",
   {
@@ -42,6 +51,7 @@ export const student = pgTable(
     memorizedPartsCount: integer("memorized_parts_count").notNull().default(0),
     memorizationDetails: text("memorization_details"),
     status: studentStatusEnum("status").notNull().default("active"),
+    paymentMethod: studentPaymentMethodEnum("payment_method"),
     registrationDate: date("registration_date", { mode: "string" })
       .$defaultFn(() => new Date().toISOString().slice(0, 10))
       .notNull(),
@@ -57,6 +67,7 @@ export const student = pgTable(
     index("students_user_id_idx").on(table.userId),
     index("students_class_id_idx").on(table.classId),
     index("students_status_idx").on(table.status),
+    index("students_payment_method_idx").on(table.paymentMethod),
     index("students_name_idx").on(table.name),
     index("students_phone_idx").on(table.phone),
     index("students_created_at_idx").on(table.createdAt),

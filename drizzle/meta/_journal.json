@@ -71,6 +71,13 @@
       "when": 1794786324972,
       "tag": "0009_lethal_excalibur",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1794786705656,
+      "tag": "0010_petite_jubilee",
+      "breakpoints": true
     }
   ]
 }

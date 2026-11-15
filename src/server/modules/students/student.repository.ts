@@ -33,6 +33,14 @@ export type CreateStudentInput = {
   memorizedPartsCount?: number;
   memorizationDetails?: string | null;
   status?: "active" | "archived" | "rejected";
+  paymentMethod?:
+    | "exempt_poor"
+    | "installments"
+    | "exempt_staff_kids"
+    | "special"
+    | "monthly"
+    | "sponsored"
+    | null;
   registrationDate?: string;
   notes?: string | null;
 };
@@ -65,6 +73,10 @@ function toWhereClause(filters: Partial<ListStudentsQueryDTO>): SQL | undefined 
 
   if (filters.status) {
     clauses.push(eq(student.status, filters.status));
+  }
+
+  if (filters.paymentMethod) {
+    clauses.push(eq(student.paymentMethod, filters.paymentMethod));
   }
 
   if (filters.studiedTajweed !== undefined) {
@@ -171,6 +183,7 @@ export const studentRepository = {
         memorizedPartsCount: data.memorizedPartsCount ?? 0,
         memorizationDetails: data.memorizationDetails ?? null,
         status: data.status ?? "active",
+        paymentMethod: data.paymentMethod ?? null,
         registrationDate:
           data.registrationDate ?? new Date().toISOString().slice(0, 10),
         notes: data.notes ?? null,

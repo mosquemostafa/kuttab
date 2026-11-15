@@ -73,6 +73,10 @@
  *               memorizedPartsCount: { type: integer, minimum: 0, maximum: 30 }
  *               memorizationDetails: { type: string, nullable: true }
  *               status: { type: string, enum: [active, archived, rejected] }
+ *               paymentMethod:
+ *                 type: string
+ *                 enum: [exempt_poor, installments, exempt_staff_kids, special, monthly, sponsored]
+ *                 nullable: true
  *               registrationDate: { type: string, format: date }
  *               notes: { type: string, nullable: true }
  *     responses:

@@ -1,3 +1,4 @@
+import type { StudentPaymentMethod } from "@/shared/enums/student-payment-method.enum";
 import type { StudentStatus } from "@/shared/enums/student-status.enum";
 
 export interface StudentDTO {
@@ -15,6 +16,7 @@ export interface StudentDTO {
   memorizedPartsCount: number;
   memorizationDetails: string | null;
   status: StudentStatus;
+  paymentMethod: StudentPaymentMethod | null;
   registrationDate: string;
   notes: string | null;
   createdAt: string;

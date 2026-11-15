@@ -26,6 +26,11 @@
  *           type: string
  *           enum: [active, archived, rejected]
  *       - in: query
+ *         name: paymentMethod
+ *         schema:
+ *           type: string
+ *           enum: [exempt_poor, installments, exempt_staff_kids, special, monthly, sponsored]
+ *       - in: query
  *         name: studiedTajweed
  *         schema: { type: string, enum: [true, false] }
  *       - in: query
@@ -108,6 +113,10 @@
  *               memorizedPartsCount: { type: integer, minimum: 0, maximum: 30, default: 0 }
  *               memorizationDetails: { type: string, nullable: true }
  *               status: { type: string, enum: [active, archived, rejected], default: active }
+ *               paymentMethod:
+ *                 type: string
+ *                 enum: [exempt_poor, installments, exempt_staff_kids, special, monthly, sponsored]
+ *                 nullable: true
  *               registrationDate: { type: string, format: date }
  *               notes: { type: string, nullable: true }
  *     responses:

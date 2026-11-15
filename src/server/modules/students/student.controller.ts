@@ -36,6 +36,7 @@ export const studentController = {
       userId: searchParams.get("userId") ?? undefined,
       classId: searchParams.get("classId") ?? undefined,
       status: searchParams.get("status") ?? undefined,
+      paymentMethod: searchParams.get("paymentMethod") ?? undefined,
       studiedTajweed: searchParams.get("studiedTajweed") ?? undefined,
       previouslyEnrolled: searchParams.get("previouslyEnrolled") ?? undefined,
       minMemorizedParts: searchParams.get("minMemorizedParts") ?? undefined,

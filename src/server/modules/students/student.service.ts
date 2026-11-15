@@ -13,6 +13,7 @@ import {
   type StudentRow,
 } from "@/server/modules/students/student.repository";
 import type { ParsedPagination } from "@/server/pipes/parse-pagination.pipe";
+import { StudentPaymentMethod } from "@/shared/enums/student-payment-method.enum";
 import { StudentStatus } from "@/shared/enums/student-status.enum";
 import type { PaginationMeta, PaginatedResponse } from "@/shared/types/pagination.types";
 import type { SelectNameItem } from "@/shared/types/select.types";
@@ -34,6 +35,7 @@ function toDTO(row: StudentRow): StudentDTO {
     memorizedPartsCount: row.memorizedPartsCount,
     memorizationDetails: row.memorizationDetails,
     status: row.status as StudentStatus,
+    paymentMethod: (row.paymentMethod as StudentPaymentMethod) ?? null,
     registrationDate: row.registrationDate,
     notes: row.notes,
     createdAt: row.createdAt.toISOString(),
@@ -86,6 +88,7 @@ export const studentService = {
       memorizedPartsCount: dto.memorizedPartsCount,
       memorizationDetails: dto.memorizationDetails,
       status: dto.status,
+      paymentMethod: dto.paymentMethod,
       registrationDate: dto.registrationDate,
       notes: dto.notes,
     });

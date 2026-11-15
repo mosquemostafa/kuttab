@@ -19,6 +19,17 @@ export const createStudentSchema = z.object({
     .default(0),
   memorizationDetails: z.string().trim().max(2000).optional().nullable(),
   status: z.enum(["active", "archived", "rejected"]).default("active"),
+  paymentMethod: z
+    .enum([
+      "exempt_poor",
+      "installments",
+      "exempt_staff_kids",
+      "special",
+      "monthly",
+      "sponsored",
+    ])
+    .optional()
+    .nullable(),
   registrationDate: z.iso.date().optional(),
   notes: z.string().trim().max(5000).optional().nullable(),
 });
@@ -30,6 +41,16 @@ export const listStudentsQuerySchema = z.object({
   userId: z.string().trim().max(255).optional(),
   classId: z.string().trim().max(255).optional(),
   status: z.enum(["active", "archived", "rejected"]).optional(),
+  paymentMethod: z
+    .enum([
+      "exempt_poor",
+      "installments",
+      "exempt_staff_kids",
+      "special",
+      "monthly",
+      "sponsored",
+    ])
+    .optional(),
   studiedTajweed: z
     .enum(["true", "false"])
     .transform((value) => value === "true")

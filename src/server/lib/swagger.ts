@@ -70,6 +70,18 @@ const options = {
               type: "string",
               enum: ["active", "archived", "rejected"],
             },
+            paymentMethod: {
+              type: "string",
+              enum: [
+                "exempt_poor",
+                "installments",
+                "exempt_staff_kids",
+                "special",
+                "monthly",
+                "sponsored",
+              ],
+              nullable: true,
+            },
             registrationDate: { type: "string", format: "date" },
             notes: { type: "string", nullable: true },
             createdAt: { type: "string", format: "date-time" },

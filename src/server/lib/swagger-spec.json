@@ -115,6 +115,18 @@
               "rejected"
             ]
           },
+          "paymentMethod": {
+            "type": "string",
+            "enum": [
+              "exempt_poor",
+              "installments",
+              "exempt_staff_kids",
+              "special",
+              "monthly",
+              "sponsored"
+            ],
+            "nullable": true
+          },
           "registrationDate": {
             "type": "string",
             "format": "date"
@@ -7483,6 +7495,18 @@
                       "rejected"
                     ]
                   },
+                  "paymentMethod": {
+                    "type": "string",
+                    "enum": [
+                      "exempt_poor",
+                      "installments",
+                      "exempt_staff_kids",
+                      "special",
+                      "monthly",
+                      "sponsored"
+                    ],
+                    "nullable": true
+                  },
                   "registrationDate": {
                     "type": "string",
                     "format": "date"
@@ -7664,6 +7688,21 @@
                 "active",
                 "archived",
                 "rejected"
+              ]
+            }
+          },
+          {
+            "in": "query",
+            "name": "paymentMethod",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "exempt_poor",
+                "installments",
+                "exempt_staff_kids",
+                "special",
+                "monthly",
+                "sponsored"
               ]
             }
           },
@@ -7879,6 +7918,18 @@
                       "rejected"
                     ],
                     "default": "active"
+                  },
+                  "paymentMethod": {
+                    "type": "string",
+                    "enum": [
+                      "exempt_poor",
+                      "installments",
+                      "exempt_staff_kids",
+                      "special",
+                      "monthly",
+                      "sponsored"
+                    ],
+                    "nullable": true
                   },
                   "registrationDate": {
                     "type": "string",
