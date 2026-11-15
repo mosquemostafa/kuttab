@@ -341,16 +341,6 @@ export const userRepository = {
       .where(eq(user.id, userId));
   },
 
-  async markOnboarded(userId: string): Promise<void> {
-    await db
-      .update(user)
-      .set({
-        onboarded: true,
-        updatedAt: new Date(),
-      })
-      .where(eq(user.id, userId));
-  },
-
   async updateRoleById(userId: string, role: string): Promise<void> {
     await db
       .update(user)

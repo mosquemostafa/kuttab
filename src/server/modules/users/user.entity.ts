@@ -47,7 +47,6 @@ export const user = pgTable(
     banned: boolean("banned"),
     banReason: text("ban_reason"),
     banExpires: timestamp("ban_expires"),
-    onboarded: boolean("onboarded").default(false).notNull(),
     isPublicKnowledgeProfile: boolean("is_public_knowledge_profile")
       .default(false)
       .notNull(),

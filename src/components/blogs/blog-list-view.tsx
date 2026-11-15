@@ -53,7 +53,7 @@ export async function BlogListView({
 
   return (
     <div dir={dir}>
-      <header className="border-b border-border/60 bg-background">
+      <header className="border-b border-border/60 bg-background bg-islamic-stars">
         <div className="mx-auto max-w-6xl px-4 py-10 md:py-14 lg:py-16">
           {tagFilter ? (
             <div className="max-w-3xl">

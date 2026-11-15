@@ -243,16 +243,6 @@ export const userService = {
     };
   },
 
-  async completeOnboarding(headers: Headers): Promise<void> {
-    const session = await auth.api.getSession({ headers });
-
-    if (!session?.user?.id) {
-      throw new UnauthorizedException();
-    }
-
-    await userRepository.markOnboarded(session.user.id);
-  },
-
   async createUser(data: CreateUserDTO, headers: Headers) {
     const { autoVerify, phone, ...userData } = data;
     const requestedRole = userData.role;

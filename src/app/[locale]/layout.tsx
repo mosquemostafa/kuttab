@@ -7,7 +7,7 @@ import {
 } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { Inter, Tajawal } from "next/font/google";
+import { Inter, Tajawal, Amiri } from "next/font/google";
 
 import { routing } from "@/i18n/routing";
 import { DirectionProvider } from "@/components/ui/direction";
@@ -25,6 +25,14 @@ const inter = Inter({
 
 const tajawal = Tajawal({
   variable: "--font-tajawal",
+  weight: ["400", "500", "700", "800"],
+  subsets: ["arabic"],
+  display: "swap",
+  preload: false,
+});
+
+const amiri = Amiri({
+  variable: "--font-amiri",
   weight: ["400", "700"],
   subsets: ["arabic"],
   display: "swap",
@@ -161,7 +169,7 @@ export default async function RootLayout({
       data-scroll-behavior="smooth"
     >
       <body
-        className={`${inter.variable} ${tajawal.variable} antialiased bg-background text-foreground`}
+        className={`${inter.variable} ${tajawal.variable} ${amiri.variable} antialiased bg-background text-foreground`}
       >
         <ThemeProvider
           attribute="class"
@@ -171,7 +179,7 @@ export default async function RootLayout({
         >
           <DirectionProvider direction={direction}>
             <NextIntlClientProvider locale={locale} messages={messages}>
-              <NextTopLoader color="var(--primary)" showSpinner={false} />
+              <NextTopLoader color="#059669" showSpinner={false} />
               <Providers>{children}</Providers>
               <ThemedToaster />
             </NextIntlClientProvider>

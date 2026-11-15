@@ -37,11 +37,16 @@ export function PublicHeader() {
       <div className="container relative mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo/Brand */}
         <div className="flex items-center gap-6">
-          <Link href="/" prefetch={false} className="flex items-center gap-2.5">
-            <Logo />
-            <span className="hidden truncate text-xl font-bold tracking-tight sm:inline">
-              {t("header.brandTitle")}
-            </span>
+          <Link href="/" prefetch={false} className="group flex items-center gap-3">
+            <Logo size="md" />
+            <div className="flex flex-col">
+              <span className="hidden truncate text-lg font-bold tracking-tight text-foreground group-hover:text-primary transition-colors sm:inline">
+                {t("header.brandTitle")}
+              </span>
+              <span className="hidden text-[10px] text-muted-foreground font-medium leading-none sm:inline">
+                {t("dashboard.shell.brandSubtitle")}
+              </span>
+            </div>
           </Link>
 
           {/* Nav links */}

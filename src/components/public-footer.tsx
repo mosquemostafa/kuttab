@@ -13,11 +13,16 @@ export function PublicFooter() {
     <footer className="w-full border-t border-border/40 bg-background">
       <div className="container mx-auto px-4 py-10 md:py-14">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-2.5">
-            <Logo size="sm" />
-            <span className="text-base font-semibold">
-              {t("header.brandTitle")}
-            </span>
+          <div className="flex items-center gap-3">
+            <Logo size="md" />
+            <div className="flex flex-col">
+              <span className="text-base font-bold text-foreground">
+                {t("header.brandTitle")}
+              </span>
+              <span className="text-xs text-muted-foreground">
+                {t("dashboard.shell.brandSubtitle")}
+              </span>
+            </div>
           </div>
 
           <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">

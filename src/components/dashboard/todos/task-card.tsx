@@ -101,7 +101,7 @@ export function TaskCard({
           "flex w-full items-center gap-2 rounded-xl border p-2 text-start transition-colors sm:gap-3 sm:p-3",
           isSelected
             ? "border-primary/40 bg-primary/5 opacity-60"
-            : "border-border/60 bg-transparent hover:bg-sky-50/20 dark:hover:bg-slate-800/50",
+            : "border-border/60 bg-transparent hover:bg-emerald-50/30 dark:hover:bg-emerald-950/30",
           className,
         )}
       >
@@ -150,7 +150,7 @@ export function TaskCard({
   return (
     <div
       className={cn(
-        "group grid grid-cols-[auto_1fr] items-start gap-1 rounded-xl border border-border/60 bg-transparent p-2 shadow-sm transition-all duration-150 hover:bg-sky-50/20 dark:hover:bg-slate-800/50 dark:border-border/60 sm:gap-2 sm:p-3",
+        "group grid grid-cols-[auto_1fr] items-start gap-1 rounded-xl border border-border/60 bg-transparent p-2 shadow-sm transition-all duration-150 hover:bg-emerald-50/30 dark:hover:bg-emerald-950/30 dark:border-border/60 sm:gap-2 sm:p-3",
         className,
       )}
     >

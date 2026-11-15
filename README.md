@@ -122,12 +122,6 @@ BETTER_AUTH_URL=http://localhost:3000
 
 DATABASE_URL=postgresql://user:password@your-host/your-database
 
-GOOGLE_CLIENT_ID=your-google-client-id
-GOOGLE_CLIENT_SECRET=your-google-client-secret
-
-GITHUB_CLIENT_ID=your-github-client-id
-GITHUB_CLIENT_SECRET=your-github-client-secret
-
 GMAIL_FROM_EMAIL=you@gmail.com
 GMAIL_FROM_NAME=Modawim
 GMAIL_USER=you@gmail.com

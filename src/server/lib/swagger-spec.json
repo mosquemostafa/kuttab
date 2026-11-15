@@ -7794,27 +7794,6 @@
         }
       }
     },
-    "/api/onboarding/complete": {
-      "post": {
-        "summary": "Mark the current user as onboarded",
-        "tags": [
-          "Onboarding"
-        ],
-        "security": [
-          {
-            "sessionAuth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "User marked as onboarded"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      }
-    },
     "/api/projects/{id}/archive": {
       "patch": {
         "summary": "Archive a project",

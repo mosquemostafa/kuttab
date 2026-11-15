@@ -26,7 +26,6 @@ const localesWithNamespaces = [
   "newsletter",
   "contentNewsletter",
   "newsletterChannel",
-  "welcome",
 ] as const;
 
 async function loadMessages(locale: string): Promise<AbstractIntlMessages> {

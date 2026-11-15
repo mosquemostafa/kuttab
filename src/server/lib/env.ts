@@ -173,12 +173,6 @@ const envSchema = z
 
     NEXT_PUBLIC_SENTRY_DSN: nextPublicSentryDsnSchema,
 
-    /** YouTube Data API v3 key for searching YouTube videos */
-    YOUTUBE_API_KEY: z.preprocess(
-      trimEmptyToUndefined,
-      z.string().min(1).optional(),
-    ),
-
     /** Redis for BullMQ queues */
     REDIS_URL: z.preprocess(
       trimEmptyToUndefined,

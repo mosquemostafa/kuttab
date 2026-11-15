@@ -8,8 +8,8 @@
   "lang": "ar",
   "dir": "rtl",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ffffff",
+  "background_color": "#065f46",
+  "theme_color": "#065f46",
   "orientation": "portrait-primary",
   "categories": ["education"],
   "icons": [

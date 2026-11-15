@@ -26,13 +26,13 @@ export default async function ContactPage({
   const t = await getTranslations({ locale, namespace: "landing.contact" });
 
   return (
-    <div className="min-h-screen w-full bg-background flex flex-col justify-between">
+    <div className="min-h-screen w-full bg-background bg-islamic-stars flex flex-col justify-between">
       <PublicHeader />
       <main className="w-full pt-16 flex-1">
         <div className="container mx-auto px-4 py-20 max-w-2xl">
           <div className="text-center mb-10">
-            <h1 className="text-4xl font-bold mb-4">{t("title")}</h1>
-            <p className="text-muted-foreground text-lg">{t("description")}</p>
+            <h1 className="text-4xl font-bold mb-4 tracking-tight text-foreground">{t("title")}</h1>
+            <p className="text-muted-foreground text-lg leading-relaxed">{t("description")}</p>
           </div>
           <ContactForm />
         </div>

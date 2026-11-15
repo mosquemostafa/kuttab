@@ -51,39 +51,39 @@ type TabColorConfig = {
 const DASHBOARD_TAB_COLORS: Record<DashboardShellMode, TabColorConfig> = {
   dashboard: {
     active:
-      "bg-blue-50 text-blue-700 border-blue-200/90 shadow-xs dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-800/80",
+      "bg-emerald-50 text-emerald-800 border-emerald-300/80 shadow-xs dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-800/80",
     inactive:
-      "text-zinc-600 hover:bg-blue-50/70 hover:text-blue-700 dark:text-zinc-400 dark:hover:bg-blue-950/50 dark:hover:text-blue-300",
-    iconActive: "text-blue-600 dark:text-blue-400",
+      "text-zinc-600 hover:bg-emerald-50/70 hover:text-emerald-800 dark:text-zinc-400 dark:hover:bg-emerald-950/50 dark:hover:text-emerald-300",
+    iconActive: "text-emerald-700 dark:text-emerald-400",
     iconInactive:
-      "text-blue-600/70 group-hover/tab:text-blue-600 dark:text-blue-400/70 dark:group-hover/tab:text-blue-300",
+      "text-emerald-700/70 group-hover/tab:text-emerald-700 dark:text-emerald-400/70 dark:group-hover/tab:text-emerald-300",
   },
   admin: {
     active:
-      "bg-red-50 text-red-700 border-red-200/90 shadow-xs dark:bg-red-950/60 dark:text-red-300 dark:border-red-800/80",
+      "bg-amber-50 text-amber-900 border-amber-300/80 shadow-xs dark:bg-amber-950/60 dark:text-amber-200 dark:border-amber-800/80",
     inactive:
-      "text-zinc-600 hover:bg-red-50/70 hover:text-red-700 dark:text-zinc-400 dark:hover:bg-red-950/50 dark:hover:text-red-300",
-    iconActive: "text-red-600 dark:text-red-400",
+      "text-zinc-600 hover:bg-amber-50/70 hover:text-amber-900 dark:text-zinc-400 dark:hover:bg-amber-950/50 dark:hover:text-amber-200",
+    iconActive: "text-amber-700 dark:text-amber-400",
     iconInactive:
-      "text-red-600/70 group-hover/tab:text-red-600 dark:text-red-400/70 dark:group-hover/tab:text-red-300",
+      "text-amber-700/70 group-hover/tab:text-amber-700 dark:text-amber-400/70 dark:group-hover/tab:text-amber-300",
   },
   support: {
     active:
-      "bg-cyan-50 text-cyan-700 border-cyan-200/90 shadow-xs dark:bg-cyan-950/60 dark:text-cyan-300 dark:border-cyan-800/80",
+      "bg-teal-50 text-teal-800 border-teal-300/80 shadow-xs dark:bg-teal-950/60 dark:text-teal-300 dark:border-teal-800/80",
     inactive:
-      "text-zinc-600 hover:bg-cyan-50/70 hover:text-cyan-700 dark:text-zinc-400 dark:hover:bg-cyan-950/50 dark:hover:text-cyan-300",
-    iconActive: "text-cyan-600 dark:text-cyan-400",
+      "text-zinc-600 hover:bg-teal-50/70 hover:text-teal-800 dark:text-zinc-400 dark:hover:bg-teal-950/50 dark:hover:text-teal-300",
+    iconActive: "text-teal-700 dark:text-teal-400",
     iconInactive:
-      "text-cyan-600/70 group-hover/tab:text-cyan-600 dark:text-cyan-400/70 dark:group-hover/tab:text-cyan-300",
+      "text-teal-700/70 group-hover/tab:text-teal-700 dark:text-teal-400/70 dark:group-hover/tab:text-teal-300",
   },
   content: {
     active:
-      "bg-emerald-50 text-emerald-700 border-emerald-200/90 shadow-xs dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-800/80",
+      "bg-emerald-50 text-emerald-800 border-emerald-300/80 shadow-xs dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-800/80",
     inactive:
-      "text-zinc-600 hover:bg-emerald-50/70 hover:text-emerald-700 dark:text-zinc-400 dark:hover:bg-emerald-950/50 dark:hover:text-emerald-300",
-    iconActive: "text-emerald-600 dark:text-emerald-400",
+      "text-zinc-600 hover:bg-emerald-50/70 hover:text-emerald-800 dark:text-zinc-400 dark:hover:bg-emerald-950/50 dark:hover:text-emerald-300",
+    iconActive: "text-emerald-700 dark:text-emerald-400",
     iconInactive:
-      "text-emerald-600/70 group-hover/tab:text-emerald-600 dark:text-emerald-400/70 dark:group-hover/tab:text-emerald-300",
+      "text-emerald-700/70 group-hover/tab:text-emerald-700 dark:text-emerald-400/70 dark:group-hover/tab:text-emerald-300",
   },
 };
 
@@ -293,7 +293,7 @@ export function DashboardSidebar({
         {/* Staff / Admin Dashboards (Only for needed roles) */}
         {staffTabs.length > 0 ? (
           <div
-            className="grid gap-1 rounded-xl border border-zinc-200/80 bg-zinc-100/60 p-1 dark:border-zinc-800/80 dark:bg-zinc-900/60"
+            className="grid gap-1 rounded-xl border border-emerald-900/10 bg-emerald-50/40 p-1 dark:border-emerald-800/30 dark:bg-emerald-950/20"
             style={{
               gridTemplateColumns: `repeat(${staffTabs.length}, minmax(0, 1fr))`,
             }}

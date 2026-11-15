@@ -148,12 +148,6 @@ export const auth = betterAuth({
   }),
   user: {
     additionalFields: {
-      onboarded: {
-        type: "boolean",
-        defaultValue: false,
-        required: false,
-        input: false,
-      },
       phone: {
         type: "string",
         required: false,

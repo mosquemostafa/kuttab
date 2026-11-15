@@ -32,11 +32,6 @@ export default async function Layout({
     return null;
   }
 
-  if (!session.user.onboarded) {
-    redirect({ href: "/welcome", locale });
-    return null;
-  }
-
   return (
     <AnnouncementProvider>
       <NotificationProvider>

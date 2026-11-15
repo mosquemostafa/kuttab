@@ -8,5 +8,9 @@ export function generateMetadata(): Metadata {
 export default function AuthLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  return children;
+  return (
+    <div className="relative min-h-screen bg-background bg-islamic-stars">
+      {children}
+    </div>
+  );
 }

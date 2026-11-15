@@ -158,7 +158,6 @@ export const seedService = {
         .update(user)
         .set({
           role: "admin",
-          onboarded: true,
           emailVerified: true,
           isPublicKnowledgeProfile: true,
           knowledgeBio:
@@ -176,7 +175,6 @@ export const seedService = {
         role: "admin",
         phone: "+201000000000",
         emailVerified: true,
-        onboarded: true,
         isPublicKnowledgeProfile: true,
         knowledgeBio:
           "Building consistent daily habits, lifelong learning, and mastering software engineering.",
@@ -250,7 +248,6 @@ export const seedService = {
           segmentId: u.segmentId,
           phone: "+201011112222",
           emailVerified: true,
-          onboarded: true,
           createdAt: u.createdAt,
           updatedAt: new Date(),
         })

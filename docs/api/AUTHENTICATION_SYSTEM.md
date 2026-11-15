@@ -303,8 +303,6 @@ Key env vars for auth stack (validated in `src/server/lib/env.ts`):
 - `BETTER_AUTH_URL`
 - `NEXT_PUBLIC_APP_URL`
 - `DATABASE_URL`
-- `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`
-- `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`
 - `GMAIL_FROM_EMAIL`, `GMAIL_FROM_NAME`, `GMAIL_USER`, `GMAIL_APP_PASSWORD`
 - `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, `RESEND_FROM_NAME` (used for auth emails via Resend)
 
