@@ -114,6 +114,28 @@ const options = {
             "updatedAt",
           ],
         },
+        Class: {
+          type: "object",
+          properties: {
+            id: { type: "string" },
+            name: { type: "string" },
+            primaryTeacherId: { type: "string", nullable: true },
+            secondaryTeacherId: { type: "string", nullable: true },
+            classType: {
+              type: "string",
+              enum: ["group", "individual"],
+            },
+            createdAt: { type: "string", format: "date-time" },
+            updatedAt: { type: "string", format: "date-time" },
+          },
+          required: [
+            "id",
+            "name",
+            "classType",
+            "createdAt",
+            "updatedAt",
+          ],
+        },
         Todo: {
           type: "object",
           properties: {
@@ -1038,6 +1060,10 @@ const options = {
       {
         name: "Teachers",
         description: "Teacher management endpoints (Admin only)",
+      },
+      {
+        name: "Classes",
+        description: "Class management endpoints (Admin only)",
       },
       {
         name: "API Documentation",

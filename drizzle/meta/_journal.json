@@ -57,6 +57,13 @@
       "when": 1794785461057,
       "tag": "0007_organic_hercules",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1794785820676,
+      "tag": "0008_dark_avengers",
+      "breakpoints": true
     }
   ]
 }
