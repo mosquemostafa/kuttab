@@ -31,17 +31,11 @@
     "settings": "الإعدادات",
     "logout": "تسجيل الخروج",
     "signingOut": "جارٍ تسجيل الخروج...",
-    "learningPanel": "التعلم",
-    "lifePanel": "الحياة",
     "create": "إنشاء",
     "edit": "تعديل",
     "brandTitle": "SaaS Starter",
     "brandSubtitle": "منصة الإنتاجية المتكاملة",
-    "quickDashboardSwitch": "التبديل السريع للوحات التحكم",
-    "staffPanels": "أدوات الإدارة والتشغيل",
-    "mainShort": "الرئيسية",
-    "learningShort": "التعلم",
-    "lifeShort": "الحياة"
+    "staffPanels": "أدوات الإدارة والتشغيل"
   },
   "overview": {
     "greeting": {

@@ -140,17 +140,5 @@
       "title": "إعدادات المسؤول | SaaS Starter",
       "description": "إدارة إعدادات التطبيق العامة وعناصر التحكم على مستوى النظام."
     }
-  },
-  "dashboardLearning": {
-    "overview": {
-      "title": "نظرة عامة للتعلم | SaaS Starter",
-      "description": "استكشف مساحة التعلم والأدوات المتاحة."
-    }
-  },
-  "dashboardLife": {
-    "overview": {
-      "title": "نظرة عامة للحياة | SaaS Starter",
-      "description": "استكشف مساحة الحياة الشخصية والأدوات المتاحة."
-    }
   }
 }

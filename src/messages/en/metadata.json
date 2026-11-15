@@ -140,17 +140,5 @@
       "title": "Admin Settings | SaaS Starter",
       "description": "Configure application-wide administration settings and controls."
     }
-  },
-  "dashboardLearning": {
-    "overview": {
-      "title": "Learning Overview | SaaS Starter",
-      "description": "Explore the learning workspace layout and tools."
-    }
-  },
-  "dashboardLife": {
-    "overview": {
-      "title": "Life Overview | SaaS Starter",
-      "description": "Explore the life workspace layout and tools."
-    }
   }
 }

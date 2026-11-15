@@ -20,8 +20,6 @@ import {
   Mail,
   Shield,
   PenSquare,
-  GraduationCap,
-  Heart,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/landing/logo";
@@ -41,13 +39,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 
-type DashboardShellMode =
-  | "admin"
-  | "dashboard"
-  | "dashboard-learning"
-  | "dashboard-life"
-  | "support"
-  | "content";
+type DashboardShellMode = "admin" | "dashboard" | "support" | "content";
 
 type TabColorConfig = {
   active: string;
@@ -65,24 +57,6 @@ const DASHBOARD_TAB_COLORS: Record<DashboardShellMode, TabColorConfig> = {
     iconActive: "text-blue-600 dark:text-blue-400",
     iconInactive:
       "text-blue-600/70 group-hover/tab:text-blue-600 dark:text-blue-400/70 dark:group-hover/tab:text-blue-300",
-  },
-  "dashboard-learning": {
-    active:
-      "bg-violet-50 text-violet-700 border-violet-200/90 shadow-xs dark:bg-violet-950/60 dark:text-violet-300 dark:border-violet-800/80",
-    inactive:
-      "text-zinc-600 hover:bg-violet-50/70 hover:text-violet-700 dark:text-zinc-400 dark:hover:bg-violet-950/50 dark:hover:text-violet-300",
-    iconActive: "text-violet-600 dark:text-violet-400",
-    iconInactive:
-      "text-violet-600/70 group-hover/tab:text-violet-600 dark:text-violet-400/70 dark:group-hover/tab:text-violet-300",
-  },
-  "dashboard-life": {
-    active:
-      "bg-rose-50 text-rose-700 border-rose-200/90 shadow-xs dark:bg-rose-950/60 dark:text-rose-300 dark:border-rose-800/80",
-    inactive:
-      "text-zinc-600 hover:bg-rose-50/70 hover:text-rose-700 dark:text-zinc-400 dark:hover:bg-rose-950/50 dark:hover:text-rose-300",
-    iconActive: "text-rose-600 dark:text-rose-400",
-    iconInactive:
-      "text-rose-600/70 group-hover/tab:text-rose-600 dark:text-rose-400/70 dark:group-hover/tab:text-rose-300",
   },
   admin: {
     active:
@@ -201,28 +175,6 @@ export function DashboardSidebar({
       ],
       settingsHref: "/dashboard/settings",
     },
-    "dashboard-learning": {
-      title: t("shell.learningPanel"),
-      navItems: [
-        {
-          href: "/dashboard-learning/overview",
-          icon: Home,
-          label: t("shell.overview"),
-        },
-      ],
-      settingsHref: "/dashboard/settings",
-    },
-    "dashboard-life": {
-      title: t("shell.lifePanel"),
-      navItems: [
-        {
-          href: "/dashboard-life/overview",
-          icon: Home,
-          label: t("shell.overview"),
-        },
-      ],
-      settingsHref: "/dashboard/settings",
-    },
     support: {
       title: t("shell.supportPanel"),
       navItems: [
@@ -290,31 +242,6 @@ export function DashboardSidebar({
     setOpenMobile(false);
   };
 
-  const primaryTabs = [
-    {
-      mode: "dashboard" as const,
-      href: "/dashboard/overview",
-      icon: Home,
-      label: t("shell.dashboard"),
-      shortLabel: t("shell.mainShort"),
-    },
-    {
-      mode: "dashboard-learning" as const,
-      href: "/dashboard-learning/overview",
-      icon: GraduationCap,
-      label: t("shell.learningPanel"),
-      shortLabel: t("shell.learningShort"),
-    },
-
-    {
-      mode: "dashboard-life" as const,
-      href: "/dashboard-life/overview",
-      icon: Heart,
-      label: t("shell.lifePanel"),
-      shortLabel: t("shell.lifeShort"),
-    },
-  ];
-
   const staffTabs = [
     {
       mode: "admin" as const,
@@ -342,8 +269,6 @@ export function DashboardSidebar({
     },
   ].filter((item) => item.show);
 
-  const showDashboardSwitcher = primaryTabs.length > 1 || staffTabs.length > 0;
-
   return (
     <Sidebar collapsible="offcanvas" variant="inset" side={sidebarSide}>
       <SidebarHeader className="gap-2.5 p-2 pb-3 border-b border-sidebar-border/60">
@@ -365,101 +290,53 @@ export function DashboardSidebar({
           </Link>
         </div>
 
-        {/* Dashboard Switcher Rows */}
-        {showDashboardSwitcher ? (
-          <div className="flex flex-col gap-1.5">
-            {/* Core Dashboards (Main, Learning, Life, Work) */}
-            <div
-              className="grid grid-cols-3 gap-1 rounded-xl border border-zinc-200/80 bg-zinc-100/60 p-1 dark:border-zinc-800/80 dark:bg-zinc-900/60"
-              role="tablist"
-              aria-label={t("shell.quickDashboardSwitch")}
-            >
-              {primaryTabs.map((tab) => {
-                const isActive = tab.mode === mode;
-                const Icon = tab.icon;
-                const tabColor = DASHBOARD_TAB_COLORS[tab.mode];
-                return (
-                  <Link
-                    key={tab.href}
-                    href={tab.href}
-                    prefetch={false}
-                    onClick={handleNavigate}
-                    role="tab"
-                    aria-selected={isActive}
+        {/* Staff / Admin Dashboards (Only for needed roles) */}
+        {staffTabs.length > 0 ? (
+          <div
+            className="grid gap-1 rounded-xl border border-zinc-200/80 bg-zinc-100/60 p-1 dark:border-zinc-800/80 dark:bg-zinc-900/60"
+            style={{
+              gridTemplateColumns: `repeat(${staffTabs.length}, minmax(0, 1fr))`,
+            }}
+            role="tablist"
+            aria-label={t("shell.staffPanels")}
+          >
+            {staffTabs.map((tab) => {
+              const isActive = tab.mode === mode;
+              const Icon = tab.icon;
+              const tabColor = DASHBOARD_TAB_COLORS[tab.mode];
+              return (
+                <Link
+                  key={tab.href}
+                  href={tab.href}
+                  prefetch={false}
+                  onClick={handleNavigate}
+                  role="tab"
+                  aria-selected={isActive}
+                  className={cn(
+                    "group/tab flex flex-col items-center justify-center gap-1 rounded-lg py-1.5 px-0.5 text-center transition-all cursor-pointer border",
+                    isActive
+                      ? cn(tabColor.active, "font-bold")
+                      : cn(
+                          "border-transparent font-medium",
+                          tabColor.inactive,
+                        ),
+                  )}
+                  title={tab.label}
+                >
+                  <Icon
                     className={cn(
-                      "group/tab flex flex-col items-center justify-center gap-1 rounded-lg py-1.5 px-0.5 text-center transition-all cursor-pointer border",
+                      "size-4 shrink-0 transition-transform group-hover/tab:scale-110",
                       isActive
-                        ? cn(tabColor.active, "font-bold")
-                        : cn(
-                            "border-transparent font-medium",
-                            tabColor.inactive,
-                          ),
+                        ? tabColor.iconActive
+                        : tabColor.iconInactive,
                     )}
-                    title={tab.label}
-                  >
-                    <Icon
-                      className={cn(
-                        "size-4 shrink-0 transition-transform group-hover/tab:scale-110",
-                        isActive ? tabColor.iconActive : tabColor.iconInactive,
-                      )}
-                    />
-                    <span className="text-[10px] leading-tight truncate w-full px-0.5">
-                      {tab.shortLabel}
-                    </span>
-                  </Link>
-                );
-              })}
-            </div>
-
-            {/* Staff / Admin Dashboards (Only for needed roles) */}
-            {staffTabs.length > 0 && (
-              <div
-                className="grid gap-1 rounded-xl border border-zinc-200/80 bg-zinc-100/60 p-1 dark:border-zinc-800/80 dark:bg-zinc-900/60"
-                style={{
-                  gridTemplateColumns: `repeat(${staffTabs.length}, minmax(0, 1fr))`,
-                }}
-                role="tablist"
-                aria-label={t("shell.staffPanels")}
-              >
-                {staffTabs.map((tab) => {
-                  const isActive = tab.mode === mode;
-                  const Icon = tab.icon;
-                  const tabColor = DASHBOARD_TAB_COLORS[tab.mode];
-                  return (
-                    <Link
-                      key={tab.href}
-                      href={tab.href}
-                      prefetch={false}
-                      onClick={handleNavigate}
-                      role="tab"
-                      aria-selected={isActive}
-                      className={cn(
-                        "group/tab flex flex-col items-center justify-center gap-1 rounded-lg py-1.5 px-0.5 text-center transition-all cursor-pointer border",
-                        isActive
-                          ? cn(tabColor.active, "font-bold")
-                          : cn(
-                              "border-transparent font-medium",
-                              tabColor.inactive,
-                            ),
-                      )}
-                      title={tab.label}
-                    >
-                      <Icon
-                        className={cn(
-                          "size-4 shrink-0 transition-transform group-hover/tab:scale-110",
-                          isActive
-                            ? tabColor.iconActive
-                            : tabColor.iconInactive,
-                        )}
-                      />
-                      <span className="text-[10px] leading-tight truncate w-full px-0.5">
-                        {tab.shortLabel}
-                      </span>
-                    </Link>
-                  );
-                })}
-              </div>
-            )}
+                  />
+                  <span className="text-[10px] leading-tight truncate w-full px-0.5">
+                    {tab.shortLabel}
+                  </span>
+                </Link>
+              );
+            })}
           </div>
         ) : (
           <div className="px-2 py-1">

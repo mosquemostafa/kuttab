@@ -31,17 +31,11 @@
     "settings": "Settings",
     "logout": "Logout",
     "signingOut": "Signing Out...",
-    "learningPanel": "Learning",
-    "lifePanel": "Life",
     "create": "Create",
     "edit": "Edit",
     "brandTitle": "SaaS Starter",
     "brandSubtitle": "All-in-One Productivity Platform",
-    "quickDashboardSwitch": "Quick workspace switch",
-    "staffPanels": "Staff & Management",
-    "mainShort": "Main",
-    "learningShort": "Learning",
-    "lifeShort": "Life"
+    "staffPanels": "Staff & Management"
   },
   "overview": {
     "greeting": {
