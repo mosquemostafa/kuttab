@@ -124,5 +124,17 @@
       "title": "Admin Settings | Almostafa",
       "description": "Configure institute-wide administration settings and controls."
     }
+  },
+  "student": {
+    "overview": {
+      "title": "Student Portal | Almostafa",
+      "description": "Track your Quran lessons, memorization progress, and tasks."
+    }
+  },
+  "parent": {
+    "overview": {
+      "title": "Parent Portal | Almostafa",
+      "description": "Monitor your children's progress and Quran education at Almostafa Institute."
+    }
   }
 }

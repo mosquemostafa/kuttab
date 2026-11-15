@@ -19,7 +19,11 @@ import { useLocale, useTranslations } from "next-intl";
 import { useTheme } from "@/components/theme-provider";
 
 import { useSignOut } from "@/hooks/use-sign-out";
-import { UserRole, getDashboardPathForRole } from "@/shared/enums/user-role.enum";
+import {
+  UserRole,
+  getDashboardPathForRole,
+  normalizeUserRole,
+} from "@/shared/enums/user-role.enum";
 import { NotificationMenuBadge } from "@/components/notifications/notification-menu-badge";
 import { useNotifications } from "@/components/notifications/notification-provider";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -47,12 +51,30 @@ type HeaderUserControlsProps = {
 };
 
 export function HeaderUserControls({ user }: HeaderUserControlsProps) {
-  const isAdmin = user.role === UserRole.ADMIN;
-  const isSupport = user.role === UserRole.SUPPORT;
-  const isContentManager = user.role === UserRole.CONTENT_MANAGER;
+  const normalizedRole = normalizeUserRole(user.role);
+  const isRegularUser = normalizedRole === UserRole.USER;
+  const isAdmin = normalizedRole === UserRole.ADMIN;
   const t = useTranslations();
   const { unreadCount } = useNotifications();
   const { isSigningOut, handleSignOut } = useSignOut();
+
+  const getRoleBadge = (role: UserRole): string | null => {
+    switch (role) {
+      case UserRole.ADMIN:
+        return t("header.adminBadge");
+      case UserRole.SUPPORT:
+        return t("header.supportBadge");
+      case UserRole.CONTENT:
+        return t("header.contentManagerBadge");
+      case UserRole.STUDENT:
+        return t("header.studentBadge");
+      case UserRole.PARENT:
+        return t("header.parentBadge");
+      default:
+        return null;
+    }
+  };
+  const roleBadge = !isRegularUser ? getRoleBadge(normalizedRole) : null;
 
   const { resolvedTheme, setTheme } = useTheme();
   const locale = useLocale();
@@ -81,17 +103,13 @@ export function HeaderUserControls({ user }: HeaderUserControlsProps) {
 
   return (
     <div className="flex items-center gap-3">
-      {(isAdmin || isSupport || isContentManager) && (
+      {roleBadge && (
         <Badge
           variant="secondary"
           className="hidden sm:flex items-center gap-1"
         >
           <Shield className="h-3 w-3" />
-          {isAdmin
-            ? t("header.adminBadge")
-            : isSupport
-              ? t("header.supportBadge")
-              : t("header.contentManagerBadge")}
+          {roleBadge}
         </Badge>
       )}
 
@@ -153,7 +171,7 @@ export function HeaderUserControls({ user }: HeaderUserControlsProps) {
                   {t("header.settings")}
                 </Link>
               </DropdownMenuItem>
-            ) : !isSupport && !isContentManager ? (
+            ) : isRegularUser ? (
               <DropdownMenuItem asChild>
                 <Link href="/dashboard/settings" className="cursor-pointer">
                   <Settings className="mr-2 h-4 w-4" />
@@ -162,7 +180,7 @@ export function HeaderUserControls({ user }: HeaderUserControlsProps) {
               </DropdownMenuItem>
             ) : null}
 
-            {!isAdmin && !isSupport && !isContentManager ? (
+            {isRegularUser ? (
               <>
                 <DropdownMenuItem asChild>
                   <Link
@@ -194,7 +212,7 @@ export function HeaderUserControls({ user }: HeaderUserControlsProps) {
             ) : null}
           </DropdownMenuGroup>
 
-          {!isAdmin && !isSupport && !isContentManager ? (
+          {isRegularUser ? (
             <>
               <DropdownMenuSeparator />
               <DropdownMenuLabel className="text-xs text-muted-foreground">

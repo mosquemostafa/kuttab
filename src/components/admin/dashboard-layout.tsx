@@ -40,7 +40,13 @@ const DashboardSidebar = dynamic(
   { ssr: false },
 );
 
-type DashboardShellMode = "admin" | "dashboard" | "support" | "content";
+type DashboardShellMode =
+  | "admin"
+  | "dashboard"
+  | "support"
+  | "content"
+  | "student"
+  | "parent";
 
 type DashboardShellUser = {
   name?: string | null;
@@ -87,6 +93,16 @@ const DashboardLayoutContent = ({
       rootPathPrefix: "/content",
       rootLabel: t("shell.content"),
     },
+    student: {
+      rootHref: "/student/overview",
+      rootPathPrefix: "/student",
+      rootLabel: t("shell.student"),
+    },
+    parent: {
+      rootHref: "/parent/overview",
+      rootPathPrefix: "/parent",
+      rootLabel: t("shell.parent"),
+    },
   };
   const shellConfig = shellConfigByMode[mode];
   const pathname = usePathname();
@@ -117,6 +133,8 @@ const DashboardLayoutContent = ({
     settings: t("shell.settings"),
     support: t("shell.support"),
     content: t("shell.content"),
+    student: t("shell.student"),
+    parent: t("shell.parent"),
     tickets: t("shell.tickets"),
     feedbacks: t("shell.feedbacks"),
     create: t("shell.create"),

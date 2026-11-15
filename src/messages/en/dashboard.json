@@ -13,6 +13,10 @@
     "content": "Content",
     "supportPanel": "Support Panel",
     "contentPanel": "Content Panel",
+    "student": "Student",
+    "studentPanel": "Student Portal",
+    "parent": "Parent",
+    "parentPanel": "Parent Portal",
     "overview": "Overview",
     "tickets": "Tickets",
     "users": "Users",
@@ -151,8 +155,10 @@
       "unsegmented": "Unsegmented",
       "role": {
         "admin": "Admin",
-        "contentManager": "Content manager",
+        "contentManager": "Content",
         "support": "Support",
+        "student": "Student",
+        "parent": "Parent",
         "user": "User",
         "unspecified": "Unspecified",
         "other": "Other ({key})"

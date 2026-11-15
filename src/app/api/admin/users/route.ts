@@ -24,7 +24,7 @@
  *         schema: { type: string, enum: [asc, desc] }
  *       - in: query
  *         name: role
- *         schema: { type: string, enum: [user, admin, support, content_manager] }
+ *         schema: { type: string, enum: [user, admin, support, content, student, parent] }
  *       - in: query
  *         name: status
  *         schema: { type: string, enum: [active, banned] }
@@ -101,7 +101,7 @@
  *                 minLength: 8
  *               role:
  *                 type: string
- *                 enum: [user, admin, support, content_manager]
+ *                 enum: [user, admin, support, content, student, parent]
  *               data:
  *                 type: object
  *                 additionalProperties: true

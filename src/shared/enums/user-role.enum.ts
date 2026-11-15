@@ -2,7 +2,9 @@ export enum UserRole {
   USER = "user",
   ADMIN = "admin",
   SUPPORT = "support",
-  CONTENT_MANAGER = "content_manager",
+  CONTENT = "content",
+  STUDENT = "student",
+  PARENT = "parent",
 }
 
 const USER_ROLE_VALUES = new Set<UserRole>(Object.values(UserRole));
@@ -48,68 +50,62 @@ function stripLocale(pathname: string): string {
   return pathname.replace(/^\/(ar|en)(?=\/|$)/, "") || "/";
 }
 
-/** Check if a given pathname belongs to any of the 4 dashboard surface families. */
-export function isDashboardPath(pathname: string): boolean {
+/** Maps each system role to its landing dashboard path. */
+export const ROLE_DASHBOARD_MAP: Record<UserRole, string> = {
+  [UserRole.ADMIN]: "/admin/overview",
+  [UserRole.SUPPORT]: "/support/overview",
+  [UserRole.CONTENT]: "/content/overview",
+  [UserRole.STUDENT]: "/student/overview",
+  [UserRole.PARENT]: "/parent/overview",
+  [UserRole.USER]: "/dashboard/overview",
+};
+
+/** Maps dashboard route prefixes to their authorized target role. */
+export const DASHBOARD_ROLE_MAP: Record<string, UserRole> = {
+  "/admin": UserRole.ADMIN,
+  "/support": UserRole.SUPPORT,
+  "/content": UserRole.CONTENT,
+  "/student": UserRole.STUDENT,
+  "/parent": UserRole.PARENT,
+  "/dashboard": UserRole.USER,
+};
+
+/** Extract the dashboard root prefix from a pathname if it belongs to one. */
+export function getDashboardPrefix(pathname: string): string | null {
   const cleanPath = stripLocale(pathname);
-  return (
-    cleanPath === "/admin" ||
-    cleanPath.startsWith("/admin/") ||
-    cleanPath === "/content" ||
-    cleanPath.startsWith("/content/") ||
-    cleanPath === "/support" ||
-    cleanPath.startsWith("/support/") ||
-    cleanPath === "/dashboard" ||
-    cleanPath.startsWith("/dashboard/")
-  );
+  for (const prefix of Object.keys(DASHBOARD_ROLE_MAP)) {
+    if (cleanPath === prefix || cleanPath.startsWith(`${prefix}/`)) {
+      return prefix;
+    }
+  }
+  return null;
+}
+
+/** Check if a given pathname belongs to any of the dashboard surface families. */
+export function isDashboardPath(pathname: string): boolean {
+  return getDashboardPrefix(pathname) !== null;
 }
 
 /** Get the root overview path for a given user role. */
 export function getDashboardPathForRole(
   role: string | null | undefined,
 ): string {
-  switch (role) {
-    case UserRole.ADMIN:
-      return "/admin/overview";
-    case UserRole.SUPPORT:
-      return "/support/overview";
-    case UserRole.CONTENT_MANAGER:
-    case "content":
-      return "/content/overview";
-    case UserRole.USER:
-    default:
-      return "/dashboard/overview";
-  }
+  const normalized = normalizeUserRole(role);
+  return ROLE_DASHBOARD_MAP[normalized] ?? "/dashboard/overview";
 }
 
 /**
  * Validate whether a user with the given role is authorized to access a dashboard pathname.
- * Returns true if the pathname is not a dashboard path, or if the role matches the dashboard.
+ * Returns true if the pathname is not a dashboard path, or if the user's role matches the target role.
  */
 export function isAllowedDashboardForRole(
   role: string | null | undefined,
   pathname: string,
 ): boolean {
-  const cleanPath = stripLocale(pathname);
-
-  if (cleanPath === "/admin" || cleanPath.startsWith("/admin/")) {
-    return role === UserRole.ADMIN;
+  const prefix = getDashboardPrefix(pathname);
+  if (!prefix) {
+    return true;
   }
-  if (cleanPath === "/support" || cleanPath.startsWith("/support/")) {
-    return role === UserRole.SUPPORT;
-  }
-  if (cleanPath === "/content" || cleanPath.startsWith("/content/")) {
-    return role === UserRole.CONTENT_MANAGER || role === "content";
-  }
-  if (cleanPath === "/dashboard" || cleanPath.startsWith("/dashboard/")) {
-    return (
-      normalizeUserRole(role) === UserRole.USER &&
-      role !== UserRole.ADMIN &&
-      role !== UserRole.SUPPORT &&
-      role !== UserRole.CONTENT_MANAGER &&
-      role !== "content"
-    );
-  }
-
-  return true;
+  return normalizeUserRole(role) === DASHBOARD_ROLE_MAP[prefix];
 }
 

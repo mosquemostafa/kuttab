@@ -473,8 +473,17 @@ export function AdminAnnouncementsPanel() {
                     <SelectItem value={UserRole.USER}>
                       {t("roles.user")}
                     </SelectItem>
+                    <SelectItem value={UserRole.STUDENT}>
+                      {t("roles.student")}
+                    </SelectItem>
+                    <SelectItem value={UserRole.PARENT}>
+                      {t("roles.parent")}
+                    </SelectItem>
                     <SelectItem value={UserRole.SUPPORT}>
                       {t("roles.support")}
+                    </SelectItem>
+                    <SelectItem value={UserRole.CONTENT}>
+                      {t("roles.contentManager")}
                     </SelectItem>
                     <SelectItem value={UserRole.ADMIN}>
                       {t("roles.admin")}

@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server";
 
 import { auth } from "@/server/lib/auth";
-import { UserRole } from "@/shared/enums/user-role.enum";
+import { normalizeUserRole, UserRole } from "@/shared/enums/user-role.enum";
 import type { RouteHandler } from "@/server/decorators/compose";
 import {
   ForbiddenException,
@@ -9,7 +9,8 @@ import {
 } from "@/server/exceptions/exceptions";
 
 function isContentManagerRole(role: string | null | undefined): boolean {
-  return role === UserRole.ADMIN || role === UserRole.CONTENT_MANAGER;
+  const normalized = normalizeUserRole(role);
+  return normalized === UserRole.ADMIN || normalized === UserRole.CONTENT;
 }
 
 export function withContentManager<TArgs extends [NextRequest, ...unknown[]]>(

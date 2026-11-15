@@ -147,8 +147,10 @@ export function AdminOverviewAnalytics() {
 
   const roleLabel = (key: string) => {
     if (key === "admin") return t("role.admin");
-    if (key === "content_manager") return t("role.contentManager");
+    if (key === "content") return t("role.contentManager");
     if (key === "support") return t("role.support");
+    if (key === "student") return t("role.student");
+    if (key === "parent") return t("role.parent");
     if (key === "user") return t("role.user");
     if (key === "unspecified") return t("role.unspecified");
     return t("role.other", { key });

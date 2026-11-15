@@ -13,6 +13,10 @@
     "content": "المحتوى",
     "supportPanel": "لوحة الدعم",
     "contentPanel": "لوحة المحتوى",
+    "student": "الطالب",
+    "studentPanel": "لوحة الطالب",
+    "parent": "ولي الأمر",
+    "parentPanel": "لوحة ولي الأمر",
     "overview": "نظرة عامة",
     "tickets": "التذاكر",
     "users": "المستخدمون",
@@ -151,8 +155,10 @@
       "unsegmented": "غير مصنّف",
       "role": {
         "admin": "مسؤول",
-        "contentManager": "مدير المحتوى",
+        "contentManager": "محتوى",
         "support": "دعم",
+        "student": "طالب",
+        "parent": "ولي أمر",
         "user": "مستخدم",
         "unspecified": "غير محدد",
         "other": "أخرى ({key})"

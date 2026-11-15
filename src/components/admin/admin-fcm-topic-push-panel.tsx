@@ -41,7 +41,9 @@ type Target = "all" | "role" | "segment" | "custom";
 const ROLE_ORDER: UserRole[] = [
   UserRole.ADMIN,
   UserRole.SUPPORT,
-  UserRole.CONTENT_MANAGER,
+  UserRole.CONTENT,
+  UserRole.STUDENT,
+  UserRole.PARENT,
   UserRole.USER,
 ];
 
@@ -54,8 +56,12 @@ export function AdminFcmTopicPushPanel() {
         return t("adminUsers.roles.admin");
       case UserRole.SUPPORT:
         return t("adminUsers.roles.support");
-      case UserRole.CONTENT_MANAGER:
+      case UserRole.CONTENT:
         return t("adminUsers.roles.contentManager");
+      case UserRole.STUDENT:
+        return t("adminUsers.roles.student");
+      case UserRole.PARENT:
+        return t("adminUsers.roles.parent");
       case UserRole.USER:
       default:
         return t("adminUsers.roles.user");

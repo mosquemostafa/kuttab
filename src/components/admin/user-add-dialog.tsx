@@ -129,9 +129,9 @@ export function UserAddDialog({
             <SelectContent>
               <SelectItem value={UserRole.USER}>User</SelectItem>
               <SelectItem value={UserRole.SUPPORT}>Support</SelectItem>
-              <SelectItem value={UserRole.CONTENT_MANAGER}>
-                Content manager
-              </SelectItem>
+              <SelectItem value={UserRole.CONTENT}>Content</SelectItem>
+              <SelectItem value={UserRole.STUDENT}>Student</SelectItem>
+              <SelectItem value={UserRole.PARENT}>Parent</SelectItem>
               <SelectItem value={UserRole.ADMIN}>Admin</SelectItem>
             </SelectContent>
           </Select>

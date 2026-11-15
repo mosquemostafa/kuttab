@@ -206,12 +206,14 @@ Roles:
 - `user`
 - `admin`
 - `support`
-- `content_manager`
+- `content`
+- `student`
+- `parent`
 
 Important nuance:
 
 - Better Auth admin plugin APIs are directly typed around `user|admin` semantics.
-- Custom roles (`support`, `content_manager`) are persisted through repository-level DB update paths where needed.
+- Custom roles (`support`, `content`, `student`, `parent`) are persisted through repository-level DB update paths where needed.
 
 Enforcement layers:
 

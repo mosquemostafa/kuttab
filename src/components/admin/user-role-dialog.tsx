@@ -6,7 +6,7 @@ import { apiClient } from "@/lib/api/api-client";
 import { Label } from "@/components/ui/label";
 import type { UserWithDetailsDTO } from "@/shared/types/user.types";
 import { ConfirmationDialog } from "@/components/ui/confirmation-dialog";
-import { UserRole } from "@/shared/enums/user-role.enum";
+import { normalizeUserRole, UserRole } from "@/shared/enums/user-role.enum";
 import {
   Select,
   SelectContent,
@@ -30,22 +30,21 @@ export function UserRoleDialog({ user, isOpen, onClose }: UserRoleDialogProps) {
         return t("roles.admin");
       case UserRole.SUPPORT:
         return t("roles.support");
-      case UserRole.CONTENT_MANAGER:
+      case UserRole.CONTENT:
         return t("roles.contentManager");
+      case UserRole.STUDENT:
+        return t("roles.student");
+      case UserRole.PARENT:
+        return t("roles.parent");
       case UserRole.USER:
         return t("roles.user");
       default:
         return t("roles.user");
     }
   };
-  const [selectedRole, setSelectedRole] = useState<UserRole>(() => {
-    if (user.role === UserRole.ADMIN) return UserRole.ADMIN;
-    if (user.role === UserRole.SUPPORT) return UserRole.SUPPORT;
-    if (user.role === UserRole.CONTENT_MANAGER) {
-      return UserRole.CONTENT_MANAGER;
-    }
-    return UserRole.USER;
-  });
+  const [selectedRole, setSelectedRole] = useState<UserRole>(() =>
+    normalizeUserRole(user.role),
+  );
   const [isLoading, setIsLoading] = useState(false);
 
   const handleUpdateRole = async () => {
@@ -96,10 +95,16 @@ export function UserRoleDialog({ user, isOpen, onClose }: UserRoleDialogProps) {
                 {t("roles.support")}
               </SelectItem>
               <SelectItem
-                value={UserRole.CONTENT_MANAGER}
+                value={UserRole.CONTENT}
                 className="hover:bg-muted"
               >
                 {t("roles.contentManager")}
+              </SelectItem>
+              <SelectItem value={UserRole.STUDENT} className="hover:bg-muted">
+                {t("roles.student")}
+              </SelectItem>
+              <SelectItem value={UserRole.PARENT} className="hover:bg-muted">
+                {t("roles.parent")}
               </SelectItem>
               <SelectItem value={UserRole.ADMIN} className="hover:bg-muted">
                 {t("roles.admin")}

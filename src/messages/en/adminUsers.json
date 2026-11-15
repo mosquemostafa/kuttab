@@ -11,6 +11,8 @@
     "admin": "Admin",
     "support": "Support",
     "contentManager": "Content manager",
+    "student": "Student",
+    "parent": "Parent",
     "user": "User",
     "addUser": "Add a user"
   },
@@ -138,6 +140,8 @@
     "admin": "Admin",
     "support": "Support",
     "contentManager": "Content manager",
+    "student": "Student",
+    "parent": "Parent",
     "user": "User"
   },
   "summary": "Showing {count} of {total} users"

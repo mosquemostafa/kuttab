@@ -8,6 +8,8 @@
   "adminBadge": "Admin",
   "supportBadge": "Support",
   "contentManagerBadge": "Content Manager",
+  "studentBadge": "Student",
+  "parentBadge": "Parent",
   "avatarHasUnreadNotifications": "You have unread notifications",
   "defaultUser": "User",
   "dashboardSection": "Dashboard",

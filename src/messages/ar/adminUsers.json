@@ -11,6 +11,8 @@
     "admin": "مسؤول",
     "support": "الدعم",
     "contentManager": "مدير المحتوى",
+    "student": "طالب",
+    "parent": "ولي أمر",
     "user": "مستخدم",
     "addUser": "إضافة مستخدم"
   },
@@ -138,6 +140,8 @@
     "admin": "مسؤول",
     "support": "الدعم",
     "contentManager": "مدير المحتوى",
+    "student": "طالب",
+    "parent": "ولي أمر",
     "user": "مستخدم"
   },
   "summary": "عرض {count} من {total} مستخدم"

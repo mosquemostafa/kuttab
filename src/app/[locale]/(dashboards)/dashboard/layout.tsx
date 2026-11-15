@@ -8,6 +8,7 @@ import { headers } from "next/headers";
 import {
   UserRole,
   getDashboardPathForRole,
+  normalizeUserRole,
 } from "@/shared/enums/user-role.enum";
 import DashboardLayout from "@/components/admin/dashboard-layout";
 import { AnnouncementProvider } from "@/components/announcements/announcement-provider";
@@ -36,14 +37,8 @@ export default async function Layout({
     return null;
   }
 
-  const userRole = session.user.role;
-  if (
-    userRole === UserRole.ADMIN ||
-    userRole === UserRole.SUPPORT ||
-    userRole === UserRole.CONTENT_MANAGER ||
-    userRole === "content"
-  ) {
-    redirect({ href: getDashboardPathForRole(userRole), locale });
+  if (normalizeUserRole(session.user.role) !== UserRole.USER) {
+    redirect({ href: getDashboardPathForRole(session.user.role), locale });
     return null;
   }
 

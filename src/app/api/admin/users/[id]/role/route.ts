@@ -23,7 +23,7 @@
  *             properties:
  *               role:
  *                 type: string
- *                 enum: [user, admin, support, content_manager]
+ *                 enum: [user, admin, support, content, student, parent]
  *     responses:
  *       200:
  *         description: Role updated successfully

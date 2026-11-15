@@ -15,6 +15,8 @@ import {
   UserPlus,
   RefreshCw,
   Phone,
+  GraduationCap,
+  UserCheck,
 } from "lucide-react";
 import { format } from "date-fns";
 import useSWR from "swr";
@@ -217,10 +219,22 @@ export function UsersTable() {
                 {t("controls.support")}
               </span>
             </SelectItem>
-            <SelectItem value="content_manager">
+            <SelectItem value="content">
               <span className="flex items-center gap-2">
                 <PenSquare className="w-4 h-4" />
                 {t("controls.contentManager")}
+              </span>
+            </SelectItem>
+            <SelectItem value="student">
+              <span className="flex items-center gap-2">
+                <GraduationCap className="w-4 h-4" />
+                {t("controls.student")}
+              </span>
+            </SelectItem>
+            <SelectItem value="parent">
+              <span className="flex items-center gap-2">
+                <UserCheck className="w-4 h-4" />
+                {t("controls.parent")}
               </span>
             </SelectItem>
             <SelectItem value="user">
@@ -624,30 +638,42 @@ export function UsersTable() {
                         className={`flex items-center gap-1 px-2 py-1 text-xs ${
                           user.role === UserRole.ADMIN
                             ? "bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-900 dark:text-purple-200 dark:border-purple-700"
-                            : user.role === UserRole.CONTENT_MANAGER
+                            : user.role === UserRole.CONTENT
                               ? "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-900 dark:text-emerald-200 dark:border-emerald-700"
                               : user.role === UserRole.SUPPORT
                                 ? "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-900 dark:text-amber-200 dark:border-amber-700"
-                                : "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950 dark:text-emerald-300 dark:border-emerald-800"
+                                : user.role === UserRole.STUDENT
+                                  ? "bg-sky-50 text-sky-700 border-sky-200 dark:bg-sky-950 dark:text-sky-300 dark:border-sky-800"
+                                  : user.role === UserRole.PARENT
+                                    ? "bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950 dark:text-indigo-300 dark:border-indigo-800"
+                                    : "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950 dark:text-emerald-300 dark:border-emerald-800"
                         }`}
                       >
                         {user.role === UserRole.ADMIN ? (
                           <Shield className="h-3 w-3" />
-                        ) : user.role === UserRole.CONTENT_MANAGER ? (
+                        ) : user.role === UserRole.CONTENT ? (
                           <PenSquare className="h-3 w-3" />
                         ) : user.role === UserRole.SUPPORT ? (
                           <LifeBuoy className="h-3 w-3" />
+                        ) : user.role === UserRole.STUDENT ? (
+                          <GraduationCap className="h-3 w-3" />
+                        ) : user.role === UserRole.PARENT ? (
+                          <UserCheck className="h-3 w-3" />
                         ) : (
                           <User className="h-3 w-3" />
                         )}
                         {user.role
                           ? user.role === UserRole.ADMIN
                             ? t("roles.admin")
-                            : user.role === UserRole.CONTENT_MANAGER
+                            : user.role === UserRole.CONTENT
                               ? t("roles.contentManager")
                               : user.role === UserRole.SUPPORT
                                 ? t("roles.support")
-                                : t("roles.user")
+                                : user.role === UserRole.STUDENT
+                                  ? t("roles.student")
+                                  : user.role === UserRole.PARENT
+                                    ? t("roles.parent")
+                                    : t("roles.user")
                           : t("roles.user")}
                       </Badge>
                     </TableCell>

@@ -18,6 +18,8 @@ import {
   ShieldCheck,
   LayoutDashboard,
   PenSquare,
+  GraduationCap,
+  UserCheck,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/logo";
@@ -36,7 +38,13 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 
-type DashboardShellMode = "admin" | "dashboard" | "support" | "content";
+type DashboardShellMode =
+  | "admin"
+  | "dashboard"
+  | "support"
+  | "content"
+  | "student"
+  | "parent";
 
 type SidebarConfig = {
   title: string;
@@ -156,6 +164,26 @@ export function DashboardSidebar({
         },
       ],
     },
+    student: {
+      title: t("shell.studentPanel"),
+      navItems: [
+        {
+          href: "/student/overview",
+          icon: Home,
+          label: t("shell.overview"),
+        },
+      ],
+    },
+    parent: {
+      title: t("shell.parentPanel"),
+      navItems: [
+        {
+          href: "/parent/overview",
+          icon: Home,
+          label: t("shell.overview"),
+        },
+      ],
+    },
   };
   const config = sidebarConfigByMode[mode];
   const { isSigningOut, handleSignOut } = useSignOut();
@@ -179,47 +207,45 @@ export function DashboardSidebar({
   const modeMetaByMode = {
     admin: {
       icon: ShieldCheck,
-      shortLabel: t("shell.admin"),
       containerClass:
         "border-amber-500/25 bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent dark:from-amber-950/40 dark:via-amber-950/20 dark:to-transparent dark:border-amber-500/30",
       iconBoxClass:
         "bg-amber-500/15 text-amber-700 border-amber-500/30 dark:bg-amber-400/20 dark:text-amber-300 dark:border-amber-400/30",
-      badgeClass:
-        "border-amber-500/30 bg-amber-500/10 text-amber-800 dark:text-amber-200 dark:border-amber-400/30",
-      dotClass: "bg-amber-500 dark:bg-amber-400",
     },
     support: {
       icon: LifeBuoy,
-      shortLabel: t("shell.support"),
       containerClass:
         "border-teal-500/25 bg-gradient-to-r from-teal-500/10 via-teal-500/5 to-transparent dark:from-teal-950/40 dark:via-teal-950/20 dark:to-transparent dark:border-teal-500/30",
       iconBoxClass:
         "bg-teal-500/15 text-teal-700 border-teal-500/30 dark:bg-teal-400/20 dark:text-teal-300 dark:border-teal-400/30",
-      badgeClass:
-        "border-teal-500/30 bg-teal-500/10 text-teal-800 dark:text-teal-200 dark:border-teal-400/30",
-      dotClass: "bg-teal-500 dark:bg-teal-400",
     },
     content: {
       icon: PenSquare,
-      shortLabel: t("shell.content"),
       containerClass:
         "border-emerald-500/25 bg-gradient-to-r from-emerald-500/10 via-emerald-500/5 to-transparent dark:from-emerald-950/40 dark:via-emerald-950/20 dark:to-transparent dark:border-emerald-500/30",
       iconBoxClass:
         "bg-emerald-500/15 text-emerald-700 border-emerald-500/30 dark:bg-emerald-400/20 dark:text-emerald-300 dark:border-emerald-400/30",
-      badgeClass:
-        "border-emerald-500/30 bg-emerald-500/10 text-emerald-800 dark:text-emerald-200 dark:border-emerald-400/30",
-      dotClass: "bg-emerald-500 dark:bg-emerald-400",
     },
     dashboard: {
       icon: LayoutDashboard,
-      shortLabel: t("shell.dashboard"),
       containerClass:
         "border-emerald-500/25 bg-gradient-to-r from-emerald-500/10 via-emerald-500/5 to-transparent dark:from-emerald-950/40 dark:via-emerald-950/20 dark:to-transparent dark:border-emerald-500/30",
       iconBoxClass:
         "bg-emerald-500/15 text-emerald-700 border-emerald-500/30 dark:bg-emerald-400/20 dark:text-emerald-300 dark:border-emerald-400/30",
-      badgeClass:
-        "border-emerald-500/30 bg-emerald-500/10 text-emerald-800 dark:text-emerald-200 dark:border-emerald-400/30",
-      dotClass: "bg-emerald-500 dark:bg-emerald-400",
+    },
+    student: {
+      icon: GraduationCap,
+      containerClass:
+        "border-sky-500/25 bg-gradient-to-r from-sky-500/10 via-sky-500/5 to-transparent dark:from-sky-950/40 dark:via-sky-950/20 dark:to-transparent dark:border-sky-500/30",
+      iconBoxClass:
+        "bg-sky-500/15 text-sky-700 border-sky-500/30 dark:bg-sky-400/20 dark:text-sky-300 dark:border-sky-400/30",
+    },
+    parent: {
+      icon: UserCheck,
+      containerClass:
+        "border-indigo-500/25 bg-gradient-to-r from-indigo-500/10 via-indigo-500/5 to-transparent dark:from-indigo-950/40 dark:via-indigo-950/20 dark:to-transparent dark:border-indigo-500/30",
+      iconBoxClass:
+        "bg-indigo-500/15 text-indigo-700 border-indigo-500/30 dark:bg-indigo-400/20 dark:text-indigo-300 dark:border-indigo-400/30",
     },
   };
   const modeMeta = modeMetaByMode[mode];
@@ -266,20 +292,6 @@ export function DashboardSidebar({
               {config.title}
             </span>
           </div>
-          <span
-            className={cn(
-              "inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold border shadow-2xs shrink-0",
-              modeMeta.badgeClass,
-            )}
-          >
-            <span
-              className={cn(
-                "size-1.5 rounded-full animate-pulse",
-                modeMeta.dotClass,
-              )}
-            />
-            <span>{modeMeta.shortLabel}</span>
-          </span>
         </div>
       </SidebarHeader>
       <SidebarContent>

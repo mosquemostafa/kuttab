@@ -2705,7 +2705,9 @@
                       "user",
                       "admin",
                       "support",
-                      "content_manager"
+                      "content",
+                      "student",
+                      "parent"
                     ]
                   }
                 }
@@ -3140,7 +3142,9 @@
                 "user",
                 "admin",
                 "support",
-                "content_manager"
+                "content",
+                "student",
+                "parent"
               ]
             }
           },
@@ -3281,7 +3285,9 @@
                       "user",
                       "admin",
                       "support",
-                      "content_manager"
+                      "content",
+                      "student",
+                      "parent"
                     ]
                   },
                   "data": {

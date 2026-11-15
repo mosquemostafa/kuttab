@@ -3,7 +3,7 @@ import {
   hasStaleSessionCookie,
   redirectThroughStaleSessionClear,
 } from "@/server/lib/clear-stale-better-auth-session";
-import { UserRole } from "@/shared/enums/user-role.enum";
+import { UserRole, normalizeUserRole } from "@/shared/enums/user-role.enum";
 import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import DashboardLayout from "@/components/admin/dashboard-layout";
@@ -28,10 +28,7 @@ export default async function ContentLayout({
     return notFound();
   }
 
-  if (
-    session.user.role !== UserRole.CONTENT_MANAGER &&
-    session.user.role !== "content"
-  ) {
+  if (normalizeUserRole(session.user.role) !== UserRole.CONTENT) {
     return notFound();
   }
 
