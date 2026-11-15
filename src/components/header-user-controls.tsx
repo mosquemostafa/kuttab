@@ -158,82 +158,71 @@ export function HeaderUserControls({ user }: HeaderUserControlsProps) {
           </DropdownMenuLabel>
           <DropdownMenuGroup>
             <DropdownMenuItem asChild>
-              <Link href={getDashboardPathForRole(user.role)} className="cursor-pointer">
+              <Link
+                href={getDashboardPathForRole(user.role)}
+                className="cursor-pointer"
+              >
                 <House className="mr-2 h-4 w-4" />
                 {t("header.dashboard")}
               </Link>
             </DropdownMenuItem>
 
-            {isAdmin ? (
-              <DropdownMenuItem asChild>
-                <Link href="/admin/settings" className="cursor-pointer">
-                  <Settings className="mr-2 h-4 w-4" />
-                  {t("header.settings")}
-                </Link>
-              </DropdownMenuItem>
-            ) : isRegularUser ? (
-              <DropdownMenuItem asChild>
-                <Link href="/dashboard/settings" className="cursor-pointer">
-                  <Settings className="mr-2 h-4 w-4" />
-                  {t("header.settings")}
-                </Link>
-              </DropdownMenuItem>
-            ) : null}
+            <DropdownMenuItem asChild>
+              <Link
+                href={isAdmin ? "/admin/settings" : "/dashboard/settings"}
+                className="cursor-pointer"
+              >
+                <Settings className="mr-2 h-4 w-4" />
+                {t("header.settings")}
+              </Link>
+            </DropdownMenuItem>
 
-            {isRegularUser ? (
-              <>
-                <DropdownMenuItem asChild>
-                  <Link
-                    href="/dashboard/notifications"
-                    className="flex w-full cursor-pointer flex-col gap-0.5 items-stretch"
-                  >
-                    <span className="flex w-full items-center gap-2">
-                      <Bell className="mr-2 h-4 w-4 shrink-0" />
-                      <span className="flex-1 text-start">
-                        {t("header.notifications")}
-                      </span>
-                      <NotificationMenuBadge />
-                    </span>
-                    {unreadCount > 0 ? (
-                      <span className="ps-6 text-start text-xs text-muted-foreground">
-                        {t("notifications.unreadSubtitle", { count: unreadCount })}
-                      </span>
-                    ) : null}
-                  </Link>
-                </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link
+                href="/dashboard/notifications"
+                className="flex w-full cursor-pointer flex-col gap-0.5 items-stretch"
+              >
+                <span className="flex w-full items-center gap-2">
+                  <Bell className="mr-2 h-4 w-4 shrink-0" />
+                  <span className="flex-1 text-start">
+                    {t("header.notifications")}
+                  </span>
+                  <NotificationMenuBadge />
+                </span>
+                {unreadCount > 0 ? (
+                  <span className="ps-6 text-start text-xs text-muted-foreground">
+                    {t("notifications.unreadSubtitle", { count: unreadCount })}
+                  </span>
+                ) : null}
+              </Link>
+            </DropdownMenuItem>
 
-                <DropdownMenuItem asChild>
-                  <Link href="/dashboard/newsletter" className="cursor-pointer">
-                    <Mail className="mr-2 h-4 w-4" />
-                    {t("header.newsletterChannel")}
-                  </Link>
-                </DropdownMenuItem>
-              </>
-            ) : null}
+            <DropdownMenuItem asChild>
+              <Link href="/dashboard/newsletter" className="cursor-pointer">
+                <Mail className="mr-2 h-4 w-4" />
+                {t("header.newsletterChannel")}
+              </Link>
+            </DropdownMenuItem>
           </DropdownMenuGroup>
 
-          {isRegularUser ? (
-            <>
-              <DropdownMenuSeparator />
-              <DropdownMenuLabel className="text-xs text-muted-foreground">
-                {t("header.supportSection")}
-              </DropdownMenuLabel>
-              <DropdownMenuGroup>
-                <DropdownMenuItem asChild>
-                  <Link href="/dashboard/support/" className="cursor-pointer">
-                    <LifeBuoy className="mr-2 h-4 w-4" />
-                    {t("header.support")}
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/dashboard/feedbacks" className="cursor-pointer">
-                    <MessageSquare className="mr-2 h-4 w-4" />
-                    {t("header.feedbacks")}
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuGroup>
-            </>
-          ) : null}
+          <DropdownMenuSeparator />
+          <DropdownMenuLabel className="text-xs text-muted-foreground">
+            {t("header.supportSection")}
+          </DropdownMenuLabel>
+          <DropdownMenuGroup>
+            <DropdownMenuItem asChild>
+              <Link href="/dashboard/support" className="cursor-pointer">
+                <LifeBuoy className="mr-2 h-4 w-4" />
+                {t("header.support")}
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link href="/dashboard/feedbacks" className="cursor-pointer">
+                <MessageSquare className="mr-2 h-4 w-4" />
+                {t("header.feedbacks")}
+              </Link>
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
 
           <DropdownMenuSeparator />
           <DropdownMenuLabel className="text-xs text-muted-foreground">

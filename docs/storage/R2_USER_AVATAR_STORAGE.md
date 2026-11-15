@@ -8,11 +8,11 @@ It reflects the implementation in the repository as of the authoring date; when 
 
 ## Goals and scope
 
-| Area                                                                   | Storage             | Notes                                                                                                                                                     |
-| ---------------------------------------------------------------------- | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| End-user profile image (`users.image`) when using “Upload photo”       | **Cloudflare R2**   | Presigned **PUT** from the browser; URL persisted via Better Auth `updateUser`.                                                                           |
-| OAuth profile images (Google / GitHub)                                 | External HTTPS URLs | Still written to `users.image`; not stored in R2 unless the user uploads a custom photo.                                                                  |
-| **Journal daily cover** (per calendar day)                             | **Cloudflare R2**   | Same bucket and env gate as avatars; metadata in `user_media_files`, FK on `journal_daily`. See [R2_JOURNAL_DAILY_COVER.md](./R2_JOURNAL_DAILY_COVER.md). |
+| Area                                                             | Storage             | Notes                                                                                                                                                     |
+| ---------------------------------------------------------------- | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| End-user profile image (`users.image`) when using “Upload photo” | **Cloudflare R2**   | Presigned **PUT** from the browser; URL persisted via Better Auth `updateUser`.                                                                           |
+| OAuth profile images (Google / GitHub)                           | External HTTPS URLs | Still written to `users.image`; not stored in R2 unless the user uploads a custom photo.                                                                  |
+| **Journal daily cover** (per calendar day)                       | **Cloudflare R2**   | Same bucket and env gate as avatars; metadata in `user_media_files`, FK on `journal_daily`. See [R2_JOURNAL_DAILY_COVER.md](./R2_JOURNAL_DAILY_COVER.md). |
 
 **Out of scope for this doc:** a dedicated `avatars` database table (the URL lives on `users.image` only). Journal covers are documented in the journal R2 doc above.
 

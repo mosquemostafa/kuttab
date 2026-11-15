@@ -8,14 +8,13 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
-  AlertDialog,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import {
   Select,
   SelectContent,
@@ -52,6 +51,19 @@ export function UserAddDialog({
     autoVerify: false,
   });
 
+  const handleClose = () => {
+    if (isLoading) return;
+    onClose();
+    // Reset form
+    setFormData({
+      name: "",
+      email: "",
+      password: "",
+      role: UserRole.USER,
+      autoVerify: false,
+    });
+  };
+
   const handleCreateUser = async () => {
     const trimmedName = formData.name.trim();
     const trimmedEmail = formData.email.trim();
@@ -77,15 +89,7 @@ export function UserAddDialog({
           : t("toasts.userCreated"),
       );
       onSuccess?.();
-      onClose();
-      // Reset form
-      setFormData({
-        name: "",
-        email: "",
-        password: "",
-        role: UserRole.USER,
-        autoVerify: false,
-      });
+      handleClose();
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message);
@@ -96,19 +100,32 @@ export function UserAddDialog({
   };
 
   return (
-    <AlertDialog
+    <Dialog
       open={isOpen}
       onOpenChange={(open) => {
-        if (!open && !isLoading) onClose();
+        if (!open) handleClose();
       }}
     >
-      <AlertDialogContent dir={locale.startsWith("ar") ? "rtl" : "ltr"}>
-        <AlertDialogHeader>
-          <AlertDialogTitle>{t("dialogs.addUserTitle")}</AlertDialogTitle>
-          <AlertDialogDescription>
+      <DialogContent
+        dir={locale.startsWith("ar") ? "rtl" : "ltr"}
+        className="sm:max-w-lg"
+        onPointerDownOutside={(e) => {
+          if (isLoading) {
+            e.preventDefault();
+          }
+        }}
+        onEscapeKeyDown={(e) => {
+          if (isLoading) {
+            e.preventDefault();
+          }
+        }}
+      >
+        <DialogHeader>
+          <DialogTitle>{t("dialogs.addUserTitle")}</DialogTitle>
+          <DialogDescription>
             {t("dialogs.addUserDescription")}
-          </AlertDialogDescription>
-        </AlertDialogHeader>
+          </DialogDescription>
+        </DialogHeader>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -206,22 +223,23 @@ export function UserAddDialog({
               disabled={isLoading}
             />
           </div>
-          <AlertDialogFooter className="mt-2">
-            <AlertDialogCancel
+          <DialogFooter className="mt-2">
+            <Button
               type="button"
-              onClick={onClose}
+              variant="outline"
+              onClick={handleClose}
               disabled={isLoading}
             >
               {t("dialogs.cancel")}
-            </AlertDialogCancel>
+            </Button>
             <Button type="submit" disabled={isLoading}>
               {isLoading
                 ? t("dialogs.addUserCreating")
                 : t("dialogs.addUserConfirm")}
             </Button>
-          </AlertDialogFooter>
+          </DialogFooter>
         </form>
-      </AlertDialogContent>
-    </AlertDialog>
+      </DialogContent>
+    </Dialog>
   );
 }

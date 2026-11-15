@@ -5,15 +5,12 @@ import {
 } from "@/server/lib/clear-stale-better-auth-session";
 import { redirect } from "@/i18n/navigation";
 import { headers } from "next/headers";
-import {
-  UserRole,
-  getDashboardPathForRole,
-  normalizeUserRole,
-} from "@/shared/enums/user-role.enum";
-import DashboardLayout from "@/components/admin/dashboard-layout";
+import { UserRole, normalizeUserRole } from "@/shared/enums/user-role.enum";
+import DashboardLayout, {
+  type DashboardShellMode,
+} from "@/components/admin/dashboard-layout";
 import { AnnouncementProvider } from "@/components/announcements/announcement-provider";
 import { NotificationProvider } from "@/components/notifications/notification-provider";
-import { ProjectsStoreInitializer } from "@/components/projects/projects-store";
 
 export default async function Layout({
   children,
@@ -37,23 +34,22 @@ export default async function Layout({
     return null;
   }
 
-  if (normalizeUserRole(session.user.role) !== UserRole.USER) {
-    redirect({ href: getDashboardPathForRole(session.user.role), locale });
-    return null;
-  }
+  const normalizedRole = normalizeUserRole(session.user.role);
+  const shellMode: DashboardShellMode =
+    normalizedRole === UserRole.USER
+      ? "dashboard"
+      : (normalizedRole as DashboardShellMode);
 
   return (
     <AnnouncementProvider>
       <NotificationProvider>
-        <ProjectsStoreInitializer>
-          <DashboardLayout
-            mode="dashboard"
-            user={session.user}
-            showInstallPwaBanner
-          >
-            {children}
-          </DashboardLayout>
-        </ProjectsStoreInitializer>
+        <DashboardLayout
+          mode={shellMode}
+          user={session.user}
+          showInstallPwaBanner
+        >
+          {children}
+        </DashboardLayout>
       </NotificationProvider>
     </AnnouncementProvider>
   );

@@ -109,7 +109,7 @@ export function DashboardSidebar({
       settingsHref: "/admin/settings",
     },
     dashboard: {
-      title: t("shell.dashboard"),
+      title: t("shell.dashboardPanel"),
       navItems: [
         {
           href: "/dashboard/overview",

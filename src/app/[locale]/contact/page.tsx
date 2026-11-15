@@ -31,8 +31,12 @@ export default async function ContactPage({
       <main className="w-full pt-16 flex-1">
         <div className="container mx-auto px-4 py-20 max-w-2xl">
           <div className="text-center mb-10">
-            <h1 className="text-4xl font-bold mb-4 tracking-tight text-foreground">{t("title")}</h1>
-            <p className="text-muted-foreground text-lg leading-relaxed">{t("description")}</p>
+            <h1 className="text-4xl font-bold mb-4 tracking-tight text-foreground">
+              {t("title")}
+            </h1>
+            <p className="text-muted-foreground text-lg leading-relaxed">
+              {t("description")}
+            </p>
           </div>
           <ContactForm />
         </div>

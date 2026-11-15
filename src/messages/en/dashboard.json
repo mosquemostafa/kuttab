@@ -8,7 +8,9 @@
   "shell": {
     "admin": "Admin",
     "adminPanel": "Admin Panel",
-    "dashboard": "Home",
+    "dashboard": "Dashboard",
+    "dashboardPanel": "Dashboard",
+    "home": "Home",
     "support": "Support",
     "content": "Content",
     "supportPanel": "Support Panel",

@@ -10,10 +10,7 @@
 const routingPathConfig = {
   public: {
     exactPaths: ["/contact", "/privacy", "/terms"],
-    prefixes: [
-      "/auth/",
-      "/help/",
-    ],
+    prefixes: ["/auth/", "/help/"],
   },
 };
 

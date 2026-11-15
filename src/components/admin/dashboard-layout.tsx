@@ -40,7 +40,7 @@ const DashboardSidebar = dynamic(
   { ssr: false },
 );
 
-type DashboardShellMode =
+export type DashboardShellMode =
   | "admin"
   | "dashboard"
   | "support"
@@ -110,7 +110,12 @@ const DashboardLayoutContent = ({
   const { overrides } = useBreadcrumb();
   const { customSidebar } = useCustomSidebar();
   const pathSegments = pathname.split("/").filter((segment) => segment);
-  const baseSegments = shellConfig.rootPathPrefix
+  const isDashboardRoot = pathSegments[0] === "dashboard";
+  const currentRootPrefix = isDashboardRoot
+    ? "/dashboard"
+    : shellConfig.rootPathPrefix;
+
+  const baseSegments = currentRootPrefix
     .split("/")
     .filter((segment) => segment);
 
@@ -122,6 +127,7 @@ const DashboardLayoutContent = ({
     : pathSegments;
 
   const segmentLabelMap: Record<string, string> = {
+    dashboard: t("shell.dashboard"),
     overview: t("shell.overview"),
     todos: t("shell.todos"),
     tasks: t("shell.tasks"),
@@ -153,7 +159,7 @@ const DashboardLayoutContent = ({
       return segment;
     }
     if (segment === "notifications") {
-      return mode === "admin"
+      return pathSegments[0] === "admin"
         ? t("shell.topicPush")
         : t("shell.inAppNotifications");
     }
@@ -207,7 +213,7 @@ const DashboardLayoutContent = ({
                   const segmentPath = relevantSegments
                     .slice(0, index + 1)
                     .join("/");
-                  const href = `${shellConfig.rootPathPrefix}/${segmentPath}`;
+                  const href = `${currentRootPrefix}/${segmentPath}`;
                   const isLast = index === relevantSegments.length - 1;
                   const label = getSegmentLabel(segment);
                   const hasOverride = Boolean(overrides[segment]);

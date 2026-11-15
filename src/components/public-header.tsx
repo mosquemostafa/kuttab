@@ -20,9 +20,7 @@ export function PublicHeader() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { href: "/contact", label: t("landing.navbar.contact") },
-  ];
+  const navLinks = [{ href: "/contact", label: t("landing.navbar.contact") }];
 
   return (
     <header
@@ -36,7 +34,11 @@ export function PublicHeader() {
       <div className="container relative mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo/Brand */}
         <div className="flex items-center gap-6">
-          <Link href="/" prefetch={false} className="group flex items-center gap-3">
+          <Link
+            href="/"
+            prefetch={false}
+            className="group flex items-center gap-3"
+          >
             <Logo size="md" />
             <div className="flex flex-col">
               <span className="hidden truncate text-lg font-bold tracking-tight text-foreground group-hover:text-primary transition-colors sm:inline">

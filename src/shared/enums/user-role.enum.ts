@@ -94,18 +94,37 @@ export function getDashboardPathForRole(
   return ROLE_DASHBOARD_MAP[normalized] ?? "/dashboard/overview";
 }
 
+const SHARED_DASHBOARD_PREFIXES = [
+  "/dashboard/notifications",
+  "/dashboard/newsletter",
+  "/dashboard/support",
+  "/dashboard/feedbacks",
+  "/dashboard/settings",
+];
+
+/** Check if a pathname is a shared dashboard utility route accessible to any authenticated role. */
+export function isSharedDashboardPath(pathname: string): boolean {
+  const cleanPath = stripLocale(pathname);
+  return SHARED_DASHBOARD_PREFIXES.some(
+    (prefix) => cleanPath === prefix || cleanPath.startsWith(`${prefix}/`),
+  );
+}
+
 /**
  * Validate whether a user with the given role is authorized to access a dashboard pathname.
- * Returns true if the pathname is not a dashboard path, or if the user's role matches the target role.
+ * Returns true if the pathname is not a dashboard path, if it is a shared utility path,
+ * or if the user's role matches the target role.
  */
 export function isAllowedDashboardForRole(
   role: string | null | undefined,
   pathname: string,
 ): boolean {
+  if (isSharedDashboardPath(pathname)) {
+    return true;
+  }
   const prefix = getDashboardPrefix(pathname);
   if (!prefix) {
     return true;
   }
   return normalizeUserRole(role) === DASHBOARD_ROLE_MAP[prefix];
 }
-

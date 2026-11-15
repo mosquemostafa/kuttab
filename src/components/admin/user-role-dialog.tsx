@@ -95,10 +95,7 @@ export function UserRoleDialog({ user, isOpen, onClose }: UserRoleDialogProps) {
               <SelectItem value={UserRole.SUPPORT} className="hover:bg-muted">
                 {t("roles.support")}
               </SelectItem>
-              <SelectItem
-                value={UserRole.CONTENT}
-                className="hover:bg-muted"
-              >
+              <SelectItem value={UserRole.CONTENT} className="hover:bg-muted">
                 {t("roles.content")}
               </SelectItem>
               <SelectItem value={UserRole.STUDENT} className="hover:bg-muted">

@@ -4,8 +4,8 @@ This document describes the **Redis-backed cache** used in the backend. It is **
 
 ## What is cached today
 
-| Area         | Service method          | Key / Route   | Notes                                                        |
-| ------------ | ----------------------- | ------------- | ------------------------------------------------------------ |
+| Area         | Service method           | Key / Route   | Notes                                                         |
+| ------------ | ------------------------ | ------------- | ------------------------------------------------------------- |
 | App Settings | `appSettingsService.get` | `appSettings` | Cached for fast read access; invalidated on updates via admin |
 
 ## Environment and configuration
@@ -30,8 +30,8 @@ TTL values are **hard-coded** in [`src/server/modules/cache/cache-ttl.ts`](../..
 
 ## Source map
 
-| File                                                                                     | Role                                              |
-| ---------------------------------------------------------------------------------------- | ------------------------------------------------- |
-| [`src/server/modules/cache/cache.client.ts`](../../src/server/modules/cache/cache.client.ts) | Upstash Redis client instantiation                |
-| [`src/server/modules/cache/cache-ttl.ts`](../../src/server/modules/cache/cache-ttl.ts)       | Central TTL definitions (seconds)                 |
+| File                                                                                           | Role                                                       |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| [`src/server/modules/cache/cache.client.ts`](../../src/server/modules/cache/cache.client.ts)   | Upstash Redis client instantiation                         |
+| [`src/server/modules/cache/cache-ttl.ts`](../../src/server/modules/cache/cache-ttl.ts)         | Central TTL definitions (seconds)                          |
 | [`src/server/modules/cache/cache.service.ts`](../../src/server/modules/cache/cache.service.ts) | Generic `getCachedJson`, `setCachedJson`, `deleteCacheKey` |

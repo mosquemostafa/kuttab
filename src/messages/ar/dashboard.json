@@ -8,7 +8,9 @@
   "shell": {
     "admin": "الإدارة",
     "adminPanel": "لوحة الإدارة",
-    "dashboard": "الرئيسية",
+    "dashboard": "لوحة التحكم",
+    "dashboardPanel": "لوحة التحكم",
+    "home": "الرئيسية",
     "support": "الدعم الفني",
     "content": "المحتوى",
     "supportPanel": "لوحة الدعم",
