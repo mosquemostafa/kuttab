@@ -171,7 +171,7 @@ export default async function RootLayout({
         >
           <DirectionProvider direction={direction}>
             <NextIntlClientProvider locale={locale} messages={messages}>
-              <NextTopLoader color="var(--accent)" showSpinner={false} />
+              <NextTopLoader color="var(--primary)" showSpinner={false} />
               <Providers>{children}</Providers>
               <ThemedToaster />
             </NextIntlClientProvider>

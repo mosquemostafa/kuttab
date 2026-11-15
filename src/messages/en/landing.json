@@ -20,7 +20,7 @@
     "subtitle": "Stop reinventing the wheel. Start with a solid, modular foundation that scales from MVP to production.",
     "auth": {
       "title": "Authentication & RBAC",
-      "description": "Better Auth with email/password, OAuth, session management, rate limiting, and role-based guards."
+      "description": "Better Auth with email/password, session management, rate limiting, and role-based guards."
     },
     "database": {
       "title": "PostgreSQL & Drizzle ORM",

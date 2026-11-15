@@ -42,7 +42,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { apiClient } from "@/lib/api/api-client";
 import type { UserWithDetailsDTO } from "@/shared/types/user.types";
 import { UserRole } from "@/shared/enums/user-role.enum";
-import { GithubIcon, GoogleIcon } from "../ui/icons";
 import { UserActions } from "./user-actions";
 import {
   Select,
@@ -68,12 +67,8 @@ const getAccountIcon = (account: string) => {
   switch (account) {
     case "credential":
       return <Mail className="h-4 w-4 dark:text-neutral-300" />;
-    case "github":
-      return <GithubIcon className="h-4 w-4 dark:text-neutral-300" />;
-    case "google":
-      return <GoogleIcon className="h-4 w-4 dark:text-neutral-300" />;
     default:
-      return null;
+      return <Mail className="h-4 w-4 dark:text-neutral-300" />;
   }
 };
 

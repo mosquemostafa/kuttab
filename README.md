@@ -25,7 +25,7 @@ The project focuses on consistency, and practical daily planning with a clean UX
 - Framework: Next.js 16, React 19, TypeScript
 - Styling/UI: Tailwind CSS 4, Radix UI, shadcn/ui
 - Forms and Validation: React Hook Form, Zod
-- Auth: Better Auth (email/password + OAuth)
+- Auth: Better Auth (email/password)
 - Email Delivery: Nodemailer (Gmail SMTP)
 - Database: PostgreSQL + Drizzle ORM
 - Data Fetching: SWR

@@ -27,58 +27,15 @@
     "updatedSuccess": "تم تحديث المعلومات الشخصية بنجاح."
   },
   "linkedAccounts": {
-    "title": "الحسابات المرتبطة",
-    "description": "اربط Google أو GitHub لتسجيل دخول أسهل. يمكنك أيضا استخدام صورة ملف تعريف مرتبطة.",
+    "title": "الصورة الشخصية",
+    "description": "إدارة صورتك الشخصية.",
     "profileImage": {
       "current": "صورة الملف الشخصي الحالية",
       "uploadButton": "رفع صورة",
       "uploadSuccess": "تم تحديث صورة الملف الشخصي.",
       "uploadFailed": "تعذر رفع الصورة.",
       "invalidType": "اختر صورة بصيغة JPEG أو PNG أو WebP أو GIF. بحد أقصى {maxMb} ميجابايت.",
-      "tooLarge": "يجب أن يكون حجم الصورة {maxMb} ميجابايت أو أقل. استخدم JPEG أو PNG أو WebP أو GIF.",
-      "providers": "حسابات المزود"
-    },
-    "status": {
-      "notConnected": "غير متصل. قم بربط هذا الحساب لتفعيل تسجيل الدخول السريع.",
-      "connectedWithImage": "متصل. صورة الملف الشخصي متاحة.",
-      "connectedWithoutImage": "متصل، لكن لا توجد صورة ملف شخصي متاحة."
-    },
-    "actions": {
-      "linkAccount": "ربط حساب {provider}",
-      "useImage": "استخدام الصورة",
-      "disconnect": "قطع الاتصال"
-    },
-    "buttonStates": {
-      "linking": "جارٍ الربط...",
-      "updating": "جارٍ التحديث...",
-      "disconnecting": "جارٍ قطع الاتصال..."
-    },
-    "messages": {
-      "failedLoad": "فشل تحميل الحسابات المرتبطة.",
-      "failedUpdateImage": "فشل تحديث صورة الملف الشخصي.",
-      "callbackMismatch": "تعارض إعادة التوجيه لـ OAuth: تم التكوين لـ {{callbackOrigin}}، الموقع الحالي هو {{currentOrigin}}.",
-      "invalidRedirectUrl": "تم إرجاع عنوان URL غير صالح لإعادة التوجيه من الخادم.",
-      "failedLink": "فشل ربط حساب {provider}.",
-      "alreadyLinked": "تم ربط حساب {provider} بالفعل.",
-      "keepOneMethod": "يجب أن تحتفظ بطريقة تسجيل دخول واحدة نشطة على الأقل.",
-      "failedDisconnect": "فشل فصل الحساب.",
-      "disconnected": "تم فصل حساب {provider}."
-    },
-    "providers": {
-      "google": "Google",
-      "github": "GitHub"
-    }
-  },
-  "accentColor": {
-    "title": "لون التطبيق",
-    "description": "اختر لون التطبيق المفضل لديك.",
-    "options": {
-      "neutral": "محايد",
-      "blue": "أزرق",
-      "green": "أخضر",
-      "red": "أحمر",
-      "purple": "أرجواني",
-      "gold": "ذهبي"
+      "tooLarge": "يجب أن يكون حجم الصورة {maxMb} ميجابايت أو أقل. استخدم JPEG أو PNG أو WebP أو GIF."
     }
   },
   "theme": {
@@ -210,7 +167,7 @@
     "description": "قم بتغيير كلمة المرور الخاصة بك. سيؤدي ذلك إلى إبطال جلساتك النشطة الأخرى.",
     "modal": {
       "enableTitle": "تفعيل تسجيل الدخول بكلمة المرور",
-      "enableDescription": "أنت تقوم بتسجيل الدخول عبر OAuth الآن. عيّن كلمة مرور لتفعيل تسجيل الدخول بالبريد الإلكتروني وكلمة المرور لهذا الحساب."
+      "enableDescription": "عيّن كلمة مرور لتفعيل تسجيل الدخول بكلمة المرور لحسابك."
     },
     "fields": {
       "currentPassword": "كلمة المرور الحالية",

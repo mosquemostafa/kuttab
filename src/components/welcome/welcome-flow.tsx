@@ -17,7 +17,6 @@ import { cn } from "@/lib/utils";
 import { request } from "@/lib/api/api-core";
 import LanguageSettings from "@/components/dashboard/language-settings";
 import ThemeSettings from "@/components/dashboard/theme-settings";
-import AccentColorSettings from "@/components/dashboard/accent-color-settings";
 import NotificationSettings from "@/components/dashboard/notification-settings";
 
 const TOTAL_STEPS = 6;
@@ -180,7 +179,6 @@ export default function WelcomeFlow({
             />
             <div className="space-y-4">
               <ThemeSettings />
-              <AccentColorSettings />
             </div>
           </div>
         );

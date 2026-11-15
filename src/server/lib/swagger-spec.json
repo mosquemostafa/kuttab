@@ -3944,113 +3944,6 @@
         }
       }
     },
-    "/api/auth/sign-in/social": {
-      "post": {
-        "summary": "Start OAuth / social sign-in (Better Auth)",
-        "description": "POST /sign-in/social — initiates GitHub or Google OAuth (returns JSON with redirect URL or sets Location). Requires application/json. Not GET /oauth/{provider}.",
-        "tags": [
-          "Auth"
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "provider"
-                ],
-                "properties": {
-                  "provider": {
-                    "type": "string",
-                    "enum": [
-                      "google",
-                      "github"
-                    ],
-                    "description": "Social provider id"
-                  },
-                  "callbackURL": {
-                    "type": "string",
-                    "description": "Where to send the user after successful sign-in"
-                  },
-                  "newUserCallbackURL": {
-                    "type": "string",
-                    "description": "Redirect if the user is newly registered"
-                  },
-                  "errorCallbackURL": {
-                    "type": "string",
-                    "description": "Redirect on OAuth error"
-                  },
-                  "disableRedirect": {
-                    "type": "boolean",
-                    "description": "If true, returns provider URL in JSON instead of redirecting"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "JSON with url and redirect flag, or session when using idToken flow"
-          },
-          "302": {
-            "description": "Redirect to provider when disableRedirect is false"
-          },
-          "404": {
-            "description": "Unknown provider"
-          }
-        }
-      }
-    },
-    "/api/auth/callback/{provider}": {
-      "get": {
-        "summary": "OAuth callback (Better Auth)",
-        "description": "Provider redirects here after authorization (e.g. /api/auth/callback/github). Query parameters include code and state; do not call manually from Swagger unless completing a real OAuth round-trip.",
-        "tags": [
-          "Auth"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "provider",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "enum": [
-                "google",
-                "github"
-              ]
-            },
-            "description": "OAuth provider id"
-          },
-          {
-            "in": "query",
-            "name": "code",
-            "schema": {
-              "type": "string"
-            },
-            "description": "Authorization code from provider"
-          },
-          {
-            "in": "query",
-            "name": "state",
-            "schema": {
-              "type": "string"
-            },
-            "description": "CSRF state from sign-in/social step"
-          }
-        ],
-        "responses": {
-          "302": {
-            "description": "Redirect into app with session cookie set"
-          },
-          "400": {
-            "description": "Invalid or missing OAuth parameters"
-          }
-        }
-      }
-    },
     "/api/blog-comments/{id}": {
       "patch": {
         "summary": "Update own blog comment",
@@ -10183,7 +10076,7 @@
   "tags": [
     {
       "name": "Auth",
-      "description": "Better Auth at `/api/auth/*`. POSTs expect **Content-Type: application/json** (use `{}` for sign-out). Email: `/sign-in/email`, `/sign-up/email`, `/request-password-reset`, `/reset-password`, `/change-password`. Session: **GET /get-session** (not `/session`). OAuth: **POST /sign-in/social** then provider hits **GET /callback/{provider}**. Uses **session** cookie."
+      "description": "Better Auth at `/api/auth/*`. POSTs expect **Content-Type: application/json** (use `{}` for sign-out). Email: `/sign-in/email`, `/sign-up/email`, `/request-password-reset`, `/reset-password`, `/change-password`. Session: **GET /get-session** (not `/session`). Uses **session** cookie."
     },
     {
       "name": "Admin",

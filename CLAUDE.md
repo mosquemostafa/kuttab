@@ -11,7 +11,7 @@ Read `ARCHITECTURE.md` for comprehensive architectural details. The README also 
 ## Quick Setup
 
 1. **Install dependencies:** `pnpm install`
-2. **Configure env:** Copy `.env.example` to `.env` and set `DATABASE_URL` (use Neon for hosted Postgres or Docker Compose for local). Set Better Auth, OAuth, and Gmail credentials as needed.
+2. **Configure env:** Copy `.env.example` to `.env` and set `DATABASE_URL` (use Neon for hosted Postgres or Docker Compose for local). Set Better Auth and Gmail credentials as needed.
 3. **Database migrations:** `pnpm db:migrate` (or `pnpm db:migrate:local` for Docker-based dev)
 4. **Start dev server:** `pnpm dev` (uses Turbopack) → http://localhost:3000
 
@@ -139,7 +139,7 @@ Follow this sequence for new API endpoints:
 ## Key Modules & Features
 
 - **auth**: Better Auth integration, register/login/password-reset workflows (server actions + API)
-- **users**: User admin operations, profile settings, linked accounts (sessions, OAuth)
+- **users**: User admin operations, profile settings (sessions, profile)
 - **todos**: Task CRUD, filtering, pagination, categories
 - **projects**: Project lifecycle, archive/restore, per-user slug uniqueness
 - **habits**: Habit tracking, completions, analytics
@@ -160,7 +160,7 @@ Routes use `[locale]` dynamic segment (`src/i18n/routing.ts`). Translations live
 
 ## Authentication
 
-- **Better Auth** (`src/server/lib/auth.ts`) handles OAuth (Google, GitHub) and email/password auth
+- **Better Auth** (`src/server/lib/auth.ts`) handles email/password auth
 - **Rate limiting** via Upstash Redis (`@upstash/ratelimit`) on sensitive auth endpoints
 - **Email delivery**: Resend (preferred) with Gmail SMTP fallback (`src/server/lib/auth-email.ts`)
 - **Server-side operations** use Better Auth server APIs with forwarded request headers

@@ -28,11 +28,6 @@ import type { PaginatedResponse } from "@/shared/types/pagination.types";
 import type { UserWithDetailsDTO } from "@/shared/types/user.types";
 import type { CreateUserDTO } from "@/server/modules/users/dto/admin-mutations.dto";
 
-interface LinkedAccount {
-  providerId: string;
-  picture?: string;
-}
-
 interface DashboardSettingsOverviewDTO {
   name: string;
   email: string;
@@ -41,28 +36,6 @@ interface DashboardSettingsOverviewDTO {
   hasPasswordLogin: boolean;
   /** True when server-side R2 is configured for direct avatar uploads. */
   avatarR2UploadEnabled: boolean;
-}
-
-function decodeGooglePicture(idToken: string): string | undefined {
-  try {
-    const base64Url = idToken.split(".")[1];
-    if (!base64Url) {
-      return undefined;
-    }
-
-    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-    const jsonPayload = decodeURIComponent(
-      atob(base64)
-        .split("")
-        .map((c) => `%${("00" + c.charCodeAt(0).toString(16)).slice(-2)}`)
-        .join(""),
-    );
-
-    const payload = JSON.parse(jsonPayload) as { picture?: string };
-    return payload.picture;
-  } catch {
-    return undefined;
-  }
 }
 
 function toDTO(
@@ -409,43 +382,6 @@ export const userService = {
       expiresAt: expiresAt.toISOString(),
       sessionId,
     };
-  },
-
-  async getLinkedAccounts(userId: string): Promise<LinkedAccount[]> {
-    const accounts = await userRepository.findLinkedAccountsByUserId(userId);
-
-    const linkedAccounts: LinkedAccount[] = [];
-
-    for (const account of accounts) {
-      const linkedAccount: LinkedAccount = {
-        providerId: account.providerId,
-      };
-
-      if (account.providerId === "google" && account.idToken) {
-        linkedAccount.picture = decodeGooglePicture(account.idToken);
-      }
-
-      if (account.providerId === "github" && account.accessToken) {
-        try {
-          const response = await fetch("https://api.github.com/user", {
-            headers: {
-              Authorization: `Bearer ${account.accessToken}`,
-            },
-          });
-
-          if (response.ok) {
-            const userData = (await response.json()) as { avatar_url?: string };
-            linkedAccount.picture = userData.avatar_url;
-          }
-        } catch {
-          linkedAccount.picture = undefined;
-        }
-      }
-
-      linkedAccounts.push(linkedAccount);
-    }
-
-    return linkedAccounts;
   },
 
   async updateUserImage(

@@ -3,7 +3,6 @@ import * as schema from "@/server/db/schema";
 import { sendAuthEmail } from "@/server/lib/auth-email";
 import { getVerificationEmailTemplate } from "@/server/lib/email";
 import { getResetPasswordEmailTemplate } from "@/server/lib/email";
-import { env } from "@/server/lib/env";
 import { routing } from "@/i18n/routing";
 import { hasLocale } from "next-intl";
 import { appSettingsService } from "@/server/modules/app-settings/app-settings.service";
@@ -161,11 +160,6 @@ export const auth = betterAuth({
       },
     },
   },
-  account: {
-    accountLinking: {
-      enabled: true,
-    },
-  },
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: true,
@@ -211,17 +205,6 @@ export const auth = betterAuth({
     },
     sendOnSignUp: true,
     autoSignInAfterVerification: true,
-  },
-  socialProviders: {
-    github: {
-      clientId: env.GITHUB_CLIENT_ID,
-      clientSecret: env.GITHUB_CLIENT_SECRET,
-    },
-    google: {
-      prompt: "select_account",
-      clientId: env.GOOGLE_CLIENT_ID,
-      clientSecret: env.GOOGLE_CLIENT_SECRET,
-    },
   },
   plugins: [
     nextCookies(),

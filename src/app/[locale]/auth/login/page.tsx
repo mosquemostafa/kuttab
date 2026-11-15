@@ -23,7 +23,7 @@ export async function generateMetadata({
   return {
     title,
     description,
-    keywords: ["login", "authentication", "Next.js", "oauth", "security"],
+    keywords: ["login", "authentication", "Next.js", "security"],
     openGraph: {
       title,
       description,

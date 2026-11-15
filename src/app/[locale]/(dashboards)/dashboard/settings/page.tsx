@@ -5,7 +5,6 @@ import PersonalInformationForm from "@/components/dashboard/personal-information
 import LinkedAccounts from "@/components/dashboard/linked-accounts";
 import LanguageSettings from "@/components/dashboard/language-settings";
 import ThemeSettings from "@/components/dashboard/theme-settings";
-import AccentColorSettings from "@/components/dashboard/accent-color-settings";
 import NewsletterSettings from "@/components/dashboard/newsletter-settings";
 import NotificationSettings from "@/components/dashboard/notification-settings";
 import DeleteAccountCard from "@/components/dashboard/delete-account-card";
@@ -67,28 +66,9 @@ export async function generateMetadata({
   };
 }
 
-export default async function UserSettingsPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ error?: string; linked?: string }>;
-}) {
+export default async function UserSettingsPage() {
   const t = await getTranslations("settings");
   await getLocale();
-  const params = await searchParams;
-
-  let linkErrorMessage = null;
-  if (params.error === "email_doesn't_match") {
-    linkErrorMessage = t("errors.emailDoesntMatch");
-  } else if (params.error === "unable_to_link_account") {
-    linkErrorMessage = t("errors.unableToLinkAccount");
-  } else if (params.error === "account_already_linked_to_different_user") {
-    linkErrorMessage = t("errors.accountAlreadyLinkedToDifferentUser");
-  } else if (params.error) {
-    linkErrorMessage = t("errors.unableToLinkAccount");
-  }
-
-  const linkSuccessMessage =
-    params.linked === "success" ? t("success.linked") : null;
 
   const dashboardSettings = await getDashboardSettingsBootstrap();
 
@@ -108,18 +88,6 @@ export default async function UserSettingsPage({
         <p className="text-sm text-muted-foreground">{t("page.description")}</p>
       </div>
 
-      {linkErrorMessage && (
-        <div className="mb-4 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-          {linkErrorMessage}
-        </div>
-      )}
-
-      {linkSuccessMessage && (
-        <div className="mb-4 rounded-md border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
-          {linkSuccessMessage}
-        </div>
-      )}
-
       <div className="space-y-6">
         <PersonalInformationForm initialValues={userProfile} />
 
@@ -134,8 +102,6 @@ export default async function UserSettingsPage({
         <LanguageSettings />
 
         <ThemeSettings />
-
-        <AccentColorSettings />
 
         <NotificationSettings />
 

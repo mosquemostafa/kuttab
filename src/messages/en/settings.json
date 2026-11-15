@@ -27,58 +27,15 @@
     "updatedSuccess": "Personal information updated successfully."
   },
   "linkedAccounts": {
-    "title": "Linked Accounts",
-    "description": "Connect Google or GitHub for easier sign in. You can also use a linked account profile image.",
+    "title": "Profile Photo",
+    "description": "Manage your profile image.",
     "profileImage": {
       "current": "Current profile image",
       "uploadButton": "Upload photo",
       "uploadSuccess": "Profile photo updated.",
       "uploadFailed": "Could not upload photo.",
       "invalidType": "Choose a JPEG, PNG, WebP, or GIF image. Max {maxMb} MB.",
-      "tooLarge": "Image must be {maxMb} MB or smaller. Use JPEG, PNG, WebP, or GIF.",
-      "providers": "Provider Accounts"
-    },
-    "status": {
-      "notConnected": "Not connected. Link this account to enable quick sign in.",
-      "connectedWithImage": "Connected. Profile image is available.",
-      "connectedWithoutImage": "Connected, but no profile image is available."
-    },
-    "actions": {
-      "linkAccount": "Link {provider} account",
-      "useImage": "Use Image",
-      "disconnect": "Disconnect"
-    },
-    "buttonStates": {
-      "linking": "Linking...",
-      "updating": "Updating...",
-      "disconnecting": "Disconnecting..."
-    },
-    "messages": {
-      "failedLoad": "Failed to load linked accounts.",
-      "failedUpdateImage": "Failed to update profile image.",
-      "callbackMismatch": "OAuth callback mismatch: configured for {{callbackOrigin}}, current site is {{currentOrigin}}.",
-      "invalidRedirectUrl": "Invalid OAuth redirect URL returned by server.",
-      "failedLink": "Failed to link {provider} account.",
-      "alreadyLinked": "{provider} account is already linked.",
-      "keepOneMethod": "You must keep at least one active login method.",
-      "failedDisconnect": "Failed to disconnect account.",
-      "disconnected": "{provider} account disconnected."
-    },
-    "providers": {
-      "google": "Google",
-      "github": "GitHub"
-    }
-  },
-  "accentColor": {
-    "title": "Accent Color",
-    "description": "Select your preferred accent color.",
-    "options": {
-      "neutral": "Neutral",
-      "blue": "Blue",
-      "green": "Green",
-      "red": "Red",
-      "purple": "Purple",
-      "gold": "Gold"
+      "tooLarge": "Image must be {maxMb} MB or smaller. Use JPEG, PNG, WebP, or GIF."
     }
   },
   "theme": {
@@ -210,7 +167,7 @@
     "description": "Change your password. This will revoke your other active sessions.",
     "modal": {
       "enableTitle": "Enable Password Login",
-      "enableDescription": "You currently sign in with OAuth. Set a password to enable email and password login for this same account."
+      "enableDescription": "Set a password to enable password login for your account."
     },
     "fields": {
       "currentPassword": "Current Password",

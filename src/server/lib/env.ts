@@ -45,14 +45,6 @@ const envSchema = z
     DATABASE_URL_TEST: optionalUrl,
     DATABASE_URL_PROD: optionalUrl,
 
-    // OAuth - Google
-    GOOGLE_CLIENT_ID: z.string().min(1, "GOOGLE_CLIENT_ID is required"),
-    GOOGLE_CLIENT_SECRET: z.string().min(1, "GOOGLE_CLIENT_SECRET is required"),
-
-    // OAuth - GitHub
-    GITHUB_CLIENT_ID: z.string().min(1, "GITHUB_CLIENT_ID is required"),
-    GITHUB_CLIENT_SECRET: z.string().min(1, "GITHUB_CLIENT_SECRET is required"),
-
     // Email - Gmail SMTP
     GMAIL_FROM_EMAIL: z
       .string()

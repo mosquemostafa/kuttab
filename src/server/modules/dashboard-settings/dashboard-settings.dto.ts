@@ -5,10 +5,6 @@ export const updateProfileSchema = z.object({
   phone: z.string().trim().max(50).nullable().optional(),
 });
 
-export const updateImageFromProviderSchema = z.object({
-  providerId: z.string().min(1),
-});
-
 export const changePasswordSchema = z.object({
   currentPassword: z.string().min(1),
   newPassword: z.string().min(8),

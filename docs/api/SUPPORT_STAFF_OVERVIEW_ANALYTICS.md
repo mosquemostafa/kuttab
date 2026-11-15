@@ -86,9 +86,9 @@ The returned value is normalized to a JavaScript `Date` because `node-pg` may re
 
 **Legend labels (Pie + `nameKey="type"`):** Recharts legend items include a top-level `type` field for the **icon** (e.g. `"rect"`), which conflicts with a data field also named `type`. `getPayloadConfigFromPayload` resolves **nested `payload.payload[nameKey]` before** top-level `payload[nameKey]` so labels resolve to `open`, `suggestion`, etc., not `"rect"`.
 
-### Accent-aware chart colors
+### Chart colors
 
-[`src/app/globals.css`](../../src/app/globals.css) defines `--chart-1` … `--chart-5` on `:root` / `.dark`, and **overrides** them under `html[data-accent="…"]` and `html.dark[data-accent="…"]` so chart palettes follow the selected accent (blue, green, red, purple). Neutral accent keeps the default chart palette.
+[`src/app/globals.css`](../../src/app/globals.css) defines `--chart-1` … `--chart-5` on `:root` and `.dark`.
 
 ## 6) Related Files (Quick Reference)
 

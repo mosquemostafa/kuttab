@@ -5,19 +5,14 @@ import { Slider as SliderPrimitive } from "radix-ui";
 
 import { cn } from "@/lib/utils";
 
-type SliderProps = React.ComponentProps<typeof SliderPrimitive.Root> & {
-  accentColor?: string;
-};
-
 function Slider({
   className,
   defaultValue,
   value,
   min = 0,
   max = 100,
-  accentColor,
   ...props
-}: SliderProps) {
+}: React.ComponentProps<typeof SliderPrimitive.Root>) {
   const _values = React.useMemo(
     () =>
       Array.isArray(value)
@@ -48,7 +43,6 @@ function Slider({
         <SliderPrimitive.Range
           data-slot="slider-range"
           className="absolute bg-primary select-none data-horizontal:h-full data-vertical:w-full"
-          style={accentColor ? { backgroundColor: accentColor } : undefined}
         />
       </SliderPrimitive.Track>
       {Array.from({ length: _values.length }, (_, index) => (

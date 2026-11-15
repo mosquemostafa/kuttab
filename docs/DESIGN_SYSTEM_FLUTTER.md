@@ -15,7 +15,7 @@ Modawim (مُداوِم) is a mindful habit tracker, task management, and produc
 ### Core Principles
 
 1. **RTL-First & Culturally Native**: Arabic is the primary interface language. The layout, icons, progress flows, and typography must naturally flow right-to-left without looking like an afterthought translation.
-2. **Neutral Base, Dynamic Accents**: The core interface uses an ultra-refined neutral palette (Zinc / Slate) for cards, surfaces, and typography, while user-selected accents (Neutral, Blue, Green, Red, Purple, Gold) bring purposeful personality.
+2. **Neutral Base & Purposeful Primary**: The core interface uses an ultra-refined neutral palette (Zinc / Slate) for cards, surfaces, and typography with high-contrast primary accents.
 3. **Pastel & Ink Harmonization**: Notes, project folders, and tags use soft, desaturated pastel surfaces paired with deep, high-contrast "ink" tones for effortless readability without visual fatigue.
 4. **Subtle Elevation Over Heavy Shadows**: Depth is communicated primarily through crisp 1px borders (`ring-1 ring-foreground/10` or `border-border`) and soft ambient blurs rather than heavy drop shadows.
 
@@ -48,21 +48,6 @@ All colors from the web application's OKLCH space have been mathematically conve
 | **`border`**                | `#E4E4E7` | `Color(0xFFE4E4E7)`   | `#27272A` (10% W) | `Color(0x1AFFFFFF)`  | Card borders, dividers, outlines          |
 | **`input`**                 | `#E4E4E7` | `Color(0xFFE4E4E7)`   | `#3F3F46` (15% W) | `Color(0x26FFFFFF)`  | Text field unselected border / bg         |
 | **`ring`**                  | `#9F9FA9` | `Color(0xFF9F9FA9)`   | `#71717B`         | `Color(0xFF71717B)`  | Focus ring outline for inputs             |
-
----
-
-### 2.2 Dynamic User Accent Themes
-
-Users can personalize the application theme accent in Settings. When a theme accent is selected, the primary brand color, focus rings, and active tab indicators switch to the values below:
-
-| Accent Name           | Light Primary/Accent | Light Flutter `Color` | Dark Primary/Accent | Dark Flutter `Color` | Foreground On Accent              |
-| :-------------------- | :------------------- | :-------------------- | :------------------ | :------------------- | :-------------------------------- |
-| **Neutral** (Default) | `#18181B`            | `Color(0xFF18181B)`   | `#FAFAFA`           | `Color(0xFFFAFAFA)`  | Light: `#FFFFFF`, Dark: `#09090B` |
-| **Blue**              | `#2F5B8B`            | `Color(0xFF2F5B8B)`   | `#4C8FD8`           | `Color(0xFF4C8FD8)`  | `#FFFFFF` (Both)                  |
-| **Green**             | `#09895C`            | `Color(0xFF09895C)`   | `#00B176`           | `Color(0xFF00B176)`  | `#FFFFFF` (Both)                  |
-| **Red**               | `#E4361C`            | `Color(0xFFE4361C)`   | `#FC4734`           | `Color(0xFFFC4734)`  | `#FFFFFF` (Both)                  |
-| **Purple**            | `#280078`            | `Color(0xFF280078)`   | `#7A72ED`           | `Color(0xFF7A72ED)`  | `#FFFFFF` (Both)                  |
-| **Gold**              | `#D89700`            | `Color(0xFFD89700)`   | `#D6A20A`           | `Color(0xFFD6A20A)`  | Light: `#FFFFFF`, Dark: `#18181B` |
 
 ---
 
@@ -282,7 +267,7 @@ In Arabic RTL mode, certain icons **must be horizontally flipped** using `Transf
 - **Background**: Transparent in Light mode; `Color(0x26FFFFFF)` (15% white) in Dark mode.
 - **Border**: `1px` solid `colors.input` (`#E4E4E7`).
 - **Corner Radius**: `8.0` (`radiusMd`).
-- **Focus State**: Border becomes `colors.primary` or active theme accent with a 2px outer glow (`colors.ring`).
+- **Focus State**: Border becomes `colors.primary` with a 2px outer glow (`colors.ring`).
 - **Error State**: Border becomes `colors.destructive` with red error text below (`12.0` size).
 - **Addons**: Prefix icon (e.g. search icon on start), suffix clear button (`X` icon on end).
 
@@ -337,7 +322,7 @@ The habit item is the most frequently interacted element in Modawim:
 - **Track Dimensions**: Width `32.0`, Height `18.4`, rounded full (`BorderRadius.circular(10.0)`).
 - **Thumb Dimensions**: Diameter `14.0`, circular (`BorderRadius.circular(7.0)`).
 - **Unchecked**: Track is `colors.input` (`#E4E4E7`), thumb is `#FFFFFF`.
-- **Checked**: Track is `colors.primary` (or active accent), thumb is `colors.primaryForeground`.
+- **Checked**: Track is `colors.primary`, thumb is `colors.primaryForeground`.
 - **Directional Animation**: In RTL mode, the thumb slides to the **left** on check (`-12.0px`); in LTR, it slides to the **right** (`+12.0px`).
 
 ---

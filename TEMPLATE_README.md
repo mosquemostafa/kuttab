@@ -8,7 +8,7 @@ A production-ready, feature-first Next.js 16 SaaS starter template engineered wi
 
 ### 🔐 Authentication & Security
 
-- **Better Auth Integration**: Email/password, Google & GitHub OAuth out-of-the-box.
+- **Better Auth Integration**: Email and password authentication out-of-the-box.
 - **Session Management**: Multi-device session revocation, active session tracking.
 - **Role-Based Access Control (RBAC)**: User & Admin roles, ban/unban mechanism, admin guards (`withAdmin`).
 - **Rate Limiting**: Pre-configured Upstash Redis rate-limiter.

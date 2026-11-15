@@ -9,7 +9,6 @@ This document explains how authentication works in this project from end to end,
 - Entry route for auth protocol: `/api/auth/[...all]`
 - Primary auth methods:
   - Email/password (sign up, sign in, reset password)
-  - OAuth social login (Google, GitHub)
 - Authorization model:
   - Route-level guards (`withAuth`, `withAdmin`, `withSupportStaff`, `withContentManager`)
   - Layout-level role checks for dashboard surfaces
@@ -149,19 +148,7 @@ Verification email behavior:
 4. Better Auth sets/updates session cookie.
 5. Client redirects to `/dashboard` after success.
 
-## 4.3 Social Login (Google/GitHub)
-
-1. Login/register page invokes `signInWithGoogle` or `signInWithGithub` from `src/lib/auth-client.ts`.
-2. Better Auth client starts OAuth flow with callback `/dashboard`.
-3. Provider returns to Better Auth callback endpoint.
-4. Better Auth creates/updates account link in `accounts` table and session in `sessions` table.
-5. User lands in dashboard context.
-
-Account linking:
-
-- Enabled globally via `account.accountLinking.enabled = true` in `src/server/lib/auth.ts`.
-
-## 4.4 Forgot Password + Reset Password
+## 4.3 Forgot Password + Reset Password
 
 Forgot password:
 
@@ -328,7 +315,7 @@ If any required variable is missing/invalid, app startup fails with explicit val
 Think about auth in four stages:
 
 1. Identity/session engine
-   - Better Auth handles credential validation, OAuth, session issuance, verification/reset token lifecycle.
+   - Better Auth handles credential validation, session issuance, verification/reset token lifecycle.
 2. Project-specific orchestration
    - `authService` adds app-level policy behavior (for example, conditional auto-verification based on settings).
 3. Access control

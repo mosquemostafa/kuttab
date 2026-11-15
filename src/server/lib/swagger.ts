@@ -918,7 +918,7 @@ const options = {
       {
         name: "Auth",
         description:
-          "Better Auth at `/api/auth/*`. POSTs expect **Content-Type: application/json** (use `{}` for sign-out). Email: `/sign-in/email`, `/sign-up/email`, `/request-password-reset`, `/reset-password`, `/change-password`. Session: **GET /get-session** (not `/session`). OAuth: **POST /sign-in/social** then provider hits **GET /callback/{provider}**. Uses **session** cookie.",
+          "Better Auth at `/api/auth/*`. POSTs expect **Content-Type: application/json** (use `{}` for sign-out). Email: `/sign-in/email`, `/sign-up/email`, `/request-password-reset`, `/reset-password`, `/change-password`. Session: **GET /get-session** (not `/session`). Uses **session** cookie.",
       },
       {
         name: "Admin",

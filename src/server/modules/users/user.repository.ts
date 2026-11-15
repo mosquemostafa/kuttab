@@ -46,23 +46,6 @@ function buildLastSignInMap(
 }
 
 export const userRepository = {
-  async findLinkedAccountsByUserId(userId: string): Promise<
-    Array<{
-      providerId: string;
-      idToken: string | null;
-      accessToken: string | null;
-    }>
-  > {
-    return db
-      .select({
-        providerId: account.providerId,
-        idToken: account.idToken,
-        accessToken: account.accessToken,
-      })
-      .from(account)
-      .where(eq(account.userId, userId));
-  },
-
   async hasCredentialPasswordByUserId(userId: string): Promise<boolean> {
     const credentialAccount = await db
       .select({ id: account.id })

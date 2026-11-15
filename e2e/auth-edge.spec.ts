@@ -71,33 +71,6 @@ test.describe("@auth edge cases", () => {
     await expect(rateLimited).toBeVisible();
   });
 
-  test("OAuth entry: Google navigates toward provider or auth API", async ({
-    page,
-    context,
-  }) => {
-    await page.goto("/en/auth/login", { waitUntil: "networkidle" });
-    await expect(page.getByRole("button", { name: "Google" })).toBeVisible();
-    await expect(page.getByRole("button", { name: "GitHub" })).toBeVisible();
-
-    const popupPromise = context
-      .waitForEvent("page", { timeout: 3_000 })
-      .catch(() => null);
-    await page.getByRole("button", { name: "Google" }).click();
-
-    const popup = await popupPromise;
-    if (popup) {
-      await popup.waitForURL(/google\.|accounts\.google|\/api\/auth\//, {
-        timeout: 20_000,
-      });
-      await popup.close();
-      return;
-    }
-
-    await page.waitForURL(/google\.|accounts\.google|\/api\/auth\//, {
-      timeout: 20_000,
-    });
-  });
-
   test("clear-stale-session redirects to safe internal path", async ({
     page,
   }) => {

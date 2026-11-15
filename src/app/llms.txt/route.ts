@@ -22,7 +22,7 @@ export async function GET() {
     "## Core Features",
     "",
     "### Authentication & Security",
-    "- Better Auth integration with email/password and OAuth (Google, GitHub)",
+    "- Better Auth integration with email and password",
     "- Role-based access control (Admin, User)",
     "- Session management, rate limiting, and password reset workflows",
     "",

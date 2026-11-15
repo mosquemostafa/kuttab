@@ -11,7 +11,6 @@ import {
   Mail,
   MessageSquare,
   Moon,
-  Palette,
   Sun,
   Settings,
   Shield,
@@ -47,26 +46,6 @@ type HeaderUserControlsProps = {
   user: HeaderUser;
 };
 
-const ACCENT_STORAGE_KEY = "accentColor" as const;
-
-type DevAccentColor = "neutral" | "purple";
-
-function getDevAccentColorFromStorage(): DevAccentColor {
-  if (typeof window === "undefined") {
-    return "neutral";
-  }
-
-  const raw = window.localStorage.getItem(ACCENT_STORAGE_KEY);
-  return raw === "purple" ? "purple" : "neutral";
-}
-
-function applyDevAccentColor(color: DevAccentColor) {
-  if (typeof window !== "undefined") {
-    window.localStorage.setItem(ACCENT_STORAGE_KEY, color);
-    window.dispatchEvent(new CustomEvent("accent-change", { detail: color }));
-  }
-}
-
 export function HeaderUserControls({ user }: HeaderUserControlsProps) {
   const isAdmin = user.role === UserRole.ADMIN;
   const isSupport = user.role === UserRole.SUPPORT;
@@ -80,24 +59,11 @@ export function HeaderUserControls({ user }: HeaderUserControlsProps) {
   const pathname = usePathname();
   const router = useRouter();
   const [isSwitchingLocale, startTransition] = React.useTransition();
-  const [accentColor, setAccentColor] =
-    React.useState<DevAccentColor>("neutral");
   const selectedTheme = resolvedTheme === "dark" ? "dark" : "light";
   const selectedLocale = locale === "ar" ? "ar" : "en";
-  const isDevMode = process.env.NODE_ENV === "development";
 
   const getDirection = (nextLocale: "ar" | "en") =>
     nextLocale === "ar" ? "rtl" : "ltr";
-
-  React.useEffect(() => {
-    setAccentColor(getDevAccentColorFromStorage());
-  }, []);
-
-  const handleToggleAccentColor = () => {
-    const nextColor = accentColor === "purple" ? "neutral" : "purple";
-    setAccentColor(nextColor);
-    applyDevAccentColor(nextColor);
-  };
 
   const handleLocaleSwitch = (nextLocale: "ar" | "en") => {
     if (nextLocale === selectedLocale) {
@@ -267,24 +233,6 @@ export function HeaderUserControls({ user }: HeaderUserControlsProps) {
                 : t("header.switchToArabic")}
             </DropdownMenuItem>
           </DropdownMenuGroup>
-
-          {isDevMode ? (
-            <>
-              <DropdownMenuSeparator />
-              <DropdownMenuLabel className="text-xs text-muted-foreground">
-                Dev controls
-              </DropdownMenuLabel>
-              <DropdownMenuGroup>
-                <DropdownMenuItem
-                  className="cursor-pointer"
-                  onClick={handleToggleAccentColor}
-                >
-                  <Palette className="mr-2 h-4 w-4" />
-                  Toggle accent ({accentColor})
-                </DropdownMenuItem>
-              </DropdownMenuGroup>
-            </>
-          ) : null}
 
           <DropdownMenuSeparator />
           <DropdownMenuItem

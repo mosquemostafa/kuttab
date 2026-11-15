@@ -23,7 +23,7 @@ export async function GET() {
     "## 2. Core Modules & Capabilities",
     "",
     "### Authentication & Access Control",
-    "- Better Auth integration supporting credentials (email/password) and OAuth (Google, GitHub)",
+    "- Better Auth integration supporting credentials (email and password)",
     "- Role-based access control with Admin, Support, and User guards",
     "- Rate-limited authentication endpoints using Upstash Redis",
     "- Secure password reset and email verification workflows",
