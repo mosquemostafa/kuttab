@@ -29,6 +29,10 @@
  *         name: status
  *         schema: { type: string, enum: [active, banned] }
  *       - in: query
+ *         name: q
+ *         description: Search query matching name, email, or phone
+ *         schema: { type: string }
+ *       - in: query
  *         name: email
  *         schema: { type: string }
  *       - in: query

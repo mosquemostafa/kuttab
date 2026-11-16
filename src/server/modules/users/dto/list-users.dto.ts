@@ -3,6 +3,7 @@ import type { UserRole } from "@/shared/enums/user-role.enum";
 export interface ListUsersQueryDTO {
   page?: number;
   limit?: number;
+  q?: string;
   sortBy?:
     | "name"
     | "email"

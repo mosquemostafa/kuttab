@@ -1,6 +1,7 @@
 {
   "controls": {
-    "searchEmail": "Search email...",
+    "searchEmail": "Search name, email, or phone...",
+    "searchUsers": "Search name, email, or phone...",
     "allRoles": "All Roles",
     "sortBy": "Sort by",
     "sortDirection": "Direction",
@@ -140,6 +141,7 @@
   "columns": {
     "id": "ID",
     "name": "Name",
+    "phone": "Phone",
     "verification": "Verification",
     "linkedAccounts": "Linked Accounts",
     "role": "Role",

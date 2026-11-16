@@ -92,6 +92,17 @@ export const userRepository = {
   ): Promise<{ users: UserWithDetailsEntity[]; total: number }> {
     const conditions: SQL[] = [];
 
+    if (filters.q?.trim()) {
+      const term = `%${filters.q.trim()}%`;
+      conditions.push(
+        or(
+          ilike(user.name, term),
+          ilike(user.email, term),
+          ilike(user.phone, term),
+        )!,
+      );
+    }
+
     if (filters.email?.trim()) {
       conditions.push(ilike(user.email, `%${filters.email.trim()}%`));
     }

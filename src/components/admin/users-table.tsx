@@ -14,7 +14,6 @@ import {
   LifeBuoy,
   PenSquare,
   Phone,
-  RefreshCw,
   Search,
   Shield,
   User,
@@ -25,7 +24,7 @@ import {
 } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { DataTable } from "@/components/ui/data-table";
+import { DataTable, DataTableRefreshButton } from "@/components/ui/data-table";
 import {
   Select,
   SelectContent,
@@ -64,58 +63,60 @@ export function UsersTable() {
 
   // Filters and sort state, initialized from URL
   const [role, setRole] = useState(searchParams.get("role") || "all");
-  const [email, setEmail] = useState(searchParams.get("email") || "");
+  const [searchQuery, setSearchQuery] = useState(
+    searchParams.get("q") || searchParams.get("email") || "",
+  );
   const [sortBy, setSortBy] = useState(
     searchParams.get("sortBy") || "createdAt",
   );
   const [sortDirection, setSortDirection] = useState(
     searchParams.get("sortDirection") || "desc",
   );
-  const [debouncedEmail, setDebouncedEmail] = useState(email);
+  const [debouncedSearch, setDebouncedSearch] = useState(searchQuery);
   const [page, setPage] = useState(Number(searchParams.get("page")) || 1);
   const limit = 10;
 
-  // Debounce email search
+  // Debounce search input (name, email, or phone)
   useEffect(() => {
     const timer = setTimeout(() => {
-      setDebouncedEmail(email);
+      setDebouncedSearch(searchQuery);
     }, 300);
 
     return () => clearTimeout(timer);
-  }, [email]);
+  }, [searchQuery]);
 
   // Update URL when filters/sort/page change
   useEffect(() => {
     const params = new URLSearchParams();
     if (role && role !== "all") params.set("role", role);
-    if (debouncedEmail) params.set("email", debouncedEmail);
+    if (debouncedSearch) params.set("q", debouncedSearch);
     if (sortBy) params.set("sortBy", sortBy);
     if (sortDirection) params.set("sortDirection", sortDirection);
     if (page) params.set("page", String(page));
     params.set("limit", String(limit));
     router.replace(`?${params.toString()}`);
-  }, [role, debouncedEmail, sortBy, sortDirection, page, router]);
+  }, [role, debouncedSearch, sortBy, sortDirection, page, router]);
 
   const swrKey = useMemo(
     () =>
       [
         "admin-users",
         role,
-        debouncedEmail,
+        debouncedSearch,
         sortBy,
         sortDirection,
         page,
         limit,
       ] as const,
-    [role, debouncedEmail, sortBy, sortDirection, page, limit],
+    [role, debouncedSearch, sortBy, sortDirection, page, limit],
   );
 
-  const { data, error, mutate, isLoading } = useSWR(
+  const { data, error, mutate, isLoading, isValidating } = useSWR(
     swrKey,
-    ([, keyRole, keyEmail, keySortBy, keySortDirection, keyPage, keyLimit]) =>
+    ([, keyRole, keySearch, keySortBy, keySortDirection, keyPage, keyLimit]) =>
       apiClient.users.list({
         role: keyRole !== "all" ? (keyRole as UserRole) : undefined,
-        email: keyEmail || undefined,
+        q: keySearch || undefined,
         sortBy: keySortBy as
           | "name"
           | "email"
@@ -168,19 +169,19 @@ export function UsersTable() {
           <Search className="absolute start-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
           <input
             type="text"
-            placeholder={t("controls.searchEmail")}
+            placeholder={t("controls.searchUsers")}
             className="w-full ps-8 pe-8 py-2 border rounded-md text-sm bg-background transition-colors focus:ring-1 focus:ring-primary focus:outline-none"
-            value={email}
+            value={searchQuery}
             onChange={(e) => {
-              setEmail(e.target.value);
+              setSearchQuery(e.target.value);
               setPage(1);
             }}
           />
-          {email && (
+          {searchQuery && (
             <button
               type="button"
               onClick={() => {
-                setEmail("");
+                setSearchQuery("");
                 setPage(1);
               }}
               className="absolute end-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground p-0.5 rounded-full transition-colors cursor-pointer"
@@ -193,14 +194,12 @@ export function UsersTable() {
 
         {/* Action Buttons */}
         <div className="flex items-center gap-2 shrink-0">
-          <button
-            className="flex-1 sm:flex-none justify-center bg-secondary cursor-pointer text-secondary-foreground rounded-md px-3 py-2 text-sm font-medium shadow-xs hover:bg-secondary/90 transition-colors flex items-center gap-2"
-            onClick={() => mutate()}
-            type="button"
-          >
-            <RefreshCw className="h-4 w-4" />
-            <span>{t("controls.refresh")}</span>
-          </button>
+          <DataTableRefreshButton
+            onRefresh={() => mutate()}
+            isRefreshing={isValidating}
+            label={t("controls.refresh")}
+            className="flex-1 sm:flex-none justify-center px-3 py-2 text-sm font-medium"
+          />
           <button
             className="flex-1 sm:flex-none justify-center bg-primary text-primary-foreground rounded-md px-4 py-2 text-sm font-medium shadow-xs hover:bg-primary/90 transition-colors flex items-center gap-2 cursor-pointer"
             onClick={() => setIsAddDialogOpen(true)}
@@ -346,16 +345,6 @@ export function UsersTable() {
               >
                 {user.email}
               </span>
-              {user.phone ? (
-                <a
-                  href={`tel:${user.phone}`}
-                  className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1 mt-0.5 transition-colors w-fit"
-                  dir="ltr"
-                >
-                  <Phone className="h-3 w-3 shrink-0" />
-                  <span>{user.phone}</span>
-                </a>
-              ) : null}
             </div>
           </div>
 
@@ -364,6 +353,22 @@ export function UsersTable() {
             <UserActions user={user} onActionComplete={handleActionComplete} />
           </div>
         </div>
+
+        {/* Dedicated Phone Row */}
+        {user.phone ? (
+          <div
+            className="flex items-center gap-1.5 text-xs text-muted-foreground bg-muted/50 px-2.5 py-1 rounded-md w-fit font-mono"
+            dir="ltr"
+          >
+            <Phone className="h-3.5 w-3.5 text-muted-foreground/80 shrink-0" />
+            <a
+              href={`tel:${user.phone}`}
+              className="hover:underline hover:text-foreground"
+            >
+              {user.phone}
+            </a>
+          </div>
+        ) : null}
 
         {/* Status & Category Badges Row */}
         <div className="flex flex-wrap items-center gap-1.5">

@@ -283,18 +283,28 @@ export function useUserColumns({
                 <span className="text-xs text-muted-foreground" dir="ltr">
                   {user.email}
                 </span>
-                {user.phone ? (
-                  <a
-                    href={`tel:${user.phone}`}
-                    className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1 mt-0.5 transition-colors w-fit"
-                    dir="ltr"
-                  >
-                    <Phone className="h-3 w-3 shrink-0" />
-                    <span>{user.phone}</span>
-                  </a>
-                ) : null}
               </div>
             </div>
+          );
+        },
+      },
+      {
+        accessorKey: "phone",
+        header: t("columns.phone"),
+        cell: ({ row }) => {
+          const phone = row.original.phone;
+          if (!phone) {
+            return <span className="text-xs text-muted-foreground/60">—</span>;
+          }
+          return (
+            <a
+              href={`tel:${phone}`}
+              className="text-xs text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 transition-colors font-mono"
+              dir="ltr"
+            >
+              <Phone className="h-3.5 w-3.5 shrink-0 text-muted-foreground/70" />
+              <span>{phone}</span>
+            </a>
           );
         },
       },

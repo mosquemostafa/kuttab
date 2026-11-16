@@ -32,6 +32,7 @@ export function parsePagination(
 }
 
 export interface ParsedUserFilters {
+  q?: string;
   sortBy?: string;
   sortDirection?: "asc" | "desc";
   role?: string;
@@ -47,6 +48,7 @@ export function parseUserFilters(
   const sortDirection = searchParams.get("sortDirection");
 
   return {
+    q: searchParams.get("q") ?? searchParams.get("search") ?? undefined,
     sortBy: searchParams.get("sortBy") ?? undefined,
     sortDirection:
       sortDirection === "asc" || sortDirection === "desc"
