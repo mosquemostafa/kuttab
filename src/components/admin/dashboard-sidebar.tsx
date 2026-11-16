@@ -101,6 +101,11 @@ export function DashboardSidebar({
           label: t("shell.students"),
         },
         {
+          href: "/admin/teachers",
+          icon: UserCheck,
+          label: t("shell.teachers"),
+        },
+        {
           href: "/admin/announcements",
           icon: Megaphone,
           label: t("shell.announcements"),

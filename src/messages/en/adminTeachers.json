@@ -1,0 +1,82 @@
+{
+  "controls": {
+    "search": "Search name, phone, notes...",
+    "allStatuses": "All Statuses",
+    "allStudentTypes": "All Teaching Tracks",
+    "addTeacher": "Add Teacher",
+    "refresh": "Refresh",
+    "sortBy": "Sort by",
+    "sortCreatedAt": "Date Added",
+    "sortName": "Name",
+    "sortStatus": "Status",
+    "sortDirection": "Direction",
+    "sortAsc": "Ascending",
+    "sortDesc": "Descending"
+  },
+  "columns": {
+    "id": "ID",
+    "name": "Teacher",
+    "phone": "Phone",
+    "studentType": "Teaching Track",
+    "status": "Status",
+    "createdAt": "Date Added",
+    "actions": "Actions"
+  },
+  "statuses": {
+    "active": "Active",
+    "archived": "Archived"
+  },
+  "studentTypes": {
+    "foundation": "Foundation (Tamheedi)",
+    "khatimeen": "Quran Completers (Khatimeen)",
+    "children": "Children",
+    "adults": "Adults"
+  },
+  "dialogs": {
+    "addTitle": "Register New Teacher",
+    "addDescription": "Fill in teacher details to add them to the institute roster.",
+    "editTitle": "Edit Teacher: {name}",
+    "editDescription": "Update teacher contact details and teaching track.",
+    "detailsTitle": "Teacher Profile: {name}",
+    "detailsDescription": "Full teacher information and administrative notes.",
+    "nameLabel": "Full Name",
+    "namePlaceholder": "e.g. Sheikh Ahmed Mohamed",
+    "phoneLabel": "Phone Number",
+    "phonePlaceholder": "01012345678",
+    "studentTypeLabel": "Assigned Teaching Track",
+    "studentTypePlaceholder": "Select teaching track",
+    "noStudentType": "General / Unspecified",
+    "statusLabel": "Status",
+    "notesLabel": "Administrative & Qualifications Notes",
+    "notesPlaceholder": "Certifications, Quran Ijazahs, or any administrative notes...",
+    "save": "Save Changes",
+    "create": "Register Teacher",
+    "cancel": "Cancel",
+    "saving": "Saving...",
+    "deleteTitle": "Delete Teacher: {name}",
+    "deleteDescription": "Are you sure you want to permanently delete this teacher record? This action cannot be undone.",
+    "deleteConfirm": "Delete Teacher",
+    "close": "Close"
+  },
+  "actions": {
+    "menuLabel": "Actions",
+    "edit": "Edit",
+    "viewDetails": "View Profile",
+    "delete": "Delete"
+  },
+  "toasts": {
+    "created": "Teacher registered successfully.",
+    "updated": "Teacher details updated successfully.",
+    "deleted": "Teacher record deleted.",
+    "loadFailed": "Failed to load teachers list.",
+    "nameRequired": "Teacher name is required."
+  },
+  "summary": "Showing {count} of {total} teachers",
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "previousAria": "Go to previous page",
+    "nextAria": "Go to next page"
+  },
+  "empty": "No teachers found"
+}

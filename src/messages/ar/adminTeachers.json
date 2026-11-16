@@ -1,0 +1,82 @@
+{
+  "controls": {
+    "search": "البحث بالاسم، أو الهاتف، أو الملاحظات...",
+    "allStatuses": "جميع الحالات",
+    "allStudentTypes": "جميع مسارات التدريس",
+    "addTeacher": "إضافة معلّم",
+    "refresh": "تحديث",
+    "sortBy": "الترتيب حسب",
+    "sortCreatedAt": "تاريخ الإضافة",
+    "sortName": "الاسم",
+    "sortStatus": "الحالة",
+    "sortDirection": "الاتجاه",
+    "sortAsc": "تصاعدي",
+    "sortDesc": "تنازلي"
+  },
+  "columns": {
+    "id": "المعرّف",
+    "name": "المعلّم",
+    "phone": "رقم الهاتف",
+    "studentType": "مسار التدريس",
+    "status": "الحالة",
+    "createdAt": "تاريخ الإضافة",
+    "actions": "الإجراءات"
+  },
+  "statuses": {
+    "active": "نشط",
+    "archived": "مؤرشف"
+  },
+  "studentTypes": {
+    "foundation": "تأسيس وتمهيدي",
+    "khatimeen": "الخاتمون والمجازون",
+    "children": "أطفال",
+    "adults": "كبار"
+  },
+  "dialogs": {
+    "addTitle": "تسجيل معلّم جديد",
+    "addDescription": "أدخل بيانات المعلّم لإضافته إلى كادر معهد المصطفى.",
+    "editTitle": "تعديل بيانات المعلّم: {name}",
+    "editDescription": "تحديث بيانات الاتصال ومسار التدريس للمعلّم.",
+    "detailsTitle": "ملف المعلّم: {name}",
+    "detailsDescription": "التفاصيل الكاملة والبيانات الإدارية للمعلّم.",
+    "nameLabel": "الاسم بالكامل",
+    "namePlaceholder": "مثال: فضيلة الشيخ أحمد محمد",
+    "phoneLabel": "رقم الهاتف",
+    "phonePlaceholder": "01012345678",
+    "studentTypeLabel": "فئة ومسار التدريس",
+    "studentTypePlaceholder": "اختر فئة التدريس",
+    "noStudentType": "عام / غير محدد",
+    "statusLabel": "الحالة",
+    "notesLabel": "المؤهلات والإجازات والملاحظات",
+    "notesPlaceholder": "الإجازات القرآنية، الروايات، أو أي ملاحظات إدارية...",
+    "save": "حفظ التعديلات",
+    "create": "تسجيل المعلّم",
+    "cancel": "إلغاء",
+    "saving": "جاري الحفظ...",
+    "deleteTitle": "حذف المعلّم: {name}",
+    "deleteDescription": "هل أنت متأكد من حذف سجل هذا المعلّم؟ لا يمكن التراجع عن هذا الإجراء.",
+    "deleteConfirm": "تأكيد الحذف",
+    "close": "إغلاق"
+  },
+  "actions": {
+    "menuLabel": "الإجراءات",
+    "edit": "تعديل",
+    "viewDetails": "عرض الملف",
+    "delete": "حذف"
+  },
+  "toasts": {
+    "created": "تم تسجيل المعلّم بنجاح.",
+    "updated": "تم تحديث بيانات المعلّم بنجاح.",
+    "deleted": "تم حذف سجل المعلّم بنجاح.",
+    "loadFailed": "فشل في تحميل قائمة المعلمين.",
+    "nameRequired": "اسم المعلّم مطلوب."
+  },
+  "summary": "عرض {count} من إجمالي {total} معلّم",
+  "pagination": {
+    "previous": "السابق",
+    "next": "Next",
+    "previousAria": "الانتقال إلى الصفحة السابقة",
+    "nextAria": "الانتقال إلى الصفحة التالية"
+  },
+  "empty": "لا يوجد معلّمون مسجلون"
+}

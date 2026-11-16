@@ -112,6 +112,10 @@
       "title": "Students | Almostafa Admin",
       "description": "Manage student records, Quran memorization levels, and class enrollments."
     },
+    "teachers": {
+      "title": "Teachers | Almostafa Admin",
+      "description": "Manage teacher roster, teaching tracks, and Quran instructor profiles."
+    },
     "segments": {
       "title": "Segments | Almostafa Admin",
       "description": "Manage student groups and circles by custom labels and tracks."
