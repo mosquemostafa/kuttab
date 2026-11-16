@@ -24,7 +24,7 @@
   },
   "classTypes": {
     "group": "حلقة جماعية",
-    "individual": "جلسة فردية"
+    "individual": "حلقة فردية"
   },
   "dialogs": {
     "addTitle": "إنشاء حلقة جديدة",
