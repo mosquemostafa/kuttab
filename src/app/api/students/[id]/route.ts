@@ -72,7 +72,7 @@
  *               previousEnrolledPlace: { type: string, nullable: true }
  *               memorizedPartsCount: { type: integer, minimum: 0, maximum: 30 }
  *               memorizationDetails: { type: string, nullable: true }
- *               status: { type: string, enum: [active, archived, rejected] }
+ *               status: { type: string, enum: [active, archived, rejected, pending] }
  *               paymentMethod:
  *                 type: string
  *                 enum: [exempt_poor, installments, exempt_staff_kids, special, monthly, sponsored]

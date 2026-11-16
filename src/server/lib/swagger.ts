@@ -68,7 +68,7 @@ const options = {
             memorizationDetails: { type: "string", nullable: true },
             status: {
               type: "string",
-              enum: ["active", "archived", "rejected"],
+              enum: ["active", "archived", "rejected", "pending"],
             },
             paymentMethod: {
               type: "string",

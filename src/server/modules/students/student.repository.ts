@@ -32,7 +32,7 @@ export type CreateStudentInput = {
   previousEnrolledPlace?: string | null;
   memorizedPartsCount?: number;
   memorizationDetails?: string | null;
-  status?: "active" | "archived" | "rejected";
+  status?: "active" | "archived" | "rejected" | "pending";
   paymentMethod?:
     | "exempt_poor"
     | "installments"

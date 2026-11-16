@@ -112,7 +112,8 @@
             "enum": [
               "active",
               "archived",
-              "rejected"
+              "rejected",
+              "pending"
             ]
           },
           "paymentMethod": {
@@ -7492,7 +7493,8 @@
                     "enum": [
                       "active",
                       "archived",
-                      "rejected"
+                      "rejected",
+                      "pending"
                     ]
                   },
                   "paymentMethod": {
@@ -7687,7 +7689,8 @@
               "enum": [
                 "active",
                 "archived",
-                "rejected"
+                "rejected",
+                "pending"
               ]
             }
           },
@@ -7915,7 +7918,8 @@
                     "enum": [
                       "active",
                       "archived",
-                      "rejected"
+                      "rejected",
+                      "pending"
                     ],
                     "default": "active"
                   },

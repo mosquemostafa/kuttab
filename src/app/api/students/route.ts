@@ -24,7 +24,7 @@
  *         name: status
  *         schema:
  *           type: string
- *           enum: [active, archived, rejected]
+ *           enum: [active, archived, rejected, pending]
  *       - in: query
  *         name: paymentMethod
  *         schema:
@@ -112,7 +112,7 @@
  *               previousEnrolledPlace: { type: string, nullable: true }
  *               memorizedPartsCount: { type: integer, minimum: 0, maximum: 30, default: 0 }
  *               memorizationDetails: { type: string, nullable: true }
- *               status: { type: string, enum: [active, archived, rejected], default: active }
+ *               status: { type: string, enum: [active, archived, rejected, pending], default: active }
  *               paymentMethod:
  *                 type: string
  *                 enum: [exempt_poor, installments, exempt_staff_kids, special, monthly, sponsored]

@@ -18,7 +18,9 @@ export const createStudentSchema = z.object({
     .max(30, "Memorized parts count cannot exceed 30")
     .default(0),
   memorizationDetails: z.string().trim().max(2000).optional().nullable(),
-  status: z.enum(["active", "archived", "rejected"]).default("active"),
+  status: z
+    .enum(["active", "archived", "rejected", "pending"])
+    .default("active"),
   paymentMethod: z
     .enum([
       "exempt_poor",
@@ -40,7 +42,7 @@ export const listStudentsQuerySchema = z.object({
   q: z.string().trim().max(255).optional(),
   userId: z.string().trim().max(255).optional(),
   classId: z.string().trim().max(255).optional(),
-  status: z.enum(["active", "archived", "rejected"]).optional(),
+  status: z.enum(["active", "archived", "rejected", "pending"]).optional(),
   paymentMethod: z
     .enum([
       "exempt_poor",

@@ -17,6 +17,7 @@ export const studentStatusEnum = pgEnum("student_status", [
   "active",
   "archived",
   "rejected",
+  "pending",
 ]);
 
 export const studentPaymentMethodEnum = pgEnum("student_payment_method", [
