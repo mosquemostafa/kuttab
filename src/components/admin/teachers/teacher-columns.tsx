@@ -176,6 +176,21 @@ export function useTeacherColumns({
         ),
       },
       {
+        accessorKey: "sallary",
+        header: t("columns.sallary"),
+        cell: ({ row }) => {
+          const sallary = row.original.sallary;
+          if (sallary === null || sallary === undefined) {
+            return <span className="text-xs text-muted-foreground/60">—</span>;
+          }
+          return (
+            <span className="text-xs font-medium text-foreground">
+              {sallary.toLocaleString()}
+            </span>
+          );
+        },
+      },
+      {
         accessorKey: "status",
         header: t("columns.status"),
         cell: ({ row }) => <TeacherStatusBadge status={row.original.status} />,

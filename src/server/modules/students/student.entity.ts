@@ -26,6 +26,7 @@ export const studentPaymentMethodEnum = pgEnum("student_payment_method", [
   "exempt_staff_kids",
   "special",
   "monthly",
+  "yearly",
   "sponsored",
 ]);
 

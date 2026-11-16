@@ -80,6 +80,8 @@ export function StudentPaymentMethodBadge({
 
   const getStyle = () => {
     switch (method) {
+      case StudentPaymentMethod.YEARLY:
+        return "bg-teal-50 text-teal-700 border-teal-200 dark:bg-teal-950 dark:text-teal-300 dark:border-teal-800";
       case StudentPaymentMethod.MONTHLY:
         return "bg-sky-50 text-sky-700 border-sky-200 dark:bg-sky-950 dark:text-sky-300 dark:border-sky-800";
       case StudentPaymentMethod.INSTALLMENTS:
@@ -97,6 +99,8 @@ export function StudentPaymentMethodBadge({
 
   const getLabel = () => {
     switch (method) {
+      case StudentPaymentMethod.YEARLY:
+        return t("paymentMethods.yearly");
       case StudentPaymentMethod.MONTHLY:
         return t("paymentMethods.monthly");
       case StudentPaymentMethod.INSTALLMENTS:

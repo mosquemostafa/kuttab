@@ -1,0 +1,1 @@
+ALTER TYPE "public"."student_payment_method" ADD VALUE 'yearly' BEFORE 'sponsored';

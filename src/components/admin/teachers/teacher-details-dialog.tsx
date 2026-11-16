@@ -78,7 +78,7 @@ export function TeacherDetailsDialog({
               <Info className="h-3.5 w-3.5" />
               <span>{t("columns.name")}</span>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
               <div>
                 <span className="text-muted-foreground">
                   {t("dialogs.nameLabel")}:{" "}
@@ -103,6 +103,16 @@ export function TeacherDetailsDialog({
                 ) : (
                   <span>—</span>
                 )}
+              </div>
+              <div>
+                <span className="text-muted-foreground">
+                  {t("dialogs.sallaryLabel")}:{" "}
+                </span>
+                <span className="font-medium text-foreground">
+                  {teacher.sallary !== null && teacher.sallary !== undefined
+                    ? teacher.sallary.toLocaleString(locale)
+                    : "—"}
+                </span>
               </div>
             </div>
           </div>

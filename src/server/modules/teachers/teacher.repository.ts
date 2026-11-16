@@ -14,6 +14,7 @@ export type CreateTeacherInput = {
   phone?: string | null;
   studentType?: "foundation" | "khatimeen" | "children" | "adults" | null;
   status?: "active" | "archived";
+  sallary?: number | null;
   notes?: string | null;
 };
 
@@ -113,6 +114,7 @@ export const teacherRepository = {
         phone: data.phone ?? null,
         studentType: data.studentType ?? null,
         status: data.status ?? "active",
+        sallary: data.sallary ?? null,
         notes: data.notes ?? null,
       })
       .returning();

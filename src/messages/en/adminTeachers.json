@@ -18,6 +18,7 @@
     "name": "Teacher",
     "phone": "Phone",
     "studentType": "Teaching Track",
+    "sallary": "Salary",
     "status": "Status",
     "createdAt": "Date Added",
     "actions": "Actions"
@@ -43,6 +44,8 @@
     "namePlaceholder": "e.g. Sheikh Ahmed Mohamed",
     "phoneLabel": "Phone Number",
     "phonePlaceholder": "01012345678",
+    "sallaryLabel": "Salary",
+    "sallaryPlaceholder": "e.g. 5000",
     "studentTypeLabel": "Assigned Teaching Track",
     "studentTypePlaceholder": "Select teaching track",
     "noStudentType": "General / Unspecified",

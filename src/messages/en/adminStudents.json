@@ -35,6 +35,7 @@
   },
   "paymentMethods": {
     "monthly": "Monthly",
+    "yearly": "Yearly",
     "installments": "Installments",
     "exempt_poor": "Exempt (Need)",
     "exempt_staff_kids": "Staff Children",

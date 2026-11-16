@@ -39,6 +39,7 @@ export type CreateStudentInput = {
     | "exempt_staff_kids"
     | "special"
     | "monthly"
+    | "yearly"
     | "sponsored"
     | null;
   registrationDate?: string;

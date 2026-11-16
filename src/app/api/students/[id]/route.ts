@@ -75,7 +75,7 @@
  *               status: { type: string, enum: [active, archived, rejected, pending] }
  *               paymentMethod:
  *                 type: string
- *                 enum: [exempt_poor, installments, exempt_staff_kids, special, monthly, sponsored]
+ *                 enum: [exempt_poor, installments, exempt_staff_kids, special, monthly, yearly, sponsored]
  *                 nullable: true
  *               registrationDate: { type: string, format: date }
  *               notes: { type: string, nullable: true }

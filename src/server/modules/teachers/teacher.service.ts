@@ -30,6 +30,7 @@ function toDTO(row: TeacherRow): TeacherDTO {
     phone: row.phone,
     studentType: (row.studentType as TeacherStudentType) ?? null,
     status: row.status as TeacherStatus,
+    sallary: row.sallary ?? null,
     notes: row.notes,
     createdAt: row.createdAt.toISOString(),
     updatedAt: row.updatedAt.toISOString(),
@@ -73,6 +74,7 @@ export const teacherService = {
       phone: dto.phone,
       studentType: dto.studentType,
       status: dto.status,
+      sallary: dto.sallary,
       notes: dto.notes,
     });
 

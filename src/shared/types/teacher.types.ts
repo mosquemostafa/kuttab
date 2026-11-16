@@ -8,6 +8,7 @@ export interface TeacherDTO {
   phone: string | null;
   studentType: TeacherStudentType | null;
   status: TeacherStatus;
+  sallary: number | null;
   notes: string | null;
   createdAt: string;
   updatedAt: string;

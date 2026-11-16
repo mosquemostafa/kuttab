@@ -92,6 +92,7 @@
  *                 enum: [foundation, khatimeen, children, adults]
  *                 nullable: true
  *               status: { type: string, enum: [active, archived], default: active }
+ *               sallary: { type: integer, nullable: true, minimum: 0 }
  *               notes: { type: string, nullable: true }
  *     responses:
  *       201:

@@ -1,5 +1,5 @@
 import { createId } from "@paralleldrive/cuid2";
-import { index, pgEnum, pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { index, integer, pgEnum, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 
 import { user } from "@/server/modules/users/user.entity";
 
@@ -28,6 +28,7 @@ export const teacher = pgTable(
     phone: text("phone"),
     studentType: studentTypeEnum("student_type"),
     status: teacherStatusEnum("status").notNull().default("active"),
+    sallary: integer("sallary"),
     notes: text("notes"),
     createdAt: timestamp("created_at")
       .$defaultFn(() => new Date())

@@ -325,6 +325,9 @@ export function StudentsTable() {
               <SelectItem value={StudentPaymentMethod.MONTHLY}>
                 {t("paymentMethods.monthly")}
               </SelectItem>
+              <SelectItem value={StudentPaymentMethod.YEARLY}>
+                {t("paymentMethods.yearly")}
+              </SelectItem>
               <SelectItem value={StudentPaymentMethod.INSTALLMENTS}>
                 {t("paymentMethods.installments")}
               </SelectItem>

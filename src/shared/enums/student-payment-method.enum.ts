@@ -4,5 +4,6 @@ export enum StudentPaymentMethod {
   EXEMPT_STAFF_KIDS = "exempt_staff_kids",
   SPECIAL = "special",
   MONTHLY = "monthly",
+  YEARLY = "yearly",
   SPONSORED = "sponsored",
 }

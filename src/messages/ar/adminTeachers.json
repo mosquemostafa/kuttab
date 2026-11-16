@@ -18,6 +18,7 @@
     "name": "المعلّم",
     "phone": "رقم الهاتف",
     "studentType": "مسار التدريس",
+    "sallary": "الراتب",
     "status": "الحالة",
     "createdAt": "تاريخ الإضافة",
     "actions": "الإجراءات"
@@ -43,6 +44,8 @@
     "namePlaceholder": "مثال: فضيلة الشيخ أحمد محمد",
     "phoneLabel": "رقم الهاتف",
     "phonePlaceholder": "01012345678",
+    "sallaryLabel": "الراتب",
+    "sallaryPlaceholder": "مثال: 5000",
     "studentTypeLabel": "فئة ومسار التدريس",
     "studentTypePlaceholder": "اختر فئة التدريس",
     "noStudentType": "عام / غير محدد",

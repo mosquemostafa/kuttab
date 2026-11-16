@@ -35,6 +35,7 @@
   },
   "paymentMethods": {
     "monthly": "شهري",
+    "yearly": "سنوي",
     "installments": "أقساط",
     "exempt_poor": "إعفاء (غير قادر)",
     "exempt_staff_kids": "أبناء العاملين",

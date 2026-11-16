@@ -29,7 +29,7 @@
  *         name: paymentMethod
  *         schema:
  *           type: string
- *           enum: [exempt_poor, installments, exempt_staff_kids, special, monthly, sponsored]
+ *           enum: [exempt_poor, installments, exempt_staff_kids, special, monthly, yearly, sponsored]
  *       - in: query
  *         name: studiedTajweed
  *         schema: { type: string, enum: [true, false] }
@@ -115,7 +115,7 @@
  *               status: { type: string, enum: [active, archived, rejected, pending], default: active }
  *               paymentMethod:
  *                 type: string
- *                 enum: [exempt_poor, installments, exempt_staff_kids, special, monthly, sponsored]
+ *                 enum: [exempt_poor, installments, exempt_staff_kids, special, monthly, yearly, sponsored]
  *                 nullable: true
  *               registrationDate: { type: string, format: date }
  *               notes: { type: string, nullable: true }

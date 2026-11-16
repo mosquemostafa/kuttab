@@ -9,6 +9,12 @@ export const createTeacherSchema = z.object({
     .optional()
     .nullable(),
   status: z.enum(["active", "archived"]).default("active"),
+  sallary: z.coerce
+    .number()
+    .int()
+    .min(0, "Salary must be non-negative")
+    .optional()
+    .nullable(),
   notes: z.string().trim().max(5000).optional().nullable(),
 });
 

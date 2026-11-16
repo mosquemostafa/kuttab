@@ -28,6 +28,7 @@ export const createStudentSchema = z.object({
       "exempt_staff_kids",
       "special",
       "monthly",
+      "yearly",
       "sponsored",
     ])
     .optional()
@@ -50,6 +51,7 @@ export const listStudentsQuerySchema = z.object({
       "exempt_staff_kids",
       "special",
       "monthly",
+      "yearly",
       "sponsored",
     ])
     .optional(),

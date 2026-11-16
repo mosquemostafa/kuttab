@@ -309,21 +309,32 @@ export function TeachersTable() {
           </div>
         </div>
 
-        {/* Dedicated Phone Row */}
-        {teacher.phone ? (
-          <div
-            className="flex items-center gap-1.5 text-xs text-muted-foreground bg-muted/50 px-2.5 py-1 rounded-md w-fit font-mono"
-            dir="ltr"
-          >
-            <Phone className="h-3.5 w-3.5 text-muted-foreground/80 shrink-0" />
-            <a
-              href={`tel:${teacher.phone}`}
-              className="hover:underline hover:text-foreground"
+        {/* Dedicated Phone & Salary Row */}
+        <div className="flex flex-wrap items-center gap-2">
+          {teacher.phone ? (
+            <div
+              className="flex items-center gap-1.5 text-xs text-muted-foreground bg-muted/50 px-2.5 py-1 rounded-md w-fit font-mono"
+              dir="ltr"
             >
-              {teacher.phone}
-            </a>
-          </div>
-        ) : null}
+              <Phone className="h-3.5 w-3.5 text-muted-foreground/80 shrink-0" />
+              <a
+                href={`tel:${teacher.phone}`}
+                className="hover:underline hover:text-foreground"
+              >
+                {teacher.phone}
+              </a>
+            </div>
+          ) : null}
+
+          {teacher.sallary !== null && teacher.sallary !== undefined ? (
+            <div className="flex items-center gap-1 text-xs text-muted-foreground bg-muted/50 px-2.5 py-1 rounded-md w-fit">
+              <span>{t("columns.sallary")}:</span>
+              <span className="font-medium text-foreground">
+                {teacher.sallary.toLocaleString(locale)}
+              </span>
+            </div>
+          ) : null}
+        </div>
 
         {/* Badges Strip */}
         <div className="flex flex-wrap items-center gap-1.5">

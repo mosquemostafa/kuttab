@@ -109,7 +109,12 @@
           },
           "status": {
             "type": "string",
-            "enum": ["active", "archived", "rejected", "pending"]
+            "enum": [
+              "active",
+              "archived",
+              "rejected",
+              "pending"
+            ]
           },
           "paymentMethod": {
             "type": "string",
@@ -119,6 +124,7 @@
               "exempt_staff_kids",
               "special",
               "monthly",
+              "yearly",
               "sponsored"
             ],
             "nullable": true
@@ -171,12 +177,25 @@
           },
           "studentType": {
             "type": "string",
-            "enum": ["foundation", "khatimeen", "children", "adults"],
+            "enum": [
+              "foundation",
+              "khatimeen",
+              "children",
+              "adults"
+            ],
             "nullable": true
           },
           "status": {
             "type": "string",
-            "enum": ["active", "archived"]
+            "enum": [
+              "active",
+              "archived"
+            ]
+          },
+          "sallary": {
+            "type": "integer",
+            "nullable": true,
+            "minimum": 0
           },
           "notes": {
             "type": "string",
@@ -191,7 +210,13 @@
             "format": "date-time"
           }
         },
-        "required": ["id", "name", "status", "createdAt", "updatedAt"]
+        "required": [
+          "id",
+          "name",
+          "status",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "Class": {
         "type": "object",
@@ -212,7 +237,10 @@
           },
           "classType": {
             "type": "string",
-            "enum": ["group", "individual"]
+            "enum": [
+              "group",
+              "individual"
+            ]
           },
           "createdAt": {
             "type": "string",
@@ -223,7 +251,13 @@
             "format": "date-time"
           }
         },
-        "required": ["id", "name", "classType", "createdAt", "updatedAt"]
+        "required": [
+          "id",
+          "name",
+          "classType",
+          "createdAt",
+          "updatedAt"
+        ]
       },
       "Todo": {
         "type": "object",
@@ -246,7 +280,11 @@
           },
           "priority": {
             "type": "string",
-            "enum": ["low", "medium", "high"],
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
             "nullable": true
           },
           "dueDate": {
@@ -260,7 +298,11 @@
             "description": "Embedded steps with completion state",
             "items": {
               "type": "object",
-              "required": ["id", "title", "isCompleted"],
+              "required": [
+                "id",
+                "title",
+                "isCompleted"
+              ],
               "properties": {
                 "id": {
                   "type": "string",
@@ -486,7 +528,11 @@
           },
           "repetitionType": {
             "type": "string",
-            "enum": ["daily", "weekly", "monthly"],
+            "enum": [
+              "daily",
+              "weekly",
+              "monthly"
+            ],
             "nullable": true
           },
           "specificDays": {
@@ -543,7 +589,10 @@
           },
           "role": {
             "type": "string",
-            "enum": ["user", "admin"]
+            "enum": [
+              "user",
+              "admin"
+            ]
           },
           "banned": {
             "type": "boolean"
@@ -622,7 +671,9 @@
             "description": "HTTP status code"
           }
         },
-        "required": ["error"]
+        "required": [
+          "error"
+        ]
       },
       "User": {
         "type": "object",
@@ -646,12 +697,19 @@
           },
           "role": {
             "type": "string",
-            "enum": ["user", "admin"],
+            "enum": [
+              "user",
+              "admin"
+            ],
             "description": "User's role"
           },
           "status": {
             "type": "string",
-            "enum": ["active", "inactive", "banned"],
+            "enum": [
+              "active",
+              "inactive",
+              "banned"
+            ],
             "description": "User's account status"
           },
           "createdAt": {
@@ -665,7 +723,12 @@
             "description": "Last update date"
           }
         },
-        "required": ["id", "email", "name", "role"]
+        "required": [
+          "id",
+          "email",
+          "name",
+          "role"
+        ]
       },
       "PaginationParams": {
         "type": "object",
@@ -684,7 +747,9 @@
       },
       "NewsletterSubscribeRequest": {
         "type": "object",
-        "required": ["email"],
+        "required": [
+          "email"
+        ],
         "properties": {
           "email": {
             "type": "string",
@@ -692,7 +757,10 @@
           },
           "locale": {
             "type": "string",
-            "enum": ["ar", "en"]
+            "enum": [
+              "ar",
+              "en"
+            ]
           }
         }
       },
@@ -707,11 +775,16 @@
             "format": "email"
           }
         },
-        "required": ["subscriberId", "email"]
+        "required": [
+          "subscriberId",
+          "email"
+        ]
       },
       "NewsletterUnsubscribeRequest": {
         "type": "object",
-        "required": ["token"],
+        "required": [
+          "token"
+        ],
         "properties": {
           "token": {
             "type": "string",
@@ -721,7 +794,10 @@
       },
       "FcmRegisterRequest": {
         "type": "object",
-        "required": ["token", "source"],
+        "required": [
+          "token",
+          "source"
+        ],
         "properties": {
           "token": {
             "type": "string",
@@ -742,7 +818,10 @@
           },
           "source": {
             "type": "string",
-            "enum": ["browser", "pwa"],
+            "enum": [
+              "browser",
+              "pwa"
+            ],
             "description": "Token source context"
           }
         }
@@ -759,22 +838,34 @@
             "properties": {
               "status": {
                 "type": "string",
-                "enum": ["already_registered", "registered", "updated"],
+                "enum": [
+                  "already_registered",
+                  "registered",
+                  "updated"
+                ],
                 "description": "Whether the server wrote the token doc and synced topics"
               }
             },
-            "required": ["status"]
+            "required": [
+              "status"
+            ]
           },
           "timestamp": {
             "type": "string",
             "format": "date-time"
           }
         },
-        "required": ["success", "data", "timestamp"]
+        "required": [
+          "success",
+          "data",
+          "timestamp"
+        ]
       },
       "FcmUnregisterRequest": {
         "type": "object",
-        "required": ["token"],
+        "required": [
+          "token"
+        ],
         "properties": {
           "token": {
             "type": "string",
@@ -797,14 +888,20 @@
                 "example": true
               }
             },
-            "required": ["unregistered"]
+            "required": [
+              "unregistered"
+            ]
           },
           "timestamp": {
             "type": "string",
             "format": "date-time"
           }
         },
-        "required": ["success", "data", "timestamp"]
+        "required": [
+          "success",
+          "data",
+          "timestamp"
+        ]
       },
       "FcmUnregisterAllResponse": {
         "type": "object",
@@ -825,18 +922,29 @@
                 "example": 3
               }
             },
-            "required": ["unregisteredAll", "deletedCount"]
+            "required": [
+              "unregisteredAll",
+              "deletedCount"
+            ]
           },
           "timestamp": {
             "type": "string",
             "format": "date-time"
           }
         },
-        "required": ["success", "data", "timestamp"]
+        "required": [
+          "success",
+          "data",
+          "timestamp"
+        ]
       },
       "FcmSendUserRequest": {
         "type": "object",
-        "required": ["userId", "title", "body"],
+        "required": [
+          "userId",
+          "title",
+          "body"
+        ],
         "properties": {
           "userId": {
             "type": "string"
@@ -866,7 +974,11 @@
       },
       "FcmSendTokenRequest": {
         "type": "object",
-        "required": ["token", "title", "body"],
+        "required": [
+          "token",
+          "title",
+          "body"
+        ],
         "properties": {
           "token": {
             "type": "string"
@@ -896,7 +1008,11 @@
       },
       "FcmSendRoleTopicRequest": {
         "type": "object",
-        "required": ["role", "title", "body"],
+        "required": [
+          "role",
+          "title",
+          "body"
+        ],
         "properties": {
           "role": {
             "type": "string",
@@ -927,7 +1043,11 @@
       },
       "FcmSendSegmentTopicRequest": {
         "type": "object",
-        "required": ["segmentId", "title", "body"],
+        "required": [
+          "segmentId",
+          "title",
+          "body"
+        ],
         "properties": {
           "segmentId": {
             "type": "string"
@@ -957,7 +1077,10 @@
       },
       "FcmSendAllUsersTopicRequest": {
         "type": "object",
-        "required": ["title", "body"],
+        "required": [
+          "title",
+          "body"
+        ],
         "properties": {
           "title": {
             "type": "string"
@@ -984,7 +1107,11 @@
       },
       "FcmSendCustomTopicRequest": {
         "type": "object",
-        "required": ["topic", "title", "body"],
+        "required": [
+          "topic",
+          "title",
+          "body"
+        ],
         "properties": {
           "topic": {
             "type": "string",
@@ -1051,7 +1178,11 @@
                       "type": "string"
                     }
                   },
-                  "required": ["token", "code", "message"]
+                  "required": [
+                    "token",
+                    "code",
+                    "message"
+                  ]
                 }
               }
             },
@@ -1067,7 +1198,11 @@
             "format": "date-time"
           }
         },
-        "required": ["success", "data", "timestamp"]
+        "required": [
+          "success",
+          "data",
+          "timestamp"
+        ]
       },
       "FcmSendTokenResponse": {
         "type": "object",
@@ -1083,14 +1218,20 @@
                 "type": "string"
               }
             },
-            "required": ["messageId"]
+            "required": [
+              "messageId"
+            ]
           },
           "timestamp": {
             "type": "string",
             "format": "date-time"
           }
         },
-        "required": ["success", "data", "timestamp"]
+        "required": [
+          "success",
+          "data",
+          "timestamp"
+        ]
       },
       "FcmSendTopicResponse": {
         "type": "object",
@@ -1109,14 +1250,21 @@
                 "type": "string"
               }
             },
-            "required": ["messageId", "topic"]
+            "required": [
+              "messageId",
+              "topic"
+            ]
           },
           "timestamp": {
             "type": "string",
             "format": "date-time"
           }
         },
-        "required": ["success", "data", "timestamp"]
+        "required": [
+          "success",
+          "data",
+          "timestamp"
+        ]
       },
       "FcmTokenRecord": {
         "type": "object",
@@ -1137,14 +1285,21 @@
           },
           "source": {
             "type": "string",
-            "enum": ["browser", "pwa"]
+            "enum": [
+              "browser",
+              "pwa"
+            ]
           },
           "topics": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "example": ["all_users", "role_user", "segment_default"]
+            "example": [
+              "all_users",
+              "role_user",
+              "segment_default"
+            ]
           },
           "isActive": {
             "type": "boolean",
@@ -1189,11 +1344,18 @@
             "format": "date-time"
           }
         },
-        "required": ["success", "data", "timestamp"]
+        "required": [
+          "success",
+          "data",
+          "timestamp"
+        ]
       },
       "FcmCustomTopicSubscriptionRequest": {
         "type": "object",
-        "required": ["topic", "subscribed"],
+        "required": [
+          "topic",
+          "subscribed"
+        ],
         "properties": {
           "topic": {
             "type": "string",
@@ -1220,24 +1382,35 @@
                 "items": {
                   "type": "string"
                 },
-                "example": ["product_updates"]
+                "example": [
+                  "product_updates"
+                ]
               },
               "subscribedTopics": {
                 "type": "array",
                 "items": {
                   "type": "string"
                 },
-                "example": ["product_updates"]
+                "example": [
+                  "product_updates"
+                ]
               }
             },
-            "required": ["availableTopics", "subscribedTopics"]
+            "required": [
+              "availableTopics",
+              "subscribedTopics"
+            ]
           },
           "timestamp": {
             "type": "string",
             "format": "date-time"
           }
         },
-        "required": ["success", "data", "timestamp"]
+        "required": [
+          "success",
+          "data",
+          "timestamp"
+        ]
       },
       "FcmCustomTopicSubscriptionResponse": {
         "type": "object",
@@ -1267,17 +1440,27 @@
                     "example": 1
                   }
                 },
-                "required": ["scannedTokens", "updatedTokens"]
+                "required": [
+                  "scannedTokens",
+                  "updatedTokens"
+                ]
               }
             },
-            "required": ["customTopics", "syncResult"]
+            "required": [
+              "customTopics",
+              "syncResult"
+            ]
           },
           "timestamp": {
             "type": "string",
             "format": "date-time"
           }
         },
-        "required": ["success", "data", "timestamp"]
+        "required": [
+          "success",
+          "data",
+          "timestamp"
+        ]
       },
       "NewsletterSubscriber": {
         "type": "object",
@@ -1293,11 +1476,17 @@
           "locale": {
             "type": "string",
             "nullable": true,
-            "enum": ["ar", "en"]
+            "enum": [
+              "ar",
+              "en"
+            ]
           },
           "status": {
             "type": "string",
-            "enum": ["active", "unsubscribed"]
+            "enum": [
+              "active",
+              "unsubscribed"
+            ]
           },
           "createdAt": {
             "type": "string",
@@ -1309,7 +1498,12 @@
             "nullable": true
           }
         },
-        "required": ["id", "email", "status", "createdAt"]
+        "required": [
+          "id",
+          "email",
+          "status",
+          "createdAt"
+        ]
       },
       "NewsletterCampaign": {
         "type": "object",
@@ -1335,7 +1529,13 @@
           },
           "status": {
             "type": "string",
-            "enum": ["draft", "queued", "sending", "completed", "failed"]
+            "enum": [
+              "draft",
+              "queued",
+              "sending",
+              "completed",
+              "failed"
+            ]
           },
           "failureReason": {
             "type": "string",
@@ -1385,7 +1585,13 @@
           },
           "status": {
             "type": "string",
-            "enum": ["draft", "queued", "sending", "completed", "failed"]
+            "enum": [
+              "draft",
+              "queued",
+              "sending",
+              "completed",
+              "failed"
+            ]
           },
           "failureReason": {
             "type": "string",
@@ -1439,7 +1645,13 @@
           },
           "status": {
             "type": "string",
-            "enum": ["draft", "queued", "sending", "completed", "failed"]
+            "enum": [
+              "draft",
+              "queued",
+              "sending",
+              "completed",
+              "failed"
+            ]
           },
           "failureReason": {
             "type": "string",
@@ -1483,7 +1695,12 @@
       },
       "CreateNewsletterCampaignRequest": {
         "type": "object",
-        "required": ["subjectAr", "subjectEn", "bodyAr", "bodyEn"],
+        "required": [
+          "subjectAr",
+          "subjectEn",
+          "bodyAr",
+          "bodyEn"
+        ],
         "properties": {
           "subjectAr": {
             "type": "string",
@@ -1533,7 +1750,10 @@
     "/api/admin/announcements/{id}": {
       "patch": {
         "summary": "Update announcement fields",
-        "tags": ["Announcements", "Admin"],
+        "tags": [
+          "Announcements",
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -1555,7 +1775,10 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["title", "content"],
+                "required": [
+                  "title",
+                  "content"
+                ],
                 "properties": {
                   "title": {
                     "type": "string"
@@ -1595,7 +1818,10 @@
       },
       "delete": {
         "summary": "Delete announcement",
-        "tags": ["Announcements", "Admin"],
+        "tags": [
+          "Announcements",
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -1631,7 +1857,10 @@
       "get": {
         "summary": "Announcements analytics ratios",
         "description": "Simple announcement ratios by type, active state, and status (admin only).",
-        "tags": ["Announcements", "Admin"],
+        "tags": [
+          "Announcements",
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -1642,7 +1871,10 @@
     "/api/admin/announcements": {
       "get": {
         "summary": "List all announcements with seen stats",
-        "tags": ["Announcements", "Admin"],
+        "tags": [
+          "Announcements",
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -1680,7 +1912,10 @@
       },
       "post": {
         "summary": "Create announcement draft or published item",
-        "tags": ["Announcements", "Admin"],
+        "tags": [
+          "Announcements",
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -1692,7 +1927,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["title", "content", "type", "targetType"],
+                "required": [
+                  "title",
+                  "content",
+                  "type",
+                  "targetType"
+                ],
                 "properties": {
                   "title": {
                     "type": "string"
@@ -1713,7 +1953,11 @@
                   },
                   "targetType": {
                     "type": "string",
-                    "enum": ["all", "role", "segment"]
+                    "enum": [
+                      "all",
+                      "role",
+                      "segment"
+                    ]
                   },
                   "targetValue": {
                     "type": "string",
@@ -1750,7 +1994,9 @@
       "post": {
         "summary": "Send push notification to all users topic",
         "description": "Admin only. Sends a notification to the `all_users` topic.",
-        "tags": ["FCM"],
+        "tags": [
+          "FCM"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -1784,7 +2030,9 @@
       "post": {
         "summary": "Send push notification to a custom topic",
         "description": "Admin only. Sends a notification to a user-opt-in custom FCM topic (for example `product_updates`).",
-        "tags": ["FCM"],
+        "tags": [
+          "FCM"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -1818,7 +2066,9 @@
       "post": {
         "summary": "Send push notification to all tokens in a role topic",
         "description": "Admin only. Sends a notification to `role_<role>` topic.",
-        "tags": ["FCM"],
+        "tags": [
+          "FCM"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -1852,7 +2102,9 @@
       "post": {
         "summary": "Send push notification to all tokens in a segment topic",
         "description": "Admin only. Sends a notification to `segment_<segmentId>` topic.",
-        "tags": ["FCM"],
+        "tags": [
+          "FCM"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -1886,7 +2138,9 @@
       "post": {
         "summary": "Send push notification to a specific token",
         "description": "Admin only. Sends a push notification to one FCM token.",
-        "tags": ["FCM"],
+        "tags": [
+          "FCM"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -1950,7 +2204,9 @@
       "post": {
         "summary": "Send push notification to all active tokens of a user",
         "description": "Admin only. Sends one multicast notification to all active FCM tokens for the target user.",
-        "tags": ["FCM"],
+        "tags": [
+          "FCM"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -2013,7 +2269,10 @@
     "/api/admin/notifications": {
       "post": {
         "summary": "Create an in-app notification for a user",
-        "tags": ["Notifications", "Admin"],
+        "tags": [
+          "Notifications",
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -2025,7 +2284,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["userId", "type", "title", "message"],
+                "required": [
+                  "userId",
+                  "type",
+                  "title",
+                  "message"
+                ],
                 "properties": {
                   "userId": {
                     "type": "string"
@@ -2081,7 +2345,9 @@
     "/api/admin/segments/{id}": {
       "get": {
         "summary": "Get segment by id",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -2105,7 +2371,9 @@
       },
       "patch": {
         "summary": "Update segment",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -2147,7 +2415,9 @@
       },
       "delete": {
         "summary": "Delete segment",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -2173,7 +2443,9 @@
     "/api/admin/segments": {
       "get": {
         "summary": "List segments with pagination",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -2213,7 +2485,9 @@
       },
       "post": {
         "summary": "Create a segment",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -2225,7 +2499,10 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["name", "emoji"],
+                "required": [
+                  "name",
+                  "emoji"
+                ],
                 "properties": {
                   "name": {
                     "type": "string"
@@ -2248,7 +2525,9 @@
     "/api/admin/settings": {
       "get": {
         "summary": "Get application registration and security settings",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -2268,7 +2547,9 @@
       },
       "put": {
         "summary": "Update application registration and security settings",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -2323,7 +2604,9 @@
     "/api/admin/users/{id}/ban": {
       "patch": {
         "summary": "Ban a user",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -2428,7 +2711,9 @@
     "/api/admin/users/{id}/impersonate": {
       "post": {
         "summary": "Impersonate a user (create session as user)",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -2483,7 +2768,9 @@
     "/api/admin/users/{id}/revoke-sessions": {
       "post": {
         "summary": "Revoke all user sessions",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -2559,7 +2846,9 @@
     "/api/admin/users/{id}/role": {
       "patch": {
         "summary": "Update user role",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -2581,7 +2870,9 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["role"],
+                "required": [
+                  "role"
+                ],
                 "properties": {
                   "role": {
                     "type": "string",
@@ -2669,7 +2960,9 @@
     "/api/admin/users/{id}": {
       "get": {
         "summary": "Get user by id",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -2753,7 +3046,9 @@
       },
       "delete": {
         "summary": "Delete a user",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -2839,7 +3134,9 @@
     "/api/admin/users/{id}/segment": {
       "patch": {
         "summary": "Update user segment",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -2881,7 +3178,9 @@
     "/api/admin/users/{id}/unban": {
       "patch": {
         "summary": "Unban a user",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -2957,7 +3256,9 @@
     "/api/admin/users": {
       "get": {
         "summary": "List users with pagination and filtering",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -3001,7 +3302,10 @@
             "name": "sortDirection",
             "schema": {
               "type": "string",
-              "enum": ["asc", "desc"]
+              "enum": [
+                "asc",
+                "desc"
+              ]
             }
           },
           {
@@ -3024,7 +3328,10 @@
             "name": "status",
             "schema": {
               "type": "string",
-              "enum": ["active", "banned"]
+              "enum": [
+                "active",
+                "banned"
+              ]
             }
           },
           {
@@ -3121,7 +3428,9 @@
       },
       "post": {
         "summary": "Create a new user",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -3133,7 +3442,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["name", "email", "password", "phone"],
+                "required": [
+                  "name",
+                  "email",
+                  "password",
+                  "phone"
+                ],
                 "properties": {
                   "name": {
                     "type": "string"
@@ -3244,7 +3558,9 @@
     "/api/admin/users/select": {
       "get": {
         "summary": "Search and select users",
-        "tags": ["Admin"],
+        "tags": [
+          "Admin"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -3300,7 +3616,9 @@
     "/api/announcements/mark-seen": {
       "post": {
         "summary": "Mark targeted announcements as seen",
-        "tags": ["Announcements"],
+        "tags": [
+          "Announcements"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -3312,7 +3630,9 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["announcementIds"],
+                "required": [
+                  "announcementIds"
+                ],
                 "properties": {
                   "announcementIds": {
                     "type": "array",
@@ -3338,7 +3658,9 @@
     "/api/announcements": {
       "get": {
         "summary": "List targeted announcements history",
-        "tags": ["Announcements"],
+        "tags": [
+          "Announcements"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -3375,7 +3697,9 @@
     "/api/announcements/unseen-count": {
       "get": {
         "summary": "Get unseen targeted announcements count",
-        "tags": ["Announcements"],
+        "tags": [
+          "Announcements"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -3420,7 +3744,9 @@
     "/api/announcements/unseen": {
       "get": {
         "summary": "List unseen targeted announcements",
-        "tags": ["Announcements"],
+        "tags": [
+          "Announcements"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -3440,7 +3766,9 @@
       "post": {
         "summary": "Register a new user account",
         "description": "Better Auth email/password sign-up. All POST /api/auth requests require Content-Type application/json (Swagger sends it when a JSON body is defined).",
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -3467,7 +3795,11 @@
                     "description": "Optional redirect after sign-up (path or absolute URL)"
                   }
                 },
-                "required": ["email", "password", "name"]
+                "required": [
+                  "email",
+                  "password",
+                  "name"
+                ]
               }
             }
           }
@@ -3489,7 +3821,9 @@
       "post": {
         "summary": "Sign in to user account",
         "description": "Better Auth email/password sign-in. Requires application/json. Session is set via Set-Cookie; sign in first in this browser to reuse cookies on other Auth calls.",
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -3516,7 +3850,10 @@
                     "description": "Optional redirect after sign-in"
                   }
                 },
-                "required": ["email", "password"]
+                "required": [
+                  "email",
+                  "password"
+                ]
               }
             }
           }
@@ -3538,7 +3875,9 @@
       "post": {
         "summary": "Sign out from user account",
         "description": "Terminate the session. Better Auth requires Content-Type application/json; send body {}. Requires the session cookie (sign in via POST /api/auth/sign-in/email in this browser first).",
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "security": [
           {
             "cookieAuth": []
@@ -3573,7 +3912,9 @@
       "get": {
         "summary": "Get current session (Better Auth)",
         "description": "Better Auth exposes GET /get-session (not /session). Send the session cookie. Returns { session, user } or null when unauthenticated.",
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "security": [
           {
             "cookieAuth": []
@@ -3627,7 +3968,9 @@
       "post": {
         "summary": "Request password reset",
         "description": "Send a password reset email. Requires application/json. Optional redirectTo should match your reset page path (e.g. with locale).",
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -3645,7 +3988,9 @@
                     "description": "URL (or path) to open after reset link (token in query)"
                   }
                 },
-                "required": ["email"]
+                "required": [
+                  "email"
+                ]
               }
             }
           }
@@ -3664,7 +4009,9 @@
       "post": {
         "summary": "Reset user password (Better Auth)",
         "description": "POST /reset-password under /api/auth. Requires application/json. Body must use newPassword and token (from reset email query string), not password.",
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -3682,7 +4029,10 @@
                     "description": "Reset token from email link (?token=…)"
                   }
                 },
-                "required": ["newPassword", "token"]
+                "required": [
+                  "newPassword",
+                  "token"
+                ]
               }
             }
           }
@@ -3701,7 +4051,9 @@
       "post": {
         "summary": "Change user password (Better Auth)",
         "description": "POST /change-password under /api/auth. Requires application/json and session cookie. Body uses currentPassword and newPassword (not oldPassword). Optional revokeOtherSessions invalidates other devices.",
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "security": [
           {
             "cookieAuth": []
@@ -3729,7 +4081,10 @@
                     "description": "If true, sign out other sessions (default false if omitted)"
                   }
                 },
-                "required": ["currentPassword", "newPassword"]
+                "required": [
+                  "currentPassword",
+                  "newPassword"
+                ]
               }
             }
           }
@@ -3750,7 +4105,9 @@
     "/api/classes/{id}": {
       "get": {
         "summary": "Get class by ID (Admin only)",
-        "tags": ["Classes"],
+        "tags": [
+          "Classes"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -3824,7 +4181,9 @@
       },
       "put": {
         "summary": "Update class by ID (Admin only)",
-        "tags": ["Classes"],
+        "tags": [
+          "Classes"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -3860,7 +4219,10 @@
                   },
                   "classType": {
                     "type": "string",
-                    "enum": ["group", "individual"]
+                    "enum": [
+                      "group",
+                      "individual"
+                    ]
                   }
                 }
               }
@@ -3935,7 +4297,9 @@
       },
       "delete": {
         "summary": "Delete class by ID (Admin only)",
-        "tags": ["Classes"],
+        "tags": [
+          "Classes"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -3991,7 +4355,9 @@
     "/api/classes": {
       "get": {
         "summary": "List classes with pagination and filters (Admin only)",
-        "tags": ["Classes"],
+        "tags": [
+          "Classes"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4035,7 +4401,10 @@
             "name": "classType",
             "schema": {
               "type": "string",
-              "enum": ["group", "individual"]
+              "enum": [
+                "group",
+                "individual"
+              ]
             }
           },
           {
@@ -4043,7 +4412,11 @@
             "name": "sortBy",
             "schema": {
               "type": "string",
-              "enum": ["createdAt", "name", "classType"]
+              "enum": [
+                "createdAt",
+                "name",
+                "classType"
+              ]
             }
           },
           {
@@ -4051,7 +4424,10 @@
             "name": "sortOrder",
             "schema": {
               "type": "string",
-              "enum": ["asc", "desc"]
+              "enum": [
+                "asc",
+                "desc"
+              ]
             }
           },
           {
@@ -4126,7 +4502,9 @@
       },
       "post": {
         "summary": "Create a class record (Admin only)",
-        "tags": ["Classes"],
+        "tags": [
+          "Classes"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4138,7 +4516,9 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["name"],
+                "required": [
+                  "name"
+                ],
                 "properties": {
                   "name": {
                     "type": "string"
@@ -4153,7 +4533,10 @@
                   },
                   "classType": {
                     "type": "string",
-                    "enum": ["group", "individual"],
+                    "enum": [
+                      "group",
+                      "individual"
+                    ],
                     "default": "group"
                   }
                 }
@@ -4221,7 +4604,9 @@
     "/api/classes/select": {
       "get": {
         "summary": "Search and select classes by name (Admin only)",
-        "tags": ["Classes"],
+        "tags": [
+          "Classes"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4317,14 +4702,20 @@
     "/api/contact": {
       "post": {
         "summary": "Submit a contact form message",
-        "tags": ["Contact"],
+        "tags": [
+          "Contact"
+        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["name", "email", "message"],
+                "required": [
+                  "name",
+                  "email",
+                  "message"
+                ],
                 "properties": {
                   "name": {
                     "type": "string"
@@ -4379,7 +4770,10 @@
       "post": {
         "summary": "Resume sending an interrupted campaign via BullMQ",
         "description": "Content manager or admin only. Re-enqueues unsent or expired-lease subscribers.",
-        "tags": ["Content", "Newsletter"],
+        "tags": [
+          "Content",
+          "Newsletter"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4409,7 +4803,10 @@
       "get": {
         "summary": "Get newsletter campaign with send stats",
         "description": "Content manager or admin only.",
-        "tags": ["Content", "Newsletter"],
+        "tags": [
+          "Content",
+          "Newsletter"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4434,7 +4831,10 @@
       "patch": {
         "summary": "Update newsletter campaign",
         "description": "Edits bilingual content and website-channel fields at any status (e.g. fix typos or public archive settings after send).",
-        "tags": ["Content", "Newsletter"],
+        "tags": [
+          "Content",
+          "Newsletter"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4459,7 +4859,10 @@
       "delete": {
         "summary": "Delete a draft campaign",
         "description": "Only campaigns in `draft` status can be deleted. Content manager or admin only.",
-        "tags": ["Content", "Newsletter"],
+        "tags": [
+          "Content",
+          "Newsletter"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4492,7 +4895,10 @@
       "post": {
         "summary": "Queue sending a draft campaign via BullMQ",
         "description": "Content manager or admin only.",
-        "tags": ["Content", "Newsletter"],
+        "tags": [
+          "Content",
+          "Newsletter"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4522,7 +4928,10 @@
       "get": {
         "summary": "List newsletter campaigns",
         "description": "Content manager or admin only.\nRows omit bodyAr and bodyEn (subjects and metadata only) to keep payloads small.\n",
-        "tags": ["Content", "Newsletter"],
+        "tags": [
+          "Content",
+          "Newsletter"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4552,7 +4961,10 @@
       },
       "post": {
         "summary": "Create a draft newsletter campaign",
-        "tags": ["Content", "Newsletter"],
+        "tags": [
+          "Content",
+          "Newsletter"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4564,7 +4976,12 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["subjectAr", "subjectEn", "bodyAr", "bodyEn"],
+                "required": [
+                  "subjectAr",
+                  "subjectEn",
+                  "bodyAr",
+                  "bodyEn"
+                ],
                 "properties": {
                   "subjectAr": {
                     "type": "string"
@@ -4597,7 +5014,10 @@
       "get": {
         "summary": "List newsletter subscribers",
         "description": "Content manager or admin only.",
-        "tags": ["Content", "Newsletter"],
+        "tags": [
+          "Content",
+          "Newsletter"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4629,7 +5049,9 @@
     "/api/dashboard/newsletter": {
       "get": {
         "summary": "Newsletter subscription status for the current user (by account email)",
-        "tags": ["Dashboard"],
+        "tags": [
+          "Dashboard"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4643,7 +5065,9 @@
       },
       "post": {
         "summary": "Subscribe the current user's account email to the newsletter",
-        "tags": ["Dashboard"],
+        "tags": [
+          "Dashboard"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4652,7 +5076,9 @@
       },
       "delete": {
         "summary": "Unsubscribe the current user's account email from the newsletter",
-        "tags": ["Dashboard"],
+        "tags": [
+          "Dashboard"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4661,7 +5087,9 @@
       },
       "patch": {
         "summary": "Set preferred newsletter email locale (en or ar) for an active newsletter subscription",
-        "tags": ["Dashboard"],
+        "tags": [
+          "Dashboard"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4672,7 +5100,9 @@
     "/api/dashboard/newsletters/{slug}": {
       "get": {
         "summary": "Get a website-public completed newsletter article by slug (includes both bodies)",
-        "tags": ["Dashboard"],
+        "tags": [
+          "Dashboard"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4702,7 +5132,9 @@
       "get": {
         "summary": "List website-public completed newsletter campaigns (no HTML bodies)",
         "description": "Authenticated users only. Sorted newest first by startedAt (with fallbacks).",
-        "tags": ["Dashboard"],
+        "tags": [
+          "Dashboard"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4737,7 +5169,9 @@
     "/api/dashboard/settings": {
       "get": {
         "summary": "Get dashboard settings bootstrap data for the current user",
-        "tags": ["Dashboard"],
+        "tags": [
+          "Dashboard"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4804,7 +5238,9 @@
       },
       "patch": {
         "summary": "Update current user profile",
-        "tags": ["Dashboard"],
+        "tags": [
+          "Dashboard"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4816,7 +5252,9 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["name"],
+                "required": [
+                  "name"
+                ],
                 "properties": {
                   "name": {
                     "type": "string"
@@ -4875,7 +5313,9 @@
     "/api/dashboard/user-media/editor-image/complete": {
       "post": {
         "summary": "Complete Cloudflare R2 upload for rich text editor image",
-        "tags": ["UserMedia"],
+        "tags": [
+          "UserMedia"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4887,7 +5327,9 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["objectKey"],
+                "required": [
+                  "objectKey"
+                ],
                 "properties": {
                   "objectKey": {
                     "type": "string"
@@ -4907,7 +5349,9 @@
     "/api/dashboard/user-media/editor-image/presign": {
       "post": {
         "summary": "Presign Cloudflare R2 upload URL for rich text editor image",
-        "tags": ["UserMedia"],
+        "tags": [
+          "UserMedia"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4919,7 +5363,10 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["contentType", "fileSize"],
+                "required": [
+                  "contentType",
+                  "fileSize"
+                ],
                 "properties": {
                   "contentType": {
                     "type": "string",
@@ -4950,7 +5397,9 @@
     "/api/fcm/custom-topics": {
       "get": {
         "summary": "List available and subscribed custom FCM topics",
-        "tags": ["FCM"],
+        "tags": [
+          "FCM"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -4971,7 +5420,9 @@
       },
       "post": {
         "summary": "Subscribe/unsubscribe current user to a custom topic",
-        "tags": ["FCM"],
+        "tags": [
+          "FCM"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5005,7 +5456,9 @@
       "post": {
         "summary": "Register or refresh current user FCM token",
         "description": "Authenticated endpoint. Conditionally upserts a token document at\n`fcm_tokens/{userId}/tokens/{token}` (skip write when unchanged), syncs topic\nsubscriptions, and updates `updatedAt` for Firestore TTL when written.\n",
-        "tags": ["FCM"],
+        "tags": [
+          "FCM"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5059,7 +5512,9 @@
       "post": {
         "summary": "Send a test push notification to current user",
         "description": "Authenticated endpoint. Sends a predefined test push notification\nto the currently authenticated user only.\n",
-        "tags": ["FCM"],
+        "tags": [
+          "FCM"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5085,7 +5540,9 @@
     "/api/fcm/tokens": {
       "get": {
         "summary": "List current user registered FCM tokens",
-        "tags": ["FCM"],
+        "tags": [
+          "FCM"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5118,7 +5575,9 @@
     "/api/fcm/unregister-all": {
       "post": {
         "summary": "Unregister all current user FCM tokens",
-        "tags": ["FCM"],
+        "tags": [
+          "FCM"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5152,7 +5611,9 @@
       "post": {
         "summary": "Unregister current user FCM token",
         "description": "Authenticated endpoint. Deletes token document at\n`fcm_tokens/{userId}/tokens/{token}`.\n",
-        "tags": ["FCM"],
+        "tags": [
+          "FCM"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5206,7 +5667,9 @@
       "get": {
         "summary": "Get feedback by ID",
         "description": "Returns a feedback entry by ID.\nUsers can only access their own feedback, while Support/Admin can access any feedback.\n",
-        "tags": ["Feedbacks"],
+        "tags": [
+          "Feedbacks"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5246,7 +5709,10 @@
                         },
                         "type": {
                           "type": "string",
-                          "enum": ["suggestion", "complaint"]
+                          "enum": [
+                            "suggestion",
+                            "complaint"
+                          ]
                         },
                         "subject": {
                           "type": "string"
@@ -5256,7 +5722,11 @@
                         },
                         "status": {
                           "type": "string",
-                          "enum": ["new", "reviewed", "closed"]
+                          "enum": [
+                            "new",
+                            "reviewed",
+                            "closed"
+                          ]
                         },
                         "createdAt": {
                           "type": "string",
@@ -5302,7 +5772,9 @@
       "delete": {
         "summary": "Delete feedback",
         "description": "Support/Admin only.",
-        "tags": ["Feedbacks"],
+        "tags": [
+          "Feedbacks"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5360,7 +5832,9 @@
       "patch": {
         "summary": "Update feedback status",
         "description": "Support/Admin only.",
-        "tags": ["Feedbacks"],
+        "tags": [
+          "Feedbacks"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5383,11 +5857,17 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["status"],
+                "required": [
+                  "status"
+                ],
                 "properties": {
                   "status": {
                     "type": "string",
-                    "enum": ["new", "reviewed", "closed"]
+                    "enum": [
+                      "new",
+                      "reviewed",
+                      "closed"
+                    ]
                   }
                 }
               }
@@ -5414,7 +5894,11 @@
                         },
                         "status": {
                           "type": "string",
-                          "enum": ["new", "reviewed", "closed"]
+                          "enum": [
+                            "new",
+                            "reviewed",
+                            "closed"
+                          ]
                         },
                         "updatedAt": {
                           "type": "string",
@@ -5478,7 +5962,9 @@
       "get": {
         "summary": "List current user's feedback entries",
         "description": "Paginated feedback for the signed-in user only (all roles).\nFor the full queue, use GET /api/support/staff/feedbacks (admin/support).\n",
-        "tags": ["Feedbacks"],
+        "tags": [
+          "Feedbacks"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5490,7 +5976,11 @@
             "name": "status",
             "schema": {
               "type": "string",
-              "enum": ["new", "reviewed", "closed"]
+              "enum": [
+                "new",
+                "reviewed",
+                "closed"
+              ]
             },
             "description": "Filter by feedback status"
           },
@@ -5499,7 +5989,10 @@
             "name": "type",
             "schema": {
               "type": "string",
-              "enum": ["suggestion", "complaint"]
+              "enum": [
+                "suggestion",
+                "complaint"
+              ]
             },
             "description": "Filter by feedback type"
           },
@@ -5508,7 +6001,10 @@
             "name": "sortDirection",
             "schema": {
               "type": "string",
-              "enum": ["asc", "desc"],
+              "enum": [
+                "asc",
+                "desc"
+              ],
               "default": "desc"
             },
             "description": "Sort by created date direction"
@@ -5563,7 +6059,10 @@
                           },
                           "type": {
                             "type": "string",
-                            "enum": ["suggestion", "complaint"]
+                            "enum": [
+                              "suggestion",
+                              "complaint"
+                            ]
                           },
                           "subject": {
                             "type": "string"
@@ -5573,7 +6072,11 @@
                           },
                           "status": {
                             "type": "string",
-                            "enum": ["new", "reviewed", "closed"]
+                            "enum": [
+                              "new",
+                              "reviewed",
+                              "closed"
+                            ]
                           },
                           "createdAt": {
                             "type": "string",
@@ -5622,7 +6125,9 @@
       },
       "post": {
         "summary": "Create feedback entry",
-        "tags": ["Feedbacks"],
+        "tags": [
+          "Feedbacks"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5634,11 +6139,18 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["type", "subject", "description"],
+                "required": [
+                  "type",
+                  "subject",
+                  "description"
+                ],
                 "properties": {
                   "type": {
                     "type": "string",
-                    "enum": ["suggestion", "complaint"]
+                    "enum": [
+                      "suggestion",
+                      "complaint"
+                    ]
                   },
                   "subject": {
                     "type": "string",
@@ -5678,7 +6190,10 @@
                         },
                         "type": {
                           "type": "string",
-                          "enum": ["suggestion", "complaint"]
+                          "enum": [
+                            "suggestion",
+                            "complaint"
+                          ]
                         },
                         "subject": {
                           "type": "string"
@@ -5688,7 +6203,11 @@
                         },
                         "status": {
                           "type": "string",
-                          "enum": ["new", "reviewed", "closed"]
+                          "enum": [
+                            "new",
+                            "reviewed",
+                            "closed"
+                          ]
                         },
                         "createdAt": {
                           "type": "string",
@@ -5736,7 +6255,9 @@
       "get": {
         "summary": "Health check endpoint",
         "description": "Returns the health status of the API",
-        "tags": ["Health"],
+        "tags": [
+          "Health"
+        ],
         "responses": {
           "200": {
             "description": "API is healthy",
@@ -5765,14 +6286,18 @@
     "/api/newsletter/subscribe": {
       "post": {
         "summary": "Subscribe to the newsletter (single opt-in)",
-        "tags": ["Newsletter"],
+        "tags": [
+          "Newsletter"
+        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["email"],
+                "required": [
+                  "email"
+                ],
                 "properties": {
                   "email": {
                     "type": "string",
@@ -5780,7 +6305,10 @@
                   },
                   "locale": {
                     "type": "string",
-                    "enum": ["ar", "en"]
+                    "enum": [
+                      "ar",
+                      "en"
+                    ]
                   }
                 }
               }
@@ -5800,14 +6328,18 @@
     "/api/newsletter/unsubscribe": {
       "post": {
         "summary": "Confirm newsletter unsubscribe (POST only — use confirm page first)",
-        "tags": ["Newsletter"],
+        "tags": [
+          "Newsletter"
+        ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["token"],
+                "required": [
+                  "token"
+                ],
                 "properties": {
                   "token": {
                     "type": "string"
@@ -5830,7 +6362,9 @@
     "/api/notifications/{id}/read": {
       "patch": {
         "summary": "Mark one in-app notification as read (idempotent)",
-        "tags": ["Notifications"],
+        "tags": [
+          "Notifications"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5862,7 +6396,9 @@
     "/api/notifications/mark-all-read": {
       "post": {
         "summary": "Mark all in-app notifications as read for the current user",
-        "tags": ["Notifications"],
+        "tags": [
+          "Notifications"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5881,7 +6417,9 @@
     "/api/notifications/read": {
       "get": {
         "summary": "List read in-app notifications (cursor pagination)",
-        "tags": ["Notifications"],
+        "tags": [
+          "Notifications"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5923,7 +6461,9 @@
     "/api/notifications": {
       "get": {
         "summary": "List in-app notifications (cursor pagination)",
-        "tags": ["Notifications"],
+        "tags": [
+          "Notifications"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5935,7 +6475,10 @@
             "name": "unreadOnly",
             "schema": {
               "type": "string",
-              "enum": [true, false]
+              "enum": [
+                true,
+                false
+              ]
             },
             "description": "When true (default), only unread items"
           },
@@ -5974,7 +6517,9 @@
     "/api/notifications/unread-count": {
       "get": {
         "summary": "In-app unread notification count",
-        "tags": ["Notifications"],
+        "tags": [
+          "Notifications"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -5993,7 +6538,9 @@
     "/api/projects/{id}/archive": {
       "patch": {
         "summary": "Archive a project",
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -6059,7 +6606,9 @@
     "/api/projects/{id}": {
       "get": {
         "summary": "Get project by ID",
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -6123,7 +6672,9 @@
       },
       "put": {
         "summary": "Update project fields",
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -6247,7 +6798,9 @@
       },
       "delete": {
         "summary": "Delete project",
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -6293,7 +6846,9 @@
     "/api/projects/{id}/unarchive": {
       "patch": {
         "summary": "Unarchive a project",
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -6359,7 +6914,9 @@
     "/api/projects/analytics": {
       "get": {
         "summary": "Return fast todo/note counts for current user",
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -6439,7 +6996,9 @@
     "/api/projects/counts": {
       "get": {
         "summary": "Return fast project count for current user",
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -6519,7 +7078,9 @@
     "/api/projects": {
       "get": {
         "summary": "List projects with pagination and filters",
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -6539,7 +7100,10 @@
             "name": "isArchived",
             "schema": {
               "type": "string",
-              "enum": [true, false]
+              "enum": [
+                true,
+                false
+              ]
             },
             "description": "Filter archived state"
           },
@@ -6548,7 +7112,11 @@
             "name": "sortBy",
             "schema": {
               "type": "string",
-              "enum": ["createdAt", "updatedAt", "name"]
+              "enum": [
+                "createdAt",
+                "updatedAt",
+                "name"
+              ]
             }
           },
           {
@@ -6623,7 +7191,9 @@
       },
       "post": {
         "summary": "Create a project",
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -6635,7 +7205,9 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["name"],
+                "required": [
+                  "name"
+                ],
                 "properties": {
                   "name": {
                     "type": "string",
@@ -6730,7 +7302,9 @@
     "/api/projects/select": {
       "get": {
         "summary": "Search and select projects",
-        "tags": ["Projects"],
+        "tags": [
+          "Projects"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -6780,7 +7354,9 @@
     "/api/students/{id}": {
       "get": {
         "summary": "Get student by ID (Admin only)",
-        "tags": ["Students"],
+        "tags": [
+          "Students"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -6854,7 +7430,9 @@
       },
       "put": {
         "summary": "Update student by ID (Admin only)",
-        "tags": ["Students"],
+        "tags": [
+          "Students"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -6926,7 +7504,12 @@
                   },
                   "status": {
                     "type": "string",
-                    "enum": ["active", "archived", "rejected", "pending"]
+                    "enum": [
+                      "active",
+                      "archived",
+                      "rejected",
+                      "pending"
+                    ]
                   },
                   "paymentMethod": {
                     "type": "string",
@@ -6936,6 +7519,7 @@
                       "exempt_staff_kids",
                       "special",
                       "monthly",
+                      "yearly",
                       "sponsored"
                     ],
                     "nullable": true
@@ -7021,7 +7605,9 @@
       },
       "delete": {
         "summary": "Delete student by ID (Admin only)",
-        "tags": ["Students"],
+        "tags": [
+          "Students"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -7077,7 +7663,9 @@
     "/api/students": {
       "get": {
         "summary": "List students with pagination and filters (Admin only)",
-        "tags": ["Students"],
+        "tags": [
+          "Students"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -7113,7 +7701,12 @@
             "name": "status",
             "schema": {
               "type": "string",
-              "enum": ["active", "archived", "rejected", "pending"]
+              "enum": [
+                "active",
+                "archived",
+                "rejected",
+                "pending"
+              ]
             }
           },
           {
@@ -7127,6 +7720,7 @@
                 "exempt_staff_kids",
                 "special",
                 "monthly",
+                "yearly",
                 "sponsored"
               ]
             }
@@ -7136,7 +7730,10 @@
             "name": "studiedTajweed",
             "schema": {
               "type": "string",
-              "enum": [true, false]
+              "enum": [
+                true,
+                false
+              ]
             }
           },
           {
@@ -7144,7 +7741,10 @@
             "name": "previouslyEnrolled",
             "schema": {
               "type": "string",
-              "enum": [true, false]
+              "enum": [
+                true,
+                false
+              ]
             }
           },
           {
@@ -7183,7 +7783,10 @@
             "name": "sortOrder",
             "schema": {
               "type": "string",
-              "enum": ["asc", "desc"]
+              "enum": [
+                "asc",
+                "desc"
+              ]
             }
           },
           {
@@ -7258,7 +7861,9 @@
       },
       "post": {
         "summary": "Create a student record (Admin only)",
-        "tags": ["Students"],
+        "tags": [
+          "Students"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -7270,7 +7875,9 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["name"],
+                "required": [
+                  "name"
+                ],
                 "properties": {
                   "userId": {
                     "type": "string",
@@ -7324,7 +7931,12 @@
                   },
                   "status": {
                     "type": "string",
-                    "enum": ["active", "archived", "rejected", "pending"],
+                    "enum": [
+                      "active",
+                      "archived",
+                      "rejected",
+                      "pending"
+                    ],
                     "default": "active"
                   },
                   "paymentMethod": {
@@ -7335,6 +7947,7 @@
                       "exempt_staff_kids",
                       "special",
                       "monthly",
+                      "yearly",
                       "sponsored"
                     ],
                     "nullable": true
@@ -7412,7 +8025,9 @@
     "/api/students/select": {
       "get": {
         "summary": "Search and select students by name (Admin only)",
-        "tags": ["Students"],
+        "tags": [
+          "Students"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -7517,7 +8132,9 @@
       "get": {
         "summary": "List all feedback entries (support desk)",
         "description": "Paginated list of every feedback entry. Restricted to admin and support roles.\n",
-        "tags": ["Feedbacks"],
+        "tags": [
+          "Feedbacks"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -7529,7 +8146,9 @@
       "get": {
         "summary": "Support desk overview analytics",
         "description": "Aggregated ticket and feedback metrics (admin/support only). Two DB round trips with single-pass counts per table.",
-        "tags": ["Support"],
+        "tags": [
+          "Support"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -7541,7 +8160,9 @@
       "get": {
         "summary": "List all support tickets (support desk)",
         "description": "Paginated list of every support ticket. Restricted to admin and support roles.\n",
-        "tags": ["Support"],
+        "tags": [
+          "Support"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -7551,7 +8172,9 @@
       "post": {
         "summary": "Staff initiates a new support ticket/chat with a user",
         "description": "Restricted to admin and support roles. Creates a new ticket assigned to the target user and notifies them.\n",
-        "tags": ["Support"],
+        "tags": [
+          "Support"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -7563,7 +8186,9 @@
       "delete": {
         "summary": "Delete a ticket message",
         "description": "Support or Admin only. Can delete messages sent by the authenticated staff member.",
-        "tags": ["Support"],
+        "tags": [
+          "Support"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -7609,7 +8234,9 @@
       "get": {
         "summary": "List ticket messages",
         "description": "Returns all discussion messages for a ticket. Caller must own the ticket or have support/admin role.",
-        "tags": ["Support"],
+        "tags": [
+          "Support"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -7644,7 +8271,9 @@
       "post": {
         "summary": "Send a ticket message",
         "description": "Adds a new message to the ticket conversation.",
-        "tags": ["Support"],
+        "tags": [
+          "Support"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -7667,7 +8296,9 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["content"],
+                "required": [
+                  "content"
+                ],
                 "properties": {
                   "content": {
                     "type": "string"
@@ -7697,7 +8328,9 @@
       "get": {
         "summary": "Get support ticket by ID",
         "description": "Returns a ticket by ID.\nUsers can only access their own ticket, while Support/Admin can access any ticket.\n",
-        "tags": ["Support"],
+        "tags": [
+          "Support"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -7743,7 +8376,11 @@
                         },
                         "status": {
                           "type": "string",
-                          "enum": ["open", "resolved", "closed"]
+                          "enum": [
+                            "open",
+                            "resolved",
+                            "closed"
+                          ]
                         },
                         "createdAt": {
                           "type": "string",
@@ -7789,7 +8426,9 @@
       "delete": {
         "summary": "Delete support ticket",
         "description": "Support/Admin only.",
-        "tags": ["Support"],
+        "tags": [
+          "Support"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -7847,7 +8486,9 @@
       "patch": {
         "summary": "Update support ticket status",
         "description": "Support/Admin only.",
-        "tags": ["Support"],
+        "tags": [
+          "Support"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -7870,11 +8511,17 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["status"],
+                "required": [
+                  "status"
+                ],
                 "properties": {
                   "status": {
                     "type": "string",
-                    "enum": ["open", "resolved", "closed"]
+                    "enum": [
+                      "open",
+                      "resolved",
+                      "closed"
+                    ]
                   }
                 }
               }
@@ -7901,7 +8548,11 @@
                         },
                         "status": {
                           "type": "string",
-                          "enum": ["open", "resolved", "closed"]
+                          "enum": [
+                            "open",
+                            "resolved",
+                            "closed"
+                          ]
                         },
                         "updatedAt": {
                           "type": "string",
@@ -7965,7 +8616,9 @@
       "get": {
         "summary": "List current user's support tickets",
         "description": "Returns paginated tickets for the signed-in user only (all roles).\nFor the full queue, use GET /api/support/staff/tickets (admin/support).\n",
-        "tags": ["Support"],
+        "tags": [
+          "Support"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -7977,7 +8630,11 @@
             "name": "status",
             "schema": {
               "type": "string",
-              "enum": ["open", "resolved", "closed"]
+              "enum": [
+                "open",
+                "resolved",
+                "closed"
+              ]
             },
             "description": "Filter by ticket status"
           },
@@ -7986,7 +8643,10 @@
             "name": "sortDirection",
             "schema": {
               "type": "string",
-              "enum": ["asc", "desc"],
+              "enum": [
+                "asc",
+                "desc"
+              ],
               "default": "desc"
             },
             "description": "Sort by created date direction"
@@ -8047,7 +8707,11 @@
                           },
                           "status": {
                             "type": "string",
-                            "enum": ["open", "resolved", "closed"]
+                            "enum": [
+                              "open",
+                              "resolved",
+                              "closed"
+                            ]
                           },
                           "createdAt": {
                             "type": "string",
@@ -8096,7 +8760,9 @@
       },
       "post": {
         "summary": "Create support ticket",
-        "tags": ["Support"],
+        "tags": [
+          "Support"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8108,7 +8774,10 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["subject", "description"],
+                "required": [
+                  "subject",
+                  "description"
+                ],
                 "properties": {
                   "subject": {
                     "type": "string",
@@ -8154,7 +8823,11 @@
                         },
                         "status": {
                           "type": "string",
-                          "enum": ["open", "resolved", "closed"]
+                          "enum": [
+                            "open",
+                            "resolved",
+                            "closed"
+                          ]
                         },
                         "createdAt": {
                           "type": "string",
@@ -8202,7 +8875,9 @@
       "get": {
         "summary": "Get OpenAPI specification",
         "description": "Returns the OpenAPI/Swagger specification for the API",
-        "tags": ["API Documentation"],
+        "tags": [
+          "API Documentation"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8231,7 +8906,9 @@
     "/api/teachers/{id}": {
       "get": {
         "summary": "Get teacher by ID (Admin only)",
-        "tags": ["Teachers"],
+        "tags": [
+          "Teachers"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8305,7 +8982,9 @@
       },
       "put": {
         "summary": "Update teacher by ID (Admin only)",
-        "tags": ["Teachers"],
+        "tags": [
+          "Teachers"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8341,12 +9020,25 @@
                   },
                   "studentType": {
                     "type": "string",
-                    "enum": ["foundation", "khatimeen", "children", "adults"],
+                    "enum": [
+                      "foundation",
+                      "khatimeen",
+                      "children",
+                      "adults"
+                    ],
                     "nullable": true
                   },
                   "status": {
                     "type": "string",
-                    "enum": ["active", "archived"]
+                    "enum": [
+                      "active",
+                      "archived"
+                    ]
+                  },
+                  "sallary": {
+                    "type": "integer",
+                    "nullable": true,
+                    "minimum": 0
                   },
                   "notes": {
                     "type": "string",
@@ -8425,7 +9117,9 @@
       },
       "delete": {
         "summary": "Delete teacher by ID (Admin only)",
-        "tags": ["Teachers"],
+        "tags": [
+          "Teachers"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8481,7 +9175,9 @@
     "/api/teachers": {
       "get": {
         "summary": "List teachers with pagination and filters (Admin only)",
-        "tags": ["Teachers"],
+        "tags": [
+          "Teachers"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8509,7 +9205,12 @@
             "name": "studentType",
             "schema": {
               "type": "string",
-              "enum": ["foundation", "khatimeen", "children", "adults"]
+              "enum": [
+                "foundation",
+                "khatimeen",
+                "children",
+                "adults"
+              ]
             }
           },
           {
@@ -8517,7 +9218,10 @@
             "name": "status",
             "schema": {
               "type": "string",
-              "enum": ["active", "archived"]
+              "enum": [
+                "active",
+                "archived"
+              ]
             }
           },
           {
@@ -8525,7 +9229,11 @@
             "name": "sortBy",
             "schema": {
               "type": "string",
-              "enum": ["createdAt", "name", "status"]
+              "enum": [
+                "createdAt",
+                "name",
+                "status"
+              ]
             }
           },
           {
@@ -8533,7 +9241,10 @@
             "name": "sortOrder",
             "schema": {
               "type": "string",
-              "enum": ["asc", "desc"]
+              "enum": [
+                "asc",
+                "desc"
+              ]
             }
           },
           {
@@ -8608,7 +9319,9 @@
       },
       "post": {
         "summary": "Create a teacher record (Admin only)",
-        "tags": ["Teachers"],
+        "tags": [
+          "Teachers"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8620,7 +9333,9 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["name"],
+                "required": [
+                  "name"
+                ],
                 "properties": {
                   "userId": {
                     "type": "string",
@@ -8635,13 +9350,26 @@
                   },
                   "studentType": {
                     "type": "string",
-                    "enum": ["foundation", "khatimeen", "children", "adults"],
+                    "enum": [
+                      "foundation",
+                      "khatimeen",
+                      "children",
+                      "adults"
+                    ],
                     "nullable": true
                   },
                   "status": {
                     "type": "string",
-                    "enum": ["active", "archived"],
+                    "enum": [
+                      "active",
+                      "archived"
+                    ],
                     "default": "active"
+                  },
+                  "sallary": {
+                    "type": "integer",
+                    "nullable": true,
+                    "minimum": 0
                   },
                   "notes": {
                     "type": "string",
@@ -8712,7 +9440,9 @@
     "/api/teachers/select": {
       "get": {
         "summary": "Search and select teachers by name (Admin only)",
-        "tags": ["Teachers"],
+        "tags": [
+          "Teachers"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8816,7 +9546,9 @@
     "/api/todos/{id}": {
       "get": {
         "summary": "Get todo by ID",
-        "tags": ["Todos"],
+        "tags": [
+          "Todos"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8880,7 +9612,9 @@
       },
       "put": {
         "summary": "Update todo fields",
-        "tags": ["Todos"],
+        "tags": [
+          "Todos"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -8920,7 +9654,11 @@
                     "description": "Embedded steps with completion state",
                     "items": {
                       "type": "object",
-                      "required": ["id", "title", "isCompleted"],
+                      "required": [
+                        "id",
+                        "title",
+                        "isCompleted"
+                      ],
                       "properties": {
                         "id": {
                           "type": "string",
@@ -8941,7 +9679,11 @@
                   },
                   "priority": {
                     "type": "string",
-                    "enum": ["low", "medium", "high"],
+                    "enum": [
+                      "low",
+                      "medium",
+                      "high"
+                    ],
                     "nullable": true
                   },
                   "dueDate": {
@@ -9012,7 +9754,9 @@
       },
       "delete": {
         "summary": "Delete todo",
-        "tags": ["Todos"],
+        "tags": [
+          "Todos"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -9058,7 +9802,9 @@
     "/api/todos": {
       "get": {
         "summary": "List todos with pagination and filters",
-        "tags": ["Todos"],
+        "tags": [
+          "Todos"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -9086,7 +9832,11 @@
             "name": "priority",
             "schema": {
               "type": "string",
-              "enum": ["low", "medium", "high"]
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ]
             }
           },
           {
@@ -9094,7 +9844,11 @@
             "name": "sortBy",
             "schema": {
               "type": "string",
-              "enum": ["date", "title", "priority"]
+              "enum": [
+                "date",
+                "title",
+                "priority"
+              ]
             }
           },
           {
@@ -9102,7 +9856,10 @@
             "name": "completed",
             "schema": {
               "type": "string",
-              "enum": [true, false]
+              "enum": [
+                true,
+                false
+              ]
             },
             "description": "Filter by completion status"
           },
@@ -9127,7 +9884,10 @@
             "name": "onlyNoDueDate",
             "schema": {
               "type": "string",
-              "enum": [true, false]
+              "enum": [
+                true,
+                false
+              ]
             },
             "description": "Return only active todos without a due date (inbox)"
           },
@@ -9136,7 +9896,10 @@
             "name": "onlyOverdue",
             "schema": {
               "type": "string",
-              "enum": [true, false]
+              "enum": [
+                true,
+                false
+              ]
             },
             "description": "Return only active overdue todos (due date before today)"
           },
@@ -9221,7 +9984,9 @@
       },
       "post": {
         "summary": "Create a todo",
-        "tags": ["Todos"],
+        "tags": [
+          "Todos"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -9233,7 +9998,9 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["title"],
+                "required": [
+                  "title"
+                ],
                 "properties": {
                   "title": {
                     "type": "string",
@@ -9252,7 +10019,11 @@
                     "description": "Optional embedded steps with completion state",
                     "items": {
                       "type": "object",
-                      "required": ["id", "title", "isCompleted"],
+                      "required": [
+                        "id",
+                        "title",
+                        "isCompleted"
+                      ],
                       "properties": {
                         "id": {
                           "type": "string",
@@ -9270,7 +10041,11 @@
                   },
                   "priority": {
                     "type": "string",
-                    "enum": ["low", "medium", "high"],
+                    "enum": [
+                      "low",
+                      "medium",
+                      "high"
+                    ],
                     "nullable": true
                   },
                   "dueDate": {
@@ -9333,7 +10108,9 @@
     "/api/todos/select": {
       "get": {
         "summary": "Search and select todos",
-        "tags": ["Todos"],
+        "tags": [
+          "Todos"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -9376,7 +10153,9 @@
       "get": {
         "summary": "Redirect to user media public URL by ID",
         "description": "Only the owner of the media file can resolve their media by ID.",
-        "tags": ["User Media"],
+        "tags": [
+          "User Media"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -9412,7 +10191,9 @@
     "/api/user/me": {
       "delete": {
         "summary": "Delete the currently authenticated user's account and all associated data",
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "security": [
           {
             "sessionAuth": []
@@ -9431,7 +10212,9 @@
     "/api/users/select": {
       "get": {
         "summary": "Search and select users (admin only)",
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "security": [
           {
             "sessionAuth": []

@@ -54,6 +54,7 @@ export function TeacherFormDialog({
     phone: "",
     studentType: "none",
     status: TeacherStatus.ACTIVE as TeacherStatus,
+    sallary: "",
     notes: "",
   });
 
@@ -65,6 +66,10 @@ export function TeacherFormDialog({
         phone: teacher.phone || "",
         studentType: teacher.studentType || "none",
         status: teacher.status || TeacherStatus.ACTIVE,
+        sallary:
+          teacher.sallary !== null && teacher.sallary !== undefined
+            ? String(teacher.sallary)
+            : "",
         notes: teacher.notes || "",
       });
     } else {
@@ -73,6 +78,7 @@ export function TeacherFormDialog({
         phone: "",
         studentType: "none",
         status: TeacherStatus.ACTIVE,
+        sallary: "",
         notes: "",
       });
     }
@@ -87,6 +93,9 @@ export function TeacherFormDialog({
       return;
     }
 
+    const parsedSallary =
+      formData.sallary.trim() === "" ? null : Number(formData.sallary);
+
     const payload: CreateTeacherDTO = {
       name: trimmedName,
       phone: formData.phone.trim() || null,
@@ -95,6 +104,8 @@ export function TeacherFormDialog({
           ? (formData.studentType as TeacherStudentType)
           : null,
       status: formData.status,
+      sallary:
+        parsedSallary !== null && !isNaN(parsedSallary) ? parsedSallary : null,
       notes: formData.notes.trim() || null,
     };
 
@@ -160,18 +171,37 @@ export function TeacherFormDialog({
             />
           </div>
 
-          {/* Row 2: Phone */}
-          <div className="space-y-1.5">
-            <Label htmlFor="teacher-phone">{t("dialogs.phoneLabel")}</Label>
-            <Input
-              id="teacher-phone"
-              dir="ltr"
-              placeholder={t("dialogs.phonePlaceholder")}
-              value={formData.phone}
-              onChange={(e) =>
-                setFormData((prev) => ({ ...prev, phone: e.target.value }))
-              }
-            />
+          {/* Row 2: Phone & Salary */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="space-y-1.5">
+              <Label htmlFor="teacher-phone">{t("dialogs.phoneLabel")}</Label>
+              <Input
+                id="teacher-phone"
+                dir="ltr"
+                placeholder={t("dialogs.phonePlaceholder")}
+                value={formData.phone}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, phone: e.target.value }))
+                }
+              />
+            </div>
+
+            <div className="space-y-1.5">
+              <Label htmlFor="teacher-sallary">
+                {t("dialogs.sallaryLabel")}
+              </Label>
+              <Input
+                id="teacher-sallary"
+                type="number"
+                min={0}
+                step={1}
+                placeholder={t("dialogs.sallaryPlaceholder")}
+                value={formData.sallary}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, sallary: e.target.value }))
+                }
+              />
+            </div>
           </div>
 
           {/* Row 3: Teaching Track & Status */}
