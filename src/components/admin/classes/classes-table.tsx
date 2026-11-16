@@ -188,58 +188,62 @@ export function ClassesTable() {
   });
 
   const classes = classesResponse?.items ?? [];
-  const meta = classesResponse?.meta;
-  const totalPages = meta?.totalPages ?? 1;
+  const total = classesResponse?.meta.total ?? 0;
+  const totalPages = classesResponse?.meta.totalPages ?? 0;
 
-  if (error) {
-    return (
-      <div className="flex flex-col items-center justify-center py-12 text-center">
-        <p className="text-sm text-destructive">{error.message}</p>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => mutate()}
-          className="mt-4"
-        >
-          {t("controls.refresh")}
-        </Button>
-      </div>
-    );
-  }
-
-  return (
-    <div className="space-y-4">
-      {/* Search and Filters Toolbar */}
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex flex-1 flex-wrap items-center gap-2">
-          {/* Search Input */}
-          <div className="relative min-w-[200px] max-w-sm flex-1">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground rtl:left-auto rtl:right-3" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => {
-                setSearchQuery(e.target.value);
+  // Top Filter Controls Toolbar
+  const filterControls = (
+    <div className="flex flex-col gap-3 mb-4 w-full">
+      {/* Row 1: Search + Actions */}
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
+        <div className="relative flex-1">
+          <Search className="absolute start-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+          <input
+            type="text"
+            placeholder={t("controls.search")}
+            className="w-full ps-8 pe-8 py-2 border rounded-md text-sm bg-background transition-colors focus:ring-1 focus:ring-primary focus:outline-none"
+            value={searchQuery}
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+              setPage(1);
+            }}
+          />
+          {searchQuery && (
+            <button
+              type="button"
+              onClick={() => {
+                setSearchQuery("");
                 setPage(1);
               }}
-              placeholder={t("controls.search")}
-              className="h-9 w-full rounded-md border border-input bg-background px-9 py-1 text-sm shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-            />
-            {searchQuery && (
-              <button
-                type="button"
-                onClick={() => {
-                  setSearchQuery("");
-                  setPage(1);
-                }}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground rtl:left-3 rtl:right-auto"
-              >
-                <XCircle className="h-4 w-4" />
-              </button>
-            )}
-          </div>
+              className="absolute end-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground p-0.5 rounded-full transition-colors cursor-pointer"
+              aria-label="Clear search"
+            >
+              <XCircle className="h-4 w-4" />
+            </button>
+          )}
+        </div>
 
-          {/* Class Type Filter */}
+        <div className="flex items-center gap-2 shrink-0">
+          <DataTableRefreshButton
+            onRefresh={() => mutate()}
+            isRefreshing={isValidating}
+            label={t("controls.refresh")}
+            className="flex-1 sm:flex-none justify-center px-3 py-2 text-sm font-medium"
+          />
+          <Button
+            onClick={handleCreate}
+            className="flex-1 sm:flex-none justify-center gap-1.5 px-4 py-2 text-sm font-medium cursor-pointer"
+          >
+            <Plus className="h-4 w-4" />
+            <span>{t("controls.addClass")}</span>
+          </Button>
+        </div>
+      </div>
+
+      {/* Row 2: Class Type & Teacher Filters */}
+      <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2">
+        {/* Class Type Filter */}
+        <div className="col-span-1 sm:w-44">
           <Select
             value={classTypeFilter}
             onValueChange={(val) => {
@@ -247,7 +251,7 @@ export function ClassesTable() {
               setPage(1);
             }}
           >
-            <SelectTrigger className="h-9 w-[160px] text-xs">
+            <SelectTrigger className="w-full">
               <SelectValue placeholder={t("controls.allTypes")} />
             </SelectTrigger>
             <SelectContent>
@@ -260,8 +264,10 @@ export function ClassesTable() {
               </SelectItem>
             </SelectContent>
           </Select>
+        </div>
 
-          {/* Teacher Filter */}
+        {/* Teacher Filter */}
+        <div className="col-span-1 sm:w-52">
           <Select
             value={teacherFilter}
             onValueChange={(val) => {
@@ -269,7 +275,7 @@ export function ClassesTable() {
               setPage(1);
             }}
           >
-            <SelectTrigger className="h-9 w-[170px] text-xs">
+            <SelectTrigger className="w-full">
               <SelectValue placeholder={t("controls.allTeachers")} />
             </SelectTrigger>
             <SelectContent>
@@ -281,109 +287,115 @@ export function ClassesTable() {
               ))}
             </SelectContent>
           </Select>
+        </div>
+      </div>
+    </div>
+  );
 
-          {/* Refresh Button */}
-          <DataTableRefreshButton
-            onRefresh={() => mutate()}
-            isRefreshing={isValidating}
-            aria-label={t("controls.refresh")}
-          />
+  // Mobile Adaptive Card View (< md)
+  const renderMobileCard = (classItem: ClassDTO) => (
+    <div
+      key={classItem.id}
+      className="rounded-xl border border-border/80 bg-card p-3.5 shadow-xs space-y-3 hover:border-border transition-colors"
+    >
+      <div className="flex items-start justify-between gap-3">
+        <div className="space-y-1">
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-foreground text-sm">
+              {classItem.name}
+            </span>
+          </div>
+          <div className="pt-0.5">
+            <ClassTypeBadge type={classItem.classType} />
+          </div>
         </div>
 
-        {/* Action Button */}
-        <div className="flex items-center gap-2">
-          <Button
-            onClick={handleCreate}
-            size="sm"
-            className="h-9 gap-1.5 cursor-pointer shadow-sm text-xs font-medium"
-          >
-            <Plus className="h-4 w-4" />
-            <span>{t("controls.addClass")}</span>
-          </Button>
+        <ClassActions
+          classItem={classItem}
+          onEdit={handleEdit}
+          onDelete={handleDeletePrompt}
+          onViewDetails={handleViewDetails}
+        />
+      </div>
+
+      {/* Teachers info */}
+      <div className="space-y-1 pt-2 border-t border-border/60 text-xs">
+        <div className="flex items-center justify-between text-muted-foreground">
+          <span className="flex items-center gap-1">
+            <User className="h-3 w-3" />
+            {t("columns.primaryTeacher")}:
+          </span>
+          <span className="font-medium text-foreground">
+            {classItem.primaryTeacherId &&
+            teachersMap[classItem.primaryTeacherId] ? (
+              teachersMap[classItem.primaryTeacherId]
+            ) : (
+              <span className="text-muted-foreground/60 italic font-normal">
+                {t("dialogs.unassigned")}
+              </span>
+            )}
+          </span>
+        </div>
+
+        <div className="flex items-center justify-between text-muted-foreground">
+          <span className="flex items-center gap-1">
+            <Users className="h-3 w-3" />
+            {t("columns.secondaryTeacher")}:
+          </span>
+          <span>
+            {classItem.secondaryTeacherId &&
+            teachersMap[classItem.secondaryTeacherId] ? (
+              teachersMap[classItem.secondaryTeacherId]
+            ) : (
+              <span className="text-muted-foreground/60 italic">
+                {t("dialogs.unassigned")}
+              </span>
+            )}
+          </span>
         </div>
       </div>
 
+      {/* Date footer */}
+      <div className="flex items-center justify-between pt-2 border-t border-border/60 text-xs text-muted-foreground">
+        <span>{t("columns.createdAt")}</span>
+        <span className="text-[11px] text-muted-foreground/80">
+          {classItem.createdAt && isHydrated
+            ? format(new Date(classItem.createdAt), "PP", {
+                locale: dateLocale,
+              })
+            : "—"}
+        </span>
+      </div>
+    </div>
+  );
+
+  if (error) return <div>{t("toasts.loadFailed")}</div>;
+
+  return (
+    <>
       {/* Main Data Table */}
       <DataTable
         columns={columns}
         data={classes}
         isLoading={isLoading}
-        emptyMessage={t("empty")}
+        isHydrated={isHydrated}
+        toolbar={filterControls}
+        renderMobileCard={renderMobileCard}
         page={page}
         totalPages={totalPages}
+        totalCount={total}
         onPageChange={setPage}
-        renderMobileCard={(classItem) => (
-          <div className="rounded-lg border bg-card p-4 space-y-3 shadow-sm">
-            <div className="flex items-start justify-between gap-2">
-              <div className="space-y-1">
-                <div className="flex items-center gap-2">
-                  <span className="font-semibold text-foreground text-sm">
-                    {classItem.name}
-                  </span>
-                </div>
-                <div className="pt-0.5">
-                  <ClassTypeBadge type={classItem.classType} />
-                </div>
-              </div>
-
-              <ClassActions
-                classItem={classItem}
-                onEdit={handleEdit}
-                onDelete={handleDeletePrompt}
-                onViewDetails={handleViewDetails}
-              />
-            </div>
-
-            {/* Teachers info */}
-            <div className="space-y-1 pt-2 border-t text-xs">
-              <div className="flex items-center justify-between text-muted-foreground">
-                <span className="flex items-center gap-1">
-                  <User className="h-3 w-3" />
-                  {t("columns.primaryTeacher")}:
-                </span>
-                <span className="font-medium text-foreground">
-                  {classItem.primaryTeacherId &&
-                  teachersMap[classItem.primaryTeacherId] ? (
-                    teachersMap[classItem.primaryTeacherId]
-                  ) : (
-                    <span className="text-muted-foreground/60 italic font-normal">
-                      {t("dialogs.unassigned")}
-                    </span>
-                  )}
-                </span>
-              </div>
-
-              <div className="flex items-center justify-between text-muted-foreground">
-                <span className="flex items-center gap-1">
-                  <Users className="h-3 w-3" />
-                  {t("columns.secondaryTeacher")}:
-                </span>
-                <span>
-                  {classItem.secondaryTeacherId &&
-                  teachersMap[classItem.secondaryTeacherId] ? (
-                    teachersMap[classItem.secondaryTeacherId]
-                  ) : (
-                    <span className="text-muted-foreground/60 italic">
-                      {t("dialogs.unassigned")}
-                    </span>
-                  )}
-                </span>
-              </div>
-            </div>
-
-            {/* Date footer */}
-            <div className="flex items-center justify-between pt-1 border-t text-[11px] text-muted-foreground">
-              <span>{t("columns.createdAt")}:</span>
-              <span>
-                {classItem.createdAt && isHydrated
-                  ? format(new Date(classItem.createdAt), "dd MMM yyyy", {
-                      locale: dateLocale,
-                    })
-                  : "—"}
-              </span>
-            </div>
-          </div>
-        )}
+        paginationLabels={{
+          previous: t("pagination.previous"),
+          next: t("pagination.next"),
+          previousAria: t("pagination.previousAria"),
+          nextAria: t("pagination.nextAria"),
+          summary: t("summary", { count: classes.length, total }),
+        }}
+        emptyMessage={t("empty")}
+        emptyIcon={
+          <Users className="h-10 w-10 mx-auto text-muted-foreground/50" />
+        }
       />
 
       {/* Modals & Dialogs */}
@@ -419,6 +431,6 @@ export function ClassesTable() {
         cancelText={t("dialogs.cancel")}
         confirmVariant="destructive"
       />
-    </div>
+    </>
   );
 }

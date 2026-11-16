@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import { DataTable, DataTableRefreshButton } from "@/components/ui/data-table";
 import {
   Select,
@@ -200,14 +201,13 @@ export function UsersTable() {
             label={t("controls.refresh")}
             className="flex-1 sm:flex-none justify-center px-3 py-2 text-sm font-medium"
           />
-          <button
-            className="flex-1 sm:flex-none justify-center bg-primary text-primary-foreground rounded-md px-4 py-2 text-sm font-medium shadow-xs hover:bg-primary/90 transition-colors flex items-center gap-2 cursor-pointer"
+          <Button
             onClick={() => setIsAddDialogOpen(true)}
-            type="button"
+            className="flex-1 sm:flex-none justify-center gap-1.5 px-4 py-2 text-sm font-medium cursor-pointer"
           >
             <UserPlus className="h-4 w-4" />
             <span>{t("controls.addUser")}</span>
-          </button>
+          </Button>
         </div>
       </div>
 
