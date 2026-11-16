@@ -1,6 +1,9 @@
 import type { ListUsersQueryDTO } from "@/server/modules/users/dto/list-users.dto";
 import type { UserRole } from "@/shared/enums/user-role.enum";
-import type { SelectUserItem, SelectUserQuery } from "@/shared/types/select.types";
+import type {
+  SelectUserItem,
+  SelectUserQuery,
+} from "@/shared/types/select.types";
 import type { UserWithDetailsDTO } from "@/shared/types/user.types";
 import { request, requestNoStore, requestWithMeta } from "@/lib/api/api-core";
 

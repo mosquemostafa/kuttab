@@ -119,13 +119,7 @@ const options = {
             createdAt: { type: "string", format: "date-time" },
             updatedAt: { type: "string", format: "date-time" },
           },
-          required: [
-            "id",
-            "name",
-            "status",
-            "createdAt",
-            "updatedAt",
-          ],
+          required: ["id", "name", "status", "createdAt", "updatedAt"],
         },
         Class: {
           type: "object",
@@ -141,13 +135,7 @@ const options = {
             createdAt: { type: "string", format: "date-time" },
             updatedAt: { type: "string", format: "date-time" },
           },
-          required: [
-            "id",
-            "name",
-            "classType",
-            "createdAt",
-            "updatedAt",
-          ],
+          required: ["id", "name", "classType", "createdAt", "updatedAt"],
         },
         Todo: {
           type: "object",

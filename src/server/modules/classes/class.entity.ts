@@ -12,10 +12,9 @@ export const classes = pgTable(
       .primaryKey()
       .$defaultFn(() => createId()),
     name: text("name").notNull(),
-    primaryTeacherId: text("primary_teacher_id").references(
-      () => teacher.id,
-      { onDelete: "set null" },
-    ),
+    primaryTeacherId: text("primary_teacher_id").references(() => teacher.id, {
+      onDelete: "set null",
+    }),
     secondaryTeacherId: text("secondary_teacher_id").references(
       () => teacher.id,
       { onDelete: "set null" },

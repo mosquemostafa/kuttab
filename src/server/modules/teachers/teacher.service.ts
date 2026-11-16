@@ -15,7 +15,10 @@ import {
 import type { ParsedPagination } from "@/server/pipes/parse-pagination.pipe";
 import { TeacherStatus } from "@/shared/enums/teacher-status.enum";
 import { TeacherStudentType } from "@/shared/enums/teacher-student-type.enum";
-import type { PaginationMeta, PaginatedResponse } from "@/shared/types/pagination.types";
+import type {
+  PaginationMeta,
+  PaginatedResponse,
+} from "@/shared/types/pagination.types";
 import type { SelectNameItem } from "@/shared/types/select.types";
 import type { TeacherDTO } from "@/shared/types/teacher.types";
 
@@ -76,10 +79,7 @@ export const teacherService = {
     return toDTO(created);
   },
 
-  async updateTeacher(
-    id: string,
-    dto: UpdateTeacherDTO,
-  ): Promise<TeacherDTO> {
+  async updateTeacher(id: string, dto: UpdateTeacherDTO): Promise<TeacherDTO> {
     const updated = await teacherRepository.update(id, dto);
     if (!updated) {
       throw new NotFoundException("Teacher", id);

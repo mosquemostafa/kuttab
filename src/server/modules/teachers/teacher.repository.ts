@@ -1,14 +1,5 @@
 import { createId } from "@paralleldrive/cuid2";
-import {
-  and,
-  asc,
-  count,
-  desc,
-  eq,
-  ilike,
-  or,
-  type SQL,
-} from "drizzle-orm";
+import { and, asc, count, desc, eq, ilike, or, type SQL } from "drizzle-orm";
 
 import { db } from "@/server/db";
 import { teacher } from "@/server/modules/teachers/teacher.entity";
@@ -28,7 +19,9 @@ export type CreateTeacherInput = {
 
 export type UpdateTeacherInput = Partial<CreateTeacherInput>;
 
-function toWhereClause(filters: Partial<ListTeachersQueryDTO>): SQL | undefined {
+function toWhereClause(
+  filters: Partial<ListTeachersQueryDTO>,
+): SQL | undefined {
   const clauses: SQL[] = [];
 
   if (filters.q) {

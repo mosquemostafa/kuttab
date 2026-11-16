@@ -47,7 +47,9 @@ export type CreateStudentInput = {
 
 export type UpdateStudentInput = Partial<CreateStudentInput>;
 
-function toWhereClause(filters: Partial<ListStudentsQueryDTO>): SQL | undefined {
+function toWhereClause(
+  filters: Partial<ListStudentsQueryDTO>,
+): SQL | undefined {
   const clauses: SQL[] = [];
 
   if (filters.q) {

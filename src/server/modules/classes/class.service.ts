@@ -14,7 +14,10 @@ import {
 } from "@/server/modules/classes/class.repository";
 import type { ParsedPagination } from "@/server/pipes/parse-pagination.pipe";
 import { ClassType } from "@/shared/enums/class-type.enum";
-import type { PaginationMeta, PaginatedResponse } from "@/shared/types/pagination.types";
+import type {
+  PaginationMeta,
+  PaginatedResponse,
+} from "@/shared/types/pagination.types";
 import type { SelectNameItem } from "@/shared/types/select.types";
 import type { ClassDTO } from "@/shared/types/class.types";
 
@@ -71,10 +74,7 @@ export const classService = {
     return toDTO(created);
   },
 
-  async updateClass(
-    id: string,
-    dto: UpdateClassDTO,
-  ): Promise<ClassDTO> {
+  async updateClass(id: string, dto: UpdateClassDTO): Promise<ClassDTO> {
     const updated = await classRepository.update(id, dto);
     if (!updated) {
       throw new NotFoundException("Class", id);

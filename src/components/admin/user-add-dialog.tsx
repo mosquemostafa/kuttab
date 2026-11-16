@@ -180,9 +180,7 @@ export function UserAddDialog({
               value={formData.phone}
               onChange={(e) => {
                 const cleaned = e.target.value
-                  .replace(/[٠-٩]/g, (d) =>
-                    (d.charCodeAt(0) - 1632).toString(),
-                  )
+                  .replace(/[٠-٩]/g, (d) => (d.charCodeAt(0) - 1632).toString())
                   .replace(/\D/g, "")
                   .slice(0, 11);
                 setFormData((prev) => ({ ...prev, phone: cleaned }));

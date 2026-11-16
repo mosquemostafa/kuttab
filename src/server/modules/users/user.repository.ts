@@ -261,10 +261,7 @@ export const userRepository = {
         .orderBy(asc(user.name))
         .limit(pagination.limit)
         .offset(pagination.offset),
-      db
-        .select({ total: count() })
-        .from(user)
-        .where(whereClause),
+      db.select({ total: count() }).from(user).where(whereClause),
     ]);
 
     return {

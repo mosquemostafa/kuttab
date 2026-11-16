@@ -1,14 +1,5 @@
 import { createId } from "@paralleldrive/cuid2";
-import {
-  and,
-  asc,
-  count,
-  desc,
-  eq,
-  ilike,
-  or,
-  type SQL,
-} from "drizzle-orm";
+import { and, asc, count, desc, eq, ilike, or, type SQL } from "drizzle-orm";
 
 import { db } from "@/server/db";
 import { classes } from "@/server/modules/classes/class.entity";
@@ -130,10 +121,7 @@ export const classRepository = {
     return created;
   },
 
-  async update(
-    id: string,
-    data: UpdateClassInput,
-  ): Promise<ClassRow | null> {
+  async update(id: string, data: UpdateClassInput): Promise<ClassRow | null> {
     const [updated] = await db
       .update(classes)
       .set({

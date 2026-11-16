@@ -3,13 +3,7 @@ import { z } from "zod";
 export const createClassSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(255),
   primaryTeacherId: z.string().trim().min(1).max(255).optional().nullable(),
-  secondaryTeacherId: z
-    .string()
-    .trim()
-    .min(1)
-    .max(255)
-    .optional()
-    .nullable(),
+  secondaryTeacherId: z.string().trim().min(1).max(255).optional().nullable(),
   classType: z.enum(["group", "individual"]).default("group"),
 });
 
