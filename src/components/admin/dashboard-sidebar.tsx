@@ -96,6 +96,11 @@ export function DashboardSidebar({
           label: t("shell.users"),
         },
         {
+          href: "/admin/students",
+          icon: GraduationCap,
+          label: t("shell.students"),
+        },
+        {
           href: "/admin/announcements",
           icon: Megaphone,
           label: t("shell.announcements"),

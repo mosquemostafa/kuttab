@@ -108,6 +108,10 @@
       "title": "Users | Almostafa Admin",
       "description": "Manage students, teachers, supervisors, access, and roles from the admin dashboard."
     },
+    "students": {
+      "title": "Students | Almostafa Admin",
+      "description": "Manage student records, Quran memorization levels, and class enrollments."
+    },
     "segments": {
       "title": "Segments | Almostafa Admin",
       "description": "Manage student groups and circles by custom labels and tracks."

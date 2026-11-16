@@ -1,0 +1,112 @@
+{
+  "controls": {
+    "search": "البحث بالاسم، أو الهاتف، أو المرحلة، أو الملاحظات...",
+    "allStatuses": "جميع الحالات",
+    "allClasses": "جميع الحلقات",
+    "allPaymentMethods": "جميع طرق الدفع",
+    "addStudent": "إضافة طالب",
+    "refresh": "تحديث",
+    "sortBy": "الترتيب حسب",
+    "sortCreatedAt": "تاريخ التسجيل",
+    "sortName": "الاسم",
+    "sortMemorizedParts": "الأجزاء المحفوظة",
+    "sortDirection": "الاتجاه",
+    "sortAsc": "تصاعدي",
+    "sortDesc": "تنازلي"
+  },
+  "columns": {
+    "id": "المعرّف",
+    "name": "الطالب",
+    "phone": "رقم الهاتف",
+    "class": "الحلقة",
+    "status": "الحالة",
+    "paymentMethod": "طريقة الدفع",
+    "memorization": "الحفظ",
+    "tajweed": "التجويد",
+    "registrationDate": "تاريخ التسجيل",
+    "createdAt": "تاريخ الإنشاء",
+    "actions": "الإجراءات"
+  },
+  "statuses": {
+    "active": "منتظم",
+    "pending": "قيد الانتظار",
+    "archived": "مؤرشف",
+    "rejected": "مرفوض"
+  },
+  "paymentMethods": {
+    "monthly": "شهري",
+    "installments": "أقساط",
+    "exempt_poor": "إعفاء (غير قادر)",
+    "exempt_staff_kids": "أبناء العاملين",
+    "special": "خاص",
+    "sponsored": "كفالة"
+  },
+  "tajweed": {
+    "yes": "دارس",
+    "no": "غير دارس"
+  },
+  "dialogs": {
+    "addTitle": "تسجيل طالب جديد",
+    "addDescription": "أدخل بيانات الطالب لتسجيله في المعهد وإلحاقه بالحلقات.",
+    "editTitle": "تعديل بيانات الطالب: {name}",
+    "editDescription": "تحديث البيانات الأكاديمية وحالة القيد للطالب.",
+    "detailsTitle": "ملف الطالب: {name}",
+    "detailsDescription": "تفاصيل التسجيل والبيانات الأكاديمية الكاملة.",
+    "nameLabel": "الاسم بالكامل",
+    "namePlaceholder": "مثال: أحمد محمد علي",
+    "phoneLabel": "رقم الهاتف",
+    "phonePlaceholder": "01012345678",
+    "classLabel": "الحلقة المقيد بها",
+    "classPlaceholder": "اختر الحلقة",
+    "noClass": "غير مسكن بحلقة",
+    "statusLabel": "حالة القيد",
+    "paymentMethodLabel": "طريقة الدفع",
+    "paymentMethodPlaceholder": "اختر طريقة الدفع",
+    "noPaymentMethod": "غير محدد",
+    "birthDateLabel": "تاريخ الميلاد",
+    "registrationDateLabel": "تاريخ التسجيل",
+    "gradeLabel": "المرحلة الدراسية / الصف",
+    "gradePlaceholder": "مثال: الصف الخامس الابتدائي",
+    "jobLabel": "المهنة / الوظيفة",
+    "jobPlaceholder": "مثال: طالب، مهندس",
+    "memorizedPartsCountLabel": "عدد أجزاء القرآن المحفوظة",
+    "partsOutOf30": "{count} من 30 جزءاً",
+    "memorizationDetailsLabel": "تفاصيل وملاحظات الحفظ",
+    "memorizationDetailsPlaceholder": "مثال: من سورة الناس إلى سورة الكهف",
+    "studiedTajweedLabel": "درس أحكام التجويد مسبقاً",
+    "previouslyEnrolledLabel": "التحق بمقارئ أو كُتّاب سابقاً",
+    "previousEnrolledPlaceLabel": "اسم المقرأة أو الكُتّاب السابق",
+    "previousEnrolledPlacePlaceholder": "مثال: معهد النور",
+    "notesLabel": "الملاحظات الإدارية",
+    "notesPlaceholder": "أي ملاحظات أو بيانات إضافية...",
+    "save": "حفظ التعديلات",
+    "create": "تسجيل الطالب",
+    "cancel": "إلغاء",
+    "saving": "جاري الحفظ...",
+    "deleteTitle": "حذف الطالب: {name}",
+    "deleteDescription": "هل أنت متأكد من حذف سجل هذا الطالب؟ لا يمكن التراجع عن هذا الإجراء.",
+    "deleteConfirm": "تأكيد الحذف",
+    "close": "إغلاق"
+  },
+  "actions": {
+    "menuLabel": "الإجراءات",
+    "edit": "تعديل",
+    "viewDetails": "عرض الملف",
+    "delete": "حذف"
+  },
+  "toasts": {
+    "created": "تم تسجيل الطالب بنجاح.",
+    "updated": "تم تحديث بيانات الطالب بنجاح.",
+    "deleted": "تم حذف سجل الطالب بنجاح.",
+    "loadFailed": "فشل في تحميل قائمة الطلاب.",
+    "nameRequired": "اسم الطالب مطلوب."
+  },
+  "summary": "عرض {count} من إجمالي {total} طالب",
+  "pagination": {
+    "previous": "السابق",
+    "next": "Next",
+    "previousAria": "الانتقال إلى الصفحة السابقة",
+    "nextAria": "الانتقال إلى الصفحة التالية"
+  },
+  "empty": "لا يوجد طلاب مسجلون"
+}

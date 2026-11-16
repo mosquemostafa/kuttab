@@ -1,0 +1,112 @@
+{
+  "controls": {
+    "search": "Search name, phone, grade, notes...",
+    "allStatuses": "All Statuses",
+    "allClasses": "All Classes",
+    "allPaymentMethods": "All Payment Methods",
+    "addStudent": "Add Student",
+    "refresh": "Refresh",
+    "sortBy": "Sort by",
+    "sortCreatedAt": "Registration Date",
+    "sortName": "Name",
+    "sortMemorizedParts": "Memorized Parts",
+    "sortDirection": "Direction",
+    "sortAsc": "Ascending",
+    "sortDesc": "Descending"
+  },
+  "columns": {
+    "id": "ID",
+    "name": "Student",
+    "phone": "Phone",
+    "class": "Class",
+    "status": "Status",
+    "paymentMethod": "Payment Method",
+    "memorization": "Memorization",
+    "tajweed": "Tajweed",
+    "registrationDate": "Registration Date",
+    "createdAt": "Created At",
+    "actions": "Actions"
+  },
+  "statuses": {
+    "active": "Active",
+    "pending": "Pending",
+    "archived": "Archived",
+    "rejected": "Rejected"
+  },
+  "paymentMethods": {
+    "monthly": "Monthly",
+    "installments": "Installments",
+    "exempt_poor": "Exempt (Need)",
+    "exempt_staff_kids": "Staff Children",
+    "special": "Special",
+    "sponsored": "Sponsored"
+  },
+  "tajweed": {
+    "yes": "Studied",
+    "no": "Not yet"
+  },
+  "dialogs": {
+    "addTitle": "Register New Student",
+    "addDescription": "Fill in student details to enroll them into the institute.",
+    "editTitle": "Edit Student: {name}",
+    "editDescription": "Update student academic records and enrollment details.",
+    "detailsTitle": "Student Profile: {name}",
+    "detailsDescription": "Full registration and academic profile details.",
+    "nameLabel": "Full Name",
+    "namePlaceholder": "e.g. Ahmed Mohamed",
+    "phoneLabel": "Phone Number",
+    "phonePlaceholder": "01012345678",
+    "classLabel": "Assigned Class",
+    "classPlaceholder": "Select a class",
+    "noClass": "Unassigned",
+    "statusLabel": "Enrollment Status",
+    "paymentMethodLabel": "Payment Method",
+    "paymentMethodPlaceholder": "Select payment method",
+    "noPaymentMethod": "None specified",
+    "birthDateLabel": "Birth Date",
+    "registrationDateLabel": "Registration Date",
+    "gradeLabel": "Academic Grade / Level",
+    "gradePlaceholder": "e.g. 5th Primary, High School",
+    "jobLabel": "Occupation / Job",
+    "jobPlaceholder": "e.g. Student, Engineer",
+    "memorizedPartsCountLabel": "Memorized Quran Parts (Juz)",
+    "partsOutOf30": "{count} of 30 Juz",
+    "memorizationDetailsLabel": "Memorization Details / Notes",
+    "memorizationDetailsPlaceholder": "e.g. From Surah An-Nas to Surah Al-Kahf",
+    "studiedTajweedLabel": "Studied Tajweed rules before",
+    "previouslyEnrolledLabel": "Previously enrolled in Quran school",
+    "previousEnrolledPlaceLabel": "Previous School / Circle Name",
+    "previousEnrolledPlacePlaceholder": "e.g. Al-Nour Institute",
+    "notesLabel": "Administrative Notes",
+    "notesPlaceholder": "Any notes or observations...",
+    "save": "Save Changes",
+    "create": "Register Student",
+    "cancel": "Cancel",
+    "saving": "Saving...",
+    "deleteTitle": "Delete Student: {name}",
+    "deleteDescription": "Are you sure you want to permanently delete this student record? This action cannot be undone.",
+    "deleteConfirm": "Delete Student",
+    "close": "Close"
+  },
+  "actions": {
+    "menuLabel": "Actions",
+    "edit": "Edit",
+    "viewDetails": "View Profile",
+    "delete": "Delete"
+  },
+  "toasts": {
+    "created": "Student registered successfully.",
+    "updated": "Student details updated successfully.",
+    "deleted": "Student record deleted.",
+    "loadFailed": "Failed to load students list.",
+    "nameRequired": "Student name is required."
+  },
+  "summary": "Showing {count} of {total} students",
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "previousAria": "Go to previous page",
+    "nextAria": "Go to next page"
+  },
+  "empty": "No students found"
+}
