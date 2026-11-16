@@ -1,0 +1,74 @@
+{
+  "controls": {
+    "search": "البحث باسم الحلقة...",
+    "allTypes": "جميع أنواع الحلقات",
+    "allTeachers": "جميع المعلمين",
+    "addClass": "إضافة حلقة",
+    "refresh": "تحديث",
+    "sortBy": "الترتيب حسب",
+    "sortCreatedAt": "تاريخ الإنشاء",
+    "sortName": "اسم الحلقة",
+    "sortClassType": "نوع الحلقة",
+    "sortDirection": "الاتجاه",
+    "sortAsc": "تصاعدي",
+    "sortDesc": "تنازلي"
+  },
+  "columns": {
+    "id": "المعرّف",
+    "name": "اسم الحلقة",
+    "classType": "نوع الحلقة",
+    "primaryTeacher": "المعلّم الأساسي",
+    "secondaryTeacher": "المعلّم المساعد",
+    "createdAt": "تاريخ الإنشاء",
+    "actions": "الإجراءات"
+  },
+  "classTypes": {
+    "group": "حلقة جماعية",
+    "individual": "جلسة فردية"
+  },
+  "dialogs": {
+    "addTitle": "إنشاء حلقة جديدة",
+    "addDescription": "إعداد حلقة قرآنية جماعية أو جلسة إقراء فردية جديدة.",
+    "editTitle": "تعديل الحلقة: {name}",
+    "editDescription": "تحديث اسم الحلقة، أو نوعها، أو المعلمين المسندين إليها.",
+    "detailsTitle": "تفاصيل الحلقة: {name}",
+    "detailsDescription": "البيانات الكاملة للحلقة والمعلمون المشرفون عليها.",
+    "nameLabel": "اسم الحلقة",
+    "namePlaceholder": "مثال: حلقة الفجر - المستوى الأول",
+    "classTypeLabel": "نوع الحلقة",
+    "primaryTeacherLabel": "المعلّم الأساسي",
+    "primaryTeacherPlaceholder": "اختر المعلّم الأساسي (اختياري)",
+    "secondaryTeacherLabel": "المعلّم المساعد / البديل",
+    "secondaryTeacherPlaceholder": "اختر المعلّم المساعد (اختياري)",
+    "unassigned": "غير محدد",
+    "save": "حفظ التعديلات",
+    "create": "إنشاء الحلقة",
+    "cancel": "إلغاء",
+    "saving": "جاري الحفظ...",
+    "deleteTitle": "حذف الحلقة: {name}",
+    "deleteDescription": "هل أنت متأكد من رغبتك في حذف هذه الحلقة؟ لا يمكن التراجع عن هذا الإجراء.",
+    "deleteConfirm": "تأكيد الحذف",
+    "close": "إغلاق"
+  },
+  "actions": {
+    "menuLabel": "الإجراءات",
+    "edit": "تعديل",
+    "viewDetails": "عرض التفاصيل",
+    "delete": "حذف"
+  },
+  "toasts": {
+    "created": "تم إنشاء الحلقة بنجاح.",
+    "updated": "تم تحديث بيانات الحلقة بنجاح.",
+    "deleted": "تم حذف الحلقة بنجاح.",
+    "loadFailed": "فشل في تحميل قائمة الحلقات.",
+    "nameRequired": "اسم الحلقة مطلوب."
+  },
+  "summary": "عرض {count} من إجمالي {total} حلقة",
+  "pagination": {
+    "previous": "السابق",
+    "next": "التالي",
+    "previousAria": "الانتقال إلى الصفحة السابقة",
+    "nextAria": "الانتقال إلى الصفحة التالية"
+  },
+  "empty": "لا توجد حلقات مسجلة"
+}

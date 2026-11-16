@@ -20,6 +20,7 @@ import {
   PenSquare,
   GraduationCap,
   UserCheck,
+  School,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/logo";
@@ -104,6 +105,11 @@ export function DashboardSidebar({
           href: "/admin/teachers",
           icon: UserCheck,
           label: t("shell.teachers"),
+        },
+        {
+          href: "/admin/classes",
+          icon: School,
+          label: t("shell.classes"),
         },
         {
           href: "/admin/announcements",

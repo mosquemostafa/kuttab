@@ -1,0 +1,74 @@
+{
+  "controls": {
+    "search": "Search class name...",
+    "allTypes": "All Class Types",
+    "allTeachers": "All Teachers",
+    "addClass": "Add Class",
+    "refresh": "Refresh",
+    "sortBy": "Sort by",
+    "sortCreatedAt": "Date Created",
+    "sortName": "Name",
+    "sortClassType": "Class Type",
+    "sortDirection": "Direction",
+    "sortAsc": "Ascending",
+    "sortDesc": "Descending"
+  },
+  "columns": {
+    "id": "ID",
+    "name": "Class Name",
+    "classType": "Type",
+    "primaryTeacher": "Primary Teacher",
+    "secondaryTeacher": "Secondary Teacher",
+    "createdAt": "Date Created",
+    "actions": "Actions"
+  },
+  "classTypes": {
+    "group": "Group Circle",
+    "individual": "Individual Session"
+  },
+  "dialogs": {
+    "addTitle": "Create New Class",
+    "addDescription": "Set up a new study circle or individual Quran session.",
+    "editTitle": "Edit Class: {name}",
+    "editDescription": "Update class title, type, or assigned Quran teachers.",
+    "detailsTitle": "Class Details: {name}",
+    "detailsDescription": "Full circle details and assigned teaching faculty.",
+    "nameLabel": "Class Name",
+    "namePlaceholder": "e.g. Halaqat Al-Fajr - Level 1",
+    "classTypeLabel": "Class Type",
+    "primaryTeacherLabel": "Primary Teacher",
+    "primaryTeacherPlaceholder": "Select primary teacher (optional)",
+    "secondaryTeacherLabel": "Assistant / Secondary Teacher",
+    "secondaryTeacherPlaceholder": "Select assistant teacher (optional)",
+    "unassigned": "Unassigned",
+    "save": "Save Changes",
+    "create": "Create Class",
+    "cancel": "Cancel",
+    "saving": "Saving...",
+    "deleteTitle": "Delete Class: {name}",
+    "deleteDescription": "Are you sure you want to permanently delete this class? This action cannot be undone.",
+    "deleteConfirm": "Delete Class",
+    "close": "Close"
+  },
+  "actions": {
+    "menuLabel": "Actions",
+    "edit": "Edit",
+    "viewDetails": "View Details",
+    "delete": "Delete"
+  },
+  "toasts": {
+    "created": "Class created successfully.",
+    "updated": "Class details updated successfully.",
+    "deleted": "Class deleted successfully.",
+    "loadFailed": "Failed to load classes list.",
+    "nameRequired": "Class name is required."
+  },
+  "summary": "Showing {count} of {total} classes",
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "previousAria": "Go to previous page",
+    "nextAria": "Go to next page"
+  },
+  "empty": "No classes found"
+}
