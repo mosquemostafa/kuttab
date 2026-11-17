@@ -18,7 +18,7 @@ import { useTranslations } from "next-intl";
 import { apiClient } from "@/lib/api/api-client";
 import { useApiErrorMessage } from "@/lib/api/use-api-error-message";
 
-type RegistrationSettingsCardProps = {
+type AppSettingsCardProps = {
   initialOrganizationName: string;
   initialAllowSelfRegistration: boolean;
   initialRequireEmailVerification: boolean;
@@ -26,9 +26,10 @@ type RegistrationSettingsCardProps = {
   initialSendFeedbackConfirmationEmail: boolean;
   initialForceSingleActiveSession: boolean;
   initialSendNewsletterWelcomeEmail: boolean;
+  initialWorkingDays?: number[];
 };
 
-export function RegistrationSettingsCard({
+export function AppSettingsCard({
   initialOrganizationName,
   initialAllowSelfRegistration,
   initialRequireEmailVerification,
@@ -36,7 +37,8 @@ export function RegistrationSettingsCard({
   initialSendFeedbackConfirmationEmail,
   initialForceSingleActiveSession,
   initialSendNewsletterWelcomeEmail,
-}: RegistrationSettingsCardProps) {
+  initialWorkingDays = [0, 1, 2, 3, 4],
+}: AppSettingsCardProps) {
   const [organizationName, setOrganizationName] = useState(
     initialOrganizationName,
   );
@@ -58,11 +60,40 @@ export function RegistrationSettingsCard({
   const [sendNewsletterWelcomeEmail, setSendNewsletterWelcomeEmail] = useState(
     initialSendNewsletterWelcomeEmail,
   );
+  const [workingDays, setWorkingDays] = useState<number[]>(initialWorkingDays);
   const t = useTranslations("adminSettings");
   const getErrorMessage = useApiErrorMessage();
   const [isSaving, setIsSaving] = useState(false);
 
+  const dayOptions = [
+    { day: 0, label: t("fields.days.0") },
+    { day: 1, label: t("fields.days.1") },
+    { day: 2, label: t("fields.days.2") },
+    { day: 3, label: t("fields.days.3") },
+    { day: 4, label: t("fields.days.4") },
+    { day: 5, label: t("fields.days.5") },
+    { day: 6, label: t("fields.days.6") },
+  ];
+
+  const toggleDay = (day: number) => {
+    setWorkingDays((prev) => {
+      if (prev.includes(day)) {
+        if (prev.length <= 1) {
+          toast.error(t("fields.workingDaysMinError"));
+          return prev;
+        }
+        return prev.filter((d) => d !== day).sort((a, b) => a - b);
+      }
+      return [...prev, day].sort((a, b) => a - b);
+    });
+  };
+
   const handleSave = async () => {
+    if (workingDays.length === 0) {
+      toast.error(t("fields.workingDaysMinError"));
+      return;
+    }
+
     setIsSaving(true);
 
     try {
@@ -74,6 +105,7 @@ export function RegistrationSettingsCard({
         sendFeedbackConfirmationEmail,
         forceSingleActiveSession,
         sendNewsletterWelcomeEmail,
+        workingDays,
       });
 
       toast.success(t("actions.savedSuccess"));
@@ -87,6 +119,7 @@ export function RegistrationSettingsCard({
       setSendFeedbackConfirmationEmail(data.sendFeedbackConfirmationEmail);
       setForceSingleActiveSession(data.forceSingleActiveSession);
       setSendNewsletterWelcomeEmail(data.sendNewsletterWelcomeEmail);
+      setWorkingDays(data.workingDays ?? [0, 1, 2, 3, 4]);
     } catch (error) {
       toast.error(getErrorMessage(error));
     } finally {
@@ -218,6 +251,32 @@ export function RegistrationSettingsCard({
             onCheckedChange={setForceSingleActiveSession}
             aria-label="Toggle single active session"
           />
+        </div>
+
+        <div className="space-y-3 rounded-md border p-4">
+          <div>
+            <p className="text-sm font-medium">{t("fields.workingDays")}</p>
+            <p className="text-xs text-muted-foreground">
+              {t("fields.workingDaysDescription")}
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {dayOptions.map(({ day, label }) => {
+              const isSelected = workingDays.includes(day);
+              return (
+                <Button
+                  key={day}
+                  type="button"
+                  variant={isSelected ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => toggleDay(day)}
+                  className="min-w-20"
+                >
+                  {label}
+                </Button>
+              );
+            })}
+          </div>
         </div>
 
         <Button onClick={handleSave} disabled={isSaving}>

@@ -168,7 +168,7 @@ After feedback creation in service:
 
 - Setting key (service-level): `sendFeedbackConfirmationEmail`
 - Backed by DB column: `send_feedback_confirmation_email`
-- Admin UI toggle in [src/components/admin/registration-settings-card.tsx](../../src/components/admin/registration-settings-card.tsx)
+- Admin UI toggle in [src/components/admin/app-settings-card.tsx](../../src/components/admin/app-settings-card.tsx)
 - Passed from page/action/service/repository chain:
   - [src/app/[locale]/admin/settings/page.tsx](../../src/app/%5Blocale%5D/admin/settings/page.tsx)
   - [src/app/[locale]/admin/settings/action.ts](../../src/app/%5Blocale%5D/admin/settings/action.ts)

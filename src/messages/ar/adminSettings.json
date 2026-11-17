@@ -26,7 +26,19 @@
     "sendNewsletterWelcomeEmailDisabled": "معطّل: لا يُرسل بريد ترحيب عند الاشتراك.",
     "forceSingleActiveSession": "فرض جلسة نشطة واحدة",
     "forceSingleActiveSessionEnabled": "ممكّن: جلسة نشطة واحدة لكل مستخدم.",
-    "forceSingleActiveSessionDisabled": "معطّل: يمكن للمستخدمين البقاء مسجلين الدخول على عدة أجهزة."
+    "forceSingleActiveSessionDisabled": "معطّل: يمكن للمستخدمين البقاء مسجلين الدخول على عدة أجهزة.",
+    "workingDays": "أيام عمل المعهد",
+    "workingDaysDescription": "حدد أيام الأسبوع النشطة التي يعمل بها المعهد.",
+    "workingDaysMinError": "يرجى تحديد يوم عمل واحد على الأقل.",
+    "days": {
+      "0": "الأحد",
+      "1": "الإثنين",
+      "2": "الثلاثاء",
+      "3": "الأربعاء",
+      "4": "الخميس",
+      "5": "الجمعة",
+      "6": "السبت"
+    }
   },
   "actions": {
     "save": "حفظ الإعدادات",

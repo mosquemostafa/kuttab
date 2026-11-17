@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { RegistrationSettingsCard } from "@/components/admin/registration-settings-card";
+import { AppSettingsCard } from "@/components/admin/app-settings-card";
 import { appSettingsService } from "@/server/modules/app-settings/app-settings.service";
 import { getTranslations } from "next-intl/server";
 
@@ -44,7 +44,7 @@ export default async function AdminSettingsPage() {
       </div>
 
       <div className="space-y-6">
-        <RegistrationSettingsCard
+        <AppSettingsCard
           initialOrganizationName={settings.organizationName}
           initialAllowSelfRegistration={settings.allowSelfRegistration}
           initialRequireEmailVerification={settings.requireEmailVerification}
@@ -58,6 +58,7 @@ export default async function AdminSettingsPage() {
           initialSendNewsletterWelcomeEmail={
             settings.sendNewsletterWelcomeEmail
           }
+          initialWorkingDays={settings.workingDays}
         />
       </div>
     </div>

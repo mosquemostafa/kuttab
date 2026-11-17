@@ -34,6 +34,13 @@
  *               sendFeedbackConfirmationEmail: { type: boolean }
  *               forceSingleActiveSession: { type: boolean }
  *               sendNewsletterWelcomeEmail: { type: boolean }
+ *               workingDays:
+ *                 type: array
+ *                 items:
+ *                   type: integer
+ *                   minimum: 0
+ *                   maximum: 6
+ *                 example: [0, 1, 2, 3, 4]
  *     responses:
  *       200:
  *         description: Updated application settings

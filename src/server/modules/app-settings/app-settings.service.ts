@@ -14,6 +14,7 @@ type AppSettings = {
   sendFeedbackConfirmationEmail: boolean;
   forceSingleActiveSession: boolean;
   sendNewsletterWelcomeEmail: boolean;
+  workingDays: number[];
 };
 
 const DEFAULT_SETTINGS: AppSettings = {
@@ -24,6 +25,7 @@ const DEFAULT_SETTINGS: AppSettings = {
   sendFeedbackConfirmationEmail: true,
   forceSingleActiveSession: false,
   sendNewsletterWelcomeEmail: false,
+  workingDays: [0, 1, 2, 3, 4],
 };
 
 function isMissingRelationError(error: unknown) {
@@ -68,6 +70,10 @@ function toSettings(values: Partial<AppSettings>): AppSettings {
     sendNewsletterWelcomeEmail:
       values.sendNewsletterWelcomeEmail ??
       DEFAULT_SETTINGS.sendNewsletterWelcomeEmail,
+    workingDays:
+      values.workingDays && Array.isArray(values.workingDays)
+        ? values.workingDays
+        : DEFAULT_SETTINGS.workingDays,
   };
 }
 
@@ -110,6 +116,10 @@ export const appSettingsService = {
         sendNewsletterWelcomeEmail:
           values.sendNewsletterWelcomeEmail ??
           current.sendNewsletterWelcomeEmail,
+        workingDays:
+          values.workingDays && Array.isArray(values.workingDays)
+            ? values.workingDays
+            : current.workingDays,
       };
 
       await appSettingsRepository.updateDefault(next);

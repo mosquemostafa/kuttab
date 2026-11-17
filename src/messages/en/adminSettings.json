@@ -26,7 +26,19 @@
     "sendNewsletterWelcomeEmailDisabled": "Disabled: no welcome email is sent on subscribe.",
     "forceSingleActiveSession": "Force single active session",
     "forceSingleActiveSessionEnabled": "Enabled: one active session per user.",
-    "forceSingleActiveSessionDisabled": "Disabled: users can stay signed in on multiple devices."
+    "forceSingleActiveSessionDisabled": "Disabled: users can stay signed in on multiple devices.",
+    "workingDays": "Institute Working Days",
+    "workingDaysDescription": "Select the active days of the week when the institute operates.",
+    "workingDaysMinError": "Please select at least one working day.",
+    "days": {
+      "0": "Sunday",
+      "1": "Monday",
+      "2": "Tuesday",
+      "3": "Wednesday",
+      "4": "Thursday",
+      "5": "Friday",
+      "6": "Saturday"
+    }
   },
   "actions": {
     "save": "Save Settings",

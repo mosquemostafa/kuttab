@@ -1,0 +1,1 @@
+ALTER TABLE "app_settings" ADD COLUMN "working_days" integer[] DEFAULT '{0,1,2,3,4}'::integer[] NOT NULL;

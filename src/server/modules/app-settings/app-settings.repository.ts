@@ -26,6 +26,7 @@ export const appSettingsRepository = {
     sendFeedbackConfirmationEmail: boolean;
     forceSingleActiveSession: boolean;
     sendNewsletterWelcomeEmail: boolean;
+    workingDays: number[];
   }): Promise<AppSettingsRow | null> {
     const [created] = await db
       .insert(appSettings)
@@ -47,6 +48,7 @@ export const appSettingsRepository = {
     sendFeedbackConfirmationEmail: boolean;
     forceSingleActiveSession: boolean;
     sendNewsletterWelcomeEmail: boolean;
+    workingDays: number[];
   }): Promise<void> {
     await db
       .update(appSettings)

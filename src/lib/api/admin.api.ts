@@ -22,6 +22,7 @@ export const adminApi = {
       sendFeedbackConfirmationEmail: boolean;
       forceSingleActiveSession: boolean;
       sendNewsletterWelcomeEmail: boolean;
+      workingDays: number[];
     }>("/admin/settings"),
   updateSettings: (data: {
     organizationName?: string;
@@ -31,6 +32,7 @@ export const adminApi = {
     sendFeedbackConfirmationEmail?: boolean;
     forceSingleActiveSession?: boolean;
     sendNewsletterWelcomeEmail?: boolean;
+    workingDays?: number[];
   }) =>
     requestNoStore<{
       organizationName: string;
@@ -40,6 +42,7 @@ export const adminApi = {
       sendFeedbackConfirmationEmail: boolean;
       forceSingleActiveSession: boolean;
       sendNewsletterWelcomeEmail: boolean;
+      workingDays: number[];
     }>("/admin/settings", {
       method: "PUT",
       body: JSON.stringify(data),

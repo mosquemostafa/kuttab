@@ -1,4 +1,5 @@
-import { pgTable, text, timestamp, boolean } from "drizzle-orm/pg-core";
+import { sql } from "drizzle-orm";
+import { pgTable, text, timestamp, boolean, integer } from "drizzle-orm/pg-core";
 
 export const appSettings = pgTable("app_settings", {
   id: text("id")
@@ -27,6 +28,10 @@ export const appSettings = pgTable("app_settings", {
   sendNewsletterWelcomeEmail: boolean("send_newsletter_welcome_email")
     .$defaultFn(() => false)
     .notNull(),
+  workingDays: integer("working_days")
+    .array()
+    .notNull()
+    .default(sql`'{0,1,2,3,4}'::integer[]`),
   createdAt: timestamp("created_at")
     .$defaultFn(() => new Date())
     .notNull(),
