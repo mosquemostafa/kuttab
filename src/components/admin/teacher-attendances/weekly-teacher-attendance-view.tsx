@@ -14,10 +14,12 @@ import { enUS } from "date-fns/locale/en-US";
 import {
   Calendar as CalendarIcon,
   Check,
+  CircleAlert,
   ChevronLeft,
   ChevronRight,
   RefreshCw,
   Search,
+  X,
 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import toast from "react-hot-toast";
@@ -37,6 +39,7 @@ import type {
   TeacherAttendanceDTO,
   TeacherWeeklyAttendanceDTO,
 } from "@/shared/types/teacher-attendance.types";
+import { AttendanceDeductionType } from "@/shared/types/teacher-attendance.types";
 
 const SATURDAY = 6;
 
@@ -379,15 +382,31 @@ export function WeeklyTeacherAttendanceView({
                         >
                           <span
                             className={`flex h-9 w-9 items-center justify-center rounded-full border-2 transition-[background-color,border-color,color] md:h-11 md:w-11 ${
-                              day.isAttended
-                                ? "border-emerald-600 bg-emerald-600 text-white hover:border-emerald-700 hover:bg-emerald-700"
-                                : "border-border bg-background text-transparent hover:border-primary/50 hover:bg-muted"
+                              day.attendance?.attendanceDeductionType ===
+                              AttendanceDeductionType.EXCUSED_ABSENCE
+                                ? "border-yellow-500 bg-yellow-500 text-white hover:border-yellow-600 hover:bg-yellow-600"
+                                : day.isAttended
+                                  ? "border-emerald-600 bg-emerald-600 text-white hover:border-emerald-700 hover:bg-emerald-700"
+                                  : "border-rose-600 bg-rose-50 text-rose-600 hover:border-rose-700 hover:bg-rose-100 dark:bg-rose-950/30 dark:text-rose-400 dark:hover:bg-rose-950/50"
                             }`}
                           >
-                            <Check
-                              className="h-4 w-4 md:h-5 md:w-5"
-                              strokeWidth={3}
-                            />
+                            {day.attendance?.attendanceDeductionType ===
+                            AttendanceDeductionType.EXCUSED_ABSENCE ? (
+                              <CircleAlert
+                                className="h-4 w-4 md:h-5 md:w-5"
+                                strokeWidth={3}
+                              />
+                            ) : day.isAttended ? (
+                              <Check
+                                className="h-4 w-4 md:h-5 md:w-5"
+                                strokeWidth={3}
+                              />
+                            ) : (
+                              <X
+                                className="h-4 w-4 md:h-5 md:w-5"
+                                strokeWidth={3}
+                              />
+                            )}
                           </span>
                         </button>
                       </div>

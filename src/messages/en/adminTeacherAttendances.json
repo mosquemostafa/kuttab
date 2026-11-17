@@ -16,6 +16,7 @@
     "totalTeachers": "Total Teachers",
     "attended": "Present",
     "absent": "Absent",
+    "excusedAbsence": "Excused absence",
     "late": "Late",
     "attendanceRate": "Attendance Rate"
   },

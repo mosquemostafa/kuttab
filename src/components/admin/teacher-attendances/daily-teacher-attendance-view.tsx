@@ -11,7 +11,9 @@ import {
   Calendar as CalendarIcon,
   CalendarOff,
   Check,
+  CircleAlert,
   Clock,
+  X,
   UserCheck,
   UserX,
   Users,
@@ -41,6 +43,13 @@ import {
 } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
   Table,
   TableBody,
   TableCell,
@@ -53,7 +62,6 @@ import {
   type TeacherDailyAttendanceDTO,
 } from "@/shared/types/teacher-attendance.types";
 import { ConfirmationDialog } from "@/components/ui/confirmation-dialog";
-import { AttendanceDeductionDialog } from "./attendance-deduction-dialog";
 
 interface DailyTeacherAttendanceViewProps {
   showHeader?: boolean;
@@ -84,10 +92,6 @@ export function DailyTeacherAttendanceView({
     "all" | "attended" | "absent" | "late"
   >("all");
 
-  // Dialog state
-  const [editingRecord, setEditingRecord] =
-    useState<TeacherDailyAttendanceDTO | null>(null);
-  const [isDeductionDialogOpen, setIsDeductionDialogOpen] = useState(false);
   const [isBulkLoading, setIsBulkLoading] = useState(false);
   const [confirmAction, setConfirmAction] = useState<
     "markAllAttended" | "markAllAbsent" | null
@@ -115,12 +119,20 @@ export function DailyTeacherAttendanceView({
       (r: TeacherDailyAttendanceDTO) => r.isAttended,
     ).length;
     const absent = total - attended;
+    const excusedAbsence = records.filter(
+      (r: TeacherDailyAttendanceDTO) =>
+        r.attendance?.attendanceDeductionType ===
+        AttendanceDeductionType.EXCUSED_ABSENCE,
+    ).length;
     const late = records.filter(
-      (r: TeacherDailyAttendanceDTO) => r.attendance?.attendanceDeductionType != null,
+      (r: TeacherDailyAttendanceDTO) =>
+        r.attendance?.attendanceDeductionType != null &&
+        r.attendance.attendanceDeductionType !==
+          AttendanceDeductionType.EXCUSED_ABSENCE,
     ).length;
     const rate = total > 0 ? Math.round((attended / total) * 100) : 0;
 
-    return { total, attended, absent, late, rate };
+    return { total, attended, absent, excusedAbsence, late, rate };
   }, [records]);
 
   // Filtered records
@@ -218,13 +230,16 @@ export function DailyTeacherAttendanceView({
   };
 
   // Update the attendance deduction type with optimistic UI
-  const handleSaveDeduction = async (attendanceDeductionType: AttendanceDeductionType | null) => {
-    if (!editingRecord?.attendance) return;
+  const handleSaveDeduction = async (
+    record: TeacherDailyAttendanceDTO,
+    attendanceDeductionType: AttendanceDeductionType | null,
+  ) => {
+    if (!record.attendance) return;
 
-    const currentAttendance = editingRecord.attendance;
+    const currentAttendance = record.attendance;
     const previousPeriod = currentAttendance.attendanceDeductionType;
     const attendanceId = currentAttendance.id;
-    const teacherId = editingRecord.teacherId;
+    const teacherId = record.teacherId;
 
     // Optimistically update the deduction type in SWR cache
     mutate(
@@ -273,6 +288,74 @@ export function DailyTeacherAttendanceView({
       );
       toast.error(getErrorMessage(error) || t("notifications.error"));
     }
+  };
+
+  const renderDeductionMenu = (record: TeacherDailyAttendanceDTO) => {
+    if (!record.attendance) return null;
+
+    const selectedValue =
+      record.attendance.attendanceDeductionType ?? "none";
+
+    return (
+      <DropdownMenu dir={isArabic ? "rtl" : "ltr"}>
+        <DropdownMenuTrigger asChild>
+          <button
+            type="button"
+            className="cursor-pointer p-1 -m-1 transition-opacity hover:opacity-80"
+            aria-label={t("actions.editDeduction")}
+          >
+            {record.attendance.attendanceDeductionType ? (
+              getDeductionBadge(record.attendance.attendanceDeductionType)
+            ) : (
+              <span className="flex items-center gap-1 text-xs text-muted-foreground hover:underline">
+                <Clock className="h-3 w-3" />
+                {t("attendanceDeductionTypes.none")}
+              </span>
+            )}
+          </button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent
+          align="end"
+          className="w-56"
+        >
+          <DropdownMenuRadioGroup
+            value={selectedValue}
+            onValueChange={(value) =>
+              void handleSaveDeduction(
+                record,
+                value === "none"
+                  ? null
+                  : (value as AttendanceDeductionType),
+              )
+            }
+          >
+            <DropdownMenuRadioItem value="none">
+              {t("attendanceDeductionTypes.none")}
+            </DropdownMenuRadioItem>
+            <DropdownMenuRadioItem
+              value={AttendanceDeductionType.FROM_35_TO_45_MIN}
+            >
+              {t("attendanceDeductionTypes.from_35_to_45_min")}
+            </DropdownMenuRadioItem>
+            <DropdownMenuRadioItem
+              value={AttendanceDeductionType.FROM_45_TO_60_MIN}
+            >
+              {t("attendanceDeductionTypes.from_45_to_60_min")}
+            </DropdownMenuRadioItem>
+            <DropdownMenuRadioItem
+              value={AttendanceDeductionType.MORE_THAN_60_MIN}
+            >
+              {t("attendanceDeductionTypes.more_than_60_min")}
+            </DropdownMenuRadioItem>
+            <DropdownMenuRadioItem
+              value={AttendanceDeductionType.EXCUSED_ABSENCE}
+            >
+              {t("attendanceDeductionTypes.excused_absence")}
+            </DropdownMenuRadioItem>
+          </DropdownMenuRadioGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    );
   };
 
   // Bulk Actions
@@ -365,7 +448,7 @@ export function DailyTeacherAttendanceView({
   };
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6" dir={isArabic ? "rtl" : "ltr"}>
       {showHeader && (
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
@@ -489,7 +572,7 @@ export function DailyTeacherAttendanceView({
       ) : (
         <>
       {/* Summary Stat Cards - 2x2 grid on mobile, 4 columns on desktop */}
-      <div className="grid grid-cols-2 gap-2.5 sm:gap-4 sm:grid-cols-4">
+      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-5 sm:gap-4">
         <Card className="bg-card shadow-sm border">
           <CardContent className="p-3 sm:p-4 flex items-center justify-between">
             <div>
@@ -502,6 +585,22 @@ export function DailyTeacherAttendanceView({
             </div>
             <div className="p-2 sm:p-2.5 rounded-xl bg-primary/10 text-primary">
               <Users className="h-4 w-4 sm:h-5 sm:w-5" />
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-card shadow-sm border">
+          <CardContent className="p-3 sm:p-4 flex items-center justify-between">
+            <div>
+              <p className="text-[11px] sm:text-xs font-medium text-muted-foreground">
+                {t("summary.excusedAbsence")}
+              </p>
+              <p className="text-xl sm:text-2xl font-bold mt-0.5 sm:mt-1 text-yellow-600 dark:text-yellow-400">
+                {summary.excusedAbsence}
+              </p>
+            </div>
+            <div className="p-2 sm:p-2.5 rounded-xl bg-yellow-500/10 text-yellow-600 dark:text-yellow-400">
+              <CircleAlert className="h-4 w-4 sm:h-5 sm:w-5" />
             </div>
           </CardContent>
         </Card>
@@ -630,15 +729,31 @@ export function DailyTeacherAttendanceView({
                     >
                       <span
                         className={`flex h-9 w-9 items-center justify-center rounded-full border-2 transition-[background-color,border-color,color] md:h-11 md:w-11 ${
-                          item.isAttended
-                            ? "border-emerald-600 bg-emerald-600 text-white hover:border-emerald-700 hover:bg-emerald-700"
-                            : "border-border bg-background text-transparent hover:border-primary/50 hover:bg-muted"
+                          item.attendance?.attendanceDeductionType ===
+                          AttendanceDeductionType.EXCUSED_ABSENCE
+                            ? "border-yellow-500 bg-yellow-500 text-white hover:border-yellow-600 hover:bg-yellow-600"
+                            : item.isAttended
+                              ? "border-emerald-600 bg-emerald-600 text-white hover:border-emerald-700 hover:bg-emerald-700"
+                              : "border-rose-600 bg-rose-50 text-rose-600 hover:border-rose-700 hover:bg-rose-100 dark:bg-rose-950/30 dark:text-rose-400 dark:hover:bg-rose-950/50"
                         }`}
                       >
-                        <Check
-                          className="h-4 w-4 md:h-5 md:w-5"
-                          strokeWidth={3}
-                        />
+                        {item.attendance?.attendanceDeductionType ===
+                        AttendanceDeductionType.EXCUSED_ABSENCE ? (
+                          <CircleAlert
+                            className="h-4 w-4 md:h-5 md:w-5"
+                            strokeWidth={3}
+                          />
+                        ) : item.isAttended ? (
+                          <Check
+                            className="h-4 w-4 md:h-5 md:w-5"
+                            strokeWidth={3}
+                          />
+                        ) : (
+                          <X
+                            className="h-4 w-4 md:h-5 md:w-5"
+                            strokeWidth={3}
+                          />
+                        )}
                       </span>
                     </button>
                     <span className="font-semibold text-sm truncate">
@@ -648,27 +763,7 @@ export function DailyTeacherAttendanceView({
 
                   {/* Right: deduction type trigger/badge */}
                   <div className="shrink-0 flex items-center">
-                    {item.isAttended ? (
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setEditingRecord(item);
-                          setIsDeductionDialogOpen(true);
-                        }}
-                        className="cursor-pointer hover:opacity-80 transition-opacity p-1 -m-1"
-                      >
-                        {item.attendance?.attendanceDeductionType ? (
-                          getDeductionBadge(item.attendance.attendanceDeductionType)
-                        ) : (
-                          <span className="text-xs text-muted-foreground hover:underline flex items-center gap-1">
-                            <Clock className="w-3 h-3" />
-                            {t("attendanceDeductionTypes.none")}
-                          </span>
-                        )}
-                      </button>
-                    ) : (
-                      <span className="text-xs text-muted-foreground">-</span>
-                    )}
+                    {item.isAttended ? renderDeductionMenu(item) : <span className="text-xs text-muted-foreground">-</span>}
                   </div>
                 </div>
               </Card>
@@ -737,15 +832,31 @@ export function DailyTeacherAttendanceView({
                         >
                           <span
                             className={`flex h-9 w-9 items-center justify-center rounded-full border-2 transition-[background-color,border-color,color] md:h-11 md:w-11 ${
-                              item.isAttended
-                                ? "border-emerald-600 bg-emerald-600 text-white hover:border-emerald-700 hover:bg-emerald-700"
-                                : "border-border bg-background text-transparent hover:border-primary/50 hover:bg-muted"
+                              item.attendance?.attendanceDeductionType ===
+                              AttendanceDeductionType.EXCUSED_ABSENCE
+                                ? "border-yellow-500 bg-yellow-500 text-white hover:border-yellow-600 hover:bg-yellow-600"
+                                : item.isAttended
+                                  ? "border-emerald-600 bg-emerald-600 text-white hover:border-emerald-700 hover:bg-emerald-700"
+                                  : "border-rose-600 bg-rose-50 text-rose-600 hover:border-rose-700 hover:bg-rose-100 dark:bg-rose-950/30 dark:text-rose-400 dark:hover:bg-rose-950/50"
                             }`}
                           >
-                            <Check
-                              className="h-4 w-4 md:h-5 md:w-5"
-                              strokeWidth={3}
-                            />
+                            {item.attendance?.attendanceDeductionType ===
+                            AttendanceDeductionType.EXCUSED_ABSENCE ? (
+                              <CircleAlert
+                                className="h-4 w-4 md:h-5 md:w-5"
+                                strokeWidth={3}
+                              />
+                            ) : item.isAttended ? (
+                              <Check
+                                className="h-4 w-4 md:h-5 md:w-5"
+                                strokeWidth={3}
+                              />
+                            ) : (
+                              <X
+                                className="h-4 w-4 md:h-5 md:w-5"
+                                strokeWidth={3}
+                              />
+                            )}
                           </span>
                         </button>
                       </div>
@@ -758,27 +869,7 @@ export function DailyTeacherAttendanceView({
 
                     {/* Attendance deduction type */}
                     <TableCell className="text-end">
-                      {item.isAttended ? (
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setEditingRecord(item);
-                            setIsDeductionDialogOpen(true);
-                          }}
-                          className="cursor-pointer inline-flex items-center gap-1 hover:opacity-80 transition-opacity p-1 -m-1"
-                        >
-                          {item.attendance?.attendanceDeductionType ? (
-                            getDeductionBadge(item.attendance.attendanceDeductionType)
-                          ) : (
-                            <span className="text-xs text-muted-foreground hover:underline flex items-center gap-1">
-                              <Clock className="w-3 h-3" />
-                              {t("attendanceDeductionTypes.none")}
-                            </span>
-                          )}
-                        </button>
-                      ) : (
-                        <span className="text-xs text-muted-foreground">-</span>
-                      )}
+                      {item.isAttended ? renderDeductionMenu(item) : <span className="text-xs text-muted-foreground">-</span>}
                     </TableCell>
                   </TableRow>
                 );
@@ -787,15 +878,6 @@ export function DailyTeacherAttendanceView({
           </TableBody>
         </Table>
       </div>
-
-      {/* Attendance deduction dialog */}
-      <AttendanceDeductionDialog
-        open={isDeductionDialogOpen}
-        onOpenChange={setIsDeductionDialogOpen}
-        record={editingRecord}
-        attendanceDate={dateString}
-        onSave={handleSaveDeduction}
-      />
 
       {/* Confirmation Dialog for Mark All Attended */}
       <ConfirmationDialog

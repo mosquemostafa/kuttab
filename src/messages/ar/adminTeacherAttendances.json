@@ -16,6 +16,7 @@
     "totalTeachers": "إجمالي المعلمين",
     "attended": "حاضر",
     "absent": "غائب",
+    "excusedAbsence": "غياب بعذر",
     "late": "متأخر",
     "attendanceRate": "نسبة الحضور"
   },
