@@ -53,7 +53,7 @@ export const teacherAttendanceController = {
       date: searchParams.get("date") ?? undefined,
       startDate: searchParams.get("startDate") ?? undefined,
       endDate: searchParams.get("endDate") ?? undefined,
-      latenessPeriod: searchParams.get("latenessPeriod") ?? undefined,
+      attendanceDeductionType: searchParams.get("attendanceDeductionType") ?? undefined,
       page: searchParams.get("page") ?? undefined,
       limit: searchParams.get("limit") ?? undefined,
     });

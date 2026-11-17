@@ -1,15 +1,15 @@
 import { z } from "zod";
 
-import { LatenessPeriod } from "@/shared/types/teacher-attendance.types";
+import { AttendanceDeductionType } from "@/shared/types/teacher-attendance.types";
 
-export const latenessPeriodValues = [
-  LatenessPeriod.FROM_35_TO_45_MIN,
-  LatenessPeriod.FROM_45_TO_60_MIN,
-  LatenessPeriod.MORE_THAN_60_MIN,
-  LatenessPeriod.EXCUSED_ABSENCE,
+export const attendanceDeductionTypeValues = [
+  AttendanceDeductionType.FROM_35_TO_45_MIN,
+  AttendanceDeductionType.FROM_45_TO_60_MIN,
+  AttendanceDeductionType.MORE_THAN_60_MIN,
+  AttendanceDeductionType.EXCUSED_ABSENCE,
 ] as const;
 
-export const latenessPeriodSchema = z.enum(latenessPeriodValues);
+export const attendanceDeductionTypeSchema = z.enum(attendanceDeductionTypeValues);
 
 // YYYY-MM-DD date regex
 const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
@@ -39,7 +39,7 @@ export const listTeacherAttendancesQuerySchema = z.object({
     .trim()
     .regex(dateRegex, "endDate must be in YYYY-MM-DD format")
     .optional(),
-  latenessPeriod: latenessPeriodSchema.optional(),
+  attendanceDeductionType: attendanceDeductionTypeSchema.optional(),
   page: z.coerce.number().int().min(1).optional(),
   limit: z.coerce.number().int().min(1).max(100).optional(),
 });
@@ -72,11 +72,11 @@ export const toggleTeacherAttendanceSchema = z.object({
     .string()
     .trim()
     .regex(dateRegex, "attendanceDate must be in YYYY-MM-DD format"),
-  latenessPeriod: latenessPeriodSchema.nullable().optional(),
+  attendanceDeductionType: attendanceDeductionTypeSchema.nullable().optional(),
 });
 
 export const updateTeacherAttendanceSchema = z.object({
-  latenessPeriod: latenessPeriodSchema.nullable(),
+  attendanceDeductionType: attendanceDeductionTypeSchema.nullable(),
 });
 
 export const bulkAttendanceActionSchema = z.object({

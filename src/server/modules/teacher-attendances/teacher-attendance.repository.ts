@@ -4,7 +4,7 @@ import { db } from "@/server/db";
 import { teacherAttendance } from "@/server/modules/teacher-attendances/teacher-attendance.entity";
 import { teacher } from "@/server/modules/teachers/teacher.entity";
 import type { ParsedPagination } from "@/server/pipes/parse-pagination.pipe";
-import type { LatenessPeriod } from "@/shared/types/teacher-attendance.types";
+import type { AttendanceDeductionType } from "@/shared/types/teacher-attendance.types";
 
 export type TeacherAttendanceRow = typeof teacherAttendance.$inferSelect;
 
@@ -13,7 +13,7 @@ export interface AttendanceFilters {
   date?: string;
   startDate?: string;
   endDate?: string;
-  latenessPeriod?: LatenessPeriod;
+  attendanceDeductionType?: AttendanceDeductionType;
 }
 
 function toWhereClause(filters: AttendanceFilters) {
@@ -31,8 +31,8 @@ function toWhereClause(filters: AttendanceFilters) {
   if (filters.endDate) {
     clauses.push(lte(teacherAttendance.attendanceDate, filters.endDate));
   }
-  if (filters.latenessPeriod) {
-    clauses.push(eq(teacherAttendance.latenessPeriod, filters.latenessPeriod));
+  if (filters.attendanceDeductionType) {
+    clauses.push(eq(teacherAttendance.attendanceDeductionType, filters.attendanceDeductionType));
   }
 
   return clauses.length > 0 ? and(...clauses) : undefined;
@@ -200,7 +200,7 @@ export const teacherAttendanceRepository = {
   async create(data: {
     teacherId: string;
     attendanceDate: string;
-    latenessPeriod?: LatenessPeriod | null;
+    attendanceDeductionType?: AttendanceDeductionType | null;
     recordedBy: string;
   }): Promise<TeacherAttendanceRow> {
     const [created] = await db
@@ -208,7 +208,7 @@ export const teacherAttendanceRepository = {
       .values({
         teacherId: data.teacherId,
         attendanceDate: data.attendanceDate,
-        latenessPeriod: data.latenessPeriod ?? null,
+        attendanceDeductionType: data.attendanceDeductionType ?? null,
         recordedBy: data.recordedBy,
       })
       .returning();
@@ -219,7 +219,7 @@ export const teacherAttendanceRepository = {
   async update(
     id: string,
     data: {
-      latenessPeriod?: LatenessPeriod | null;
+      attendanceDeductionType?: AttendanceDeductionType | null;
     },
   ): Promise<TeacherAttendanceRow | null> {
     const [updated] = await db
@@ -244,7 +244,7 @@ export const teacherAttendanceRepository = {
     teacherId: string;
     attendanceDate: string;
     recordedBy: string;
-    latenessPeriod?: LatenessPeriod | null;
+    attendanceDeductionType?: AttendanceDeductionType | null;
   }): Promise<{ attended: boolean; attendance: TeacherAttendanceRow | null }> {
     return await db.transaction(async (tx) => {
       // Find existing record
@@ -276,7 +276,7 @@ export const teacherAttendanceRepository = {
           .values({
             teacherId: params.teacherId,
             attendanceDate: params.attendanceDate,
-            latenessPeriod: params.latenessPeriod ?? null,
+            attendanceDeductionType: params.attendanceDeductionType ?? null,
             recordedBy: params.recordedBy,
           })
           .returning();

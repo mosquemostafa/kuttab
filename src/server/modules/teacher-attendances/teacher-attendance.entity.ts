@@ -4,7 +4,7 @@ import { date, index, pgEnum, pgTable, text, timestamp, uniqueIndex } from "driz
 import { teacher } from "@/server/modules/teachers/teacher.entity";
 import { user } from "@/server/modules/users/user.entity";
 
-export const latenessPeriodEnum = pgEnum("lateness_period_enum", [
+export const attendanceDeductionTypeEnum = pgEnum("attendance_deduction_type_enum", [
   "from_35_to_45_min",
   "from_45_to_60_min",
   "more_than_60_min",
@@ -21,7 +21,7 @@ export const teacherAttendance = pgTable(
       .notNull()
       .references(() => teacher.id, { onDelete: "cascade" }),
     attendanceDate: date("attendance_date").notNull(),
-    latenessPeriod: latenessPeriodEnum("lateness_period"),
+    attendanceDeductionType: attendanceDeductionTypeEnum("attendance_deduction_type"),
     recordedBy: text("recorded_by")
       .notNull()
       .references(() => user.id, { onDelete: "cascade" }),

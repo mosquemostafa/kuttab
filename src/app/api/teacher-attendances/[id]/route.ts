@@ -30,7 +30,7 @@
  *       404:
  *         description: Not found
  *   patch:
- *     summary: Update attendance details (e.g. lateness period)
+ *     summary: Update attendance details (e.g. attendance deduction type)
  *     tags:
  *       - Teacher Attendances
  *     security:
@@ -47,12 +47,12 @@
  *           schema:
  *             type: object
  *             required:
- *               - latenessPeriod
+ *               - attendanceDeductionType
  *             properties:
- *               latenessPeriod:
+ *               attendanceDeductionType:
  *                 type: string
  *                 nullable: true
- *                 enum: [from_35_to_45_min, from_45_to_60_min, more_than_60_min]
+ *                 enum: [from_35_to_45_min, from_45_to_60_min, more_than_60_min, excused_absence]
  *     responses:
  *       200:
  *         description: Updated attendance record

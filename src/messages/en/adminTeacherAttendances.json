@@ -28,7 +28,7 @@
   "columns": {
     "teacher": "Teacher",
     "status": "Attendance Status",
-    "lateness": "Lateness Period",
+    "deduction": "Attendance Deduction",
     "actions": "Actions"
   },
   "statusLabels": {
@@ -45,8 +45,8 @@
     "children": "Children",
     "adults": "Adults"
   },
-  "latenessPeriods": {
-    "none": "On Time (No Lateness)",
+  "attendanceDeductionTypes": {
+    "none": "No Deduction",
     "from_35_to_45_min": "35 to 45 mins late",
     "from_45_to_60_min": "45 to 60 mins late",
     "more_than_60_min": "More than 60 mins late",
@@ -55,7 +55,7 @@
   "actions": {
     "markPresent": "Mark Present",
     "markAbsent": "Mark Absent",
-    "editLateness": "Edit Lateness",
+    "editDeduction": "Edit Deduction",
     "markAllAttended": "Mark All Present",
     "markAllAbsent": "Mark All Absent",
     "save": "Save",
@@ -69,16 +69,16 @@
     "markAllAbsentDesc": "All attendance records for {date} will be removed, marking all teachers absent."
   },
   "dialog": {
-    "editLatenessTitle": "Edit Lateness Period",
-    "editLatenessDesc": "Select lateness period for {name} on {date}",
-    "latenessPeriodLabel": "Lateness Period"
+    "editDeductionTitle": "Edit Attendance Deduction",
+    "editDeductionDesc": "Select an attendance deduction type for {name} on {date}",
+    "attendanceDeductionTypeLabel": "Attendance Deduction Type"
   },
   "notifications": {
     "toggledPresent": "Marked {name} as present",
     "toggledAbsent": "Marked {name} as absent",
     "allAttendedSuccess": "All active teachers marked present successfully",
     "allAbsentSuccess": "All teachers marked absent successfully",
-    "latenessUpdated": "Lateness period updated successfully",
+    "deductionUpdated": "Attendance deduction updated successfully",
     "error": "An error occurred while saving"
   },
   "empty": {

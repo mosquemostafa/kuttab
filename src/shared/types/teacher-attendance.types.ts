@@ -1,20 +1,20 @@
-export const LatenessPeriod = {
+export const AttendanceDeductionType = {
   FROM_35_TO_45_MIN: "from_35_to_45_min",
   FROM_45_TO_60_MIN: "from_45_to_60_min",
   MORE_THAN_60_MIN: "more_than_60_min",
   EXCUSED_ABSENCE: "excused_absence",
 } as const;
 
-export type LatenessPeriod =
-  (typeof LatenessPeriod)[keyof typeof LatenessPeriod];
+export type AttendanceDeductionType =
+  (typeof AttendanceDeductionType)[keyof typeof AttendanceDeductionType];
 
-export type LatenessDeductionDays = Record<LatenessPeriod, number>;
+export type DeductionDays = Record<AttendanceDeductionType, number>;
 
 export interface TeacherAttendanceDTO {
   id: string;
   teacherId: string;
   attendanceDate: string; // YYYY-MM-DD
-  latenessPeriod: LatenessPeriod | null;
+  attendanceDeductionType: AttendanceDeductionType | null;
   recordedBy: string;
   createdAt: string; // ISO string
 }
@@ -45,12 +45,12 @@ export interface TeacherSalaryReportItemDTO {
   expectedWorkingDays: number;
   attendedDays: number;
   absentDays: number;
-  latenessOccurrences: number;
-  latenessDeductionDays: number;
+  deductionTypeOccurrences: number;
+  deductionDays: number;
   totalDeductionDays: number;
   dailyRate: number | null;
   absenceDeductionAmount: number | null;
-  latenessDeductionAmount: number | null;
+  deductionAmount: number | null;
   totalDeductionAmount: number | null;
   netSalary: number | null;
 }
@@ -69,7 +69,7 @@ export interface TeacherMonthlySalaryReportDTO {
   endDate: string;
   workingDays: number[];
   workingDates: string[];
-  latenessDeductionDays: LatenessDeductionDays;
+  deductionDays: DeductionDays;
   teachers: TeacherSalaryReportItemDTO[];
   summary: TeacherSalaryReportSummaryDTO;
 }

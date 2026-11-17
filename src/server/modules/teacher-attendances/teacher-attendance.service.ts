@@ -16,7 +16,7 @@ import { teacherRepository } from "@/server/modules/teachers/teacher.repository"
 import type { ParsedPagination } from "@/server/pipes/parse-pagination.pipe";
 import type { PaginatedResponse } from "@/shared/types/pagination.types";
 import type {
-  LatenessPeriod,
+  AttendanceDeductionType,
   TeacherAttendanceDTO,
   TeacherDailyAttendanceDTO,
   TeacherMonthlySalaryReportDTO,
@@ -67,21 +67,21 @@ function calculateSalaryItem(
   >[number],
   workingDateSet: Set<string>,
   expectedWorkingDays: number,
-  latenessDeductions: Record<LatenessPeriod, number>,
+  attendanceDeductions: Record<AttendanceDeductionType, number>,
 ): TeacherSalaryReportItemDTO {
   const activeDayAttendances = row.attendances.filter((attendance) =>
     workingDateSet.has(attendance.attendanceDate),
   );
   const attendedDays = activeDayAttendances.length;
   const absentDays = Math.max(expectedWorkingDays - attendedDays, 0);
-  const lateAttendances = activeDayAttendances.filter(
-    (attendance) => attendance.latenessPeriod !== null,
+  const deductionAttendances = activeDayAttendances.filter(
+    (attendance) => attendance.attendanceDeductionType !== null,
   );
-  const latenessDeductionDays = lateAttendances.reduce((total, attendance) => {
-    const period = attendance.latenessPeriod as LatenessPeriod;
-    return total + (latenessDeductions[period] ?? 0);
+  const deductionDays = deductionAttendances.reduce((total, attendance) => {
+    const period = attendance.attendanceDeductionType as AttendanceDeductionType;
+    return total + (attendanceDeductions[period] ?? 0);
   }, 0);
-  const totalDeductionDays = absentDays + latenessDeductionDays;
+  const totalDeductionDays = absentDays + deductionDays;
 
   if (row.monthlySalary === null) {
     return {
@@ -91,12 +91,12 @@ function calculateSalaryItem(
       expectedWorkingDays,
       attendedDays,
       absentDays,
-      latenessOccurrences: lateAttendances.length,
-      latenessDeductionDays,
+      deductionTypeOccurrences: deductionAttendances.length,
+      deductionDays,
       totalDeductionDays,
       dailyRate: null,
       absenceDeductionAmount: null,
-      latenessDeductionAmount: null,
+      deductionAmount: null,
       totalDeductionAmount: null,
       netSalary: null,
     };
@@ -105,10 +105,10 @@ function calculateSalaryItem(
   const dailyRate =
     expectedWorkingDays > 0 ? row.monthlySalary / expectedWorkingDays : 0;
   const absenceDeductionAmount = dailyRate * absentDays;
-  const latenessDeductionAmount = dailyRate * latenessDeductionDays;
+  const deductionAmount = dailyRate * deductionDays;
   const totalDeductionAmount = Math.min(
     row.monthlySalary,
-    absenceDeductionAmount + latenessDeductionAmount,
+    absenceDeductionAmount + deductionAmount,
   );
 
   return {
@@ -118,12 +118,12 @@ function calculateSalaryItem(
     expectedWorkingDays,
     attendedDays,
     absentDays,
-    latenessOccurrences: lateAttendances.length,
-    latenessDeductionDays,
+    deductionTypeOccurrences: deductionAttendances.length,
+    deductionDays,
     totalDeductionDays,
     dailyRate: roundMoney(dailyRate),
     absenceDeductionAmount: roundMoney(absenceDeductionAmount),
-    latenessDeductionAmount: roundMoney(latenessDeductionAmount),
+    deductionAmount: roundMoney(deductionAmount),
     totalDeductionAmount: roundMoney(totalDeductionAmount),
     netSalary: roundMoney(row.monthlySalary - totalDeductionAmount),
   };
@@ -140,7 +140,7 @@ function toDTO(row: TeacherAttendanceRow): TeacherAttendanceDTO {
     id: row.id,
     teacherId: row.teacherId,
     attendanceDate: row.attendanceDate,
-    latenessPeriod: (row.latenessPeriod as LatenessPeriod) ?? null,
+    attendanceDeductionType: (row.attendanceDeductionType as AttendanceDeductionType) ?? null,
     recordedBy: row.recordedBy,
     createdAt: row.createdAt.toISOString(),
   };
@@ -157,7 +157,7 @@ export const teacherAttendanceService = {
         date: filters.date,
         startDate: filters.startDate,
         endDate: filters.endDate,
-        latenessPeriod: filters.latenessPeriod,
+        attendanceDeductionType: filters.attendanceDeductionType,
       },
       pagination,
     );
@@ -251,7 +251,7 @@ export const teacherAttendanceService = {
         row,
         workingDateSet,
         workingDates.length,
-        settings.latenessDeductionDays,
+        settings.deductionDays,
       ),
     );
 
@@ -261,7 +261,7 @@ export const teacherAttendanceService = {
       endDate,
       workingDays: settings.workingDays,
       workingDates,
-      latenessDeductionDays: settings.latenessDeductionDays,
+      deductionDays: settings.deductionDays,
       teachers,
       summary: {
         teacherCount: teachers.length,
@@ -304,7 +304,7 @@ export const teacherAttendanceService = {
       teacherId: dto.teacherId,
       attendanceDate: dto.attendanceDate,
       recordedBy,
-      latenessPeriod: dto.latenessPeriod,
+      attendanceDeductionType: dto.attendanceDeductionType,
     });
 
     return {
@@ -318,7 +318,7 @@ export const teacherAttendanceService = {
     dto: UpdateTeacherAttendanceDTO,
   ): Promise<TeacherAttendanceDTO> {
     const updated = await teacherAttendanceRepository.update(id, {
-      latenessPeriod: dto.latenessPeriod,
+      attendanceDeductionType: dto.attendanceDeductionType,
     });
 
     if (!updated) {

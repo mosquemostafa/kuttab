@@ -118,11 +118,11 @@
     },
     "teacherAttendances": {
       "title": "Teacher Attendances | Almostafa Admin",
-      "description": "Track and manage daily teacher attendance, absence, and lateness."
+      "description": "Track and manage daily teacher attendance, absence, and attendance deductions."
     },
     "salaryReports": {
       "title": "Salary Reports | Almostafa Admin",
-      "description": "Review monthly teacher salaries, absences, lateness deductions, and net payroll."
+      "description": "Review monthly teacher salaries, absences, attendance deductions, and net payroll."
     },
     "classes": {
       "title": "Classes | Almostafa Admin",

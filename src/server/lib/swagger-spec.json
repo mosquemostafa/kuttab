@@ -2598,9 +2598,9 @@
                       4
                     ]
                   },
-                  "latenessDeductionDays": {
+                  "deductionDays": {
                     "type": "object",
-                    "description": "Deduction in days for each lateness period",
+                    "description": "Deduction in days for each attendance deduction type",
                     "properties": {
                       "from_35_to_45_min": {
                         "type": "number",
@@ -8999,7 +8999,7 @@
         }
       },
       "patch": {
-        "summary": "Update attendance details (e.g. lateness period)",
+        "summary": "Update attendance details (e.g. attendance deduction type)",
         "tags": [
           "Teacher Attendances"
         ],
@@ -9025,16 +9025,17 @@
               "schema": {
                 "type": "object",
                 "required": [
-                  "latenessPeriod"
+                  "attendanceDeductionType"
                 ],
                 "properties": {
-                  "latenessPeriod": {
+                  "attendanceDeductionType": {
                     "type": "string",
                     "nullable": true,
                     "enum": [
                       "from_35_to_45_min",
                       "from_45_to_60_min",
-                      "more_than_60_min"
+                      "more_than_60_min",
+                      "excused_absence"
                     ]
                   }
                 }
@@ -9390,13 +9391,14 @@
           },
           {
             "in": "query",
-            "name": "latenessPeriod",
+            "name": "attendanceDeductionType",
             "schema": {
               "type": "string",
               "enum": [
                 "from_35_to_45_min",
                 "from_45_to_60_min",
-                "more_than_60_min"
+                "more_than_60_min",
+                "excused_absence"
               ]
             }
           },
@@ -9483,7 +9485,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Monthly salary report based on configured working days, absences, and lateness deductions",
+            "description": "Monthly salary report based on configured working days, absences, and attendance deductions",
             "content": {
               "application/json": {
                 "schema": {
@@ -9547,10 +9549,10 @@
                               "absentDays": {
                                 "type": "integer"
                               },
-                              "latenessOccurrences": {
+                              "deductionTypeOccurrences": {
                                 "type": "integer"
                               },
-                              "latenessDeductionDays": {
+                              "deductionDays": {
                                 "type": "number"
                               },
                               "totalDeductionDays": {
@@ -9564,7 +9566,7 @@
                                 "type": "number",
                                 "nullable": true
                               },
-                              "latenessDeductionAmount": {
+                              "deductionAmount": {
                                 "type": "number",
                                 "nullable": true
                               },
@@ -9652,7 +9654,7 @@
                     "format": "date",
                     "example": "2026-11-17"
                   },
-                  "latenessPeriod": {
+                  "attendanceDeductionType": {
                     "type": "string",
                     "nullable": true,
                     "enum": [

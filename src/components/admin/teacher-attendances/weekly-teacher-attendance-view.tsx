@@ -123,7 +123,7 @@ export function WeeklyTeacherAttendanceView({
                     id: `temp-${teacherId}-${date}`,
                     teacherId,
                     attendanceDate: date,
-                    latenessPeriod: null,
+                    attendanceDeductionType: null,
                     recordedBy: "",
                     createdAt: new Date().toISOString(),
                   };

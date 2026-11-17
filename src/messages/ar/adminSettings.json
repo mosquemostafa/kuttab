@@ -30,11 +30,11 @@
     "workingDays": "أيام عمل المعهد",
     "workingDaysDescription": "حدد أيام الأسبوع النشطة التي يعمل بها المعهد.",
     "workingDaysMinError": "يرجى تحديد يوم عمل واحد على الأقل.",
-    "latenessDeductions": "خصومات التأخير",
-    "latenessDeductionsDescription": "حدد الخصم بالأيام لكل تأخير أو غياب بعذر مسجل. استخدم صفرًا لإلغاء الخصم.",
-    "latenessDeductionInvalid": "يجب أن يكون الخصم قيمة رقمية صالحة بين 0 و30 يومًا.",
+    "attendanceDeductions": "خصومات الحضور",
+    "attendanceDeductionsDescription": "حدد الخصم بالأيام لكل نوع من أنواع خصم الحضور، بما في ذلك التأخير والغياب بعذر. استخدم صفرًا لإلغاء الخصم.",
+    "deductionInvalid": "يجب أن يكون الخصم قيمة رقمية صالحة بين 0 و30 يومًا.",
     "deductionUnit": "يوم",
-    "latenessPeriods": {
+    "attendanceDeductionTypes": {
       "from_35_to_45_min": "تأخير من 35 إلى 45 دقيقة",
       "from_45_to_60_min": "تأخير من 45 إلى 60 دقيقة",
       "more_than_60_min": "تأخير أكثر من 60 دقيقة",

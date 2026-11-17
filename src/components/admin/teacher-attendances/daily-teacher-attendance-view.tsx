@@ -49,11 +49,11 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import {
-  LatenessPeriod,
+  AttendanceDeductionType,
   type TeacherDailyAttendanceDTO,
 } from "@/shared/types/teacher-attendance.types";
 import { ConfirmationDialog } from "@/components/ui/confirmation-dialog";
-import { AttendanceLatenessDialog } from "./attendance-lateness-dialog";
+import { AttendanceDeductionDialog } from "./attendance-deduction-dialog";
 
 interface DailyTeacherAttendanceViewProps {
   showHeader?: boolean;
@@ -87,7 +87,7 @@ export function DailyTeacherAttendanceView({
   // Dialog state
   const [editingRecord, setEditingRecord] =
     useState<TeacherDailyAttendanceDTO | null>(null);
-  const [isLatenessDialogOpen, setIsLatenessDialogOpen] = useState(false);
+  const [isDeductionDialogOpen, setIsDeductionDialogOpen] = useState(false);
   const [isBulkLoading, setIsBulkLoading] = useState(false);
   const [confirmAction, setConfirmAction] = useState<
     "markAllAttended" | "markAllAbsent" | null
@@ -116,7 +116,7 @@ export function DailyTeacherAttendanceView({
     ).length;
     const absent = total - attended;
     const late = records.filter(
-      (r: TeacherDailyAttendanceDTO) => r.attendance?.latenessPeriod != null,
+      (r: TeacherDailyAttendanceDTO) => r.attendance?.attendanceDeductionType != null,
     ).length;
     const rate = total > 0 ? Math.round((attended / total) * 100) : 0;
 
@@ -139,7 +139,7 @@ export function DailyTeacherAttendanceView({
       if (statusFilter === "absent" && r.isAttended) return false;
       if (
         statusFilter === "late" &&
-        (!r.isAttended || !r.attendance?.latenessPeriod)
+        (!r.isAttended || !r.attendance?.attendanceDeductionType)
       )
         return false;
 
@@ -167,7 +167,7 @@ export function DailyTeacherAttendanceView({
                       id: `temp-${Date.now()}`,
                       teacherId: item.teacherId,
                       attendanceDate: dateString,
-                      latenessPeriod: null,
+                      attendanceDeductionType: null,
                       recordedBy: "",
                       createdAt: new Date().toISOString(),
                     })
@@ -217,16 +217,16 @@ export function DailyTeacherAttendanceView({
     await mutate();
   };
 
-  // Update Lateness with Optimistic UI
-  const handleSaveLateness = async (latenessPeriod: LatenessPeriod | null) => {
+  // Update the attendance deduction type with optimistic UI
+  const handleSaveDeduction = async (attendanceDeductionType: AttendanceDeductionType | null) => {
     if (!editingRecord?.attendance) return;
 
     const currentAttendance = editingRecord.attendance;
-    const previousPeriod = currentAttendance.latenessPeriod;
+    const previousPeriod = currentAttendance.attendanceDeductionType;
     const attendanceId = currentAttendance.id;
     const teacherId = editingRecord.teacherId;
 
-    // Optimistically update lateness in SWR cache
+    // Optimistically update the deduction type in SWR cache
     mutate(
       (prev) =>
         prev
@@ -236,7 +236,7 @@ export function DailyTeacherAttendanceView({
                     ...item,
                     attendance: {
                       ...item.attendance,
-                      latenessPeriod,
+                      attendanceDeductionType,
                     },
                   }
                 : item,
@@ -245,11 +245,11 @@ export function DailyTeacherAttendanceView({
       false,
     );
 
-    toast.success(t("notifications.latenessUpdated"));
+    toast.success(t("notifications.deductionUpdated"));
 
     try {
       await apiClient.teacherAttendances.update(attendanceId, {
-        latenessPeriod,
+        attendanceDeductionType,
       });
       await mutate();
     } catch (error) {
@@ -263,7 +263,7 @@ export function DailyTeacherAttendanceView({
                       ...item,
                       attendance: {
                         ...item.attendance,
-                        latenessPeriod: previousPeriod,
+                        attendanceDeductionType: previousPeriod,
                       },
                     }
                   : item,
@@ -304,46 +304,46 @@ export function DailyTeacherAttendanceView({
     }
   };
 
-  const getLatenessBadge = (period: LatenessPeriod | null | undefined) => {
+  const getDeductionBadge = (period: AttendanceDeductionType | null | undefined) => {
     if (!period) return null;
     switch (period) {
-      case LatenessPeriod.FROM_35_TO_45_MIN:
+      case AttendanceDeductionType.FROM_35_TO_45_MIN:
         return (
           <Badge
             variant="outline"
             className="border-amber-500/40 text-amber-600 dark:text-amber-400 bg-amber-500/10"
           >
             <Clock className="w-3 h-3 me-1" />
-            {t("latenessPeriods.from_35_to_45_min")}
+            {t("attendanceDeductionTypes.from_35_to_45_min")}
           </Badge>
         );
-      case LatenessPeriod.FROM_45_TO_60_MIN:
+      case AttendanceDeductionType.FROM_45_TO_60_MIN:
         return (
           <Badge
             variant="outline"
             className="border-orange-500/40 text-orange-600 dark:text-orange-400 bg-orange-500/10"
           >
             <Clock className="w-3 h-3 me-1" />
-            {t("latenessPeriods.from_45_to_60_min")}
+            {t("attendanceDeductionTypes.from_45_to_60_min")}
           </Badge>
         );
-      case LatenessPeriod.MORE_THAN_60_MIN:
+      case AttendanceDeductionType.MORE_THAN_60_MIN:
         return (
           <Badge
             variant="outline"
             className="border-rose-500/40 text-rose-600 dark:text-rose-400 bg-rose-500/10"
           >
             <Clock className="w-3 h-3 me-1" />
-            {t("latenessPeriods.more_than_60_min")}
+            {t("attendanceDeductionTypes.more_than_60_min")}
           </Badge>
         );
-      case LatenessPeriod.EXCUSED_ABSENCE:
+      case AttendanceDeductionType.EXCUSED_ABSENCE:
         return (
           <Badge
             variant="outline"
             className="border-sky-500/40 text-sky-600 dark:text-sky-400 bg-sky-500/10"
           >
-            {t("latenessPeriods.excused_absence")}
+            {t("attendanceDeductionTypes.excused_absence")}
           </Badge>
         );
       default:
@@ -646,23 +646,23 @@ export function DailyTeacherAttendanceView({
                     </span>
                   </div>
 
-                  {/* Right: Lateness trigger/badge (only if attended) */}
+                  {/* Right: deduction type trigger/badge */}
                   <div className="shrink-0 flex items-center">
                     {item.isAttended ? (
                       <button
                         type="button"
                         onClick={() => {
                           setEditingRecord(item);
-                          setIsLatenessDialogOpen(true);
+                          setIsDeductionDialogOpen(true);
                         }}
                         className="cursor-pointer hover:opacity-80 transition-opacity p-1 -m-1"
                       >
-                        {item.attendance?.latenessPeriod ? (
-                          getLatenessBadge(item.attendance.latenessPeriod)
+                        {item.attendance?.attendanceDeductionType ? (
+                          getDeductionBadge(item.attendance.attendanceDeductionType)
                         ) : (
                           <span className="text-xs text-muted-foreground hover:underline flex items-center gap-1">
                             <Clock className="w-3 h-3" />
-                            {t("latenessPeriods.none")}
+                            {t("attendanceDeductionTypes.none")}
                           </span>
                         )}
                       </button>
@@ -687,7 +687,7 @@ export function DailyTeacherAttendanceView({
               </TableHead>
               <TableHead>{t("columns.teacher")}</TableHead>
               <TableHead className="text-end">
-                {t("columns.lateness")}
+                {t("columns.deduction")}
               </TableHead>
             </TableRow>
           </TableHeader>
@@ -756,23 +756,23 @@ export function DailyTeacherAttendanceView({
                       <span>{item.teacherName}</span>
                     </TableCell>
 
-                    {/* Lateness period */}
+                    {/* Attendance deduction type */}
                     <TableCell className="text-end">
                       {item.isAttended ? (
                         <button
                           type="button"
                           onClick={() => {
                             setEditingRecord(item);
-                            setIsLatenessDialogOpen(true);
+                            setIsDeductionDialogOpen(true);
                           }}
                           className="cursor-pointer inline-flex items-center gap-1 hover:opacity-80 transition-opacity p-1 -m-1"
                         >
-                          {item.attendance?.latenessPeriod ? (
-                            getLatenessBadge(item.attendance.latenessPeriod)
+                          {item.attendance?.attendanceDeductionType ? (
+                            getDeductionBadge(item.attendance.attendanceDeductionType)
                           ) : (
                             <span className="text-xs text-muted-foreground hover:underline flex items-center gap-1">
                               <Clock className="w-3 h-3" />
-                              {t("latenessPeriods.none")}
+                              {t("attendanceDeductionTypes.none")}
                             </span>
                           )}
                         </button>
@@ -788,13 +788,13 @@ export function DailyTeacherAttendanceView({
         </Table>
       </div>
 
-      {/* Lateness Dialog */}
-      <AttendanceLatenessDialog
-        open={isLatenessDialogOpen}
-        onOpenChange={setIsLatenessDialogOpen}
+      {/* Attendance deduction dialog */}
+      <AttendanceDeductionDialog
+        open={isDeductionDialogOpen}
+        onOpenChange={setIsDeductionDialogOpen}
         record={editingRecord}
         attendanceDate={dateString}
-        onSave={handleSaveLateness}
+        onSave={handleSaveDeduction}
       />
 
       {/* Confirmation Dialog for Mark All Attended */}

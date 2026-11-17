@@ -59,7 +59,7 @@ export default async function AdminSettingsPage() {
             settings.sendNewsletterWelcomeEmail
           }
           initialWorkingDays={settings.workingDays}
-          initialLatenessDeductionDays={settings.latenessDeductionDays}
+          initialDeductionDays={settings.deductionDays}
         />
       </div>
     </div>

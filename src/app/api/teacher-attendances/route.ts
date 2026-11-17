@@ -25,7 +25,7 @@
  *         schema: { type: string, format: date, example: "2026-11-30" }
  *         description: End date filter
  *       - in: query
- *         name: latenessPeriod
+ *         name: attendanceDeductionType
  *         schema:
  *           type: string
  *           enum: [from_35_to_45_min, from_45_to_60_min, more_than_60_min]

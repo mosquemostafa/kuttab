@@ -19,33 +19,33 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
-  LatenessPeriod,
+  AttendanceDeductionType,
   type TeacherDailyAttendanceDTO,
 } from "@/shared/types/teacher-attendance.types";
 import { useState, useEffect } from "react";
 
-interface AttendanceLatenessDialogProps {
+interface AttendanceDeductionDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   record: TeacherDailyAttendanceDTO | null;
   attendanceDate: string;
-  onSave: (latenessPeriod: LatenessPeriod | null) => Promise<void>;
+  onSave: (attendanceDeductionType: AttendanceDeductionType | null) => Promise<void>;
 }
 
-export function AttendanceLatenessDialog({
+export function AttendanceDeductionDialog({
   open,
   onOpenChange,
   record,
   attendanceDate,
   onSave,
-}: AttendanceLatenessDialogProps) {
+}: AttendanceDeductionDialogProps) {
   const t = useTranslations("adminTeacherAttendances");
   const [selectedPeriod, setSelectedPeriod] = useState<string>("none");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (record?.attendance) {
-      setSelectedPeriod(record.attendance.latenessPeriod ?? "none");
+      setSelectedPeriod(record.attendance.attendanceDeductionType ?? "none");
     } else {
       setSelectedPeriod("none");
     }
@@ -57,7 +57,7 @@ export function AttendanceLatenessDialog({
       const value =
         selectedPeriod === "none"
           ? null
-          : (selectedPeriod as LatenessPeriod);
+          : (selectedPeriod as AttendanceDeductionType);
       await onSave(value);
       onOpenChange(false);
     } finally {
@@ -69,9 +69,9 @@ export function AttendanceLatenessDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>{t("dialog.editLatenessTitle")}</DialogTitle>
+          <DialogTitle>{t("dialog.editDeductionTitle")}</DialogTitle>
           <DialogDescription>
-            {t("dialog.editLatenessDesc", {
+            {t("dialog.editDeductionDesc", {
               name: record?.teacherName ?? "",
               date: attendanceDate,
             })}
@@ -81,7 +81,7 @@ export function AttendanceLatenessDialog({
         <div className="space-y-4 py-2">
           <div className="space-y-2">
             <label className="text-sm font-medium">
-              {t("dialog.latenessPeriodLabel")}
+              {t("dialog.attendanceDeductionTypeLabel")}
             </label>
             <Select
               value={selectedPeriod}
@@ -92,19 +92,19 @@ export function AttendanceLatenessDialog({
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="none">
-                  {t("latenessPeriods.none")}
+                  {t("attendanceDeductionTypes.none")}
                 </SelectItem>
-                <SelectItem value={LatenessPeriod.FROM_35_TO_45_MIN}>
-                  {t("latenessPeriods.from_35_to_45_min")}
+                <SelectItem value={AttendanceDeductionType.FROM_35_TO_45_MIN}>
+                  {t("attendanceDeductionTypes.from_35_to_45_min")}
                 </SelectItem>
-                <SelectItem value={LatenessPeriod.FROM_45_TO_60_MIN}>
-                  {t("latenessPeriods.from_45_to_60_min")}
+                <SelectItem value={AttendanceDeductionType.FROM_45_TO_60_MIN}>
+                  {t("attendanceDeductionTypes.from_45_to_60_min")}
                 </SelectItem>
-                <SelectItem value={LatenessPeriod.MORE_THAN_60_MIN}>
-                  {t("latenessPeriods.more_than_60_min")}
+                <SelectItem value={AttendanceDeductionType.MORE_THAN_60_MIN}>
+                  {t("attendanceDeductionTypes.more_than_60_min")}
                 </SelectItem>
-                <SelectItem value={LatenessPeriod.EXCUSED_ABSENCE}>
-                  {t("latenessPeriods.excused_absence")}
+                <SelectItem value={AttendanceDeductionType.EXCUSED_ABSENCE}>
+                  {t("attendanceDeductionTypes.excused_absence")}
                 </SelectItem>
               </SelectContent>
             </Select>

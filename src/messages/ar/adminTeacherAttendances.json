@@ -28,7 +28,7 @@
   "columns": {
     "teacher": "المعلم",
     "status": "حالة الحضور",
-    "lateness": "فترة التأخير",
+    "deduction": "خصم الحضور",
     "actions": "الإجراءات"
   },
   "statusLabels": {
@@ -45,7 +45,7 @@
     "children": "أطفال",
     "adults": "كبار"
   },
-  "latenessPeriods": {
+  "attendanceDeductionTypes": {
     "none": "في الموعد (بدون تأخير)",
     "from_35_to_45_min": "تأخير من 35 إلى 45 دقيقة",
     "from_45_to_60_min": "تأخير من 45 إلى 60 دقيقة",
@@ -55,7 +55,7 @@
   "actions": {
     "markPresent": "تسجيل حضور",
     "markAbsent": "تسجيل غياب",
-    "editLateness": "تعديل التأخير",
+    "editDeduction": "تعديل الخصم",
     "markAllAttended": "تسجيل حضور الكل",
     "markAllAbsent": "تسجيل غياب الكل",
     "save": "حفظ",
@@ -69,16 +69,16 @@
     "markAllAbsentDesc": "سيتم إلغاء سجلات الحضور لجميع المعلمين واعتبارهم غائبين ليوم {date}."
   },
   "dialog": {
-    "editLatenessTitle": "تعديل فترة التأخير",
-    "editLatenessDesc": "اختر فترة التأخير للمعلّم {name} ليوم {date}",
-    "latenessPeriodLabel": "فترة التأخير"
+    "editDeductionTitle": "تعديل خصم الحضور",
+    "editDeductionDesc": "اختر نوع خصم الحضور للمعلّم {name} ليوم {date}",
+    "attendanceDeductionTypeLabel": "نوع خصم الحضور"
   },
   "notifications": {
     "toggledPresent": "تم تسجيل حضور {name}",
     "toggledAbsent": "تم تسجيل غياب {name}",
     "allAttendedSuccess": "تم تسجيل حضور جميع المعلمين بنجاح",
     "allAbsentSuccess": "تم تسجيل غياب جميع المعلمين بنجاح",
-    "latenessUpdated": "تم تحديث فترة التأخير بنجاح",
+    "deductionUpdated": "تم تحديث خصم الحضور بنجاح",
     "error": "حدث خطأ أثناء حفظ البيانات"
   },
   "empty": {

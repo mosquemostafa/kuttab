@@ -1,5 +1,5 @@
 import { requestNoStore } from "@/lib/api/api-core";
-import type { LatenessDeductionDays } from "@/shared/types/teacher-attendance.types";
+import type { DeductionDays } from "@/shared/types/teacher-attendance.types";
 
 export const adminApi = {
   impersonateUser: async (userId: string) => {
@@ -24,7 +24,7 @@ export const adminApi = {
       forceSingleActiveSession: boolean;
       sendNewsletterWelcomeEmail: boolean;
       workingDays: number[];
-      latenessDeductionDays: LatenessDeductionDays;
+      deductionDays: DeductionDays;
     }>("/admin/settings"),
   updateSettings: (data: {
     organizationName?: string;
@@ -35,7 +35,7 @@ export const adminApi = {
     forceSingleActiveSession?: boolean;
     sendNewsletterWelcomeEmail?: boolean;
     workingDays?: number[];
-    latenessDeductionDays?: LatenessDeductionDays;
+    deductionDays?: DeductionDays;
   }) =>
     requestNoStore<{
       organizationName: string;
@@ -46,7 +46,7 @@ export const adminApi = {
       forceSingleActiveSession: boolean;
       sendNewsletterWelcomeEmail: boolean;
       workingDays: number[];
-      latenessDeductionDays: LatenessDeductionDays;
+      deductionDays: DeductionDays;
     }>("/admin/settings", {
       method: "PUT",
       body: JSON.stringify(data),

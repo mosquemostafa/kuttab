@@ -19,7 +19,7 @@
  *             properties:
  *               teacherId: { type: string }
  *               attendanceDate: { type: string, format: date, example: "2026-11-17" }
- *               latenessPeriod:
+ *               attendanceDeductionType:
  *                 type: string
  *                 nullable: true
  *                 enum: [from_35_to_45_min, from_45_to_60_min, more_than_60_min]

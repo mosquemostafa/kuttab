@@ -15,7 +15,7 @@
  *         description: Report month in YYYY-MM format
  *     responses:
  *       200:
- *         description: Monthly salary report based on configured working days, absences, and lateness deductions
+ *         description: Monthly salary report based on configured working days, absences, and attendance deductions
  *         content:
  *           application/json:
  *             schema:
@@ -45,12 +45,12 @@
  *                           expectedWorkingDays: { type: integer }
  *                           attendedDays: { type: integer }
  *                           absentDays: { type: integer }
- *                           latenessOccurrences: { type: integer }
- *                           latenessDeductionDays: { type: number }
+ *                           deductionTypeOccurrences: { type: integer }
+ *                           deductionDays: { type: number }
  *                           totalDeductionDays: { type: number }
  *                           dailyRate: { type: number, nullable: true }
  *                           absenceDeductionAmount: { type: number, nullable: true }
- *                           latenessDeductionAmount: { type: number, nullable: true }
+ *                           deductionAmount: { type: number, nullable: true }
  *                           totalDeductionAmount: { type: number, nullable: true }
  *                           netSalary: { type: number, nullable: true }
  *                     summary:

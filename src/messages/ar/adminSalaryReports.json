@@ -17,7 +17,7 @@
   "teacher": "المعلم",
   "attendance": "الحضور",
   "absence": "خصم الغياب",
-  "lateness": "خصم التأخير",
+  "deduction": "خصم الحضور",
   "baseSalary": "الراتب الأساسي",
   "deductions": "قيمة الخصم",
   "netSalary": "صافي الراتب",

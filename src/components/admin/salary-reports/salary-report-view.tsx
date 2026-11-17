@@ -195,9 +195,9 @@ export function SalaryReportView() {
           </dd>
         </div>
         <div>
-          <dt className="text-xs text-muted-foreground">{t("lateness")}</dt>
+          <dt className="text-xs text-muted-foreground">          {t("deduction")}</dt>
           <dd className="mt-0.5 tabular-nums">
-            {formatDays(teacher.latenessDeductionDays)}
+            {formatDays(teacher.deductionDays)}
           </dd>
         </div>
       </dl>
@@ -408,7 +408,7 @@ export function SalaryReportView() {
                   <TableHead className="ps-4">{t("teacher")}</TableHead>
                   <TableHead>{t("attendance")}</TableHead>
                   <TableHead>{t("absence")}</TableHead>
-                  <TableHead>{t("lateness")}</TableHead>
+                  <TableHead>{t("deduction")}</TableHead>
                   <TableHead>{t("baseSalary")}</TableHead>
                   <TableHead>{t("deductions")}</TableHead>
                   <TableHead className="pe-4">{t("netSalary")}</TableHead>
@@ -437,7 +437,7 @@ export function SalaryReportView() {
                       {formatDays(teacher.absentDays)}
                     </TableCell>
                     <TableCell className="tabular-nums">
-                      {formatDays(teacher.latenessDeductionDays)}
+                      {formatDays(teacher.deductionDays)}
                     </TableCell>
                     <TableCell className="tabular-nums">
                       {formatMoney(teacher.monthlySalary)}
