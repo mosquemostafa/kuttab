@@ -5,10 +5,12 @@ import type {
   ListTeacherAttendancesQueryDTO,
   ToggleTeacherAttendanceDTO,
   UpdateTeacherAttendanceDTO,
+  WeeklyAttendanceQueryDTO,
 } from "@/server/modules/teacher-attendances/teacher-attendance.dto";
 import type {
   TeacherAttendanceDTO,
   TeacherDailyAttendanceDTO,
+  TeacherWeeklyAttendanceDTO,
 } from "@/shared/types/teacher-attendance.types";
 
 export interface ToggleAttendanceResult {
@@ -36,6 +38,11 @@ export const teacherAttendancesApi = {
   getDaily: (query: DailyAttendanceQueryDTO) =>
     request<TeacherDailyAttendanceDTO[]>(
       `/teacher-attendances/daily?date=${encodeURIComponent(query.date)}`,
+    ),
+
+  getWeekly: (query: WeeklyAttendanceQueryDTO) =>
+    request<TeacherWeeklyAttendanceDTO[]>(
+      `/teacher-attendances/weekly?startDate=${encodeURIComponent(query.startDate)}`,
     ),
 
   getById: (id: string) =>

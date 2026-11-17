@@ -1,10 +1,17 @@
 {
   "title": "حضور المعلمين",
-  "subtitle": "تسجيل ومتابعة حضور وغياب وتأخير المعلمين يومياً",
+  "subtitle": "تسجيل ومتابعة حضور المعلمين يومياً وأسبوعياً",
   "dailyView": "عرض اليوم",
+  "weeklyView": "عرض الأسبوع",
+  "currentWeek": "هذا الأسبوع",
+  "previousWeek": "الأسبوع السابق",
+  "nextWeek": "الأسبوع التالي",
+  "weekRange": "{start} – {end}",
   "selectDate": "اختر التاريخ",
   "today": "اليوم",
   "yesterday": "أمس",
+  "previousDay": "اليوم السابق",
+  "nextDay": "اليوم التالي",
   "summary": {
     "totalTeachers": "إجمالي المعلمين",
     "attended": "حاضر",
@@ -27,6 +34,10 @@
   "statusLabels": {
     "present": "حاضر",
     "absent": "غائب"
+  },
+  "nonWorkingDay": {
+    "title": "يوم غير مخصص للعمل",
+    "description": "يتم تسجيل الحضور فقط في أيام عمل المعهد المحددة في الإعدادات."
   },
   "studentTypes": {
     "foundation": "تأسيس وتمهيدي",
@@ -71,6 +82,7 @@
   },
   "empty": {
     "title": "لا يوجد معلمون",
-    "description": "لم يتم العثور على معلمين مطابقين للشروط الحالية."
+    "description": "لم يتم العثور على معلمين مطابقين للشروط الحالية.",
+    "weeklyDescription": "لا يوجد معلمون نشطون لهذا الأسبوع."
   }
 }

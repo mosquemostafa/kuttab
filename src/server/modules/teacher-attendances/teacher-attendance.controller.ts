@@ -6,6 +6,7 @@ import {
   listTeacherAttendancesQuerySchema,
   toggleTeacherAttendanceSchema,
   updateTeacherAttendanceSchema,
+  weeklyAttendanceQuerySchema,
 } from "@/server/modules/teacher-attendances/teacher-attendance.dto";
 import { teacherAttendanceService } from "@/server/modules/teacher-attendances/teacher-attendance.service";
 import { parsePagination } from "@/server/pipes/parse-pagination.pipe";
@@ -63,6 +64,17 @@ export const teacherAttendanceController = {
     });
 
     const result = await teacherAttendanceService.getDailyAttendance(parsedQuery);
+    return ok(result);
+  },
+
+  async weekly(req: NextRequest): Promise<NextResponse> {
+    const { searchParams } = new URL(req.url);
+    const parsedQuery = weeklyAttendanceQuerySchema.parse({
+      startDate: searchParams.get("startDate") ?? undefined,
+    });
+
+    const result =
+      await teacherAttendanceService.getWeeklyAttendance(parsedQuery);
     return ok(result);
   },
 

@@ -1,10 +1,17 @@
 {
   "title": "Teacher Attendances",
-  "subtitle": "Track and manage daily teacher attendance, absence, and lateness",
+  "subtitle": "Track teacher attendance by day or across the week",
   "dailyView": "Daily View",
+  "weeklyView": "Weekly View",
+  "currentWeek": "This week",
+  "previousWeek": "Previous week",
+  "nextWeek": "Next week",
+  "weekRange": "{start} – {end}",
   "selectDate": "Select Date",
   "today": "Today",
   "yesterday": "Yesterday",
+  "previousDay": "Previous day",
+  "nextDay": "Next day",
   "summary": {
     "totalTeachers": "Total Teachers",
     "attended": "Present",
@@ -27,6 +34,10 @@
   "statusLabels": {
     "present": "Present",
     "absent": "Absent"
+  },
+  "nonWorkingDay": {
+    "title": "Non-working day",
+    "description": "Attendance is only recorded on the institute's configured working days."
   },
   "studentTypes": {
     "foundation": "Foundation",
@@ -71,6 +82,7 @@
   },
   "empty": {
     "title": "No teachers found",
-    "description": "No teachers match the current filters."
+    "description": "No teachers match the current filters.",
+    "weeklyDescription": "No active teachers are available for this week."
   }
 }

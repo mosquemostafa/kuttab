@@ -4,13 +4,13 @@ import { useMemo, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import useSWR from "swr";
 import toast from "react-hot-toast";
-import { format, subDays, addDays } from "date-fns";
+import { format, addDays } from "date-fns";
 import { ar } from "date-fns/locale/ar";
 import { enUS } from "date-fns/locale/en-US";
 import {
   Calendar as CalendarIcon,
+  CalendarOff,
   Check,
-  X,
   Clock,
   UserCheck,
   UserX,
@@ -55,11 +55,20 @@ import {
 import { ConfirmationDialog } from "@/components/ui/confirmation-dialog";
 import { AttendanceLatenessDialog } from "./attendance-lateness-dialog";
 
-export function TeacherAttendanceView() {
+interface DailyTeacherAttendanceViewProps {
+  showHeader?: boolean;
+  workingDays: number[];
+}
+
+export function DailyTeacherAttendanceView({
+  showHeader = true,
+  workingDays,
+}: DailyTeacherAttendanceViewProps) {
   const t = useTranslations("adminTeacherAttendances");
   const getErrorMessage = useApiErrorMessage();
   const locale = useLocale();
-  const dateLocale = locale.startsWith("ar") ? ar : enUS;
+  const isArabic = locale.startsWith("ar");
+  const dateLocale = isArabic ? ar : enUS;
 
   // Selected date state (defaults to today in YYYY-MM-DD)
   const [selectedDate, setSelectedDate] = useState<Date>(() => new Date());
@@ -67,6 +76,7 @@ export function TeacherAttendanceView() {
     () => format(selectedDate, "yyyy-MM-dd"),
     [selectedDate],
   );
+  const isWorkingDay = workingDays.includes(selectedDate.getDay());
 
   // Filtering states
   const [searchQuery, setSearchQuery] = useState("");
@@ -88,7 +98,7 @@ export function TeacherAttendanceView() {
 
   // SWR for daily attendance
   const { data, isLoading, mutate } = useSWR<TeacherDailyAttendanceDTO[]>(
-    `/teacher-attendances/daily?date=${dateString}`,
+    isWorkingDay ? `/teacher-attendances/daily?date=${dateString}` : null,
     () => apiClient.teacherAttendances.getDaily({ date: dateString }),
     { revalidateOnFocus: true },
   );
@@ -369,43 +379,58 @@ export function TeacherAttendanceView() {
     }
   };
 
+  const moveToWorkingDay = (direction: -1 | 1) => {
+    setSelectedDate((current) => {
+      let candidate = addDays(current, direction);
+
+      for (let offset = 0; offset < 7; offset += 1) {
+        if (workingDays.includes(candidate.getDay())) return candidate;
+        candidate = addDays(candidate, direction);
+      }
+
+      return current;
+    });
+  };
+
   return (
     <div className="flex flex-col gap-6">
-      {/* Header with Title and Date Controls */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">{t("title")}</h1>
-          <p className="text-sm text-muted-foreground">{t("subtitle")}</p>
+      {showHeader && (
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h1 className="text-2xl font-bold tracking-tight">{t("title")}</h1>
+            <p className="text-sm text-muted-foreground">{t("subtitle")}</p>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Date Navigation & Controls */}
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between bg-card p-3 sm:p-4 rounded-xl border shadow-sm">
-        <div className="flex items-center justify-between sm:justify-start gap-2">
-          {/* Day stepping buttons */}
-          <div className="flex items-center gap-1">
+      <div className="flex flex-col gap-3 rounded-xl border bg-card p-3 shadow-sm sm:p-4 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="flex items-center gap-1.5">
             <Button
+              type="button"
               variant="outline"
               size="icon"
-              className="h-9 w-9 touch-manipulation"
-              onClick={() =>
-                setSelectedDate((d) =>
-                  locale.startsWith("ar") ? addDays(d, 1) : subDays(d, 1),
-                )
-              }
-              aria-label="Previous day"
+              className="h-11 w-11 shrink-0 touch-manipulation"
+              onClick={() => moveToWorkingDay(-1)}
+              aria-label={t("previousDay")}
             >
-              <ChevronRight className="h-4 w-4" />
+              {isArabic ? (
+                <ChevronRight className="h-4 w-4" />
+              ) : (
+                <ChevronLeft className="h-4 w-4" />
+              )}
             </Button>
 
             <Popover>
               <PopoverTrigger asChild>
                 <Button
+                  type="button"
                   variant="outline"
-                  className="h-9 font-normal px-2.5 sm:px-3 text-xs sm:text-sm min-w-[155px] sm:min-w-[190px] justify-start touch-manipulation"
+                  className="h-11 min-w-0 flex-1 touch-manipulation justify-start px-3 font-normal sm:min-w-[250px]"
                 >
-                  <CalendarIcon className="me-1.5 sm:me-2 h-4 w-4 text-muted-foreground shrink-0" />
-                  <span className="truncate">
+                  <CalendarIcon className="me-2 h-4 w-4 shrink-0 text-muted-foreground" />
+                  <span className="truncate font-medium tabular-nums">
                     {format(selectedDate, "EEE, d MMM yyyy", {
                       locale: dateLocale,
                     })}
@@ -417,65 +442,80 @@ export function TeacherAttendanceView() {
                   mode="single"
                   selected={selectedDate}
                   onSelect={(d) => d && setSelectedDate(d)}
+                  disabled={(date) => !workingDays.includes(date.getDay())}
                   initialFocus
                 />
               </PopoverContent>
             </Popover>
 
             <Button
+              type="button"
               variant="outline"
               size="icon"
-              className="h-9 w-9 touch-manipulation"
-              onClick={() =>
-                setSelectedDate((d) =>
-                  locale.startsWith("ar") ? subDays(d, 1) : addDays(d, 1),
-                )
-              }
-              aria-label="Next day"
+              className="h-11 w-11 shrink-0 touch-manipulation"
+              onClick={() => moveToWorkingDay(1)}
+              aria-label={t("nextDay")}
             >
-              <ChevronLeft className="h-4 w-4" />
+              {isArabic ? (
+                <ChevronLeft className="h-4 w-4" />
+              ) : (
+                <ChevronRight className="h-4 w-4" />
+              )}
             </Button>
           </div>
 
-          {/* Quick shortcuts */}
-          <div className="flex items-center gap-1.5">
-            <Button
-              variant="secondary"
-              size="sm"
-              onClick={() => setSelectedDate(new Date())}
-              className="h-9 text-xs px-2.5 font-medium touch-manipulation"
-            >
-              {t("today")}
-            </Button>
-          </div>
+          <Button
+            type="button"
+            variant="secondary"
+            onClick={() => setSelectedDate(new Date())}
+            className="h-11 w-full touch-manipulation sm:w-auto"
+          >
+            {t("today")}
+          </Button>
         </div>
 
         {/* Quick bulk actions at the top */}
-        <div className="flex items-center gap-2 pt-2 sm:pt-0 border-t sm:border-t-0 border-border/50">
+        {isWorkingDay && (
+          <div className="grid w-full grid-cols-2 gap-2 border-t border-border/50 pt-3 sm:flex sm:items-center lg:w-auto lg:border-t-0 lg:pt-0">
           <Button
+            type="button"
             variant="outline"
-            size="sm"
             disabled={isBulkLoading || isLoading || records.length === 0}
             onClick={() => setConfirmAction("markAllAttended")}
-            className="flex-1 sm:flex-initial h-9 text-xs sm:text-sm font-medium touch-manipulation border-emerald-500/30 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/10 hover:text-emerald-700"
+            className="h-11 flex-1 touch-manipulation border-emerald-500/30 px-2 text-xs font-medium text-emerald-600 hover:bg-emerald-500/10 hover:text-emerald-700 dark:text-emerald-400 sm:px-4 sm:text-sm lg:flex-none"
           >
             <UserCheck className="h-4 w-4 me-1.5" />
             {t("actions.markAllAttended")}
           </Button>
 
           <Button
+            type="button"
             variant="outline"
-            size="sm"
             disabled={isBulkLoading || isLoading || summary.attended === 0}
             onClick={() => setConfirmAction("markAllAbsent")}
-            className="flex-1 sm:flex-initial h-9 text-xs sm:text-sm font-medium touch-manipulation border-rose-500/30 text-rose-600 dark:text-rose-400 hover:bg-rose-500/10 hover:text-rose-700"
+            className="h-11 flex-1 touch-manipulation border-rose-500/30 px-2 text-xs font-medium text-rose-600 hover:bg-rose-500/10 hover:text-rose-700 dark:text-rose-400 sm:px-4 sm:text-sm lg:flex-none"
           >
             <UserX className="h-4 w-4 me-1.5" />
             {t("actions.markAllAbsent")}
           </Button>
-        </div>
+          </div>
+        )}
       </div>
 
+      {!isWorkingDay ? (
+        <div className="flex min-h-56 flex-col items-center justify-center rounded-xl border bg-muted/30 px-5 text-center">
+          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-muted text-muted-foreground">
+            <CalendarOff className="h-5 w-5" />
+          </span>
+          <h2 className="mt-4 text-base font-semibold">
+            {t("nonWorkingDay.title")}
+          </h2>
+          <p className="mt-1 max-w-md text-sm text-muted-foreground">
+            {t("nonWorkingDay.description")}
+          </p>
+        </div>
+      ) : (
+        <>
       {/* Summary Stat Cards - 2x2 grid on mobile, 4 columns on desktop */}
       <div className="grid grid-cols-2 gap-2.5 sm:gap-4 sm:grid-cols-4">
         <Card className="bg-card shadow-sm border">
@@ -612,18 +652,22 @@ export function TeacherAttendanceView() {
                           ? t("statusLabels.present")
                           : t("statusLabels.absent")
                       }
+                      aria-pressed={item.isAttended}
                       aria-label={`${item.teacherName}: ${item.isAttended ? t("statusLabels.present") : t("statusLabels.absent")}`}
-                      className={`h-7 w-7 rounded-md flex items-center justify-center transition-all cursor-pointer shrink-0 border ${
-                        item.isAttended
-                          ? "bg-emerald-500 border-emerald-600 text-white shadow-xs hover:bg-emerald-600"
-                          : "bg-rose-500 border-rose-600 text-white shadow-xs hover:bg-rose-600"
-                      }`}
+                      className="flex h-11 w-11 shrink-0 touch-manipulation items-center justify-center rounded-full transition-transform active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                     >
-                      {item.isAttended ? (
-                        <Check className="h-4 w-4 stroke-[2.5]" />
-                      ) : (
-                        <X className="h-4 w-4 stroke-[2.5]" />
-                      )}
+                      <span
+                        className={`flex h-9 w-9 items-center justify-center rounded-full border-2 transition-[background-color,border-color,color] md:h-11 md:w-11 ${
+                          item.isAttended
+                            ? "border-emerald-600 bg-emerald-600 text-white hover:border-emerald-700 hover:bg-emerald-700"
+                            : "border-border bg-background text-transparent hover:border-primary/50 hover:bg-muted"
+                        }`}
+                      >
+                        <Check
+                          className="h-4 w-4 md:h-5 md:w-5"
+                          strokeWidth={3}
+                        />
+                      </span>
                     </button>
                     <span className="font-semibold text-sm truncate">
                       {item.teacherName}
@@ -715,18 +759,22 @@ export function TeacherAttendanceView() {
                               ? t("statusLabels.present")
                               : t("statusLabels.absent")
                           }
+                          aria-pressed={item.isAttended}
                           aria-label={`${item.teacherName}: ${item.isAttended ? t("statusLabels.present") : t("statusLabels.absent")}`}
-                          className={`h-6 w-6 rounded-md flex items-center justify-center transition-all cursor-pointer border ${
-                            item.isAttended
-                              ? "bg-emerald-500 border-emerald-600 text-white shadow-xs hover:bg-emerald-600"
-                              : "bg-rose-500 border-rose-600 text-white shadow-xs hover:bg-rose-600"
-                          }`}
+                          className="flex h-11 w-11 touch-manipulation items-center justify-center rounded-full transition-transform active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                         >
-                          {item.isAttended ? (
-                            <Check className="h-4 w-4 stroke-[2.5]" />
-                          ) : (
-                            <X className="h-4 w-4 stroke-[2.5]" />
-                          )}
+                          <span
+                            className={`flex h-9 w-9 items-center justify-center rounded-full border-2 transition-[background-color,border-color,color] md:h-11 md:w-11 ${
+                              item.isAttended
+                                ? "border-emerald-600 bg-emerald-600 text-white hover:border-emerald-700 hover:bg-emerald-700"
+                                : "border-border bg-background text-transparent hover:border-primary/50 hover:bg-muted"
+                            }`}
+                          >
+                            <Check
+                              className="h-4 w-4 md:h-5 md:w-5"
+                              strokeWidth={3}
+                            />
+                          </span>
                         </button>
                       </div>
                     </TableCell>
@@ -801,6 +849,8 @@ export function TeacherAttendanceView() {
         confirmVariant="destructive"
         dir={locale.startsWith("ar") ? "rtl" : "ltr"}
       />
+        </>
+      )}
     </div>
   );
 }

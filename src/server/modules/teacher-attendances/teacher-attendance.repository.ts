@@ -125,6 +125,41 @@ export const teacherAttendanceRepository = {
     }));
   },
 
+  async findWeeklyWithTeachers(startDate: string, endDate: string) {
+    const teachers = await db
+      .select({
+        id: teacher.id,
+        name: teacher.name,
+      })
+      .from(teacher)
+      .where(eq(teacher.status, "active"))
+      .orderBy(teacher.name);
+
+    const attendances = await db
+      .select()
+      .from(teacherAttendance)
+      .where(
+        and(
+          gte(teacherAttendance.attendanceDate, startDate),
+          lte(teacherAttendance.attendanceDate, endDate),
+        ),
+      );
+
+    const attendancesByTeacher = new Map<string, TeacherAttendanceRow[]>();
+    for (const attendance of attendances) {
+      const teacherAttendances =
+        attendancesByTeacher.get(attendance.teacherId) ?? [];
+      teacherAttendances.push(attendance);
+      attendancesByTeacher.set(attendance.teacherId, teacherAttendances);
+    }
+
+    return teachers.map((item) => ({
+      teacherId: item.id,
+      teacherName: item.name,
+      attendances: attendancesByTeacher.get(item.id) ?? [],
+    }));
+  },
+
   async create(data: {
     teacherId: string;
     attendanceDate: string;

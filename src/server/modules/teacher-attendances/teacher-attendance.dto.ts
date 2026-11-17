@@ -13,6 +13,13 @@ export const latenessPeriodSchema = z.enum(latenessPeriodValues);
 // YYYY-MM-DD date regex
 const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
 
+function isValidDate(value: string): boolean {
+  const date = new Date(`${value}T00:00:00.000Z`);
+  return (
+    !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value
+  );
+}
+
 export const listTeacherAttendancesQuerySchema = z.object({
   teacherId: z.string().trim().min(1).optional(),
   date: z
@@ -42,6 +49,14 @@ export const dailyAttendanceQuerySchema = z.object({
     .regex(dateRegex, "Date must be in YYYY-MM-DD format"),
 });
 
+export const weeklyAttendanceQuerySchema = z.object({
+  startDate: z
+    .string()
+    .trim()
+    .regex(dateRegex, "startDate must be in YYYY-MM-DD format")
+    .refine(isValidDate, "startDate must be a valid date"),
+});
+
 export const toggleTeacherAttendanceSchema = z.object({
   teacherId: z.string().trim().min(1, "teacherId is required"),
   attendanceDate: z
@@ -67,6 +82,9 @@ export type ListTeacherAttendancesQueryDTO = z.infer<
 >;
 export type DailyAttendanceQueryDTO = z.infer<
   typeof dailyAttendanceQuerySchema
+>;
+export type WeeklyAttendanceQueryDTO = z.infer<
+  typeof weeklyAttendanceQuerySchema
 >;
 export type ToggleTeacherAttendanceDTO = z.infer<
   typeof toggleTeacherAttendanceSchema

@@ -22,3 +22,15 @@ export interface TeacherDailyAttendanceDTO {
   isAttended: boolean;
   attendance: TeacherAttendanceDTO | null;
 }
+
+export interface TeacherWeeklyAttendanceDayDTO {
+  date: string; // YYYY-MM-DD
+  isAttended: boolean;
+  attendance: TeacherAttendanceDTO | null;
+}
+
+export interface TeacherWeeklyAttendanceDTO {
+  teacherId: string;
+  teacherName: string;
+  days: TeacherWeeklyAttendanceDayDTO[];
+}

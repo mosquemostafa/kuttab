@@ -4,6 +4,7 @@ import type {
   ListTeacherAttendancesQueryDTO,
   ToggleTeacherAttendanceDTO,
   UpdateTeacherAttendanceDTO,
+  WeeklyAttendanceQueryDTO,
 } from "@/server/modules/teacher-attendances/teacher-attendance.dto";
 import {
   teacherAttendanceRepository,
@@ -16,7 +17,16 @@ import type {
   LatenessPeriod,
   TeacherAttendanceDTO,
   TeacherDailyAttendanceDTO,
+  TeacherWeeklyAttendanceDTO,
 } from "@/shared/types/teacher-attendance.types";
+
+const WEEK_LENGTH_DAYS = 7;
+
+function addUtcDays(date: string, days: number): string {
+  const value = new Date(`${date}T00:00:00.000Z`);
+  value.setUTCDate(value.getUTCDate() + days);
+  return value.toISOString().slice(0, 10);
+}
 
 function toDTO(row: TeacherAttendanceRow): TeacherAttendanceDTO {
   return {
@@ -77,6 +87,41 @@ export const teacherAttendanceService = {
       isAttended: record.attendance !== null,
       attendance: record.attendance ? toDTO(record.attendance) : null,
     }));
+  },
+
+  async getWeeklyAttendance(
+    query: WeeklyAttendanceQueryDTO,
+  ): Promise<TeacherWeeklyAttendanceDTO[]> {
+    const dates = Array.from({ length: WEEK_LENGTH_DAYS }, (_, index) =>
+      addUtcDays(query.startDate, index),
+    );
+    const endDate = dates[dates.length - 1];
+    const records = await teacherAttendanceRepository.findWeeklyWithTeachers(
+      query.startDate,
+      endDate,
+    );
+
+    return records.map((record) => {
+      const attendanceByDate = new Map(
+        record.attendances.map((attendance) => [
+          attendance.attendanceDate,
+          attendance,
+        ]),
+      );
+
+      return {
+        teacherId: record.teacherId,
+        teacherName: record.teacherName,
+        days: dates.map((date) => {
+          const attendance = attendanceByDate.get(date);
+          return {
+            date,
+            isAttended: attendance !== undefined,
+            attendance: attendance ? toDTO(attendance) : null,
+          };
+        }),
+      };
+    });
   },
 
   async toggleAttendance(
