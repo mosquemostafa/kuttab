@@ -17,6 +17,7 @@ import type { ParsedPagination } from "@/server/pipes/parse-pagination.pipe";
 import type { PaginatedResponse } from "@/shared/types/pagination.types";
 import type {
   AttendanceDeductionType,
+  DeductionDays,
   TeacherAttendanceDTO,
   TeacherDailyAttendanceDTO,
   TeacherMonthlySalaryReportDTO,
@@ -67,7 +68,7 @@ function calculateSalaryItem(
   >[number],
   workingDateSet: Set<string>,
   expectedWorkingDays: number,
-  attendanceDeductions: Record<AttendanceDeductionType, number>,
+  attendanceDeductions: DeductionDays,
 ): TeacherSalaryReportItemDTO {
   const activeDayAttendances = row.attendances.filter((attendance) =>
     workingDateSet.has(attendance.attendanceDate),
@@ -81,7 +82,8 @@ function calculateSalaryItem(
     const period = attendance.attendanceDeductionType as AttendanceDeductionType;
     return total + (attendanceDeductions[period] ?? 0);
   }, 0);
-  const totalDeductionDays = absentDays + deductionDays;
+  const absenceDeductionDays = absentDays * (attendanceDeductions.absence ?? 1);
+  const totalDeductionDays = absenceDeductionDays + deductionDays;
 
   if (row.monthlySalary === null) {
     return {
@@ -104,7 +106,7 @@ function calculateSalaryItem(
 
   const dailyRate =
     expectedWorkingDays > 0 ? row.monthlySalary / expectedWorkingDays : 0;
-  const absenceDeductionAmount = dailyRate * absentDays;
+  const absenceDeductionAmount = dailyRate * absenceDeductionDays;
   const deductionAmount = dailyRate * deductionDays;
   const totalDeductionAmount = Math.min(
     row.monthlySalary,

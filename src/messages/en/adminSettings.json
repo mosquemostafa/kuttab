@@ -35,6 +35,7 @@
     "deductionInvalid": "Deductions must be a valid number between 0 and 30 days.",
     "deductionUnit": "days",
     "attendanceDeductionTypes": {
+      "absence": "Unexcused absence",
       "from_35_to_45_min": "35 to 45 minutes late",
       "from_45_to_60_min": "45 to 60 minutes late",
       "more_than_60_min": "More than 60 minutes late",

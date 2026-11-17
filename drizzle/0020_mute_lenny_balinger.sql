@@ -1,0 +1,1 @@
+ALTER TABLE "app_settings" ALTER COLUMN "deduction_days" SET DEFAULT '{"absence":1,"from_35_to_45_min":0,"from_45_to_60_min":0,"more_than_60_min":0,"excused_absence":0}'::jsonb;

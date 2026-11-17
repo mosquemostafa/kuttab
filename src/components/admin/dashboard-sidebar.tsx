@@ -22,7 +22,7 @@ import {
   UserCheck,
   CalendarCheck,
   School,
-  WalletCards,
+  DollarSign,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/logo";
@@ -115,7 +115,7 @@ export function DashboardSidebar({
         },
         {
           href: "/admin/salary-reports",
-          icon: WalletCards,
+          icon: DollarSign,
           label: t("shell.salaryReports"),
         },
         {

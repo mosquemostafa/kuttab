@@ -8,7 +8,9 @@ export const AttendanceDeductionType = {
 export type AttendanceDeductionType =
   (typeof AttendanceDeductionType)[keyof typeof AttendanceDeductionType];
 
-export type DeductionDays = Record<AttendanceDeductionType, number>;
+export type DeductionDays = Record<AttendanceDeductionType, number> & {
+  absence: number;
+};
 
 export interface TeacherAttendanceDTO {
   id: string;

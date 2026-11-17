@@ -7,6 +7,7 @@ export const workingDaySchema = z.number().int().min(0).max(6);
 const deductionDaySchema = z.number().finite().min(0).max(30);
 
 export const deductionDaysSchema = z.object({
+  absence: deductionDaySchema.optional().default(1),
   [AttendanceDeductionType.FROM_35_TO_45_MIN]: deductionDaySchema,
   [AttendanceDeductionType.FROM_45_TO_60_MIN]: deductionDaySchema,
   [AttendanceDeductionType.MORE_THAN_60_MIN]: deductionDaySchema,

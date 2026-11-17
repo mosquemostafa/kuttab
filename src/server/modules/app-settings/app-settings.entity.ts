@@ -45,7 +45,7 @@ export const appSettings = pgTable("app_settings", {
     .$type<DeductionDays>()
     .notNull()
     .default(
-      sql`'{"from_35_to_45_min":0,"from_45_to_60_min":0,"more_than_60_min":0,"excused_absence":0}'::jsonb`,
+      sql`'{"absence":1,"from_35_to_45_min":0,"from_45_to_60_min":0,"more_than_60_min":0,"excused_absence":0}'::jsonb`,
     ),
   createdAt: timestamp("created_at")
     .$defaultFn(() => new Date())

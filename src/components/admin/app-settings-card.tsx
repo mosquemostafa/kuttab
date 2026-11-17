@@ -85,6 +85,10 @@ export function AppSettingsCard({
 
   const deductionOptions = [
     {
+      period: AttendanceDeductionType.EXCUSED_ABSENCE,
+      label: t("fields.attendanceDeductionTypes.excused_absence"),
+    },
+    {
       period: AttendanceDeductionType.FROM_35_TO_45_MIN,
       label: t("fields.attendanceDeductionTypes.from_35_to_45_min"),
     },
@@ -95,10 +99,6 @@ export function AppSettingsCard({
     {
       period: AttendanceDeductionType.MORE_THAN_60_MIN,
       label: t("fields.attendanceDeductionTypes.more_than_60_min"),
-    },
-    {
-      period: AttendanceDeductionType.EXCUSED_ABSENCE,
-      label: t("fields.attendanceDeductionTypes.excused_absence"),
     },
   ];
 
@@ -330,6 +330,32 @@ export function AppSettingsCard({
           </div>
 
           <div className="divide-y rounded-lg border bg-muted/20">
+            <div className="flex min-h-16 items-center justify-between gap-3 px-3 py-2.5">
+              <Label htmlFor="absence-deduction" className="flex-1">
+                {t("fields.attendanceDeductionTypes.absence")}
+              </Label>
+              <div className="flex shrink-0 items-center gap-2">
+                <Input
+                  id="absence-deduction"
+                  type="number"
+                  inputMode="decimal"
+                  min={0}
+                  max={30}
+                  step="any"
+                  value={deductionDays.absence}
+                  onChange={(event) =>
+                    setDeductionDays((current) => ({
+                      ...current,
+                      absence: Number(event.target.value),
+                    }))
+                  }
+                  className="h-10 w-24 text-center tabular-nums"
+                />
+                <span className="w-9 text-xs text-muted-foreground">
+                  {t("fields.deductionUnit")}
+                </span>
+              </div>
+            </div>
             {deductionOptions.map(({ period, label }) => (
               <div
                 key={period}

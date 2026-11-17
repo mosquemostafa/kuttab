@@ -35,6 +35,7 @@
     "deductionInvalid": "يجب أن يكون الخصم قيمة رقمية صالحة بين 0 و30 يومًا.",
     "deductionUnit": "يوم",
     "attendanceDeductionTypes": {
+      "absence": "غياب",
       "from_35_to_45_min": "تأخير من 35 إلى 45 دقيقة",
       "from_45_to_60_min": "تأخير من 45 إلى 60 دقيقة",
       "more_than_60_min": "تأخير أكثر من 60 دقيقة",

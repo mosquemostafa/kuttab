@@ -23,6 +23,7 @@ type AppSettings = {
 };
 
 const DEFAULT_DEDUCTION_DAYS: DeductionDays = {
+  absence: 1,
   [AttendanceDeductionType.FROM_35_TO_45_MIN]: 0,
   [AttendanceDeductionType.FROM_45_TO_60_MIN]: 0,
   [AttendanceDeductionType.MORE_THAN_60_MIN]: 0,

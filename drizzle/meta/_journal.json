@@ -141,6 +141,13 @@
       "when": 1794960000000,
       "tag": "0019_rename_lateness_to_deductions",
       "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "7",
+      "when": 1794959511225,
+      "tag": "0020_mute_lenny_balinger",
+      "breakpoints": true
     }
   ]
 }
