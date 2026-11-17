@@ -147,8 +147,9 @@ const DashboardLayoutContent = ({
     edit: t("shell.edit"),
     teachers: t("shell.teachers"),
     "teacher-attendances": t("shell.teacherAttendances"),
+    "salary-reports": t("shell.salaryReports"),
     students: t("shell.students"),
-    classes: t("shell.classes")
+    classes: t("shell.classes"),
   };
 
   const getSegmentLabel = (segment: string) => {

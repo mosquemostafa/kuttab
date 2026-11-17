@@ -3,6 +3,7 @@ import type {
   BulkAttendanceActionDTO,
   DailyAttendanceQueryDTO,
   ListTeacherAttendancesQueryDTO,
+  SalaryReportQueryDTO,
   ToggleTeacherAttendanceDTO,
   UpdateTeacherAttendanceDTO,
   WeeklyAttendanceQueryDTO,
@@ -11,6 +12,7 @@ import type {
   TeacherAttendanceDTO,
   TeacherDailyAttendanceDTO,
   TeacherWeeklyAttendanceDTO,
+  TeacherMonthlySalaryReportDTO,
 } from "@/shared/types/teacher-attendance.types";
 
 export interface ToggleAttendanceResult {
@@ -43,6 +45,11 @@ export const teacherAttendancesApi = {
   getWeekly: (query: WeeklyAttendanceQueryDTO) =>
     request<TeacherWeeklyAttendanceDTO[]>(
       `/teacher-attendances/weekly?startDate=${encodeURIComponent(query.startDate)}`,
+    ),
+
+  getSalaryReport: (query: SalaryReportQueryDTO) =>
+    request<TeacherMonthlySalaryReportDTO>(
+      `/teacher-attendances/salary-report?month=${encodeURIComponent(query.month)}`,
     ),
 
   getById: (id: string) =>

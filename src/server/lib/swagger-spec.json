@@ -2582,6 +2582,45 @@
                   },
                   "sendNewsletterWelcomeEmail": {
                     "type": "boolean"
+                  },
+                  "workingDays": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 6
+                    },
+                    "example": [
+                      0,
+                      1,
+                      2,
+                      3,
+                      4
+                    ]
+                  },
+                  "latenessDeductionDays": {
+                    "type": "object",
+                    "description": "Deduction in days for each lateness period",
+                    "properties": {
+                      "from_35_to_45_min": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 30,
+                        "multipleOf": 0.5
+                      },
+                      "from_45_to_60_min": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 30,
+                        "multipleOf": 0.5
+                      },
+                      "more_than_60_min": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 30,
+                        "multipleOf": 0.5
+                      }
+                    }
                   }
                 }
               }
@@ -8899,6 +8938,870 @@
           },
           "403": {
             "description": "Forbidden (admin only)"
+          }
+        }
+      }
+    },
+    "/api/teacher-attendances/{id}": {
+      "get": {
+        "summary": "Get teacher attendance by ID",
+        "tags": [
+          "Teacher Attendances"
+        ],
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Attendance record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden - Admin only"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update attendance details (e.g. lateness period)",
+        "tags": [
+          "Teacher Attendances"
+        ],
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "latenessPeriod"
+                ],
+                "properties": {
+                  "latenessPeriod": {
+                    "type": "string",
+                    "nullable": true,
+                    "enum": [
+                      "from_35_to_45_min",
+                      "from_45_to_60_min",
+                      "more_than_60_min"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated attendance record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden - Admin only"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete attendance record",
+        "tags": [
+          "Teacher Attendances"
+        ],
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Deleted successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden - Admin only"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/api/teacher-attendances/daily": {
+      "get": {
+        "summary": "Get all teachers and their attendance status for a specific day",
+        "tags": [
+          "Teacher Attendances"
+        ],
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "date",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-11-17"
+            },
+            "description": "Date in YYYY-MM-DD format"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of teachers with attendance status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "teacherId": {
+                            "type": "string"
+                          },
+                          "teacherName": {
+                            "type": "string"
+                          },
+                          "isAttended": {
+                            "type": "boolean"
+                          },
+                          "attendance": {
+                            "type": "object",
+                            "nullable": true
+                          }
+                        }
+                      }
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden - Admin only"
+          }
+        }
+      }
+    },
+    "/api/teacher-attendances/mark-all-absent": {
+      "post": {
+        "summary": "Mark all teachers as absent for a specific day",
+        "tags": [
+          "Teacher Attendances"
+        ],
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "date"
+                ],
+                "properties": {
+                  "date": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2026-11-17"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "All teachers marked as absent (attendance removed)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "affectedCount": {
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden - Admin only"
+          }
+        }
+      }
+    },
+    "/api/teacher-attendances/mark-all-attended": {
+      "post": {
+        "summary": "Mark all active teachers as attended for a specific day",
+        "tags": [
+          "Teacher Attendances"
+        ],
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "date"
+                ],
+                "properties": {
+                  "date": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2026-11-17"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "All active teachers marked as attended",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "affectedCount": {
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden - Admin only"
+          }
+        }
+      }
+    },
+    "/api/teacher-attendances": {
+      "get": {
+        "summary": "List teacher attendances with pagination and filters",
+        "tags": [
+          "Teacher Attendances"
+        ],
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "teacherId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by teacher ID"
+          },
+          {
+            "in": "query",
+            "name": "date",
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-11-17"
+            },
+            "description": "Filter by specific date (YYYY-MM-DD)"
+          },
+          {
+            "in": "query",
+            "name": "startDate",
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-11-01"
+            },
+            "description": "Start date filter"
+          },
+          {
+            "in": "query",
+            "name": "endDate",
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-11-30"
+            },
+            "description": "End date filter"
+          },
+          {
+            "in": "query",
+            "name": "latenessPeriod",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "from_35_to_45_min",
+                "from_45_to_60_min",
+                "more_than_60_min"
+              ]
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "type": "integer",
+              "default": 10,
+              "maximum": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated list of teacher attendances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/PaginationMeta"
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden - Admin only"
+          }
+        }
+      }
+    },
+    "/api/teacher-attendances/salary-report": {
+      "get": {
+        "summary": "Get the monthly salary report for all active teachers",
+        "tags": [
+          "Teacher Attendances"
+        ],
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "month",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^(?:[1-9]\\d{3})-(0[1-9]|1[0-2])$",
+              "example": "2026-11"
+            },
+            "description": "Report month in YYYY-MM format"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Monthly salary report based on configured working days, absences, and lateness deductions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "month": {
+                          "type": "string",
+                          "example": "2026-11"
+                        },
+                        "startDate": {
+                          "type": "string",
+                          "format": "date"
+                        },
+                        "endDate": {
+                          "type": "string",
+                          "format": "date"
+                        },
+                        "workingDays": {
+                          "type": "array",
+                          "items": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 6
+                          }
+                        },
+                        "workingDates": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "format": "date"
+                          }
+                        },
+                        "teachers": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "teacherId": {
+                                "type": "string"
+                              },
+                              "teacherName": {
+                                "type": "string"
+                              },
+                              "monthlySalary": {
+                                "type": "number",
+                                "nullable": true
+                              },
+                              "expectedWorkingDays": {
+                                "type": "integer"
+                              },
+                              "attendedDays": {
+                                "type": "integer"
+                              },
+                              "absentDays": {
+                                "type": "integer"
+                              },
+                              "latenessOccurrences": {
+                                "type": "integer"
+                              },
+                              "latenessDeductionDays": {
+                                "type": "number"
+                              },
+                              "totalDeductionDays": {
+                                "type": "number"
+                              },
+                              "dailyRate": {
+                                "type": "number",
+                                "nullable": true
+                              },
+                              "absenceDeductionAmount": {
+                                "type": "number",
+                                "nullable": true
+                              },
+                              "latenessDeductionAmount": {
+                                "type": "number",
+                                "nullable": true
+                              },
+                              "totalDeductionAmount": {
+                                "type": "number",
+                                "nullable": true
+                              },
+                              "netSalary": {
+                                "type": "number",
+                                "nullable": true
+                              }
+                            }
+                          }
+                        },
+                        "summary": {
+                          "type": "object",
+                          "properties": {
+                            "teacherCount": {
+                              "type": "integer"
+                            },
+                            "missingSalaryCount": {
+                              "type": "integer"
+                            },
+                            "totalMonthlySalaries": {
+                              "type": "number"
+                            },
+                            "totalDeductions": {
+                              "type": "number"
+                            },
+                            "totalNetSalaries": {
+                              "type": "number"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden - Admin only"
+          }
+        }
+      }
+    },
+    "/api/teacher-attendances/toggle": {
+      "post": {
+        "summary": "Atomically toggle teacher attendance (check-in / remove)",
+        "tags": [
+          "Teacher Attendances"
+        ],
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "teacherId",
+                  "attendanceDate"
+                ],
+                "properties": {
+                  "teacherId": {
+                    "type": "string"
+                  },
+                  "attendanceDate": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2026-11-17"
+                  },
+                  "latenessPeriod": {
+                    "type": "string",
+                    "nullable": true,
+                    "enum": [
+                      "from_35_to_45_min",
+                      "from_45_to_60_min",
+                      "more_than_60_min"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Toggled attendance state",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "attended": {
+                          "type": "boolean"
+                        },
+                        "attendance": {
+                          "type": "object",
+                          "nullable": true
+                        }
+                      }
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden - Admin only"
+          },
+          "404": {
+            "description": "Teacher not found"
+          }
+        }
+      }
+    },
+    "/api/teacher-attendances/weekly": {
+      "get": {
+        "summary": "Get all teachers and their attendance status for a seven-day week",
+        "tags": [
+          "Teacher Attendances"
+        ],
+        "security": [
+          {
+            "sessionAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startDate",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "2026-11-14"
+            },
+            "description": "First day of the seven-day week in YYYY-MM-DD format"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of teachers with attendance status for each day",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "teacherId": {
+                            "type": "string"
+                          },
+                          "teacherName": {
+                            "type": "string"
+                          },
+                          "days": {
+                            "type": "array",
+                            "minItems": 7,
+                            "maxItems": 7,
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "date": {
+                                  "type": "string",
+                                  "format": "date"
+                                },
+                                "isAttended": {
+                                  "type": "boolean"
+                                },
+                                "attendance": {
+                                  "type": "object",
+                                  "nullable": true
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden - Admin only"
           }
         }
       }

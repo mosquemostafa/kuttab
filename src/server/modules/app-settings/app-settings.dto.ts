@@ -4,7 +4,7 @@ import { LatenessPeriod } from "@/shared/types/teacher-attendance.types";
 
 export const workingDaySchema = z.number().int().min(0).max(6);
 
-const deductionDaysSchema = z.number().finite().min(0).max(30).multipleOf(0.5);
+const deductionDaysSchema = z.number().finite().min(0).max(30);
 
 export const latenessDeductionDaysSchema = z.object({
   [LatenessPeriod.FROM_35_TO_45_MIN]: deductionDaysSchema,

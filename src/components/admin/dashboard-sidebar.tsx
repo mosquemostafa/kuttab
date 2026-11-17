@@ -22,6 +22,7 @@ import {
   UserCheck,
   CalendarCheck,
   School,
+  WalletCards,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/logo";
@@ -111,6 +112,11 @@ export function DashboardSidebar({
           href: "/admin/teacher-attendances",
           icon: CalendarCheck,
           label: t("shell.teacherAttendances"),
+        },
+        {
+          href: "/admin/salary-reports",
+          icon: WalletCards,
+          label: t("shell.salaryReports"),
         },
         {
           href: "/admin/classes",

@@ -121,8 +121,7 @@ export function AppSettingsCard({
       (value) =>
         !Number.isFinite(value) ||
         value < 0 ||
-        value > 30 ||
-        !Number.isInteger(value * 2),
+        value > 30,
     );
     if (hasInvalidDeduction) {
       toast.error(t("fields.latenessDeductionInvalid"));
@@ -345,7 +344,7 @@ export function AppSettingsCard({
                     inputMode="decimal"
                     min={0}
                     max={30}
-                    step={0.5}
+                    step="any"
                     value={latenessDeductionDays[period]}
                     onChange={(event) =>
                       setLatenessDeductionDays((current) => ({

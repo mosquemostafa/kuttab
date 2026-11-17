@@ -160,6 +160,43 @@ export const teacherAttendanceRepository = {
     }));
   },
 
+  async findSalaryReportRows(startDate: string, endDate: string) {
+    const [teachers, attendances] = await Promise.all([
+      db
+        .select({
+          id: teacher.id,
+          name: teacher.name,
+          salary: teacher.sallary,
+        })
+        .from(teacher)
+        .where(eq(teacher.status, "active"))
+        .orderBy(teacher.name),
+      db
+        .select()
+        .from(teacherAttendance)
+        .where(
+          and(
+            gte(teacherAttendance.attendanceDate, startDate),
+            lte(teacherAttendance.attendanceDate, endDate),
+          ),
+        ),
+    ]);
+
+    const attendancesByTeacher = new Map<string, TeacherAttendanceRow[]>();
+    for (const attendance of attendances) {
+      const records = attendancesByTeacher.get(attendance.teacherId) ?? [];
+      records.push(attendance);
+      attendancesByTeacher.set(attendance.teacherId, records);
+    }
+
+    return teachers.map((item) => ({
+      teacherId: item.id,
+      teacherName: item.name,
+      monthlySalary: item.salary,
+      attendances: attendancesByTeacher.get(item.id) ?? [],
+    }));
+  },
+
   async create(data: {
     teacherId: string;
     attendanceDate: string;
@@ -287,12 +324,14 @@ export const teacherAttendanceRepository = {
   },
 
   async markAllAbsent(attendanceDate: string): Promise<{ affectedCount: number }> {
-    // Deleting all attendance records for the date marks all teachers absent
-    const deleted = await db
-      .delete(teacherAttendance)
-      .where(eq(teacherAttendance.attendanceDate, attendanceDate))
-      .returning({ id: teacherAttendance.id });
+    return await db.transaction(async (tx) => {
+      // Deleting all attendance records for the date marks all teachers absent
+      const deleted = await tx
+        .delete(teacherAttendance)
+        .where(eq(teacherAttendance.attendanceDate, attendanceDate))
+        .returning({ id: teacherAttendance.id });
 
-    return { affectedCount: deleted.length };
+      return { affectedCount: deleted.length };
+    });
   },
 };

@@ -278,34 +278,12 @@ export function DailyTeacherAttendanceView({
   // Bulk Actions
   const handleMarkAllAttended = async () => {
     setIsBulkLoading(true);
-    const previousData = records;
-
-    // Optimistically mark all as attended
-    mutate(
-      (prev) =>
-        prev
-          ? prev.map((item) => ({
-              ...item,
-              isAttended: true,
-              attendance: item.attendance ?? {
-                id: `temp-${item.teacherId}-${Date.now()}`,
-                teacherId: item.teacherId,
-                attendanceDate: dateString,
-                latenessPeriod: null,
-                recordedBy: "",
-                createdAt: new Date().toISOString(),
-              },
-            }))
-          : prev,
-      false,
-    );
-    toast.success(t("notifications.allAttendedSuccess"));
 
     try {
       await apiClient.teacherAttendances.markAllAttended({ date: dateString });
       await mutate();
+      toast.success(t("notifications.allAttendedSuccess"));
     } catch (error) {
-      mutate(previousData, false);
       toast.error(getErrorMessage(error) || t("notifications.error"));
     } finally {
       setIsBulkLoading(false);
@@ -314,27 +292,12 @@ export function DailyTeacherAttendanceView({
 
   const handleMarkAllAbsent = async () => {
     setIsBulkLoading(true);
-    const previousData = records;
-
-    // Optimistically mark all as absent
-    mutate(
-      (prev) =>
-        prev
-          ? prev.map((item) => ({
-              ...item,
-              isAttended: false,
-              attendance: null,
-            }))
-          : prev,
-      false,
-    );
-    toast.success(t("notifications.allAbsentSuccess"));
 
     try {
       await apiClient.teacherAttendances.markAllAbsent({ date: dateString });
       await mutate();
+      toast.success(t("notifications.allAbsentSuccess"));
     } catch (error) {
-      mutate(previousData, false);
       toast.error(getErrorMessage(error) || t("notifications.error"));
     } finally {
       setIsBulkLoading(false);

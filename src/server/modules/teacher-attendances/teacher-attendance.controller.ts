@@ -4,6 +4,7 @@ import {
   bulkAttendanceActionSchema,
   dailyAttendanceQuerySchema,
   listTeacherAttendancesQuerySchema,
+  salaryReportQuerySchema,
   toggleTeacherAttendanceSchema,
   updateTeacherAttendanceSchema,
   weeklyAttendanceQuerySchema,
@@ -29,6 +30,19 @@ function ok<T>(
     },
     { status },
   );
+}
+
+export async function getTeacherSalaryReport(
+  req: NextRequest,
+): Promise<NextResponse> {
+  const { searchParams } = new URL(req.url);
+  const parsedQuery = salaryReportQuerySchema.parse({
+    month: searchParams.get("month") ?? undefined,
+  });
+
+  const result =
+    await teacherAttendanceService.getMonthlySalaryReport(parsedQuery);
+  return ok(result);
 }
 
 export const teacherAttendanceController = {
@@ -77,6 +91,8 @@ export const teacherAttendanceController = {
       await teacherAttendanceService.getWeeklyAttendance(parsedQuery);
     return ok(result);
   },
+
+  salaryReport: getTeacherSalaryReport,
 
   async toggle(req: NextRequest): Promise<NextResponse> {
     const body = await req.json();

@@ -36,3 +36,39 @@ export interface TeacherWeeklyAttendanceDTO {
   teacherName: string;
   days: TeacherWeeklyAttendanceDayDTO[];
 }
+
+export interface TeacherSalaryReportItemDTO {
+  teacherId: string;
+  teacherName: string;
+  monthlySalary: number | null;
+  expectedWorkingDays: number;
+  attendedDays: number;
+  absentDays: number;
+  latenessOccurrences: number;
+  latenessDeductionDays: number;
+  totalDeductionDays: number;
+  dailyRate: number | null;
+  absenceDeductionAmount: number | null;
+  latenessDeductionAmount: number | null;
+  totalDeductionAmount: number | null;
+  netSalary: number | null;
+}
+
+export interface TeacherSalaryReportSummaryDTO {
+  teacherCount: number;
+  missingSalaryCount: number;
+  totalMonthlySalaries: number;
+  totalDeductions: number;
+  totalNetSalaries: number;
+}
+
+export interface TeacherMonthlySalaryReportDTO {
+  month: string; // YYYY-MM
+  startDate: string;
+  endDate: string;
+  workingDays: number[];
+  workingDates: string[];
+  latenessDeductionDays: LatenessDeductionDays;
+  teachers: TeacherSalaryReportItemDTO[];
+  summary: TeacherSalaryReportSummaryDTO;
+}
