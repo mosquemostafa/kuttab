@@ -55,7 +55,7 @@ import {
 import { ConfirmationDialog } from "@/components/ui/confirmation-dialog";
 import { AttendanceLatenessDialog } from "./attendance-lateness-dialog";
 
-export function DailyTeacherAttendanceView() {
+export function TeacherAttendanceView() {
   const t = useTranslations("adminTeacherAttendances");
   const getErrorMessage = useApiErrorMessage();
   const locale = useLocale();
@@ -63,17 +63,25 @@ export function DailyTeacherAttendanceView() {
 
   // Selected date state (defaults to today in YYYY-MM-DD)
   const [selectedDate, setSelectedDate] = useState<Date>(() => new Date());
-  const dateString = useMemo(() => format(selectedDate, "yyyy-MM-dd"), [selectedDate]);
+  const dateString = useMemo(
+    () => format(selectedDate, "yyyy-MM-dd"),
+    [selectedDate],
+  );
 
   // Filtering states
   const [searchQuery, setSearchQuery] = useState("");
-  const [statusFilter, setStatusFilter] = useState<"all" | "attended" | "absent" | "late">("all");
+  const [statusFilter, setStatusFilter] = useState<
+    "all" | "attended" | "absent" | "late"
+  >("all");
 
   // Dialog state
-  const [editingRecord, setEditingRecord] = useState<TeacherDailyAttendanceDTO | null>(null);
+  const [editingRecord, setEditingRecord] =
+    useState<TeacherDailyAttendanceDTO | null>(null);
   const [isLatenessDialogOpen, setIsLatenessDialogOpen] = useState(false);
   const [isBulkLoading, setIsBulkLoading] = useState(false);
-  const [confirmAction, setConfirmAction] = useState<"markAllAttended" | "markAllAbsent" | null>(null);
+  const [confirmAction, setConfirmAction] = useState<
+    "markAllAttended" | "markAllAbsent" | null
+  >(null);
 
   /** Bumped per teacher id on each toggle so stale in-flight responses don't overwrite optimistic updates */
   const teacherToggleOpGenRef = useRef<Record<string, number>>({});
@@ -82,17 +90,24 @@ export function DailyTeacherAttendanceView() {
   const { data, isLoading, mutate } = useSWR<TeacherDailyAttendanceDTO[]>(
     `/teacher-attendances/daily?date=${dateString}`,
     () => apiClient.teacherAttendances.getDaily({ date: dateString }),
-    { revalidateOnFocus: true }
+    { revalidateOnFocus: true },
   );
 
-  const records: TeacherDailyAttendanceDTO[] = useMemo(() => data ?? [], [data]);
+  const records: TeacherDailyAttendanceDTO[] = useMemo(
+    () => data ?? [],
+    [data],
+  );
 
   // Summary counts
   const summary = useMemo(() => {
     const total = records.length;
-    const attended = records.filter((r: TeacherDailyAttendanceDTO) => r.isAttended).length;
+    const attended = records.filter(
+      (r: TeacherDailyAttendanceDTO) => r.isAttended,
+    ).length;
     const absent = total - attended;
-    const late = records.filter((r: TeacherDailyAttendanceDTO) => r.attendance?.latenessPeriod != null).length;
+    const late = records.filter(
+      (r: TeacherDailyAttendanceDTO) => r.attendance?.latenessPeriod != null,
+    ).length;
     const rate = total > 0 ? Math.round((attended / total) * 100) : 0;
 
     return { total, attended, absent, late, rate };
@@ -112,7 +127,11 @@ export function DailyTeacherAttendanceView() {
       // Status
       if (statusFilter === "attended" && !r.isAttended) return false;
       if (statusFilter === "absent" && r.isAttended) return false;
-      if (statusFilter === "late" && (!r.isAttended || !r.attendance?.latenessPeriod)) return false;
+      if (
+        statusFilter === "late" &&
+        (!r.isAttended || !r.attendance?.latenessPeriod)
+      )
+        return false;
 
       return true;
     });
@@ -134,14 +153,14 @@ export function DailyTeacherAttendanceView() {
                 ...item,
                 isAttended: nextAttended,
                 attendance: nextAttended
-                  ? item.attendance ?? {
+                  ? (item.attendance ?? {
                       id: `temp-${Date.now()}`,
                       teacherId: item.teacherId,
                       attendanceDate: dateString,
                       latenessPeriod: null,
                       recordedBy: "",
                       createdAt: new Date().toISOString(),
-                    }
+                    })
                   : null,
               };
             })
@@ -159,9 +178,13 @@ export function DailyTeacherAttendanceView() {
     optimisticToggle(teacher.teacherId, nextAttended);
 
     if (nextAttended) {
-      toast.success(t("notifications.toggledPresent", { name: teacher.teacherName }));
+      toast.success(
+        t("notifications.toggledPresent", { name: teacher.teacherName }),
+      );
     } else {
-      toast.success(t("notifications.toggledAbsent", { name: teacher.teacherName }));
+      toast.success(
+        t("notifications.toggledAbsent", { name: teacher.teacherName }),
+      );
     }
 
     try {
@@ -313,21 +336,30 @@ export function DailyTeacherAttendanceView() {
     switch (period) {
       case LatenessPeriod.FROM_35_TO_45_MIN:
         return (
-          <Badge variant="outline" className="border-amber-500/40 text-amber-600 dark:text-amber-400 bg-amber-500/10">
+          <Badge
+            variant="outline"
+            className="border-amber-500/40 text-amber-600 dark:text-amber-400 bg-amber-500/10"
+          >
             <Clock className="w-3 h-3 me-1" />
             {t("latenessPeriods.from_35_to_45_min")}
           </Badge>
         );
       case LatenessPeriod.FROM_45_TO_60_MIN:
         return (
-          <Badge variant="outline" className="border-orange-500/40 text-orange-600 dark:text-orange-400 bg-orange-500/10">
+          <Badge
+            variant="outline"
+            className="border-orange-500/40 text-orange-600 dark:text-orange-400 bg-orange-500/10"
+          >
             <Clock className="w-3 h-3 me-1" />
             {t("latenessPeriods.from_45_to_60_min")}
           </Badge>
         );
       case LatenessPeriod.MORE_THAN_60_MIN:
         return (
-          <Badge variant="outline" className="border-rose-500/40 text-rose-600 dark:text-rose-400 bg-rose-500/10">
+          <Badge
+            variant="outline"
+            className="border-rose-500/40 text-rose-600 dark:text-rose-400 bg-rose-500/10"
+          >
             <Clock className="w-3 h-3 me-1" />
             {t("latenessPeriods.more_than_60_min")}
           </Badge>
@@ -575,7 +607,11 @@ export function DailyTeacherAttendanceView() {
                     <button
                       type="button"
                       onClick={() => handleToggle(item)}
-                      title={item.isAttended ? t("statusLabels.present") : t("statusLabels.absent")}
+                      title={
+                        item.isAttended
+                          ? t("statusLabels.present")
+                          : t("statusLabels.absent")
+                      }
                       aria-label={`${item.teacherName}: ${item.isAttended ? t("statusLabels.present") : t("statusLabels.absent")}`}
                       className={`h-7 w-7 rounded-md flex items-center justify-center transition-all cursor-pointer shrink-0 border ${
                         item.isAttended
@@ -630,9 +666,13 @@ export function DailyTeacherAttendanceView() {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[80px] text-center">{t("columns.status")}</TableHead>
+              <TableHead className="w-[80px] text-center">
+                {t("columns.status")}
+              </TableHead>
               <TableHead>{t("columns.teacher")}</TableHead>
-              <TableHead className="text-end">{t("columns.lateness")}</TableHead>
+              <TableHead className="text-end">
+                {t("columns.lateness")}
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -670,7 +710,11 @@ export function DailyTeacherAttendanceView() {
                         <button
                           type="button"
                           onClick={() => handleToggle(item)}
-                          title={item.isAttended ? t("statusLabels.present") : t("statusLabels.absent")}
+                          title={
+                            item.isAttended
+                              ? t("statusLabels.present")
+                              : t("statusLabels.absent")
+                          }
                           aria-label={`${item.teacherName}: ${item.isAttended ? t("statusLabels.present") : t("statusLabels.absent")}`}
                           className={`h-6 w-6 rounded-md flex items-center justify-center transition-all cursor-pointer border ${
                             item.isAttended
@@ -760,3 +804,4 @@ export function DailyTeacherAttendanceView() {
     </div>
   );
 }
+

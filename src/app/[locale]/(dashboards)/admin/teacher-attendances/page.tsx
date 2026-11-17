@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { DailyTeacherAttendanceView } from "@/components/admin/teacher-attendances/daily-teacher-attendance-view";
+import { TeacherAttendanceView } from "@/components/admin/teacher-attendances/teacher-attendance-view";
 
 export async function generateMetadata({
   params,
@@ -33,7 +33,8 @@ export async function generateMetadata({
 export default function TeacherAttendancesPage() {
   return (
     <div className="flex flex-col gap-4 p-4 md:p-6">
-      <DailyTeacherAttendanceView />
+      <TeacherAttendanceView />
     </div>
   );
 }
+
