@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import useSWR from "swr";
 import toast from "react-hot-toast";
@@ -9,7 +9,8 @@ import { ar } from "date-fns/locale/ar";
 import { enUS } from "date-fns/locale/en-US";
 import {
   Calendar as CalendarIcon,
-  CheckCircle2,
+  Check,
+  X,
   Clock,
   UserCheck,
   UserX,
@@ -21,6 +22,7 @@ import {
 } from "lucide-react";
 
 import { apiClient } from "@/lib/api/api-client";
+import { useApiErrorMessage } from "@/lib/api/use-api-error-message";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -55,6 +57,7 @@ import { AttendanceLatenessDialog } from "./attendance-lateness-dialog";
 
 export function DailyTeacherAttendanceView() {
   const t = useTranslations("adminTeacherAttendances");
+  const getErrorMessage = useApiErrorMessage();
   const locale = useLocale();
   const dateLocale = locale.startsWith("ar") ? ar : enUS;
 
@@ -69,9 +72,11 @@ export function DailyTeacherAttendanceView() {
   // Dialog state
   const [editingRecord, setEditingRecord] = useState<TeacherDailyAttendanceDTO | null>(null);
   const [isLatenessDialogOpen, setIsLatenessDialogOpen] = useState(false);
-  const [togglingTeacherId, setTogglingTeacherId] = useState<string | null>(null);
   const [isBulkLoading, setIsBulkLoading] = useState(false);
   const [confirmAction, setConfirmAction] = useState<"markAllAttended" | "markAllAbsent" | null>(null);
+
+  /** Bumped per teacher id on each toggle so stale in-flight responses don't overwrite optimistic updates */
+  const teacherToggleOpGenRef = useRef<Record<string, number>>({});
 
   // SWR for daily attendance
   const { data, isLoading, mutate } = useSWR<TeacherDailyAttendanceDTO[]>(
@@ -113,52 +118,162 @@ export function DailyTeacherAttendanceView() {
     });
   }, [records, searchQuery, statusFilter]);
 
-  // Toggle Attendance
+  const bumpTeacherToggleOpGen = (teacherId: string) => {
+    const next = (teacherToggleOpGenRef.current[teacherId] ?? 0) + 1;
+    teacherToggleOpGenRef.current[teacherId] = next;
+    return next;
+  };
+
+  const optimisticToggle = (teacherId: string, nextAttended: boolean) => {
+    mutate(
+      (prev) =>
+        prev
+          ? prev.map((item) => {
+              if (item.teacherId !== teacherId) return item;
+              return {
+                ...item,
+                isAttended: nextAttended,
+                attendance: nextAttended
+                  ? item.attendance ?? {
+                      id: `temp-${Date.now()}`,
+                      teacherId: item.teacherId,
+                      attendanceDate: dateString,
+                      latenessPeriod: null,
+                      recordedBy: "",
+                      createdAt: new Date().toISOString(),
+                    }
+                  : null,
+              };
+            })
+          : prev,
+      false,
+    );
+  };
+
+  // Toggle Attendance with Optimistic UI
   const handleToggle = async (teacher: TeacherDailyAttendanceDTO) => {
-    setTogglingTeacherId(teacher.teacherId);
+    const nextAttended = !teacher.isAttended;
+    const opGen = bumpTeacherToggleOpGen(teacher.teacherId);
+
+    // Apply optimistic update immediately
+    optimisticToggle(teacher.teacherId, nextAttended);
+
+    if (nextAttended) {
+      toast.success(t("notifications.toggledPresent", { name: teacher.teacherName }));
+    } else {
+      toast.success(t("notifications.toggledAbsent", { name: teacher.teacherName }));
+    }
+
     try {
-      const res = await apiClient.teacherAttendances.toggle({
+      await apiClient.teacherAttendances.toggle({
         teacherId: teacher.teacherId,
         attendanceDate: dateString,
       });
-
-      if (res?.attended) {
-        toast.success(t("notifications.toggledPresent", { name: teacher.teacherName }));
-      } else {
-        toast.success(t("notifications.toggledAbsent", { name: teacher.teacherName }));
-      }
-      await mutate();
-    } catch {
-      toast.error(t("notifications.error"));
-    } finally {
-      setTogglingTeacherId(null);
+    } catch (error) {
+      // Rollback on failure
+      optimisticToggle(teacher.teacherId, !nextAttended);
+      toast.error(getErrorMessage(error) || t("notifications.error"));
+      return;
     }
+
+    // Skip mutate revalidation if another toggle operation was initiated for this teacher
+    if (teacherToggleOpGenRef.current[teacher.teacherId] !== opGen) {
+      return;
+    }
+
+    await mutate();
   };
 
-  // Update Lateness
+  // Update Lateness with Optimistic UI
   const handleSaveLateness = async (latenessPeriod: LatenessPeriod | null) => {
     if (!editingRecord?.attendance) return;
 
+    const currentAttendance = editingRecord.attendance;
+    const previousPeriod = currentAttendance.latenessPeriod;
+    const attendanceId = currentAttendance.id;
+    const teacherId = editingRecord.teacherId;
+
+    // Optimistically update lateness in SWR cache
+    mutate(
+      (prev) =>
+        prev
+          ? prev.map((item) =>
+              item.teacherId === teacherId && item.attendance
+                ? {
+                    ...item,
+                    attendance: {
+                      ...item.attendance,
+                      latenessPeriod,
+                    },
+                  }
+                : item,
+            )
+          : prev,
+      false,
+    );
+
+    toast.success(t("notifications.latenessUpdated"));
+
     try {
-      await apiClient.teacherAttendances.update(editingRecord.attendance.id, {
+      await apiClient.teacherAttendances.update(attendanceId, {
         latenessPeriod,
       });
-      toast.success(t("notifications.latenessUpdated"));
       await mutate();
-    } catch {
-      toast.error(t("notifications.error"));
+    } catch (error) {
+      // Rollback on failure
+      mutate(
+        (prev) =>
+          prev
+            ? prev.map((item) =>
+                item.teacherId === teacherId && item.attendance
+                  ? {
+                      ...item,
+                      attendance: {
+                        ...item.attendance,
+                        latenessPeriod: previousPeriod,
+                      },
+                    }
+                  : item,
+              )
+            : prev,
+        false,
+      );
+      toast.error(getErrorMessage(error) || t("notifications.error"));
     }
   };
 
   // Bulk Actions
   const handleMarkAllAttended = async () => {
     setIsBulkLoading(true);
+    const previousData = records;
+
+    // Optimistically mark all as attended
+    mutate(
+      (prev) =>
+        prev
+          ? prev.map((item) => ({
+              ...item,
+              isAttended: true,
+              attendance: item.attendance ?? {
+                id: `temp-${item.teacherId}-${Date.now()}`,
+                teacherId: item.teacherId,
+                attendanceDate: dateString,
+                latenessPeriod: null,
+                recordedBy: "",
+                createdAt: new Date().toISOString(),
+              },
+            }))
+          : prev,
+      false,
+    );
+    toast.success(t("notifications.allAttendedSuccess"));
+
     try {
       await apiClient.teacherAttendances.markAllAttended({ date: dateString });
-      toast.success(t("notifications.allAttendedSuccess"));
       await mutate();
-    } catch {
-      toast.error(t("notifications.error"));
+    } catch (error) {
+      mutate(previousData, false);
+      toast.error(getErrorMessage(error) || t("notifications.error"));
     } finally {
       setIsBulkLoading(false);
     }
@@ -166,12 +281,28 @@ export function DailyTeacherAttendanceView() {
 
   const handleMarkAllAbsent = async () => {
     setIsBulkLoading(true);
+    const previousData = records;
+
+    // Optimistically mark all as absent
+    mutate(
+      (prev) =>
+        prev
+          ? prev.map((item) => ({
+              ...item,
+              isAttended: false,
+              attendance: null,
+            }))
+          : prev,
+      false,
+    );
+    toast.success(t("notifications.allAbsentSuccess"));
+
     try {
       await apiClient.teacherAttendances.markAllAbsent({ date: dateString });
-      toast.success(t("notifications.allAbsentSuccess"));
       await mutate();
-    } catch {
-      toast.error(t("notifications.error"));
+    } catch (error) {
+      mutate(previousData, false);
+      toast.error(getErrorMessage(error) || t("notifications.error"));
     } finally {
       setIsBulkLoading(false);
     }
@@ -433,99 +564,58 @@ export function DailyTeacherAttendanceView() {
           </Card>
         ) : (
           filteredRecords.map((item) => {
-            const isToggling = togglingTeacherId === item.teacherId;
             return (
               <Card
                 key={item.teacherId}
                 className="overflow-hidden border transition-colors shadow-sm"
               >
-                <div className="p-3.5 flex flex-col gap-3">
-                  {/* Top row: Name & Attendance status badge */}
-                  <div className="flex items-center justify-between gap-2">
-                    <div className="flex items-center gap-2 min-w-0">
-                      <div
-                        className={`h-2.5 w-2.5 rounded-full shrink-0 ${
-                          item.isAttended
-                            ? item.attendance?.latenessPeriod
-                              ? "bg-amber-500"
-                              : "bg-emerald-500"
-                            : "bg-rose-500"
-                        }`}
-                      />
-                      <span className="font-semibold text-sm truncate">
-                        {item.teacherName}
-                      </span>
-                    </div>
-
-                    <div className="shrink-0">
-                      {item.isAttended ? (
-                        <Badge className="bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30 gap-1 text-xs py-0.5 px-2">
-                          <CheckCircle2 className="w-3 h-3" />
-                          {t("statusLabels.present")}
-                        </Badge>
-                      ) : (
-                        <Badge
-                          variant="secondary"
-                          className="text-rose-600 dark:text-rose-400 bg-rose-500/10 border-rose-500/20 gap-1 text-xs py-0.5 px-2"
-                        >
-                          <UserX className="w-3 h-3" />
-                          {t("statusLabels.absent")}
-                        </Badge>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Lateness details row (if attended) */}
-                  {item.isAttended && (
-                    <div className="flex items-center justify-between text-xs pt-1 border-t border-border/50">
-                      <span className="text-muted-foreground">
-                        {t("columns.lateness")}:
-                      </span>
-                      {item.attendance?.latenessPeriod ? (
-                        getLatenessBadge(item.attendance.latenessPeriod)
-                      ) : (
-                        <span className="text-muted-foreground">
-                          {t("latenessPeriods.none")}
-                        </span>
-                      )}
-                    </div>
-                  )}
-
-                  {/* Action buttons row */}
-                  <div className="flex items-center gap-2 pt-1">
-                    <Button
-                      size="sm"
-                      variant={item.isAttended ? "outline" : "default"}
+                <div className="p-3.5 flex items-center justify-between gap-3">
+                  {/* Left: Checkbox & Name */}
+                  <div className="flex items-center gap-3 min-w-0">
+                    <button
+                      type="button"
                       onClick={() => handleToggle(item)}
-                      disabled={isToggling}
-                      className={`flex-1 h-10 touch-manipulation font-medium text-xs sm:text-sm ${
+                      title={item.isAttended ? t("statusLabels.present") : t("statusLabels.absent")}
+                      aria-label={`${item.teacherName}: ${item.isAttended ? t("statusLabels.present") : t("statusLabels.absent")}`}
+                      className={`h-7 w-7 rounded-md flex items-center justify-center transition-all cursor-pointer shrink-0 border ${
                         item.isAttended
-                          ? "text-rose-600 hover:text-rose-700 hover:bg-rose-50 dark:hover:bg-rose-950/20 border-rose-200 dark:border-rose-900/40"
-                          : "bg-emerald-600 hover:bg-emerald-700 text-white"
+                          ? "bg-emerald-500 border-emerald-600 text-white shadow-xs hover:bg-emerald-600"
+                          : "bg-rose-500 border-rose-600 text-white shadow-xs hover:bg-rose-600"
                       }`}
                     >
-                      {isToggling ? (
-                        <RefreshCw className="h-4 w-4 animate-spin" />
-                      ) : item.isAttended ? (
-                        t("actions.markAbsent")
+                      {item.isAttended ? (
+                        <Check className="h-4 w-4 stroke-[2.5]" />
                       ) : (
-                        t("actions.markPresent")
+                        <X className="h-4 w-4 stroke-[2.5]" />
                       )}
-                    </Button>
+                    </button>
+                    <span className="font-semibold text-sm truncate">
+                      {item.teacherName}
+                    </span>
+                  </div>
 
-                    {item.isAttended && (
-                      <Button
-                        size="sm"
-                        variant="secondary"
+                  {/* Right: Lateness trigger/badge (only if attended) */}
+                  <div className="shrink-0 flex items-center">
+                    {item.isAttended ? (
+                      <button
+                        type="button"
                         onClick={() => {
                           setEditingRecord(item);
                           setIsLatenessDialogOpen(true);
                         }}
-                        className="h-10 px-3 touch-manipulation text-xs"
+                        className="cursor-pointer hover:opacity-80 transition-opacity p-1 -m-1"
                       >
-                        <Clock className="h-3.5 w-3.5 me-1" />
-                        {t("actions.editLateness")}
-                      </Button>
+                        {item.attendance?.latenessPeriod ? (
+                          getLatenessBadge(item.attendance.latenessPeriod)
+                        ) : (
+                          <span className="text-xs text-muted-foreground hover:underline flex items-center gap-1">
+                            <Clock className="w-3 h-3" />
+                            {t("latenessPeriods.none")}
+                          </span>
+                        )}
+                      </button>
+                    ) : (
+                      <span className="text-xs text-muted-foreground">-</span>
                     )}
                   </div>
                 </div>
@@ -540,17 +630,16 @@ export function DailyTeacherAttendanceView() {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[280px]">{t("columns.teacher")}</TableHead>
-              <TableHead>{t("columns.status")}</TableHead>
-              <TableHead>{t("columns.lateness")}</TableHead>
-              <TableHead className="text-end">{t("columns.actions")}</TableHead>
+              <TableHead className="w-[80px] text-center">{t("columns.status")}</TableHead>
+              <TableHead>{t("columns.teacher")}</TableHead>
+              <TableHead className="text-end">{t("columns.lateness")}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {isLoading ? (
               <TableRow>
                 <TableCell
-                  colSpan={4}
+                  colSpan={3}
                   className="h-32 text-center text-muted-foreground"
                 >
                   <div className="flex items-center justify-center gap-2">
@@ -562,7 +651,7 @@ export function DailyTeacherAttendanceView() {
             ) : filteredRecords.length === 0 ? (
               <TableRow>
                 <TableCell
-                  colSpan={4}
+                  colSpan={3}
                   className="h-32 text-center text-muted-foreground"
                 >
                   <div className="flex flex-col items-center justify-center gap-1">
@@ -573,97 +662,59 @@ export function DailyTeacherAttendanceView() {
               </TableRow>
             ) : (
               filteredRecords.map((item) => {
-                const isToggling = togglingTeacherId === item.teacherId;
                 return (
                   <TableRow key={item.teacherId} className="hover:bg-muted/40">
-                    {/* Teacher name */}
-                    <TableCell className="font-medium">
-                      <div className="flex items-center gap-2">
-                        <div
-                          className={`h-2.5 w-2.5 rounded-full ${
+                    {/* Status Checkbox */}
+                    <TableCell className="text-center">
+                      <div className="flex items-center justify-center">
+                        <button
+                          type="button"
+                          onClick={() => handleToggle(item)}
+                          title={item.isAttended ? t("statusLabels.present") : t("statusLabels.absent")}
+                          aria-label={`${item.teacherName}: ${item.isAttended ? t("statusLabels.present") : t("statusLabels.absent")}`}
+                          className={`h-6 w-6 rounded-md flex items-center justify-center transition-all cursor-pointer border ${
                             item.isAttended
-                              ? item.attendance?.latenessPeriod
-                                ? "bg-amber-500"
-                                : "bg-emerald-500"
-                              : "bg-rose-500"
+                              ? "bg-emerald-500 border-emerald-600 text-white shadow-xs hover:bg-emerald-600"
+                              : "bg-rose-500 border-rose-600 text-white shadow-xs hover:bg-rose-600"
                           }`}
-                        />
-                        <span>{item.teacherName}</span>
+                        >
+                          {item.isAttended ? (
+                            <Check className="h-4 w-4 stroke-[2.5]" />
+                          ) : (
+                            <X className="h-4 w-4 stroke-[2.5]" />
+                          )}
+                        </button>
                       </div>
                     </TableCell>
 
-                    {/* Attendance status badge */}
-                    <TableCell>
-                      {item.isAttended ? (
-                        <Badge className="bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/20 border-emerald-500/30 gap-1 font-medium">
-                          <CheckCircle2 className="w-3.5 h-3.5" />
-                          {t("statusLabels.present")}
-                        </Badge>
-                      ) : (
-                        <Badge
-                          variant="secondary"
-                          className="text-rose-600 dark:text-rose-400 bg-rose-500/10 border-rose-500/20 gap-1 font-medium"
-                        >
-                          <UserX className="w-3.5 h-3.5" />
-                          {t("statusLabels.absent")}
-                        </Badge>
-                      )}
+                    {/* Teacher name */}
+                    <TableCell className="font-medium">
+                      <span>{item.teacherName}</span>
                     </TableCell>
 
                     {/* Lateness period */}
-                    <TableCell>
+                    <TableCell className="text-end">
                       {item.isAttended ? (
-                        item.attendance?.latenessPeriod ? (
-                          getLatenessBadge(item.attendance.latenessPeriod)
-                        ) : (
-                          <span className="text-xs text-muted-foreground">
-                            {t("latenessPeriods.none")}
-                          </span>
-                        )
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setEditingRecord(item);
+                            setIsLatenessDialogOpen(true);
+                          }}
+                          className="cursor-pointer inline-flex items-center gap-1 hover:opacity-80 transition-opacity p-1 -m-1"
+                        >
+                          {item.attendance?.latenessPeriod ? (
+                            getLatenessBadge(item.attendance.latenessPeriod)
+                          ) : (
+                            <span className="text-xs text-muted-foreground hover:underline flex items-center gap-1">
+                              <Clock className="w-3 h-3" />
+                              {t("latenessPeriods.none")}
+                            </span>
+                          )}
+                        </button>
                       ) : (
                         <span className="text-xs text-muted-foreground">-</span>
                       )}
-                    </TableCell>
-
-                    {/* Actions */}
-                    <TableCell className="text-end">
-                      <div className="flex items-center justify-end gap-2">
-                        {/* Attendance Toggle button */}
-                        <Button
-                          size="sm"
-                          variant={item.isAttended ? "outline" : "default"}
-                          onClick={() => handleToggle(item)}
-                          disabled={isToggling}
-                          className={
-                            item.isAttended
-                              ? "text-rose-600 hover:text-rose-700 hover:bg-rose-50 dark:hover:bg-rose-950/20"
-                              : "bg-emerald-600 hover:bg-emerald-700 text-white"
-                          }
-                        >
-                          {isToggling ? (
-                            <RefreshCw className="h-3.5 w-3.5 animate-spin" />
-                          ) : item.isAttended ? (
-                            t("actions.markAbsent")
-                          ) : (
-                            t("actions.markPresent")
-                          )}
-                        </Button>
-
-                        {/* Edit Lateness button (only enabled if attended) */}
-                        {item.isAttended && (
-                          <Button
-                            size="sm"
-                            variant="ghost"
-                            onClick={() => {
-                              setEditingRecord(item);
-                              setIsLatenessDialogOpen(true);
-                            }}
-                          >
-                            <Clock className="h-3.5 w-3.5 me-1" />
-                            {t("actions.editLateness")}
-                          </Button>
-                        )}
-                      </div>
                     </TableCell>
                   </TableRow>
                 );
