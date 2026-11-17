@@ -1,0 +1,76 @@
+{
+  "title": "Teacher Attendances",
+  "subtitle": "Track and manage daily teacher attendance, absence, and lateness",
+  "dailyView": "Daily View",
+  "selectDate": "Select Date",
+  "today": "Today",
+  "yesterday": "Yesterday",
+  "summary": {
+    "totalTeachers": "Total Teachers",
+    "attended": "Present",
+    "absent": "Absent",
+    "late": "Late",
+    "attendanceRate": "Attendance Rate"
+  },
+  "search": "Search teacher name...",
+  "filterStatus": "Status",
+  "all": "All",
+  "onlyAttended": "Present only",
+  "onlyAbsent": "Absent only",
+  "onlyLate": "Late only",
+  "columns": {
+    "teacher": "Teacher",
+    "status": "Attendance Status",
+    "lateness": "Lateness Period",
+    "actions": "Actions"
+  },
+  "statusLabels": {
+    "present": "Present",
+    "absent": "Absent"
+  },
+  "studentTypes": {
+    "foundation": "Foundation",
+    "khatimeen": "Khatimeen",
+    "children": "Children",
+    "adults": "Adults"
+  },
+  "latenessPeriods": {
+    "none": "On Time (No Lateness)",
+    "from_35_to_45_min": "35 to 45 mins late",
+    "from_45_to_60_min": "45 to 60 mins late",
+    "more_than_60_min": "More than 60 mins late"
+  },
+  "actions": {
+    "markPresent": "Mark Present",
+    "markAbsent": "Mark Absent",
+    "editLateness": "Edit Lateness",
+    "markAllAttended": "Mark All Present",
+    "markAllAbsent": "Mark All Absent",
+    "save": "Save",
+    "cancel": "Cancel",
+    "refresh": "Refresh"
+  },
+  "confirm": {
+    "markAllAttendedTitle": "Mark all teachers present?",
+    "markAllAttendedDesc": "All active teachers will be marked as present for {date}.",
+    "markAllAbsentTitle": "Mark all teachers absent?",
+    "markAllAbsentDesc": "All attendance records for {date} will be removed, marking all teachers absent."
+  },
+  "dialog": {
+    "editLatenessTitle": "Edit Lateness Period",
+    "editLatenessDesc": "Select lateness period for {name} on {date}",
+    "latenessPeriodLabel": "Lateness Period"
+  },
+  "notifications": {
+    "toggledPresent": "Marked {name} as present",
+    "toggledAbsent": "Marked {name} as absent",
+    "allAttendedSuccess": "All active teachers marked present successfully",
+    "allAbsentSuccess": "All teachers marked absent successfully",
+    "latenessUpdated": "Lateness period updated successfully",
+    "error": "An error occurred while saving"
+  },
+  "empty": {
+    "title": "No teachers found",
+    "description": "No teachers match the current filters."
+  }
+}

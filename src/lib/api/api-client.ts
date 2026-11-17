@@ -28,6 +28,7 @@ import { dashboardSettingsApi } from "@/lib/api/dashboard-settings.api";
 import { studentsApi } from "@/lib/api/students.api";
 import { teachersApi } from "@/lib/api/teachers.api";
 import { classesApi } from "@/lib/api/classes.api";
+import { teacherAttendancesApi } from "@/lib/api/teacher-attendances.api";
 
 export const apiClient = {
   user: userApi,
@@ -55,4 +56,5 @@ export const apiClient = {
   students: studentsApi,
   teachers: teachersApi,
   classes: classesApi,
+  teacherAttendances: teacherAttendancesApi,
 };

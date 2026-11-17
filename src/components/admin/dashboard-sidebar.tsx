@@ -20,6 +20,7 @@ import {
   PenSquare,
   GraduationCap,
   UserCheck,
+  CalendarCheck,
   School,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -105,6 +106,11 @@ export function DashboardSidebar({
           href: "/admin/teachers",
           icon: UserCheck,
           label: t("shell.teachers"),
+        },
+        {
+          href: "/admin/teacher-attendances",
+          icon: CalendarCheck,
+          label: t("shell.teacherAttendances"),
         },
         {
           href: "/admin/classes",

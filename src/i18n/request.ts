@@ -16,6 +16,7 @@ const localesWithNamespaces = [
   "adminUsers",
   "adminStudents",
   "adminTeachers",
+  "adminTeacherAttendances",
   "adminClasses",
   "adminSegments",
   "announcements",

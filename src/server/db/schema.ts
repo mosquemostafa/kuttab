@@ -13,3 +13,4 @@ export * from "@/server/modules/newsletter/newsletter.entity";
 export * from "@/server/modules/students/student.entity";
 export * from "@/server/modules/teachers/teacher.entity";
 export * from "@/server/modules/classes/class.entity";
+export * from "@/server/modules/teacher-attendances/teacher-attendance.entity";

@@ -1,0 +1,76 @@
+{
+  "title": "حضور المعلمين",
+  "subtitle": "تسجيل ومتابعة حضور وغياب وتأخير المعلمين يومياً",
+  "dailyView": "عرض اليوم",
+  "selectDate": "اختر التاريخ",
+  "today": "اليوم",
+  "yesterday": "أمس",
+  "summary": {
+    "totalTeachers": "إجمالي المعلمين",
+    "attended": "حاضر",
+    "absent": "غائب",
+    "late": "متأخر",
+    "attendanceRate": "نسبة الحضور"
+  },
+  "search": "بحث باسم المعلم...",
+  "filterStatus": "الحالة",
+  "all": "الكل",
+  "onlyAttended": "الحاضرون فقط",
+  "onlyAbsent": "الغائبون فقط",
+  "onlyLate": "المتأخرون فقط",
+  "columns": {
+    "teacher": "المعلم",
+    "status": "حالة الحضور",
+    "lateness": "فترة التأخير",
+    "actions": "الإجراءات"
+  },
+  "statusLabels": {
+    "present": "حاضر",
+    "absent": "غائب"
+  },
+  "studentTypes": {
+    "foundation": "تأسيس وتمهيدي",
+    "khatimeen": "الخاتمون والمجازون",
+    "children": "أطفال",
+    "adults": "كبار"
+  },
+  "latenessPeriods": {
+    "none": "في الموعد (بدون تأخير)",
+    "from_35_to_45_min": "تأخير من 35 إلى 45 دقيقة",
+    "from_45_to_60_min": "تأخير من 45 إلى 60 دقيقة",
+    "more_than_60_min": "تأخير أكثر من 60 دقيقة"
+  },
+  "actions": {
+    "markPresent": "تسجيل حضور",
+    "markAbsent": "تسجيل غياب",
+    "editLateness": "تعديل التأخير",
+    "markAllAttended": "تسجيل حضور الكل",
+    "markAllAbsent": "تسجيل غياب الكل",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "refresh": "تحديث"
+  },
+  "confirm": {
+    "markAllAttendedTitle": "تسجيل حضور جميع المعلمين؟",
+    "markAllAttendedDesc": "سيتم تسجيل حضور لجميع المعلمين النشطين ليوم {date}.",
+    "markAllAbsentTitle": "تسجيل غياب جميع المعلمين؟",
+    "markAllAbsentDesc": "سيتم إلغاء سجلات الحضور لجميع المعلمين واعتبارهم غائبين ليوم {date}."
+  },
+  "dialog": {
+    "editLatenessTitle": "تعديل فترة التأخير",
+    "editLatenessDesc": "اختر فترة التأخير للمعلّم {name} ليوم {date}",
+    "latenessPeriodLabel": "فترة التأخير"
+  },
+  "notifications": {
+    "toggledPresent": "تم تسجيل حضور {name}",
+    "toggledAbsent": "تم تسجيل غياب {name}",
+    "allAttendedSuccess": "تم تسجيل حضور جميع المعلمين بنجاح",
+    "allAbsentSuccess": "تم تسجيل غياب جميع المعلمين بنجاح",
+    "latenessUpdated": "تم تحديث فترة التأخير بنجاح",
+    "error": "حدث خطأ أثناء حفظ البيانات"
+  },
+  "empty": {
+    "title": "لا يوجد معلمون",
+    "description": "لم يتم العثور على معلمين مطابقين للشروط الحالية."
+  }
+}

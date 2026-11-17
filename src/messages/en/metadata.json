@@ -116,6 +116,10 @@
       "title": "Teachers | Almostafa Admin",
       "description": "Manage teacher roster, teaching tracks, and Quran instructor profiles."
     },
+    "teacherAttendances": {
+      "title": "Teacher Attendances | Almostafa Admin",
+      "description": "Track and manage daily teacher attendance, absence, and lateness."
+    },
     "classes": {
       "title": "Classes | Almostafa Admin",
       "description": "Manage study circles, individual sessions, and assigned Quran teachers."

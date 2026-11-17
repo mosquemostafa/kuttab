@@ -145,6 +145,10 @@ const DashboardLayoutContent = ({
     feedbacks: t("shell.feedbacks"),
     create: t("shell.create"),
     edit: t("shell.edit"),
+    teachers: t("shell.teachers"),
+    "teacher-attendances": t("shell.teacherAttendances"),
+    students: t("shell.students"),
+    classes: t("shell.classes")
   };
 
   const getSegmentLabel = (segment: string) => {
