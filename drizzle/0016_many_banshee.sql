@@ -1,0 +1,1 @@
+ALTER TABLE "app_settings" ADD COLUMN "lateness_deduction_days" jsonb DEFAULT '{"from_35_to_45_min":0,"from_45_to_60_min":0,"more_than_60_min":0}'::jsonb NOT NULL;

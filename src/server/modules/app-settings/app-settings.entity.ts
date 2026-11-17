@@ -1,5 +1,14 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, timestamp, boolean, integer } from "drizzle-orm/pg-core";
+import {
+  pgTable,
+  text,
+  timestamp,
+  boolean,
+  integer,
+  jsonb,
+} from "drizzle-orm/pg-core";
+
+import type { LatenessDeductionDays } from "@/shared/types/teacher-attendance.types";
 
 export const appSettings = pgTable("app_settings", {
   id: text("id")
@@ -32,6 +41,12 @@ export const appSettings = pgTable("app_settings", {
     .array()
     .notNull()
     .default(sql`'{0,1,2,3,4}'::integer[]`),
+  latenessDeductionDays: jsonb("lateness_deduction_days")
+    .$type<LatenessDeductionDays>()
+    .notNull()
+    .default(
+      sql`'{"from_35_to_45_min":0,"from_45_to_60_min":0,"more_than_60_min":0}'::jsonb`,
+    ),
   createdAt: timestamp("created_at")
     .$defaultFn(() => new Date())
     .notNull(),

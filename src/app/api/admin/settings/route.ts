@@ -41,6 +41,13 @@
  *                   minimum: 0
  *                   maximum: 6
  *                 example: [0, 1, 2, 3, 4]
+ *               latenessDeductionDays:
+ *                 type: object
+ *                 description: Deduction in days for each lateness period
+ *                 properties:
+ *                   from_35_to_45_min: { type: number, minimum: 0, maximum: 30, multipleOf: 0.5 }
+ *                   from_45_to_60_min: { type: number, minimum: 0, maximum: 30, multipleOf: 0.5 }
+ *                   more_than_60_min: { type: number, minimum: 0, maximum: 30, multipleOf: 0.5 }
  *     responses:
  *       200:
  *         description: Updated application settings

@@ -4,7 +4,7 @@ import {
   invalidateCacheKey,
 } from "@/server/modules/cache/cache.service";
 
-const APP_SETTINGS_CACHE_PREFIX = "app-settings:v4";
+const APP_SETTINGS_CACHE_PREFIX = "app-settings:v5";
 
 export function appSettingsCacheKey(): string {
   return buildCacheKey(APP_SETTINGS_CACHE_PREFIX, ["default"]);

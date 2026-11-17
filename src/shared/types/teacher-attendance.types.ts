@@ -7,6 +7,8 @@ export const LatenessPeriod = {
 export type LatenessPeriod =
   (typeof LatenessPeriod)[keyof typeof LatenessPeriod];
 
+export type LatenessDeductionDays = Record<LatenessPeriod, number>;
+
 export interface TeacherAttendanceDTO {
   id: string;
   teacherId: string;

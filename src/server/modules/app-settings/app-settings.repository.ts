@@ -2,6 +2,7 @@ import { eq } from "drizzle-orm";
 
 import { db } from "@/server/db";
 import { appSettings } from "@/server/modules/app-settings/app-settings.entity";
+import type { LatenessDeductionDays } from "@/shared/types/teacher-attendance.types";
 
 const DEFAULT_SETTINGS_ID = "default";
 
@@ -27,6 +28,7 @@ export const appSettingsRepository = {
     forceSingleActiveSession: boolean;
     sendNewsletterWelcomeEmail: boolean;
     workingDays: number[];
+    latenessDeductionDays: LatenessDeductionDays;
   }): Promise<AppSettingsRow | null> {
     const [created] = await db
       .insert(appSettings)
@@ -49,6 +51,7 @@ export const appSettingsRepository = {
     forceSingleActiveSession: boolean;
     sendNewsletterWelcomeEmail: boolean;
     workingDays: number[];
+    latenessDeductionDays: LatenessDeductionDays;
   }): Promise<void> {
     await db
       .update(appSettings)

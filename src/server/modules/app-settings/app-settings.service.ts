@@ -5,6 +5,10 @@ import {
 import { appSettingsRepository } from "@/server/modules/app-settings/app-settings.repository";
 import { getCacheTtlSeconds } from "@/server/modules/cache/cache-ttl";
 import { cacheGetOrSet } from "@/server/modules/cache/cache.service";
+import {
+  LatenessPeriod,
+  type LatenessDeductionDays,
+} from "@/shared/types/teacher-attendance.types";
 
 type AppSettings = {
   organizationName: string;
@@ -15,6 +19,13 @@ type AppSettings = {
   forceSingleActiveSession: boolean;
   sendNewsletterWelcomeEmail: boolean;
   workingDays: number[];
+  latenessDeductionDays: LatenessDeductionDays;
+};
+
+const DEFAULT_LATENESS_DEDUCTION_DAYS: LatenessDeductionDays = {
+  [LatenessPeriod.FROM_35_TO_45_MIN]: 0,
+  [LatenessPeriod.FROM_45_TO_60_MIN]: 0,
+  [LatenessPeriod.MORE_THAN_60_MIN]: 0,
 };
 
 const DEFAULT_SETTINGS: AppSettings = {
@@ -26,6 +37,7 @@ const DEFAULT_SETTINGS: AppSettings = {
   forceSingleActiveSession: false,
   sendNewsletterWelcomeEmail: false,
   workingDays: [0, 1, 2, 3, 4],
+  latenessDeductionDays: DEFAULT_LATENESS_DEDUCTION_DAYS,
 };
 
 function isMissingRelationError(error: unknown) {
@@ -74,6 +86,12 @@ function toSettings(values: Partial<AppSettings>): AppSettings {
       values.workingDays && Array.isArray(values.workingDays)
         ? values.workingDays
         : DEFAULT_SETTINGS.workingDays,
+    latenessDeductionDays: values.latenessDeductionDays
+      ? {
+          ...DEFAULT_LATENESS_DEDUCTION_DAYS,
+          ...values.latenessDeductionDays,
+        }
+      : DEFAULT_LATENESS_DEDUCTION_DAYS,
   };
 }
 
@@ -120,6 +138,8 @@ export const appSettingsService = {
           values.workingDays && Array.isArray(values.workingDays)
             ? values.workingDays
             : current.workingDays,
+        latenessDeductionDays:
+          values.latenessDeductionDays ?? current.latenessDeductionDays,
       };
 
       await appSettingsRepository.updateDefault(next);

@@ -17,6 +17,10 @@ import { Label } from "@/components/ui/label";
 import { useTranslations } from "next-intl";
 import { apiClient } from "@/lib/api/api-client";
 import { useApiErrorMessage } from "@/lib/api/use-api-error-message";
+import {
+  LatenessPeriod,
+  type LatenessDeductionDays,
+} from "@/shared/types/teacher-attendance.types";
 
 type AppSettingsCardProps = {
   initialOrganizationName: string;
@@ -27,6 +31,7 @@ type AppSettingsCardProps = {
   initialForceSingleActiveSession: boolean;
   initialSendNewsletterWelcomeEmail: boolean;
   initialWorkingDays?: number[];
+  initialLatenessDeductionDays: LatenessDeductionDays;
 };
 
 export function AppSettingsCard({
@@ -38,6 +43,7 @@ export function AppSettingsCard({
   initialForceSingleActiveSession,
   initialSendNewsletterWelcomeEmail,
   initialWorkingDays = [0, 1, 2, 3, 4],
+  initialLatenessDeductionDays,
 }: AppSettingsCardProps) {
   const [organizationName, setOrganizationName] = useState(
     initialOrganizationName,
@@ -61,6 +67,8 @@ export function AppSettingsCard({
     initialSendNewsletterWelcomeEmail,
   );
   const [workingDays, setWorkingDays] = useState<number[]>(initialWorkingDays);
+  const [latenessDeductionDays, setLatenessDeductionDays] =
+    useState<LatenessDeductionDays>(initialLatenessDeductionDays);
   const t = useTranslations("adminSettings");
   const getErrorMessage = useApiErrorMessage();
   const [isSaving, setIsSaving] = useState(false);
@@ -73,6 +81,21 @@ export function AppSettingsCard({
     { day: 4, label: t("fields.days.4") },
     { day: 5, label: t("fields.days.5") },
     { day: 6, label: t("fields.days.6") },
+  ];
+
+  const latenessOptions = [
+    {
+      period: LatenessPeriod.FROM_35_TO_45_MIN,
+      label: t("fields.latenessPeriods.from_35_to_45_min"),
+    },
+    {
+      period: LatenessPeriod.FROM_45_TO_60_MIN,
+      label: t("fields.latenessPeriods.from_45_to_60_min"),
+    },
+    {
+      period: LatenessPeriod.MORE_THAN_60_MIN,
+      label: t("fields.latenessPeriods.more_than_60_min"),
+    },
   ];
 
   const toggleDay = (day: number) => {
@@ -94,6 +117,18 @@ export function AppSettingsCard({
       return;
     }
 
+    const hasInvalidDeduction = Object.values(latenessDeductionDays).some(
+      (value) =>
+        !Number.isFinite(value) ||
+        value < 0 ||
+        value > 30 ||
+        !Number.isInteger(value * 2),
+    );
+    if (hasInvalidDeduction) {
+      toast.error(t("fields.latenessDeductionInvalid"));
+      return;
+    }
+
     setIsSaving(true);
 
     try {
@@ -106,6 +141,7 @@ export function AppSettingsCard({
         forceSingleActiveSession,
         sendNewsletterWelcomeEmail,
         workingDays,
+        latenessDeductionDays,
       });
 
       toast.success(t("actions.savedSuccess"));
@@ -120,6 +156,7 @@ export function AppSettingsCard({
       setForceSingleActiveSession(data.forceSingleActiveSession);
       setSendNewsletterWelcomeEmail(data.sendNewsletterWelcomeEmail);
       setWorkingDays(data.workingDays ?? [0, 1, 2, 3, 4]);
+      setLatenessDeductionDays(data.latenessDeductionDays);
     } catch (error) {
       toast.error(getErrorMessage(error));
     } finally {
@@ -276,6 +313,54 @@ export function AppSettingsCard({
                 </Button>
               );
             })}
+          </div>
+        </div>
+
+        <div className="space-y-3 rounded-md border p-4">
+          <div>
+            <p className="text-sm font-medium">
+              {t("fields.latenessDeductions")}
+            </p>
+            <p className="text-xs text-muted-foreground">
+              {t("fields.latenessDeductionsDescription")}
+            </p>
+          </div>
+
+          <div className="divide-y rounded-lg border bg-muted/20">
+            {latenessOptions.map(({ period, label }) => (
+              <div
+                key={period}
+                className="flex min-h-16 items-center justify-between gap-3 px-3 py-2.5"
+              >
+                <Label
+                  htmlFor={`lateness-deduction-${period}`}
+                  className="flex-1"
+                >
+                  {label}
+                </Label>
+                <div className="flex shrink-0 items-center gap-2">
+                  <Input
+                    id={`lateness-deduction-${period}`}
+                    type="number"
+                    inputMode="decimal"
+                    min={0}
+                    max={30}
+                    step={0.5}
+                    value={latenessDeductionDays[period]}
+                    onChange={(event) =>
+                      setLatenessDeductionDays((current) => ({
+                        ...current,
+                        [period]: Number(event.target.value),
+                      }))
+                    }
+                    className="h-10 w-24 text-center tabular-nums"
+                  />
+                  <span className="w-9 text-xs text-muted-foreground">
+                    {t("fields.deductionUnit")}
+                  </span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
