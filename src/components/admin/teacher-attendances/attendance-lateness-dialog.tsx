@@ -103,6 +103,9 @@ export function AttendanceLatenessDialog({
                 <SelectItem value={LatenessPeriod.MORE_THAN_60_MIN}>
                   {t("latenessPeriods.more_than_60_min")}
                 </SelectItem>
+                <SelectItem value={LatenessPeriod.EXCUSED_ABSENCE}>
+                  {t("latenessPeriods.excused_absence")}
+                </SelectItem>
               </SelectContent>
             </Select>
           </div>

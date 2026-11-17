@@ -26,6 +26,7 @@ const DEFAULT_LATENESS_DEDUCTION_DAYS: LatenessDeductionDays = {
   [LatenessPeriod.FROM_35_TO_45_MIN]: 0,
   [LatenessPeriod.FROM_45_TO_60_MIN]: 0,
   [LatenessPeriod.MORE_THAN_60_MIN]: 0,
+  [LatenessPeriod.EXCUSED_ABSENCE]: 0,
 };
 
 const DEFAULT_SETTINGS: AppSettings = {

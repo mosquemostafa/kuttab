@@ -2,6 +2,7 @@ export const LatenessPeriod = {
   FROM_35_TO_45_MIN: "from_35_to_45_min",
   FROM_45_TO_60_MIN: "from_45_to_60_min",
   MORE_THAN_60_MIN: "more_than_60_min",
+  EXCUSED_ABSENCE: "excused_absence",
 } as const;
 
 export type LatenessPeriod =

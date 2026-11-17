@@ -31,13 +31,14 @@
     "workingDaysDescription": "Select the active days of the week when the institute operates.",
     "workingDaysMinError": "Please select at least one working day.",
     "latenessDeductions": "Lateness Deductions",
-    "latenessDeductionsDescription": "Set the deduction in days for each recorded lateness period. Use zero to disable a deduction.",
+    "latenessDeductionsDescription": "Set the deduction in days for each recorded lateness or excused absence. Use zero to disable a deduction.",
     "latenessDeductionInvalid": "Deductions must be a valid number between 0 and 30 days.",
     "deductionUnit": "days",
     "latenessPeriods": {
       "from_35_to_45_min": "35 to 45 minutes late",
       "from_45_to_60_min": "45 to 60 minutes late",
-      "more_than_60_min": "More than 60 minutes late"
+      "more_than_60_min": "More than 60 minutes late",
+      "excused_absence": "Excused absence"
     },
     "days": {
       "0": "Sunday",

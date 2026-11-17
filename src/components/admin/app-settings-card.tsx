@@ -96,6 +96,10 @@ export function AppSettingsCard({
       period: LatenessPeriod.MORE_THAN_60_MIN,
       label: t("fields.latenessPeriods.more_than_60_min"),
     },
+    {
+      period: LatenessPeriod.EXCUSED_ABSENCE,
+      label: t("fields.latenessPeriods.excused_absence"),
+    },
   ];
 
   const toggleDay = (day: number) => {

@@ -10,6 +10,7 @@ export const latenessDeductionDaysSchema = z.object({
   [LatenessPeriod.FROM_35_TO_45_MIN]: deductionDaysSchema,
   [LatenessPeriod.FROM_45_TO_60_MIN]: deductionDaysSchema,
   [LatenessPeriod.MORE_THAN_60_MIN]: deductionDaysSchema,
+  [LatenessPeriod.EXCUSED_ABSENCE]: deductionDaysSchema,
 });
 
 export const updateAppSettingsSchema = z.object({

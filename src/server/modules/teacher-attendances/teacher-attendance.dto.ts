@@ -6,6 +6,7 @@ export const latenessPeriodValues = [
   LatenessPeriod.FROM_35_TO_45_MIN,
   LatenessPeriod.FROM_45_TO_60_MIN,
   LatenessPeriod.MORE_THAN_60_MIN,
+  LatenessPeriod.EXCUSED_ABSENCE,
 ] as const;
 
 export const latenessPeriodSchema = z.enum(latenessPeriodValues);

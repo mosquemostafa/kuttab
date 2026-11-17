@@ -120,6 +120,20 @@
       "when": 1794954160518,
       "tag": "0016_many_banshee",
       "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "7",
+      "when": 1794957535746,
+      "tag": "0017_modern_queen_noir",
+      "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "7",
+      "when": 1794957743749,
+      "tag": "0018_nice_screwball",
+      "breakpoints": true
     }
   ]
 }

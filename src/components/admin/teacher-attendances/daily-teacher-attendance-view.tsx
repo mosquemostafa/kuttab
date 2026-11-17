@@ -337,6 +337,15 @@ export function DailyTeacherAttendanceView({
             {t("latenessPeriods.more_than_60_min")}
           </Badge>
         );
+      case LatenessPeriod.EXCUSED_ABSENCE:
+        return (
+          <Badge
+            variant="outline"
+            className="border-sky-500/40 text-sky-600 dark:text-sky-400 bg-sky-500/10"
+          >
+            {t("latenessPeriods.excused_absence")}
+          </Badge>
+        );
       default:
         return null;
     }
@@ -817,4 +826,3 @@ export function DailyTeacherAttendanceView({
     </div>
   );
 }
-

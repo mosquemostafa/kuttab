@@ -1,0 +1,1 @@
+ALTER TYPE "public"."lateness_period_enum" ADD VALUE 'excused_absence';

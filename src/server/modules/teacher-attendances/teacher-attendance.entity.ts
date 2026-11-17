@@ -8,6 +8,7 @@ export const latenessPeriodEnum = pgEnum("lateness_period_enum", [
   "from_35_to_45_min",
   "from_45_to_60_min",
   "more_than_60_min",
+  "excused_absence",
 ]);
 
 export const teacherAttendance = pgTable(
