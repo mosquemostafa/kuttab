@@ -42,8 +42,6 @@ export async function GET() {
     "- System-wide settings and marketing announcements",
     "- Interactive Swagger OpenAPI documentation",
     "",
-    "### Blueprint Feature (Todos & Projects)",
-    "- Canonical layered implementation showing standard CRUD, filtering, and pagination",
     "",
     "## 3. Public Routes",
     localeHomes,

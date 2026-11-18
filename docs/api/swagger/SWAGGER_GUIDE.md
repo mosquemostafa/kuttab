@@ -23,13 +23,6 @@ Your project currently has the following documented API routes:
 - **`POST /api/auth/change-password`** - Change password (session cookie); JSON body `{ "currentPassword", "newPassword" }`, optional `revokeOtherSessions` (Better Auth)
 - **`POST /api/auth/sign-in/social`** - Start OAuth (JSON body `provider`, optional `callbackURL`, …)
 - **`GET /api/auth/callback/{provider}`** - OAuth redirect URI (e.g. `callback/github`)
-- **`GET /api/projects`**, **`POST /api/projects`** - List and create projects (session auth)
-- **`GET /api/projects/{id}`**, **`PUT /api/projects/{id}`**, **`DELETE /api/projects/{id}`** - Project CRUD
-- **`PATCH /api/projects/{id}/archive`**, **`PATCH /api/projects/{id}/unarchive`** - Archive toggles
-
-### Projects API notes
-
-- Projects are identified and routed by their primary key **`id`** (`cuid2`).
 - Projects support CRUD, archiving/unarchiving, task association, and color key customization.
 
 ## How to Add Documentation to Your API Routes

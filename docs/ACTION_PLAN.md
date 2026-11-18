@@ -55,34 +55,6 @@ The goal of this plan is to eliminate all artificial `100` limits, enforce SQL `
 
 ## 2. Phase 1: Critical — High-Limit Queries Lacking UI Pagination
 
-### Task 1: Todos Management ([`todo-list.tsx`](file:///Users/aanassar/Documents/projects/modawim/modawim-codebase/src/components/dashboard/todos/todo-list.tsx))
-
-#### Current State:
-
-- The backend route `/api/todos` and repository [`todo.repository.ts`](file:///Users/aanassar/Documents/projects/modawim/modawim-codebase/src/server/modules/todos/todo.repository.ts) already implement proper `limit` and `offset`.
-- However, [`todo-list.tsx`](file:///Users/aanassar/Documents/projects/modawim/modawim-codebase/src/components/dashboard/todos/todo-list.tsx#L337-L482) hardcodes `limit: 100` across all query scopes (`today`, `inbox`, `future`, `overdue`, `calendar`, `matrix`, `all`).
-- There is **no UI pagination component**. When a user has more than 100 todos in a scope, tasks past #100 are cut off and unreachable.
-
-#### Proposed Solution:
-
-1. **List / "All" / "Inbox" / "Future" / "Overdue" Scopes:**
-   - Implement paginated fetching via `useSWRInfinite` (matching the pattern in [`note-list.tsx`](file:///Users/aanassar/Documents/projects/modawim/modawim-codebase/src/components/dashboard/notes/note-list.tsx)) with `TODOS_PAGE_LIMIT = 30`.
-   - Add a clean "Load more" button or infinite scroll sentinel at the bottom of the active list.
-2. **Metadata & Total Counts:**
-   - Display total counts in badges using `meta.total` instead of `items.length`.
-3. **Calendar & Matrix Views:**
-   - Keep views date-scoped. If a single day or quadrant exceeds 50 items, show a scrollable list with a count indicator.
-
-#### Checklist:
-
-- [ ] Refactor `todo-list.tsx` SWR queries to accept dynamic `page` or `useSWRInfinite`
-- [ ] Replace hardcoded `limit: 100` with `TODOS_PAGE_LIMIT = 30`
-- [ ] Add "Load More" button or UI pagination controls to list views
-- [ ] Ensure status change / filter toggle resets page to 1
-- [ ] Update badge counters to read from `data.meta.total`
-
----
-
 ### Task 2: Goals Management ([`goal-list.tsx`](file:///Users/aanassar/Documents/projects/modawim/modawim-codebase/src/components/dashboard/goals/goal-list.tsx))
 
 #### Current State:
@@ -233,30 +205,11 @@ The goal of this plan is to eliminate all artificial `100` limits, enforce SQL `
 
 ## 4. Phase 3: Stores & Selectors — Pre-fetch Limits & Search Optimization
 
-### Task 8: Projects Store ([`projects-store.tsx`](file:///Users/aanassar/Documents/projects/modawim/modawim-codebase/src/components/projects/projects-store.tsx))
-
-#### Current State:
-
-- [`projects-store.tsx`](file:///Users/aanassar/Documents/projects/modawim/modawim-codebase/src/components/projects/projects-store.tsx#L10-L28) fetches `limit: 100, page: 1` to cache active projects for dropdowns and filter chips.
-- Users with > 100 active projects will have missing entries in filter pickers.
-
-#### Proposed Solution:
-
-- Maintain client cache for recent/active projects, but implement search-on-type (combobox) for project selection dialogs when total projects exceed 50.
-
-#### Checklist:
-
-- [ ] Audit all consumers of `useProjectsStore`
-- [ ] Ensure project picker combobox supports server-side search query `q`
-
----
-
 ### Task 9: Tags Store ([`tags-store.tsx`](file:///Users/aanassar/Documents/projects/modawim/modawim-codebase/src/components/tags/tags-store.tsx))
 
 #### Current State:
 
 - [`tags-store.tsx`](file:///Users/aanassar/Documents/projects/modawim/modawim-codebase/src/components/tags/tags-store.tsx#L10) fetches `ACTIVE_TAGS_LIMIT = 150` in a single query.
-- As noted in `todos.md` (line 161: _"handle things that uses large limit like limit of tags store (better using a fetch on search method)"_), this is inefficient.
 
 #### Proposed Solution:
 

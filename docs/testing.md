@@ -15,7 +15,6 @@ The **smoke** spec (`e2e/smoke.spec.ts`) is a single production-style path tagge
 1. **API health** — `GET /api/health` must succeed.
 2. **English locale shell** — `/en` loads.
 3. **Email login** — sign in and reach the dashboard (client navigation).
-4. **Create todo** — quick-create on todos writes a row and shows it in the UI.
 
 Tests are **skipped** if `E2E_USER_EMAIL` or `E2E_USER_PASSWORD` is missing (see below).
 

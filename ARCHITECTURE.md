@@ -5,7 +5,7 @@ This document describes the current modular, feature-first backend architecture.
 ## 1. Architecture Goals
 
 - Keep transport concerns (HTTP, route context, status codes) separate from business logic.
-- Organize backend code by feature module (auth, users, todos, app-settings, etc.) instead of by technical layer only.
+- Organize backend code by feature module (auth, users, app-settings, etc.) instead of by technical layer only.
 - Centralize domain rules in services.
 - Keep database access inside repositories.
 - Standardize API success/error payloads.
@@ -68,8 +68,6 @@ Controllers:
 
 - `modules/users/user.controller.ts`: admin user listing with pagination/filter parsing.
 - `modules/users/admin-user.controller.ts`: admin mutations (create/role/ban/unban/delete/revoke sessions).
-- `modules/todos/todo.controller.ts`: todo CRUD and filtered listing.
-- `modules/projects/project.controller.ts`: project CRUD, list, archive/unarchive (session-scoped).
 - `modules/dashboard-settings/dashboard-settings.controller.ts`: authenticated dashboard settings bootstrap.
 - `controllers/health.controller.ts`: health checks.
 
@@ -88,7 +86,6 @@ Services:
 - `modules/users/user.service.ts`: user admin operations, profile settings operations, linked-account behavior.
 - `modules/auth/auth.service.ts`: register/login/password reset workflows used by auth server actions.
 - `modules/app-settings/app-settings.service.ts`: app registration/security setting defaults, reads, and updates.
-- `modules/projects/project.service.ts`: project lifecycle, project CRUD, task counts, and archiving.
 
 Email delivery adapter:
 
@@ -108,8 +105,6 @@ Repositories:
 
 - `modules/users/user.repository.ts`: user lookups/list expansion (accounts, sessions), email verification updates.
 - `modules/app-settings/app-settings.repository.ts`: single-row default settings CRUD.
-- `modules/todos/todo.repository.ts`: todo persistence, filtering, and pagination queries.
-- `modules/projects/project.repository.ts`: project persistence, filtering by user ID, and ordering.
 
 ### 2.6 Shared Contracts and Supporting Modules
 
@@ -225,7 +220,7 @@ Location: `src/server/exceptions/exception-handler.ts`
 - OpenAPI generator config: `src/server/lib/swagger.ts`
 - Spec endpoint: `src/app/api/swagger.json/route.ts`
 - Swagger UI page: `src/app/api-docs/page.tsx`
-- Route-level JSDoc annotations exist on admin/auth/health/todo/dashboard/projects endpoints.
+- Route-level JSDoc annotations exist on admin/auth/health/dashboard endpoints.
 
 Standard response model:
 
@@ -287,7 +282,7 @@ src/
 
 Use this sequence for new API capabilities:
 
-1. Add request DTO/schema in the target module (for example `src/server/modules/todos/dto`).
+1. Add request DTO/schema in the target module.
 2. Add/extend module repository methods if DB access is required.
 3. Add business logic in the module service.
 4. Expose module controller method for input validation + response shape.

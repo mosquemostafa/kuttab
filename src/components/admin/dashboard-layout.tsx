@@ -129,9 +129,6 @@ const DashboardLayoutContent = ({
   const segmentLabelMap: Record<string, string> = {
     dashboard: t("shell.dashboard"),
     overview: t("shell.overview"),
-    todos: t("shell.todos"),
-    tasks: t("shell.tasks"),
-    projects: t("shell.projects"),
     users: t("shell.users"),
     segments: t("shell.segments"),
     announcements: t("shell.announcements"),

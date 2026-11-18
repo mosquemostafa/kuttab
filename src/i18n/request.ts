@@ -9,8 +9,6 @@ const localesWithNamespaces = [
   "header",
   "auth",
   "dashboard",
-  "todos",
-  "projects",
   "settings",
   "adminSettings",
   "adminUsers",

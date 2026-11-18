@@ -30,7 +30,6 @@ A production-ready platform for Almostafa — Islamic institute for teaching the
 ### 💳 Billing & Subscriptions
 
 - **Tiered Pricing**: Free, Trial, and Pro plans configured in `subscription-entitlements.ts`.
-- **Entitlement Checking**: Server-side feature guards (`assertCanCreateProject`, `assertCanCreateTodo`, `assertCanAddEditorImage`).
 - **Pricing & Checkout UI**: Interactive pricing table and upgrade modals.
 
 ### 📝 Content Management
@@ -55,7 +54,6 @@ src/server/modules/<feature>/
 └── <feature>.dto.ts          # Zod schemas & TypeScript types
 ```
 
-- **Canonical Blueprint**: The `projects` and `todos` modules serve as reference relational implementations for creating any new business feature.
 
 ### 🛠️ Developer Experience & Tooling
 

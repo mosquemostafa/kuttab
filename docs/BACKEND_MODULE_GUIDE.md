@@ -39,7 +39,7 @@ Our backend is built on **Next.js App Router** with a **modular N-tier architect
 
 ## 2. Complete File Checklist for a New Module
 
-For a new entity named `<entity>` (e.g., `todo` / `todos`):
+For a new entity named `<entity>`:
 
 | #   | File Path                                            | Role                                                                                |
 | --- | ---------------------------------------------------- | ----------------------------------------------------------------------------------- |

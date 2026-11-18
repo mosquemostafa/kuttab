@@ -64,7 +64,6 @@ Read full architecture details in `ARCHITECTURE.md`.
 
 - `auth`
 - `users`
-- `todos`
 - `app-settings`
 - `dashboard-settings`
 - `support-tickets`

@@ -32,18 +32,6 @@
       "title": "Browser notification help | Almostafa",
       "description": "Learn how to allow push notifications for Almostafa in your browser."
     },
-    "todos": {
-      "title": "Tasks & Daily Wird | Almostafa Dashboard",
-      "description": "Plan, prioritize, and track your daily tasks and Quran recitation goals."
-    },
-    "projects": {
-      "title": "Circles & Programs | Almostafa Dashboard",
-      "description": "Organize study tracks and circles, keep context together, and manage learning progress.",
-      "detailTitle": "{name} | Programs | Almostafa Dashboard",
-      "detailDescription": "Open and manage the \"{name}\" circle in your dashboard.",
-      "detailNotFoundTitle": "Program not found | Almostafa",
-      "detailNotFoundDescription": "This study track is unavailable or you do not have access."
-    },
     "support": {
       "title": "Support | Almostafa Dashboard",
       "description": "Create and track support tickets. Our academic support team will follow up with you by email."

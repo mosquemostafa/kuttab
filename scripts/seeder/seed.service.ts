@@ -10,17 +10,14 @@ import {
   newsletterCampaignSend,
   newsletterSubscriber,
   notification,
-  project,
   segment,
   supportTicket,
-  todo,
   user,
   usersAnnouncement,
 } from "@/server/db/schema";
 import { ForbiddenException } from "@/server/exceptions/exceptions";
 import { env } from "@/server/lib/env";
 import { AnnouncementType } from "@/shared/enums/announcement-type.enum";
-import { type ColorKey } from "@/shared/constants/color-palette";
 
 import type { SeedInputDTO, SeedResultDTO } from "./seed.dto";
 
@@ -63,7 +60,6 @@ export const seedService = {
 
     // Fresh relative date helpers computed at the exact moment of invocation
     const now = new Date();
-    const toDateStr = (d: Date) => d.toISOString().slice(0, 10);
     const daysAgo = (n: number) => {
       const d = new Date(now);
       d.setDate(d.getDate() - n);
@@ -74,9 +70,6 @@ export const seedService = {
       d.setDate(d.getDate() + n);
       return d;
     };
-    const daysAgoStr = (n: number) => toDateStr(daysAgo(n));
-    const daysAheadStr = (n: number) => toDateStr(daysAhead(n));
-    const todayStr = toDateStr(now);
 
     const summary: Record<string, number> = {};
     const track = (key: string, count: number) => {
@@ -244,8 +237,6 @@ export const seedService = {
     const shouldClean = dto.cleanBeforeSeed !== false;
     if (shouldClean) {
       // 1. Clean primary user personal records
-      await db.delete(todo).where(eq(todo.userId, primaryUserId));
-      await db.delete(project).where(eq(project.userId, primaryUserId));
       await db
         .delete(notification)
         .where(eq(notification.userId, primaryUserId));
@@ -291,202 +282,6 @@ export const seedService = {
           ]),
         );
     }
-
-    // ─── 7. Projects ─────────────────────────────────────────────────────────
-    const primaryProjects = [
-      {
-        id: `prj_${primaryUserId}_health`,
-        userId: primaryUserId,
-        name: "Health & Vitality",
-        description:
-          "Daily workouts, running, sleep optimization, and mobility.",
-        colorKey: "green" as ColorKey,
-        icon: "💪",
-        isArchived: false,
-      },
-      {
-        id: `prj_${primaryUserId}_platform`,
-        userId: primaryUserId,
-        name: "Core Platform Development",
-        description:
-          "Full-stack SaaS boilerplate architecture, UI/UX polish, and features.",
-        colorKey: "blue" as ColorKey,
-        icon: "🚀",
-        isArchived: false,
-      },
-      {
-        id: `prj_${primaryUserId}_learning`,
-        userId: primaryUserId,
-        name: "Continuous Learning",
-        description:
-          "Non-fiction reading queue, programming courses, and knowledge synthesis.",
-        colorKey: "purple" as ColorKey,
-        icon: "📚",
-        isArchived: false,
-      },
-      {
-        id: `prj_${primaryUserId}_finance`,
-        userId: primaryUserId,
-        name: "Personal Wealth & Finance",
-        description: "Monthly budgeting, investments, financial tracking.",
-        colorKey: "yellow" as ColorKey,
-        icon: "💼",
-        isArchived: false,
-      },
-      {
-        id: `prj_${primaryUserId}_archived`,
-        userId: primaryUserId,
-        name: "Legacy Project Archive",
-        description: "Archived content and completed migration tasks.",
-        colorKey: "gray" as ColorKey,
-        icon: "📦",
-        isArchived: true,
-      },
-    ];
-
-    for (const p of primaryProjects) {
-      await db.insert(project).values(p).onConflictDoNothing();
-    }
-    track("projects", primaryProjects.length);
-
-    // ─── 8. Todos (Relative dates: overdue, today, upcoming, completed) ───────
-    const pHealth = primaryProjects[0].id;
-    const pPlatform = primaryProjects[1].id;
-    const pLearning = primaryProjects[2].id;
-    const pFinance = primaryProjects[3].id;
-
-    const primaryTodos = [
-      // Overdue
-      {
-        id: `td_${primaryUserId}_reconcile`,
-        userId: primaryUserId,
-        projectId: pFinance,
-        title: "Reconcile October monthly investment statement",
-        priority: "high" as const,
-        isCompleted: false,
-        dueDate: daysAgoStr(2),
-        checklist: [
-          { id: "c1", title: "Download bank PDF", isCompleted: true },
-          { id: "c2", title: "Update net worth ledger", isCompleted: false },
-        ],
-      },
-      // Today (Active)
-      {
-        id: `td_${primaryUserId}_deepwork`,
-        userId: primaryUserId,
-        projectId: pPlatform,
-        title: "Morning 90-min deep work: Finish local seeding endpoint",
-        priority: "high" as const,
-        isCompleted: false,
-        dueDate: todayStr,
-        checklist: [
-          {
-            id: "c3",
-            title: "Implement seed service logic",
-            isCompleted: true,
-          },
-          {
-            id: "c4",
-            title: "Verify with local database CLI",
-            isCompleted: true,
-          },
-          {
-            id: "c5",
-            title: "Test UI dashboard rendering",
-            isCompleted: false,
-          },
-        ],
-      },
-      {
-        id: `td_${primaryUserId}_gym_session`,
-        userId: primaryUserId,
-        projectId: pHealth,
-        title: "Afternoon 45-min gym strength session",
-        priority: "medium" as const,
-        isCompleted: false,
-        dueDate: todayStr,
-        checklist: [],
-      },
-      {
-        id: `td_${primaryUserId}_read_deepwork`,
-        userId: primaryUserId,
-        projectId: pLearning,
-        title: "Read 25 pages of Deep Work by Cal Newport",
-        priority: "medium" as const,
-        isCompleted: false,
-        dueDate: todayStr,
-        checklist: [],
-      },
-      // Today (Completed)
-      {
-        id: `td_${primaryUserId}_morning_hydration`,
-        userId: primaryUserId,
-        projectId: pHealth,
-        title: "Morning hydration (750ml water) & light stretching",
-        priority: "low" as const,
-        isCompleted: true,
-        dueDate: todayStr,
-        checklist: [],
-      },
-      // Upcoming
-      {
-        id: `td_${primaryUserId}_review_prs`,
-        userId: primaryUserId,
-        projectId: pPlatform,
-        title: "Review pull requests & update dependency packages",
-        priority: "medium" as const,
-        isCompleted: false,
-        dueDate: daysAheadStr(2),
-        checklist: [],
-      },
-      {
-        id: `td_${primaryUserId}_smoke_tests`,
-        userId: primaryUserId,
-        projectId: pPlatform,
-        title: "Run smoke tests and verify staging deployment",
-        priority: "high" as const,
-        isCompleted: false,
-        dueDate: daysAheadStr(4),
-        checklist: [],
-      },
-      {
-        id: `td_${primaryUserId}_atomic_summary`,
-        userId: primaryUserId,
-        projectId: pLearning,
-        title: "Write chapter summary for Atomic Habits Chapter 4",
-        priority: "low" as const,
-        isCompleted: false,
-        dueDate: daysAheadStr(5),
-        checklist: [],
-      },
-      // Inbox (No due date)
-      {
-        id: `td_${primaryUserId}_pg_search`,
-        userId: primaryUserId,
-        projectId: null,
-        title: "Investigate PostgreSQL full-text search improvements",
-        priority: "low" as const,
-        isCompleted: false,
-        dueDate: null,
-        checklist: [],
-      },
-      // Past Completed
-      {
-        id: `td_${primaryUserId}_rtl_architecture`,
-        userId: primaryUserId,
-        projectId: pPlatform,
-        title: "Architecture design for multi-language RTL support",
-        priority: "high" as const,
-        isCompleted: true,
-        dueDate: daysAgoStr(4),
-        checklist: [],
-      },
-    ];
-
-    for (const t of primaryTodos) {
-      await db.insert(todo).values(t).onConflictDoNothing();
-    }
-    track("todos", primaryTodos.length);
 
     // ─── 22. Notifications ───────────────────────────────────────────────────
     const primaryNotifications = [

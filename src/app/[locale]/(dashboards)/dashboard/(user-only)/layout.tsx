@@ -6,7 +6,6 @@ import {
   getDashboardPathForRole,
   normalizeUserRole,
 } from "@/shared/enums/user-role.enum";
-import { ProjectsStoreInitializer } from "@/components/projects/projects-store";
 
 export default async function UserOnlyLayout({
   children,
@@ -26,5 +25,5 @@ export default async function UserOnlyLayout({
     return null;
   }
 
-  return <ProjectsStoreInitializer>{children}</ProjectsStoreInitializer>;
+  return <>{children}</>;
 }
