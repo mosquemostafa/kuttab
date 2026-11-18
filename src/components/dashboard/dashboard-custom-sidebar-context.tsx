@@ -4,7 +4,6 @@ import React, {
   createContext,
   useCallback,
   useContext,
-  useEffect,
   useMemo,
   useState,
 } from "react";
@@ -51,19 +50,3 @@ export function useCustomSidebar() {
  * Declarative component to set a custom sidebar override.
  * Cleans up and restores the default sidebar on unmount.
  */
-export function CustomSidebarOverride({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const { setCustomSidebar } = useContext(CustomSidebarActionsContext);
-
-  useEffect(() => {
-    setCustomSidebar(children);
-    return () => {
-      setCustomSidebar(null);
-    };
-  }, [children, setCustomSidebar]);
-
-  return null;
-}

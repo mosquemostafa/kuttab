@@ -37,12 +37,6 @@ export class ConflictException extends HttpException {
   }
 }
 
-export class TagAlreadyExistsException extends ConflictException {
-  constructor(message = "A tag with this name already exists.") {
-    super(message, ErrorCodes.TAG_ALREADY_EXISTS);
-  }
-}
-
 export class NewsletterDisabledException extends HttpException {
   constructor(
     message = "Newsletter is not configured. Set Resend and QStash environment variables.",

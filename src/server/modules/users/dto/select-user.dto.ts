@@ -14,7 +14,6 @@ export const selectUserQuerySchema = z.object({
     .default(20),
 });
 
-export type SelectUserQueryDTO = z.infer<typeof selectUserQuerySchema>;
 
 export interface ParsedSelectUserQuery {
   q?: string;

@@ -1,5 +1,4 @@
 import {
-  CopyObjectCommand,
   DeleteObjectCommand,
   HeadObjectCommand,
   PutObjectCommand,
@@ -169,27 +168,6 @@ export async function deleteR2Object(objectKey: string): Promise<void> {
     new DeleteObjectCommand({
       Bucket: R2_BUCKET_NAME,
       Key: objectKey,
-    }),
-  );
-}
-
-export async function copyR2Object(
-  sourceObjectKey: string,
-  destinationObjectKey: string,
-): Promise<void> {
-  const { R2_BUCKET_NAME } = requireR2Config();
-  const client = getR2S3Client();
-
-  const encodedSource = `${R2_BUCKET_NAME}/${sourceObjectKey
-    .split("/")
-    .map(encodeURIComponent)
-    .join("/")}`;
-
-  await client.send(
-    new CopyObjectCommand({
-      Bucket: R2_BUCKET_NAME,
-      CopySource: encodedSource,
-      Key: destinationObjectKey,
     }),
   );
 }

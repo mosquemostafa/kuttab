@@ -4,7 +4,7 @@
  *   post:
  *     summary: Complete Cloudflare R2 upload for rich text editor image
  *     tags:
- *       - UserMedia
+ *       - User Media
  *     security:
  *       - sessionAuth: []
  *     requestBody:

@@ -9,18 +9,3 @@ export function validateBody<T>(schema: ZodSchema<T>, data: unknown): T {
   }
   return result.data;
 }
-
-export function validateQuery<T>(
-  schema: ZodSchema<T>,
-  params: URLSearchParams | Record<string, unknown>,
-): T {
-  const obj =
-    params instanceof URLSearchParams
-      ? Object.fromEntries(params.entries())
-      : params;
-  const result = schema.safeParse(obj);
-  if (!result.success) {
-    throw new ValidationException(result.error.flatten().fieldErrors);
-  }
-  return result.data;
-}

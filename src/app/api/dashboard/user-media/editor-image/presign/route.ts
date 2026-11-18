@@ -4,7 +4,7 @@
  *   post:
  *     summary: Presign Cloudflare R2 upload URL for rich text editor image
  *     tags:
- *       - UserMedia
+ *       - User Media
  *     security:
  *       - sessionAuth: []
  *     requestBody:

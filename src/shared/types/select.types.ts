@@ -5,10 +5,6 @@ export interface SelectQuery {
   includeArchived?: boolean;
 }
 
-export interface SelectTitleItem {
-  id: string;
-  title: string;
-}
 
 export interface SelectNameItem {
   id: string;

@@ -82,9 +82,6 @@ export function getDashboardPrefix(pathname: string): string | null {
 }
 
 /** Check if a given pathname belongs to any of the dashboard surface families. */
-export function isDashboardPath(pathname: string): boolean {
-  return getDashboardPrefix(pathname) !== null;
-}
 
 /** Get the root overview path for a given user role. */
 export function getDashboardPathForRole(

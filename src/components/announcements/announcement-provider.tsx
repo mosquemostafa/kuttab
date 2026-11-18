@@ -3,7 +3,6 @@
 import {
   createContext,
   useCallback,
-  useContext,
   useEffect,
   useMemo,
   useRef,
@@ -134,14 +133,4 @@ export function AnnouncementProvider({ children }: AnnouncementProviderProps) {
       />
     </AnnouncementContext.Provider>
   );
-}
-
-const fallbackContext: AnnouncementContextValue = {
-  unseenCount: 0,
-  announcements: [],
-  markAllSeen: async () => {},
-};
-
-export function useAnnouncements(): AnnouncementContextValue {
-  return useContext(AnnouncementContext) ?? fallbackContext;
 }

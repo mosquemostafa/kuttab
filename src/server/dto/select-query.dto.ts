@@ -22,7 +22,6 @@ export const selectQuerySchema = z.object({
     .default(false),
 });
 
-export type SelectQueryDTO = z.infer<typeof selectQuerySchema>;
 
 export interface ParsedSelectQuery {
   q?: string;
@@ -63,11 +62,3 @@ export function buildSelectMeta(
     totalPages: Math.ceil(total / limit) || 1,
   };
 }
-
-export type {
-  SelectQuery,
-  SelectTitleItem,
-  SelectNameItem,
-  SelectUserQuery,
-  SelectUserItem,
-} from "@/shared/types/select.types";

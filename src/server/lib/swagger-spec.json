@@ -16,11 +16,6 @@
   ],
   "components": {
     "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer",
-        "bearerFormat": "JWT"
-      },
       "cookieAuth": {
         "type": "apiKey",
         "in": "cookie",
@@ -259,170 +254,6 @@
           "updatedAt"
         ]
       },
-      "Note": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "userId": {
-            "type": "string"
-          },
-          "title": {
-            "type": "string"
-          },
-          "content": {
-            "type": "string"
-          },
-          "projectId": {
-            "type": "string",
-            "nullable": true
-          },
-          "isArchived": {
-            "type": "boolean"
-          },
-          "isPinned": {
-            "type": "boolean"
-          },
-          "colorKey": {
-            "type": "string",
-            "enum": [
-              "red",
-              "orange",
-              "yellow",
-              "green",
-              "teal",
-              "blue",
-              "darkBlue",
-              "purple",
-              "pink",
-              "brown",
-              "gray"
-            ],
-            "nullable": true
-          },
-          "tags": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Labels for filtering (exact match via list ?tag=)"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "required": [
-          "id",
-          "userId",
-          "title",
-          "content",
-          "projectId",
-          "tags",
-          "isArchived",
-          "isPinned",
-          "colorKey",
-          "createdAt",
-          "updatedAt"
-        ]
-      },
-      "CalendarEvent": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "userId": {
-            "type": "string"
-          },
-          "title": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "scheduledDate": {
-            "type": "string",
-            "format": "date"
-          },
-          "scheduledStartDatetime": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "scheduledEndDatetime": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "notes": {
-            "type": "string",
-            "nullable": true
-          },
-          "colorKey": {
-            "type": "string",
-            "enum": [
-              "red",
-              "orange",
-              "yellow",
-              "green",
-              "teal",
-              "blue",
-              "darkBlue",
-              "purple",
-              "pink",
-              "brown",
-              "gray"
-            ],
-            "nullable": true
-          },
-          "repetitionType": {
-            "type": "string",
-            "enum": [
-              "daily",
-              "weekly",
-              "monthly"
-            ],
-            "nullable": true
-          },
-          "specificDays": {
-            "type": "array",
-            "items": {
-              "type": "integer"
-            }
-          },
-          "endDate": {
-            "type": "string",
-            "format": "date",
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "required": [
-          "id",
-          "userId",
-          "title",
-          "description",
-          "scheduledDate",
-          "scheduledStartDatetime",
-          "scheduledEndDatetime",
-          "notes",
-          "createdAt",
-          "updatedAt"
-        ]
-      },
       "UserWithDetails": {
         "type": "object",
         "properties": {
@@ -511,139 +342,6 @@
           "timestamp": {
             "type": "string",
             "format": "date-time"
-          }
-        }
-      },
-      "Error": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "string",
-            "description": "Error message"
-          },
-          "status": {
-            "type": "number",
-            "description": "HTTP status code"
-          }
-        },
-        "required": [
-          "error"
-        ]
-      },
-      "User": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "User ID"
-          },
-          "email": {
-            "type": "string",
-            "format": "email",
-            "description": "User's email address"
-          },
-          "phone": {
-            "type": "string",
-            "description": "User's phone number"
-          },
-          "name": {
-            "type": "string",
-            "description": "User's full name"
-          },
-          "role": {
-            "type": "string",
-            "enum": [
-              "user",
-              "admin"
-            ],
-            "description": "User's role"
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "active",
-              "inactive",
-              "banned"
-            ],
-            "description": "User's account status"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Account creation date"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Last update date"
-          }
-        },
-        "required": [
-          "id",
-          "email",
-          "name",
-          "role"
-        ]
-      },
-      "PaginationParams": {
-        "type": "object",
-        "properties": {
-          "page": {
-            "type": "integer",
-            "default": 1,
-            "description": "Page number"
-          },
-          "limit": {
-            "type": "integer",
-            "default": 10,
-            "description": "Items per page"
-          }
-        }
-      },
-      "NewsletterSubscribeRequest": {
-        "type": "object",
-        "required": [
-          "email"
-        ],
-        "properties": {
-          "email": {
-            "type": "string",
-            "format": "email"
-          },
-          "locale": {
-            "type": "string",
-            "enum": [
-              "ar",
-              "en"
-            ]
-          }
-        }
-      },
-      "NewsletterSubscribeResponse": {
-        "type": "object",
-        "properties": {
-          "subscriberId": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string",
-            "format": "email"
-          }
-        },
-        "required": [
-          "subscriberId",
-          "email"
-        ]
-      },
-      "NewsletterUnsubscribeRequest": {
-        "type": "object",
-        "required": [
-          "token"
-        ],
-        "properties": {
-          "token": {
-            "type": "string",
-            "description": "Opaque token from unsubscribe link"
           }
         }
       },
@@ -1316,288 +1014,6 @@
           "data",
           "timestamp"
         ]
-      },
-      "NewsletterSubscriber": {
-        "type": "object",
-        "description": "Subscriber row returned by admin list (unsubscribe token is never exposed)",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string",
-            "format": "email"
-          },
-          "locale": {
-            "type": "string",
-            "nullable": true,
-            "enum": [
-              "ar",
-              "en"
-            ]
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "active",
-              "unsubscribed"
-            ]
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "unsubscribedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          }
-        },
-        "required": [
-          "id",
-          "email",
-          "status",
-          "createdAt"
-        ]
-      },
-      "NewsletterCampaign": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "subjectAr": {
-            "type": "string",
-            "description": "Email subject for Arabic-locale subscribers (and default locale)."
-          },
-          "subjectEn": {
-            "type": "string",
-            "description": "Email subject for English-locale subscribers."
-          },
-          "bodyAr": {
-            "type": "string",
-            "description": "Trusted Arabic HTML; list footer is injected at send time. Subscribers with locale ar (or unset) receive this body."
-          },
-          "bodyEn": {
-            "type": "string",
-            "description": "Trusted English HTML; subscribers with locale en receive this body."
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "draft",
-              "queued",
-              "sending",
-              "completed",
-              "failed"
-            ]
-          },
-          "failureReason": {
-            "type": "string",
-            "nullable": true
-          },
-          "createdBy": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "startedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "completedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          }
-        },
-        "required": [
-          "id",
-          "subjectAr",
-          "subjectEn",
-          "bodyAr",
-          "bodyEn",
-          "status",
-          "createdBy",
-          "createdAt"
-        ]
-      },
-      "NewsletterCampaignListItem": {
-        "type": "object",
-        "description": "Campaign row returned by GET /content/newsletter/campaigns (no bodyAr/bodyEn)",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "subjectAr": {
-            "type": "string"
-          },
-          "subjectEn": {
-            "type": "string"
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "draft",
-              "queued",
-              "sending",
-              "completed",
-              "failed"
-            ]
-          },
-          "failureReason": {
-            "type": "string",
-            "nullable": true
-          },
-          "createdBy": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "startedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "completedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          }
-        },
-        "required": [
-          "id",
-          "subjectAr",
-          "subjectEn",
-          "status",
-          "createdBy",
-          "createdAt"
-        ]
-      },
-      "NewsletterCampaignDetail": {
-        "type": "object",
-        "description": "Campaign with aggregate send stats (admin GET by id)",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "subjectAr": {
-            "type": "string"
-          },
-          "subjectEn": {
-            "type": "string"
-          },
-          "bodyAr": {
-            "type": "string"
-          },
-          "bodyEn": {
-            "type": "string"
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "draft",
-              "queued",
-              "sending",
-              "completed",
-              "failed"
-            ]
-          },
-          "failureReason": {
-            "type": "string",
-            "nullable": true
-          },
-          "createdBy": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "startedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "completedAt": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
-          "sendCounts": {
-            "type": "object",
-            "properties": {
-              "sent": {
-                "type": "integer"
-              },
-              "failed": {
-                "type": "integer"
-              },
-              "pending": {
-                "type": "integer"
-              }
-            }
-          },
-          "activeSubscriberTotal": {
-            "type": "integer"
-          }
-        }
-      },
-      "CreateNewsletterCampaignRequest": {
-        "type": "object",
-        "required": [
-          "subjectAr",
-          "subjectEn",
-          "bodyAr",
-          "bodyEn"
-        ],
-        "properties": {
-          "subjectAr": {
-            "type": "string",
-            "maxLength": 500
-          },
-          "subjectEn": {
-            "type": "string",
-            "maxLength": 500
-          },
-          "bodyAr": {
-            "type": "string",
-            "maxLength": 204800,
-            "description": "Arabic HTML; max length enforced server-side (~200KB)"
-          },
-          "bodyEn": {
-            "type": "string",
-            "maxLength": 204800,
-            "description": "English HTML; max length enforced server-side (~200KB)"
-          }
-        }
-      },
-      "UpdateNewsletterCampaignRequest": {
-        "type": "object",
-        "properties": {
-          "subjectAr": {
-            "type": "string",
-            "maxLength": 500
-          },
-          "subjectEn": {
-            "type": "string",
-            "maxLength": 500
-          },
-          "bodyAr": {
-            "type": "string",
-            "maxLength": 204800
-          },
-          "bodyEn": {
-            "type": "string",
-            "maxLength": 204800
-          }
-        },
-        "description": "At least one property required (validated server-side)"
       }
     }
   },
@@ -5208,7 +4624,7 @@
       "post": {
         "summary": "Complete Cloudflare R2 upload for rich text editor image",
         "tags": [
-          "UserMedia"
+          "User Media"
         ],
         "security": [
           {
@@ -5244,7 +4660,7 @@
       "post": {
         "summary": "Presign Cloudflare R2 upload URL for rich text editor image",
         "tags": [
-          "UserMedia"
+          "User Media"
         ],
         "security": [
           {
@@ -9628,12 +9044,24 @@
       "description": "Health check endpoints"
     },
     {
-      "name": "Todos",
-      "description": "Todo management endpoints"
+      "name": "Users",
+      "description": "Current-user and user selection endpoints"
     },
     {
-      "name": "Projects",
-      "description": "Project management endpoints"
+      "name": "Notifications",
+      "description": "User notification endpoints"
+    },
+    {
+      "name": "Contact",
+      "description": "Public contact endpoints"
+    },
+    {
+      "name": "Teacher Attendances",
+      "description": "Teacher attendance and salary reporting endpoints"
+    },
+    {
+      "name": "User Media",
+      "description": "User media and editor upload endpoints"
     },
     {
       "name": "Support",

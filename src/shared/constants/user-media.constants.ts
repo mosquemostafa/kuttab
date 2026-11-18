@@ -23,6 +23,3 @@ export const USER_MEDIA_USAGE_TYPE = {
   VIDEO_PLAYLIST_COVER: "video_playlist_cover",
   EDITOR_IMAGE: "editor_image",
 } as const;
-
-export type UserMediaUsageType =
-  (typeof USER_MEDIA_USAGE_TYPE)[keyof typeof USER_MEDIA_USAGE_TYPE];

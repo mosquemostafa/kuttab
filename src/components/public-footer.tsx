@@ -61,5 +61,3 @@ export function PublicFooter() {
     </footer>
   );
 }
-
-export default PublicFooter;
