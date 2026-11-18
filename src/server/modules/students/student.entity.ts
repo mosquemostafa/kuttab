@@ -8,6 +8,7 @@ import {
   pgTable,
   text,
   timestamp,
+  uniqueIndex,
 } from "drizzle-orm/pg-core";
 
 import { user } from "@/server/modules/users/user.entity";
@@ -66,7 +67,7 @@ export const student = pgTable(
       .notNull(),
   },
   (table) => [
-    index("students_user_id_idx").on(table.userId),
+    uniqueIndex("students_user_id_unique").on(table.userId),
     index("students_class_id_idx").on(table.classId),
     index("students_status_idx").on(table.status),
     index("students_payment_method_idx").on(table.paymentMethod),

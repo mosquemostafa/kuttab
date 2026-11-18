@@ -1,4 +1,7 @@
-import { NotFoundException } from "@/server/exceptions/exceptions";
+import {
+  ConflictException,
+  NotFoundException,
+} from "@/server/exceptions/exceptions";
 import {
   buildSelectMeta,
   type ParsedSelectQuery,
@@ -46,6 +49,14 @@ function toDTO(row: StudentRow): StudentDTO {
   };
 }
 
+function isUniqueUserViolation(error: unknown): boolean {
+  return (
+    error instanceof Error &&
+    (error.message.includes("students_user_id_unique") ||
+      error.message.includes("duplicate key"))
+  );
+}
+
 export const studentService = {
   async listStudents(
     filters: Partial<ListStudentsQueryDTO>,
@@ -77,35 +88,71 @@ export const studentService = {
   },
 
   async createStudent(dto: CreateStudentDTO): Promise<StudentDTO> {
-    const created = await studentRepository.create({
-      userId: dto.userId,
-      classId: dto.classId,
-      name: dto.name,
-      birthDate: dto.birthDate,
-      grade: dto.grade,
-      job: dto.job,
-      phone: dto.phone,
-      studiedTajweed: dto.studiedTajweed,
-      previouslyEnrolled: dto.previouslyEnrolled,
-      previousEnrolledPlace: dto.previousEnrolledPlace,
-      memorizedPartsCount: dto.memorizedPartsCount,
-      memorizationDetails: dto.memorizationDetails,
-      status: dto.status,
-      paymentMethod: dto.paymentMethod,
-      registrationDate: dto.registrationDate,
-      notes: dto.notes,
-    });
+    if (dto.userId) {
+      const existing = await studentRepository.findByUserId(dto.userId);
+      if (existing.length > 0) {
+        throw new ConflictException(
+          "This user is already assigned to a student",
+        );
+      }
+    }
 
-    return toDTO(created);
+    try {
+      const created = await studentRepository.create({
+        userId: dto.userId,
+        classId: dto.classId,
+        name: dto.name,
+        birthDate: dto.birthDate,
+        grade: dto.grade,
+        job: dto.job,
+        phone: dto.phone,
+        studiedTajweed: dto.studiedTajweed,
+        previouslyEnrolled: dto.previouslyEnrolled,
+        previousEnrolledPlace: dto.previousEnrolledPlace,
+        memorizedPartsCount: dto.memorizedPartsCount,
+        memorizationDetails: dto.memorizationDetails,
+        status: dto.status,
+        paymentMethod: dto.paymentMethod,
+        registrationDate: dto.registrationDate,
+        notes: dto.notes,
+      });
+
+      return toDTO(created);
+    } catch (error) {
+      if (isUniqueUserViolation(error)) {
+        throw new ConflictException(
+          "This user is already assigned to a student",
+        );
+      }
+      throw error;
+    }
   },
 
   async updateStudent(id: string, dto: UpdateStudentDTO): Promise<StudentDTO> {
-    const updated = await studentRepository.update(id, dto);
-    if (!updated) {
-      throw new NotFoundException("Student", id);
+    if (dto.userId) {
+      const existing = await studentRepository.findByUserId(dto.userId);
+      if (existing.some((student) => student.id !== id)) {
+        throw new ConflictException(
+          "This user is already assigned to a student",
+        );
+      }
     }
 
-    return toDTO(updated);
+    try {
+      const updated = await studentRepository.update(id, dto);
+      if (!updated) {
+        throw new NotFoundException("Student", id);
+      }
+
+      return toDTO(updated);
+    } catch (error) {
+      if (isUniqueUserViolation(error)) {
+        throw new ConflictException(
+          "This user is already assigned to a student",
+        );
+      }
+      throw error;
+    }
   },
 
   async deleteStudent(id: string): Promise<void> {

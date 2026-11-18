@@ -1,4 +1,7 @@
-import { NotFoundException } from "@/server/exceptions/exceptions";
+import {
+  ConflictException,
+  NotFoundException,
+} from "@/server/exceptions/exceptions";
 import {
   buildSelectMeta,
   type ParsedSelectQuery,
@@ -37,6 +40,14 @@ function toDTO(row: TeacherRow): TeacherDTO {
   };
 }
 
+function isUniqueUserViolation(error: unknown): boolean {
+  return (
+    error instanceof Error &&
+    (error.message.includes("teachers_user_id_unique") ||
+      error.message.includes("duplicate key"))
+  );
+}
+
 export const teacherService = {
   async listTeachers(
     filters: Partial<ListTeachersQueryDTO>,
@@ -68,26 +79,62 @@ export const teacherService = {
   },
 
   async createTeacher(dto: CreateTeacherDTO): Promise<TeacherDTO> {
-    const created = await teacherRepository.create({
-      userId: dto.userId,
-      name: dto.name,
-      phone: dto.phone,
-      studentType: dto.studentType,
-      status: dto.status,
-      sallary: dto.sallary,
-      notes: dto.notes,
-    });
+    if (dto.userId) {
+      const existing = await teacherRepository.findByUserId(dto.userId);
+      if (existing.length > 0) {
+        throw new ConflictException(
+          "This user is already assigned to a teacher",
+        );
+      }
+    }
 
-    return toDTO(created);
+    try {
+      const created = await teacherRepository.create({
+        userId: dto.userId,
+        name: dto.name,
+        phone: dto.phone,
+        studentType: dto.studentType,
+        status: dto.status,
+        sallary: dto.sallary,
+        notes: dto.notes,
+      });
+
+      return toDTO(created);
+    } catch (error) {
+      if (isUniqueUserViolation(error)) {
+        throw new ConflictException(
+          "This user is already assigned to a teacher",
+        );
+      }
+      throw error;
+    }
   },
 
   async updateTeacher(id: string, dto: UpdateTeacherDTO): Promise<TeacherDTO> {
-    const updated = await teacherRepository.update(id, dto);
-    if (!updated) {
-      throw new NotFoundException("Teacher", id);
+    if (dto.userId) {
+      const existing = await teacherRepository.findByUserId(dto.userId);
+      if (existing.some((teacher) => teacher.id !== id)) {
+        throw new ConflictException(
+          "This user is already assigned to a teacher",
+        );
+      }
     }
 
-    return toDTO(updated);
+    try {
+      const updated = await teacherRepository.update(id, dto);
+      if (!updated) {
+        throw new NotFoundException("Teacher", id);
+      }
+
+      return toDTO(updated);
+    } catch (error) {
+      if (isUniqueUserViolation(error)) {
+        throw new ConflictException(
+          "This user is already assigned to a teacher",
+        );
+      }
+      throw error;
+    }
   },
 
   async deleteTeacher(id: string): Promise<void> {

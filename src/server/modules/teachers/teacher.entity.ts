@@ -1,5 +1,13 @@
 import { createId } from "@paralleldrive/cuid2";
-import { index, integer, pgEnum, pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import {
+  index,
+  integer,
+  pgEnum,
+  pgTable,
+  text,
+  timestamp,
+  uniqueIndex,
+} from "drizzle-orm/pg-core";
 
 import { user } from "@/server/modules/users/user.entity";
 
@@ -38,7 +46,7 @@ export const teacher = pgTable(
       .notNull(),
   },
   (table) => [
-    index("teachers_user_id_idx").on(table.userId),
+    uniqueIndex("teachers_user_id_unique").on(table.userId),
     index("teachers_status_idx").on(table.status),
     index("teachers_name_idx").on(table.name),
     index("teachers_student_type_idx").on(table.studentType),
