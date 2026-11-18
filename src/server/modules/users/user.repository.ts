@@ -47,6 +47,16 @@ function buildLastSignInMap(
 }
 
 export const userRepository = {
+  async findByPhone(phone: string): Promise<{ id: string } | null> {
+    const [result] = await db
+      .select({ id: user.id })
+      .from(user)
+      .where(eq(user.phone, phone))
+      .limit(1);
+
+    return result ?? null;
+  },
+
   async hasCredentialPasswordByUserId(userId: string): Promise<boolean> {
     const credentialAccount = await db
       .select({ id: account.id })

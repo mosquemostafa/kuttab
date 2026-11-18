@@ -9,6 +9,7 @@ import { userMediaFile } from "@/server/modules/user-media/user-media.entity";
 import { deleteR2Object } from "@/server/lib/r2";
 
 import {
+  ConflictException,
   NotFoundException,
   UnauthorizedException,
   ValidationException,
@@ -43,6 +44,14 @@ interface DashboardSettingsOverviewDTO {
   hasPasswordLogin: boolean;
   /** True when server-side R2 is configured for direct avatar uploads. */
   avatarR2UploadEnabled: boolean;
+}
+
+function isUniquePhoneViolation(error: unknown): boolean {
+  return (
+    error instanceof Error &&
+    (error.message.includes("users_phone_unique") ||
+      error.message.includes("duplicate key"))
+  );
 }
 
 function toDTO(
@@ -266,6 +275,13 @@ export const userService = {
 
   async createUser(data: CreateUserDTO, headers: Headers) {
     const { autoVerify, phone, ...userData } = data;
+    const existingPhone = await userRepository.findByPhone(phone);
+    if (existingPhone) {
+      throw new ConflictException(
+        "A user with this phone number already exists",
+      );
+    }
+
     const requestedRole = userData.role;
     const roleForAuth = mapRoleForAuth(requestedRole);
 
@@ -285,7 +301,16 @@ export const userService = {
     });
 
     if (res?.user?.id) {
-      await userRepository.updatePhoneById(res.user.id, phone);
+      try {
+        await userRepository.updatePhoneById(res.user.id, phone);
+      } catch (error) {
+        if (isUniquePhoneViolation(error)) {
+          throw new ConflictException(
+            "A user with this phone number already exists",
+          );
+        }
+        throw error;
+      }
     }
 
     if (!autoVerify) {
@@ -438,6 +463,13 @@ export const userService = {
       );
     }
 
+    const existingPhone = await userRepository.findByPhone(phone);
+    if (existingPhone && existingPhone.id !== userId) {
+      throw new ConflictException(
+        "A user with this phone number already exists",
+      );
+    }
+
     if (headers) {
       const session = await auth.api.getSession({ headers });
       if (!session?.user?.id) {
@@ -445,7 +477,16 @@ export const userService = {
       }
     }
 
-    await userRepository.updatePhoneById(userId, phone);
+    try {
+      await userRepository.updatePhoneById(userId, phone);
+    } catch (error) {
+      if (isUniquePhoneViolation(error)) {
+        throw new ConflictException(
+          "A user with this phone number already exists",
+        );
+      }
+      throw error;
+    }
     return { userId, phone };
   },
 
@@ -466,16 +507,34 @@ export const userService = {
       );
     }
 
-    await auth.api.updateUser({
-      headers,
-      body: {
-        name: data.name,
-        ...(data.phone !== undefined ? { phone: data.phone } : {}),
-      },
-    });
-
     if (data.phone !== undefined) {
-      await userRepository.updatePhoneById(userId, data.phone);
+      const existingPhone = await userRepository.findByPhone(data.phone);
+      if (existingPhone && existingPhone.id !== userId) {
+        throw new ConflictException(
+          "A user with this phone number already exists",
+        );
+      }
+    }
+
+    try {
+      await auth.api.updateUser({
+        headers,
+        body: {
+          name: data.name,
+          ...(data.phone !== undefined ? { phone: data.phone } : {}),
+        },
+      });
+
+      if (data.phone !== undefined) {
+        await userRepository.updatePhoneById(userId, data.phone);
+      }
+    } catch (error) {
+      if (isUniquePhoneViolation(error)) {
+        throw new ConflictException(
+          "A user with this phone number already exists",
+        );
+      }
+      throw error;
     }
   },
 

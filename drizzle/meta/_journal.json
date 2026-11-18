@@ -176,6 +176,13 @@
       "when": 1794973356327,
       "tag": "0024_early_zemo",
       "breakpoints": true
+    },
+    {
+      "idx": 25,
+      "version": "7",
+      "when": 1794975207485,
+      "tag": "0025_solid_phantom_reporter",
+      "breakpoints": true
     }
   ]
 }
