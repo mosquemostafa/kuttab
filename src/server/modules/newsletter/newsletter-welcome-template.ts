@@ -38,7 +38,7 @@ export function buildWelcomeEmailBundle(params: {
       "",
       "من الآن فصاعدًا، سيصلك بشكل دوري:",
       "• دروس وتوجيهات في تلاوة وحفظ وتجويد القرآن الكريم",
-      "• مستجدات الحلقات والبرامج التعليمية في معهد المصطفى",
+      "• مستجدات الحلقات والبرامج التعليمية في مسجد المصطفى",
       "",
       "⸻",
       "",
@@ -83,7 +83,7 @@ export function buildWelcomeEmailBundle(params: {
               </p>
               <p style="margin:0 0 20px 0;font-size:15px;line-height:1.85;color:#52525b;">
                 • دروس وتوجيهات في تلاوة وحفظ وتجويد القرآن الكريم<br>
-                • مستجدات الحلقات والبرامج التعليمية في معهد المصطفى
+                • مستجدات الحلقات والبرامج التعليمية في مسجد المصطفى
               </p>
               <table role="presentation" cellspacing="0" cellpadding="0" style="margin:0 0 24px 0;">
                 <tr>

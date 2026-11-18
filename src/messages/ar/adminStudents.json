@@ -40,7 +40,7 @@
   },
   "dialogs": {
     "addTitle": "تسجيل طالب جديد",
-    "addDescription": "أدخل بيانات الطالب لتسجيله في المعهد وإلحاقه بالحلقات.",
+    "addDescription": "أدخل بيانات الطالب لتسجيله في المسجد وإلحاقه بالحلقات.",
     "editTitle": "تعديل بيانات الطالب: {name}",
     "editDescription": "تحديث البيانات الأكاديمية وحالة القيد للطالب.",
     "detailsTitle": "ملف الطالب: {name}",
@@ -71,7 +71,7 @@
     "studiedTajweedLabel": "درس أحكام التجويد مسبقاً",
     "previouslyEnrolledLabel": "التحق بمقارئ أو كُتّاب سابقاً",
     "previousEnrolledPlaceLabel": "اسم المقرأة أو الكُتّاب السابق",
-    "previousEnrolledPlacePlaceholder": "مثال: معهد النور",
+    "previousEnrolledPlacePlaceholder": "مثال: مسجد النور",
     "notesLabel": "الملاحظات الإدارية",
     "notesPlaceholder": "أي ملاحظات أو بيانات إضافية...",
     "save": "حفظ التعديلات",

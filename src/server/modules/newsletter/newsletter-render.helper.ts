@@ -163,7 +163,7 @@ export function buildCampaignEmailHtml(params: {
     loc === "en"
       ? "You are receiving this because you subscribed to our newsletter."
       : "وصلتك هذه الرسالة لأنك مشترك في نشرتنا البريدية.";
-  const brandName = isRtl ? "معهد المصطفى" : "Almostafa";
+  const brandName = isRtl ? "مسجد المصطفى" : "Almostafa";
   const websiteLabel = isRtl ? "الموقع الرسمي" : "Website";
   const teamLabel = isRtl ? "فريق العمل" : "The Team";
 

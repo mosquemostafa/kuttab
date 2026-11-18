@@ -415,7 +415,7 @@ export const seedService = {
         titleAr: "إطلاق الإصدار ٢.٠ من المنصة",
         titleEn: "Almostafa Platform Official Release",
         contentAr:
-          "يسعدنا الإعلان عن إطلاق المنصة التعليمية لمعهد المصطفى لتعليم القرآن الكريم بميزات محسّنة وتحليلات متطورة.",
+          "يسعدنا الإعلان عن إطلاق المنصة التعليمية لمسجد المصطفى لتعليم القرآن الكريم بميزات محسّنة وتحليلات متطورة.",
         contentEn:
           "We are thrilled to launch the Almostafa learning portal with enhanced study circle tracking and improved student experience.",
         type: AnnouncementType.FEATURE,

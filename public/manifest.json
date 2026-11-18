@@ -1,7 +1,7 @@
 {
-  "name": "معهد المصطفى لتعليم القرآن الكريم - Almostafa",
+  "name": "مسجد المصطفى لتعليم القرآن الكريم - Almostafa",
   "short_name": "المصطفى",
-  "description": "معهد إسلامي متخصص في تعليم القرآن الكريم وتلاوته وتجويده وحفظه - Almostafa Quran Institute",
+  "description": "مسجد إسلامي متخصص في تعليم القرآن الكريم وتلاوته وتجويده وحفظه - Almostafa Quran Institute",
   "id": "/",
   "start_url": "/ar",
   "scope": "/",
@@ -11,7 +11,9 @@
   "background_color": "#065f46",
   "theme_color": "#065f46",
   "orientation": "portrait-primary",
-  "categories": ["education"],
+  "categories": [
+    "education"
+  ],
   "icons": [
     {
       "src": "/pwa/icon-192x192.png",

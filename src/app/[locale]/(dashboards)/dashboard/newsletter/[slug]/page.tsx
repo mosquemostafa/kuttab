@@ -55,7 +55,7 @@ export async function generateMetadata({
   try {
     const art = await newsletterService.getWebsitePublicArticleBySlug(slug);
     const headline = locale === "ar" ? art.subjectAr : art.subjectEn;
-    const brand = locale === "ar" ? "معهد المصطفى" : "Almostafa";
+    const brand = locale === "ar" ? "مسجد المصطفى" : "Almostafa";
     title = `${headline} | ${brand}`;
     const ex = locale === "ar" ? art.excerptAr : art.excerptEn;
     if (ex?.trim()) {

@@ -1,4 +1,4 @@
-# Almostafa | معهد المصطفى
+# Almostafa | مسجد المصطفى
 
 Almostafa is an Islamic institute and digital learning platform for teaching the Holy Quran, Tajweed, recitation, and memorization, with full multilingual support for Arabic (RTL) and English (LTR).
 

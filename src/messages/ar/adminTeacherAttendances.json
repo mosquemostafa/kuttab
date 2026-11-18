@@ -36,7 +36,7 @@
   },
   "nonWorkingDay": {
     "title": "يوم غير مخصص للعمل",
-    "description": "يتم تسجيل الحضور فقط في أيام عمل المعهد المحددة في الإعدادات."
+    "description": "يتم تسجيل الحضور فقط في أيام عمل المسجد المحددة في الإعدادات."
   },
   "studentTypes": {},
   "attendanceDeductionTypes": {
