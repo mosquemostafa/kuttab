@@ -45,12 +45,15 @@
  *                           expectedWorkingDays: { type: integer }
  *                           attendedDays: { type: integer }
  *                           absentDays: { type: integer }
- *                           deductionTypeOccurrences: { type: integer }
- *                           deductionDays: { type: number }
+ *                           excusedAbsenceDays: { type: integer }
+ *                           lateDays: { type: integer }
+ *                           absenceDeductionDays: { type: number }
+ *                           excusedAbsenceDeductionDays: { type: number }
+ *                           lateDeductionDays: { type: number }
  *                           totalDeductionDays: { type: number }
- *                           dailyRate: { type: number, nullable: true }
  *                           absenceDeductionAmount: { type: number, nullable: true }
- *                           deductionAmount: { type: number, nullable: true }
+ *                           excusedAbsenceDeductionAmount: { type: number, nullable: true }
+ *                           lateDeductionAmount: { type: number, nullable: true }
  *                           totalDeductionAmount: { type: number, nullable: true }
  *                           netSalary: { type: number, nullable: true }
  *                     summary:

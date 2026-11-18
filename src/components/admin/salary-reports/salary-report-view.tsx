@@ -91,7 +91,10 @@ export function SalaryReportView() {
   const amountFormatter = useMemo(
     () =>
       new Intl.NumberFormat(locale, {
-        minimumFractionDigits: 0,
+        style: "currency",
+        currency: "EGP",
+        currencyDisplay: "symbol",
+        minimumFractionDigits: 2,
         maximumFractionDigits: 2,
       }),
     [locale],
@@ -151,6 +154,27 @@ export function SalaryReportView() {
   const formatDays = (value: number) =>
     t("dayCount", { count: numberFormatter.format(value) });
 
+  const renderDeduction = (days: number, amount: number | null) => (
+    <div className="space-y-0.5 tabular-nums">
+      <p>{formatDays(days)}</p>
+      <p className="text-xs text-muted-foreground">{formatMoney(amount)}</p>
+    </div>
+  );
+
+  const renderAttendance = (teacher: TeacherSalaryReportItemDTO) => (
+    <div className="grid grid-cols-2 gap-x-3 gap-y-1">
+      <span>
+        {t("attendanceExpected", { count: teacher.expectedWorkingDays })}
+      </span>
+      <span>{t("attendanceAttended", { count: teacher.attendedDays })}</span>
+      <span>{t("attendanceAbsent", { count: teacher.absentDays })}</span>
+      <span>
+        {t("attendanceExcused", { count: teacher.excusedAbsenceDays })}
+      </span>
+      <span>{t("attendanceLate", { count: teacher.lateDays })}</span>
+    </div>
+  );
+
   const renderTeacherCard = (teacher: TeacherSalaryReportItemDTO) => (
     <article
       key={teacher.teacherId}
@@ -159,12 +183,9 @@ export function SalaryReportView() {
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <h2 className="truncate font-semibold">{teacher.teacherName}</h2>
-          <p className="mt-0.5 text-xs text-muted-foreground">
-            {t("attendanceValue", {
-              attended: teacher.attendedDays,
-              expected: teacher.expectedWorkingDays,
-            })}
-          </p>
+          <div className="mt-2 text-xs text-muted-foreground">
+            {renderAttendance(teacher)}
+          </div>
         </div>
         {teacher.monthlySalary === null ? (
           <Badge variant="destructive">{t("salaryNotSet")}</Badge>
@@ -175,7 +196,47 @@ export function SalaryReportView() {
         )}
       </div>
 
-      <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 border-t pt-3 text-sm">
+      <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-4 border-t pt-3 text-sm">
+        <div>
+          <dt className="text-xs text-muted-foreground">{t("absence")}</dt>
+          <dd className="mt-0.5 font-medium tabular-nums">
+            {renderDeduction(
+              teacher.absenceDeductionDays,
+              teacher.absenceDeductionAmount,
+            )}
+          </dd>
+        </div>
+        <div>
+          <dt className="text-xs text-muted-foreground">
+            {t("excusedAbsence")}
+          </dt>
+          <dd className="mt-0.5 font-medium tabular-nums">
+            {renderDeduction(
+              teacher.excusedAbsenceDeductionDays,
+              teacher.excusedAbsenceDeductionAmount,
+            )}
+          </dd>
+        </div>
+        <div>
+          <dt className="text-xs text-muted-foreground">{t("late")}</dt>
+          <dd className="mt-0.5 font-medium tabular-nums">
+            {renderDeduction(
+              teacher.lateDeductionDays,
+              teacher.lateDeductionAmount,
+            )}
+          </dd>
+        </div>
+        <div>
+          <dt className="text-xs text-muted-foreground">
+            {t("totalDeductions")}
+          </dt>
+          <dd className="mt-0.5 font-semibold tabular-nums text-destructive">
+            {renderDeduction(
+              teacher.totalDeductionDays,
+              teacher.totalDeductionAmount,
+            )}
+          </dd>
+        </div>
         <div>
           <dt className="text-xs text-muted-foreground">{t("baseSalary")}</dt>
           <dd className="mt-0.5 font-medium tabular-nums">
@@ -183,21 +244,9 @@ export function SalaryReportView() {
           </dd>
         </div>
         <div>
-          <dt className="text-xs text-muted-foreground">{t("deductions")}</dt>
-          <dd className="mt-0.5 font-medium tabular-nums text-destructive">
-            {formatMoney(teacher.totalDeductionAmount)}
-          </dd>
-        </div>
-        <div>
-          <dt className="text-xs text-muted-foreground">{t("absence")}</dt>
-          <dd className="mt-0.5 tabular-nums">
-            {formatDays(teacher.absentDays)}
-          </dd>
-        </div>
-        <div>
-          <dt className="text-xs text-muted-foreground">          {t("deduction")}</dt>
-          <dd className="mt-0.5 tabular-nums">
-            {formatDays(teacher.deductionDays)}
+          <dt className="text-xs text-muted-foreground">{t("netSalary")}</dt>
+          <dd className="mt-0.5 font-semibold tabular-nums text-emerald-700 dark:text-emerald-400">
+            {formatMoney(teacher.netSalary)}
           </dd>
         </div>
       </dl>
@@ -408,9 +457,10 @@ export function SalaryReportView() {
                   <TableHead className="ps-4">{t("teacher")}</TableHead>
                   <TableHead>{t("attendance")}</TableHead>
                   <TableHead>{t("absence")}</TableHead>
-                  <TableHead>{t("deduction")}</TableHead>
+                  <TableHead>{t("excusedAbsence")}</TableHead>
+                  <TableHead>{t("late")}</TableHead>
+                  <TableHead>{t("totalDeductions")}</TableHead>
                   <TableHead>{t("baseSalary")}</TableHead>
-                  <TableHead>{t("deductions")}</TableHead>
                   <TableHead className="pe-4">{t("netSalary")}</TableHead>
                 </TableRow>
               </TableHeader>
@@ -427,23 +477,35 @@ export function SalaryReportView() {
                         ) : null}
                       </div>
                     </TableCell>
-                    <TableCell className="tabular-nums">
-                      {t("attendanceValue", {
-                        attended: teacher.attendedDays,
-                        expected: teacher.expectedWorkingDays,
-                      })}
+                    <TableCell className="min-w-52 whitespace-normal text-xs leading-5 tabular-nums">
+                      {renderAttendance(teacher)}
                     </TableCell>
                     <TableCell className="tabular-nums">
-                      {formatDays(teacher.absentDays)}
+                      {renderDeduction(
+                        teacher.absenceDeductionDays,
+                        teacher.absenceDeductionAmount,
+                      )}
                     </TableCell>
                     <TableCell className="tabular-nums">
-                      {formatDays(teacher.deductionDays)}
+                      {renderDeduction(
+                        teacher.excusedAbsenceDeductionDays,
+                        teacher.excusedAbsenceDeductionAmount,
+                      )}
+                    </TableCell>
+                    <TableCell className="tabular-nums">
+                      {renderDeduction(
+                        teacher.lateDeductionDays,
+                        teacher.lateDeductionAmount,
+                      )}
+                    </TableCell>
+                    <TableCell className="font-semibold tabular-nums text-destructive">
+                      {renderDeduction(
+                        teacher.totalDeductionDays,
+                        teacher.totalDeductionAmount,
+                      )}
                     </TableCell>
                     <TableCell className="tabular-nums">
                       {formatMoney(teacher.monthlySalary)}
-                    </TableCell>
-                    <TableCell className="tabular-nums text-destructive">
-                      {formatMoney(teacher.totalDeductionAmount)}
                     </TableCell>
                     <TableCell className="pe-4 font-semibold tabular-nums text-emerald-700 dark:text-emerald-400">
                       {formatMoney(teacher.netSalary)}

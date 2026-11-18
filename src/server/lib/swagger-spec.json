@@ -9397,8 +9397,7 @@
               "enum": [
                 "from_35_to_45_min",
                 "from_45_to_60_min",
-                "more_than_60_min",
-                "excused_absence"
+                "more_than_60_min"
               ]
             }
           },
@@ -9549,24 +9548,33 @@
                               "absentDays": {
                                 "type": "integer"
                               },
-                              "deductionTypeOccurrences": {
+                              "excusedAbsenceDays": {
                                 "type": "integer"
                               },
-                              "deductionDays": {
+                              "lateDays": {
+                                "type": "integer"
+                              },
+                              "absenceDeductionDays": {
+                                "type": "number"
+                              },
+                              "excusedAbsenceDeductionDays": {
+                                "type": "number"
+                              },
+                              "lateDeductionDays": {
                                 "type": "number"
                               },
                               "totalDeductionDays": {
                                 "type": "number"
                               },
-                              "dailyRate": {
-                                "type": "number",
-                                "nullable": true
-                              },
                               "absenceDeductionAmount": {
                                 "type": "number",
                                 "nullable": true
                               },
-                              "deductionAmount": {
+                              "excusedAbsenceDeductionAmount": {
+                                "type": "number",
+                                "nullable": true
+                              },
+                              "lateDeductionAmount": {
                                 "type": "number",
                                 "nullable": true
                               },

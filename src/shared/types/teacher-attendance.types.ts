@@ -47,12 +47,15 @@ export interface TeacherSalaryReportItemDTO {
   expectedWorkingDays: number;
   attendedDays: number;
   absentDays: number;
-  deductionTypeOccurrences: number;
-  deductionDays: number;
+  excusedAbsenceDays: number;
+  lateDays: number;
+  absenceDeductionDays: number;
+  excusedAbsenceDeductionDays: number;
+  lateDeductionDays: number;
   totalDeductionDays: number;
-  dailyRate: number | null;
   absenceDeductionAmount: number | null;
-  deductionAmount: number | null;
+  excusedAbsenceDeductionAmount: number | null;
+  lateDeductionAmount: number | null;
   totalDeductionAmount: number | null;
   netSalary: number | null;
 }

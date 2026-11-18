@@ -15,8 +15,8 @@ import {
 import { teacherRepository } from "@/server/modules/teachers/teacher.repository";
 import type { ParsedPagination } from "@/server/pipes/parse-pagination.pipe";
 import type { PaginatedResponse } from "@/shared/types/pagination.types";
+import { AttendanceDeductionType } from "@/shared/types/teacher-attendance.types";
 import type {
-  AttendanceDeductionType,
   DeductionDays,
   TeacherAttendanceDTO,
   TeacherDailyAttendanceDTO,
@@ -73,17 +73,33 @@ function calculateSalaryItem(
   const activeDayAttendances = row.attendances.filter((attendance) =>
     workingDateSet.has(attendance.attendanceDate),
   );
-  const attendedDays = activeDayAttendances.length;
-  const absentDays = Math.max(expectedWorkingDays - attendedDays, 0);
-  const deductionAttendances = activeDayAttendances.filter(
-    (attendance) => attendance.attendanceDeductionType !== null,
+  const excusedAbsenceDays = activeDayAttendances.filter(
+    (attendance) =>
+      attendance.attendanceDeductionType ===
+      AttendanceDeductionType.EXCUSED_ABSENCE,
+  ).length;
+  const attendedDays = activeDayAttendances.length - excusedAbsenceDays;
+  const absentDays = Math.max(
+    expectedWorkingDays - attendedDays - excusedAbsenceDays,
+    0,
   );
-  const deductionDays = deductionAttendances.reduce((total, attendance) => {
+  const lateAttendances = activeDayAttendances.filter(
+    (attendance) =>
+      attendance.attendanceDeductionType !== null &&
+      attendance.attendanceDeductionType !==
+        AttendanceDeductionType.EXCUSED_ABSENCE,
+  );
+  const lateDeductionDays = lateAttendances.reduce((total, attendance) => {
     const period = attendance.attendanceDeductionType as AttendanceDeductionType;
     return total + (attendanceDeductions[period] ?? 0);
   }, 0);
-  const absenceDeductionDays = absentDays * (attendanceDeductions.absence ?? 1);
-  const totalDeductionDays = absenceDeductionDays + deductionDays;
+  const lateOccurrences = lateAttendances.length;
+  const absenceDeductionDays =
+    absentDays * (attendanceDeductions.absence ?? 1);
+  const excusedAbsenceDeductionDays =
+    excusedAbsenceDays * (attendanceDeductions.excused_absence ?? 0);
+  const totalDeductionDays =
+    absenceDeductionDays + excusedAbsenceDeductionDays + lateDeductionDays;
 
   if (row.monthlySalary === null) {
     return {
@@ -93,24 +109,32 @@ function calculateSalaryItem(
       expectedWorkingDays,
       attendedDays,
       absentDays,
-      deductionTypeOccurrences: deductionAttendances.length,
-      deductionDays,
+      excusedAbsenceDays,
+      lateDays: lateOccurrences,
+      absenceDeductionDays,
+      excusedAbsenceDeductionDays,
+      lateDeductionDays,
       totalDeductionDays,
-      dailyRate: null,
       absenceDeductionAmount: null,
-      deductionAmount: null,
+      excusedAbsenceDeductionAmount: null,
+      lateDeductionAmount: null,
       totalDeductionAmount: null,
       netSalary: null,
     };
   }
 
-  const dailyRate =
+  const salaryPerWorkingDay =
     expectedWorkingDays > 0 ? row.monthlySalary / expectedWorkingDays : 0;
-  const absenceDeductionAmount = dailyRate * absenceDeductionDays;
-  const deductionAmount = dailyRate * deductionDays;
+  const absenceDeductionAmount =
+    salaryPerWorkingDay * absenceDeductionDays;
+  const excusedAbsenceDeductionAmount =
+    salaryPerWorkingDay * excusedAbsenceDeductionDays;
+  const lateDeductionAmount = salaryPerWorkingDay * lateDeductionDays;
   const totalDeductionAmount = Math.min(
     row.monthlySalary,
-    absenceDeductionAmount + deductionAmount,
+    absenceDeductionAmount +
+      excusedAbsenceDeductionAmount +
+      lateDeductionAmount,
   );
 
   return {
@@ -120,12 +144,15 @@ function calculateSalaryItem(
     expectedWorkingDays,
     attendedDays,
     absentDays,
-    deductionTypeOccurrences: deductionAttendances.length,
-    deductionDays,
+    excusedAbsenceDays,
+    lateDays: lateOccurrences,
+    absenceDeductionDays,
+    excusedAbsenceDeductionDays,
+    lateDeductionDays,
     totalDeductionDays,
-    dailyRate: roundMoney(dailyRate),
     absenceDeductionAmount: roundMoney(absenceDeductionAmount),
-    deductionAmount: roundMoney(deductionAmount),
+    excusedAbsenceDeductionAmount: roundMoney(excusedAbsenceDeductionAmount),
+    lateDeductionAmount: roundMoney(lateDeductionAmount),
     totalDeductionAmount: roundMoney(totalDeductionAmount),
     netSalary: roundMoney(row.monthlySalary - totalDeductionAmount),
   };
