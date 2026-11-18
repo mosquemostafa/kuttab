@@ -48,6 +48,10 @@
       "evening": "Good evening",
       "defaultName": "there"
     },
+    "accountVerification": {
+      "title": "Account verification pending",
+      "description": "Please wait while an administrator verifies your account and assigns the appropriate permissions. Additional features will become available after approval."
+    },
     "quickCapture": {
       "taskDialog": {}
     }

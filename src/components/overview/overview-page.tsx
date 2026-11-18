@@ -1,12 +1,8 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Settings, HelpCircle } from "lucide-react";
+import {  Clock3 } from "lucide-react";
 import { OverviewWelcomeCard } from "@/components/overview/overview-welcome-card";
-import {
-  OverviewQuickNav,
-  type QuickActionItem,
-} from "@/components/overview/overview-quick-nav";
 
 type OverviewPageProps = {
   greetingLabels: {
@@ -29,20 +25,8 @@ const OverviewPage = ({
   todayValue,
   hijriValue,
 }: OverviewPageProps) => {
-  const t = useTranslations();
+  const t = useTranslations("dashboard");
 
-  const quickActions: QuickActionItem[] = [
-    {
-      href: "/dashboard/support",
-      icon: HelpCircle,
-      title: t("dashboard.shell.support"),
-    },
-    {
-      href: "/dashboard/settings",
-      icon: Settings,
-      title: t("dashboard.shell.settings"),
-    },
-  ];
 
   return (
     <div className="flex flex-col gap-4 sm:gap-6">
@@ -55,7 +39,24 @@ const OverviewPage = ({
         hijriValue={hijriValue}
       />
 
-      <OverviewQuickNav items={quickActions} />
+      <div
+        className="flex items-start gap-3 rounded-lg border border-primary/20 bg-primary/5 p-4 text-sm"
+        role="status"
+      >
+        <Clock3
+          className="mt-0.5 size-5 shrink-0 text-primary"
+          aria-hidden="true"
+        />
+        <div className="space-y-1">
+          <p className="font-medium text-foreground">
+            {t("overview.accountVerification.title")}
+          </p>
+          <p className="leading-relaxed text-muted-foreground">
+            {t("overview.accountVerification.description")}
+          </p>
+        </div>
+      </div>
+
     </div>
   );
 };

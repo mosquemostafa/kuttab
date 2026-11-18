@@ -100,16 +100,6 @@ export function OverviewWelcomeCard({
             </AvatarFallback>
           </Avatar>
         </div>
-
-        {/* Decorative Islamic Star Watermark */}
-        <div
-          className="pointer-events-none absolute -bottom-8 -end-8 opacity-4 dark:opacity-8 text-primary select-none"
-          aria-hidden="true"
-        >
-          <svg width="150" height="150" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2L13.2 4.3L15.6 3.6L15.9 6.2L18.4 6.8L17.5 9.2L19.5 10.9L17.7 12.8L18.8 15.1L16.3 16L15.9 18.5L13.4 18.2L12 20.3L10.6 18.2L8.1 18.5L7.7 16L5.2 15.1L6.3 12.8L4.5 10.9L6.5 9.2L5.6 6.8L8.1 6.2L8.4 3.6L10.8 4.3L12 2Z" />
-          </svg>
-        </div>
       </CardContent>
     </Card>
   );
