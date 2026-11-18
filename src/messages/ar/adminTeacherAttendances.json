@@ -28,7 +28,7 @@
   "columns": {
     "teacher": "المعلم",
     "status": "حالة الحضور",
-    "deduction": "خصم الحضور"
+    "deduction": "الخصم"
   },
   "statusLabels": {
     "present": "حاضر",
@@ -65,7 +65,7 @@
     "toggledAbsent": "تم تسجيل غياب {name}",
     "allAttendedSuccess": "تم تسجيل حضور جميع المعلمين بنجاح",
     "allAbsentSuccess": "تم تسجيل غياب جميع المعلمين بنجاح",
-    "deductionUpdated": "تم تحديث خصم الحضور بنجاح",
+    "deductionUpdated": "تم تحديث الخصم بنجاح",
     "error": "حدث خطأ أثناء حفظ البيانات"
   },
   "empty": {

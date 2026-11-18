@@ -28,7 +28,7 @@
   "columns": {
     "teacher": "Teacher",
     "status": "Attendance Status",
-    "deduction": "Attendance Deduction"
+    "deduction": "Deduction"
   },
   "statusLabels": {
     "present": "Present",
@@ -65,7 +65,7 @@
     "toggledAbsent": "Marked {name} as absent",
     "allAttendedSuccess": "All active teachers marked present successfully",
     "allAbsentSuccess": "All teachers marked absent successfully",
-    "deductionUpdated": "Attendance deduction updated successfully",
+    "deductionUpdated": "Deduction updated successfully",
     "error": "An error occurred while saving"
   },
   "empty": {
