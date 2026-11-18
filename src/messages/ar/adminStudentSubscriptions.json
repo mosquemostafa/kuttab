@@ -1,0 +1,76 @@
+{
+  "controls": {
+    "allStudents": "جميع الطلاب",
+    "allTypes": "جميع أنواع الاشتراك",
+    "startDate": "من تاريخ",
+    "endDate": "إلى تاريخ",
+    "selectStartDate": "اختر تاريخ البداية",
+    "selectEndDate": "اختر تاريخ النهاية",
+    "clearDate": "مسح التاريخ",
+    "addSubscription": "إضافة اشتراك",
+    "refresh": "تحديث"
+  },
+  "columns": {
+    "student": "الطالب",
+    "amount": "المبلغ",
+    "type": "نوع الاشتراك",
+    "date": "التاريخ",
+    "actions": "الإجراءات"
+  },
+  "paymentMethods": {
+    "monthly": "شهري",
+    "yearly": "سنوي",
+    "installments": "أقساط"
+  },
+  "dialogs": {
+    "addTitle": "إضافة اشتراك طالب",
+    "addDescription": "سجّل مبلغ الاشتراك وتاريخه ونظام الدفع للطالب.",
+    "editTitle": "تعديل اشتراك الطالب",
+    "editDescription": "حدّث الطالب أو المبلغ أو التاريخ أو نوع الاشتراك.",
+    "studentLabel": "الطالب",
+    "studentPlaceholder": "اختر طالبًا",
+    "amountLabel": "المبلغ",
+    "dateLabel": "التاريخ",
+    "datePlaceholder": "اختر تاريخًا",
+    "typeLabel": "نوع الاشتراك",
+    "save": "حفظ التعديلات",
+    "create": "إضافة الاشتراك",
+    "cancel": "إلغاء",
+    "close": "إغلاق",
+    "saving": "جارٍ الحفظ...",
+    "deleteTitle": "حذف الاشتراك",
+    "deleteDescription": "هل تريد حذف سجل اشتراك الطالب {student}؟ لا يمكن التراجع عن هذا الإجراء.",
+    "deleteConfirm": "حذف الاشتراك",
+    "deleting": "جارٍ الحذف..."
+  },
+  "details": {
+    "title": "تفاصيل الاشتراك",
+    "description": "بيانات اشتراك الطالب ونظام الدفع المسجّل.",
+    "createdAt": "تاريخ التسجيل"
+  },
+  "actions": {
+    "menuLabel": "الإجراءات",
+    "viewDetails": "عرض التفاصيل",
+    "edit": "تعديل",
+    "delete": "حذف"
+  },
+  "toasts": {
+    "created": "تمت إضافة اشتراك الطالب.",
+    "updated": "تم تحديث اشتراك الطالب.",
+    "deleted": "تم حذف اشتراك الطالب.",
+    "loadFailed": "تعذر تحميل اشتراكات الطلاب.",
+    "saveFailed": "تعذر حفظ اشتراك الطالب.",
+    "deleteFailed": "تعذر حذف اشتراك الطالب.",
+    "studentRequired": "اختر طالبًا.",
+    "amountInvalid": "أدخل مبلغًا صحيحًا لا يقل عن صفر.",
+    "dateRequired": "اختر تاريخ الاشتراك."
+  },
+  "summary": "عرض {count} من إجمالي {total} اشتراك",
+  "pagination": {
+    "previous": "السابق",
+    "next": "التالي",
+    "previousAria": "الانتقال إلى الصفحة السابقة",
+    "nextAria": "الانتقال إلى الصفحة التالية"
+  },
+  "empty": "لا توجد اشتراكات طلاب"
+}

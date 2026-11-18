@@ -91,6 +91,38 @@ const options = {
             "updatedAt",
           ],
         },
+        StudentSubscription: {
+          type: "object",
+          properties: {
+            id: { type: "string" },
+            studentId: { type: "string" },
+            amount: { type: "integer", minimum: 0 },
+            date: { type: "string", format: "date" },
+            type: {
+              type: "string",
+              enum: [
+                "exempt_poor",
+                "installments",
+                "exempt_staff_kids",
+                "special",
+                "monthly",
+                "yearly",
+                "sponsored",
+              ],
+            },
+            createdAt: { type: "string", format: "date-time" },
+            updatedAt: { type: "string", format: "date-time" },
+          },
+          required: [
+            "id",
+            "studentId",
+            "amount",
+            "date",
+            "type",
+            "createdAt",
+            "updatedAt",
+          ],
+        },
         Teacher: {
           type: "object",
           properties: {

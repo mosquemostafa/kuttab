@@ -32,6 +32,13 @@
     "goal_already_completed": "الهدف مكتمل بالفعل. لا يمكن إضافة المزيد من التقدم.",
     "goal_progress_exceeds_target": "لا يمكن أن تكون القيمة المستهدفة أقل من التقدم الحالي."
   },
+  "relationSelect": {
+    "searchPlaceholder": "اكتب للبحث…",
+    "loading": "جارٍ تحميل الخيارات…",
+    "empty": "لا توجد خيارات مطابقة.",
+    "loadFailed": "تعذر تحميل الخيارات.",
+    "retry": "حاول مرة أخرى"
+  },
   "timeline": {
     "title": "الجدول الزمني والتقدم",
     "timelineTrack": "الجدول الزمني",

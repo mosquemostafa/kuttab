@@ -30,6 +30,7 @@ function toDTO(row: StudentRow): StudentDTO {
     id: row.id,
     userId: row.userId,
     classId: row.classId,
+    className: row.className,
     name: row.name,
     birthDate: row.birthDate,
     grade: row.grade,

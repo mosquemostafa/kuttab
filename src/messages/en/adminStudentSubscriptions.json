@@ -1,0 +1,76 @@
+{
+  "controls": {
+    "allStudents": "All students",
+    "allTypes": "All subscription types",
+    "startDate": "From date",
+    "endDate": "To date",
+    "selectStartDate": "Select start date",
+    "selectEndDate": "Select end date",
+    "clearDate": "Clear date",
+    "addSubscription": "Add subscription",
+    "refresh": "Refresh"
+  },
+  "columns": {
+    "student": "Student",
+    "amount": "Amount",
+    "type": "Subscription type",
+    "date": "Date",
+    "actions": "Actions"
+  },
+  "paymentMethods": {
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "installments": "Installments"
+  },
+  "dialogs": {
+    "addTitle": "Add student subscription",
+    "addDescription": "Record a subscription amount, date, and payment arrangement for a student.",
+    "editTitle": "Edit student subscription",
+    "editDescription": "Update the student, amount, date, or subscription type.",
+    "studentLabel": "Student",
+    "studentPlaceholder": "Select a student",
+    "amountLabel": "Amount",
+    "dateLabel": "Date",
+    "datePlaceholder": "Select a date",
+    "typeLabel": "Subscription type",
+    "save": "Save changes",
+    "create": "Add subscription",
+    "cancel": "Cancel",
+    "close": "Close",
+    "saving": "Saving...",
+    "deleteTitle": "Delete subscription",
+    "deleteDescription": "Delete the subscription record for {student}? This action cannot be undone.",
+    "deleteConfirm": "Delete subscription",
+    "deleting": "Deleting..."
+  },
+  "details": {
+    "title": "Subscription details",
+    "description": "The recorded student subscription and payment arrangement.",
+    "createdAt": "Recorded at"
+  },
+  "actions": {
+    "menuLabel": "Actions",
+    "viewDetails": "View details",
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "toasts": {
+    "created": "Student subscription added.",
+    "updated": "Student subscription updated.",
+    "deleted": "Student subscription deleted.",
+    "loadFailed": "Failed to load student subscriptions.",
+    "saveFailed": "Failed to save the student subscription.",
+    "deleteFailed": "Failed to delete the student subscription.",
+    "studentRequired": "Select a student.",
+    "amountInvalid": "Enter a non-negative whole amount.",
+    "dateRequired": "Select a subscription date."
+  },
+  "summary": "Showing {count} of {total} subscriptions",
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "previousAria": "Go to previous page",
+    "nextAria": "Go to next page"
+  },
+  "empty": "No student subscriptions found"
+}

@@ -22,6 +22,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ConfirmationDialog } from "@/components/ui/confirmation-dialog";
 import { DataTable, DataTableRefreshButton } from "@/components/ui/data-table";
+import { RelationSelect } from "@/components/ui/relation-select";
 import {
   Select,
   SelectContent,
@@ -114,23 +115,6 @@ export function StudentsTable() {
     router,
   ]);
 
-  // Fetch classes for dropdown filter & name lookup
-  const { data: classesData } = useSWR(
-    ["classes-select-options"],
-    () => apiClient.classes.select({ limit: 100 }),
-    { revalidateOnFocus: false },
-  );
-
-  const classes = classesData?.items ?? [];
-
-  const classesMap = useMemo(() => {
-    const map: Record<string, string> = {};
-    for (const c of classes) {
-      map[c.id] = c.name;
-    }
-    return map;
-  }, [classes]);
-
   // Fetch students list
   const swrKey = useMemo(
     () =>
@@ -190,7 +174,6 @@ export function StudentsTable() {
 
   const columns = useStudentColumns({
     dateLocale,
-    classesMap,
     onEdit: (student) => {
       setSelectedStudentForEdit(student);
       setIsFormOpen(true);
@@ -285,25 +268,19 @@ export function StudentsTable() {
 
         {/* Class Select */}
         <div className="col-span-1 sm:w-44">
-          <Select
+          <RelationSelect
+            endpoint="/classes/select"
             value={classFilter}
-            onValueChange={(val) => {
-              setClassFilter(val);
+            onValueChange={(classId) => {
+              setClassFilter(classId);
               setPage(1);
             }}
-          >
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder={t("controls.allClasses")} />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">{t("controls.allClasses")}</SelectItem>
-              {classes.map((c) => (
-                <SelectItem key={c.id} value={c.id}>
-                  {c.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+            placeholder={t("controls.allClasses")}
+            emptyOption={{
+              value: "all",
+              label: t("controls.allClasses"),
+            }}
+          />
         </div>
 
         {/* Payment Method Select */}
@@ -353,9 +330,7 @@ export function StudentsTable() {
   // Mobile Adaptive Card View (< md)
   const renderMobileCard = (student: StudentDTO) => {
     const subInfo = [student.grade, student.job].filter(Boolean).join(" • ");
-    const className = student.classId
-      ? classesMap[student.classId] || student.classId
-      : t("dialogs.noClass");
+    const className = student.className ?? t("dialogs.noClass");
 
     return (
       <div
@@ -487,7 +462,6 @@ export function StudentsTable() {
         isOpen={Boolean(selectedStudentForDetails)}
         onClose={() => setSelectedStudentForDetails(null)}
         student={selectedStudentForDetails}
-        classesMap={classesMap}
         onEdit={(student) => {
           setSelectedStudentForDetails(null);
           setSelectedStudentForEdit(student);

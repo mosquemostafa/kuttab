@@ -39,7 +39,6 @@ export function ClassTypeBadge({ type }: { type: ClassType }) {
 }
 
 interface UseClassColumnsOptions {
-  teachersMap?: Record<string, string>;
   dateLocale?: Locale;
   onEdit: (classItem: ClassDTO) => void;
   onDelete: (classItem: ClassDTO) => void;
@@ -47,7 +46,6 @@ interface UseClassColumnsOptions {
 }
 
 export function useClassColumns({
-  teachersMap = {},
   dateLocale,
   onEdit,
   onDelete,
@@ -78,7 +76,7 @@ export function useClassColumns({
         header: t("columns.primaryTeacher"),
         cell: ({ row }) => {
           const teacherId = row.original.primaryTeacherId;
-          const teacherName = teacherId ? teachersMap[teacherId] : null;
+          const teacherName = row.original.primaryTeacherName;
 
           if (!teacherId || !teacherName) {
             return (
@@ -100,7 +98,7 @@ export function useClassColumns({
         header: t("columns.secondaryTeacher"),
         cell: ({ row }) => {
           const teacherId = row.original.secondaryTeacherId;
-          const teacherName = teacherId ? teachersMap[teacherId] : null;
+          const teacherName = row.original.secondaryTeacherName;
 
           if (!teacherId || !teacherName) {
             return (
@@ -151,6 +149,6 @@ export function useClassColumns({
         ),
       },
     ],
-    [t, teachersMap, dateLocale, onEdit, onDelete, onViewDetails],
+    [t, dateLocale, onEdit, onDelete, onViewDetails],
   );
 }

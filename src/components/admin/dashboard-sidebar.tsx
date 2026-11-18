@@ -21,6 +21,7 @@ import {
   CalendarCheck,
   School,
   DollarSign,
+  ReceiptText,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/logo";
@@ -100,6 +101,11 @@ export function DashboardSidebar({
           href: "/admin/students",
           icon: GraduationCap,
           label: t("shell.students"),
+        },
+        {
+          href: "/admin/student-subscriptions",
+          icon: ReceiptText,
+          label: t("shell.studentSubscriptions"),
         },
         {
           href: "/admin/teachers",

@@ -27,6 +27,8 @@ function toDTO(row: ClassRow): ClassDTO {
     name: row.name,
     primaryTeacherId: row.primaryTeacherId,
     secondaryTeacherId: row.secondaryTeacherId,
+    primaryTeacherName: row.primaryTeacherName,
+    secondaryTeacherName: row.secondaryTeacherName,
     classType: row.classType as ClassType,
     createdAt: row.createdAt.toISOString(),
     updatedAt: row.updatedAt.toISOString(),

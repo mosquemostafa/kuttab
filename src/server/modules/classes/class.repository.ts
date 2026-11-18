@@ -3,10 +3,32 @@ import { and, asc, count, desc, eq, ilike, or, type SQL } from "drizzle-orm";
 
 import { db } from "@/server/db";
 import { classes } from "@/server/modules/classes/class.entity";
+import { teacher } from "@/server/modules/teachers/teacher.entity";
 import type { ListClassesQueryDTO } from "@/server/modules/classes/class.dto";
+import { alias } from "drizzle-orm/pg-core";
 import type { ParsedPagination } from "@/server/pipes/parse-pagination.pipe";
 
-export type ClassRow = typeof classes.$inferSelect;
+const primaryTeacher = alias(teacher, "primary_teacher");
+const secondaryTeacher = alias(teacher, "secondary_teacher");
+
+export type ClassRow = typeof classes.$inferSelect & {
+  primaryTeacherName: string | null;
+  secondaryTeacherName: string | null;
+};
+
+function classSelection() {
+  return {
+    id: classes.id,
+    name: classes.name,
+    primaryTeacherId: classes.primaryTeacherId,
+    secondaryTeacherId: classes.secondaryTeacherId,
+    primaryTeacherName: primaryTeacher.name,
+    secondaryTeacherName: secondaryTeacher.name,
+    classType: classes.classType,
+    createdAt: classes.createdAt,
+    updatedAt: classes.updatedAt,
+  };
+}
 
 export type CreateClassInput = {
   name: string;
@@ -68,8 +90,13 @@ export const classRepository = {
 
     const [items, totalRows] = await Promise.all([
       db
-        .select()
+        .select(classSelection())
         .from(classes)
+        .leftJoin(primaryTeacher, eq(classes.primaryTeacherId, primaryTeacher.id))
+        .leftJoin(
+          secondaryTeacher,
+          eq(classes.secondaryTeacherId, secondaryTeacher.id),
+        )
         .where(where)
         .orderBy(orderColumn)
         .limit(pagination.limit)
@@ -85,8 +112,13 @@ export const classRepository = {
 
   async findById(id: string): Promise<ClassRow | null> {
     const [found] = await db
-      .select()
+      .select(classSelection())
       .from(classes)
+      .leftJoin(primaryTeacher, eq(classes.primaryTeacherId, primaryTeacher.id))
+      .leftJoin(
+        secondaryTeacher,
+        eq(classes.secondaryTeacherId, secondaryTeacher.id),
+      )
       .where(eq(classes.id, id))
       .limit(1);
 
@@ -95,8 +127,13 @@ export const classRepository = {
 
   async findByTeacherId(teacherId: string): Promise<ClassRow[]> {
     return db
-      .select()
+      .select(classSelection())
       .from(classes)
+      .leftJoin(primaryTeacher, eq(classes.primaryTeacherId, primaryTeacher.id))
+      .leftJoin(
+        secondaryTeacher,
+        eq(classes.secondaryTeacherId, secondaryTeacher.id),
+      )
       .where(
         or(
           eq(classes.primaryTeacherId, teacherId),
@@ -118,7 +155,17 @@ export const classRepository = {
       })
       .returning();
 
-    return created;
+    const [row] = await db
+      .select(classSelection())
+      .from(classes)
+      .leftJoin(primaryTeacher, eq(classes.primaryTeacherId, primaryTeacher.id))
+      .leftJoin(
+        secondaryTeacher,
+        eq(classes.secondaryTeacherId, secondaryTeacher.id),
+      )
+      .where(eq(classes.id, created.id))
+      .limit(1);
+    return row;
   },
 
   async update(id: string, data: UpdateClassInput): Promise<ClassRow | null> {
@@ -131,7 +178,18 @@ export const classRepository = {
       .where(eq(classes.id, id))
       .returning();
 
-    return updated ?? null;
+    if (!updated) return null;
+    const [row] = await db
+      .select(classSelection())
+      .from(classes)
+      .leftJoin(primaryTeacher, eq(classes.primaryTeacherId, primaryTeacher.id))
+      .leftJoin(
+        secondaryTeacher,
+        eq(classes.secondaryTeacherId, secondaryTeacher.id),
+      )
+      .where(eq(classes.id, id))
+      .limit(1);
+    return row ?? null;
   },
 
   async delete(id: string): Promise<boolean> {

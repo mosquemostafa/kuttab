@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import { Loader2, MessageSquarePlus, Search } from "lucide-react";
+import { Loader2, MessageSquarePlus } from "lucide-react";
 
 import {
   Dialog,
@@ -17,9 +17,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { RelationSelect } from "@/components/ui/relation-select";
 import { Textarea } from "@/components/ui/textarea";
 import { apiClient } from "@/lib/api/api-client";
-import type { UserWithDetailsDTO } from "@/shared/types/user.types";
+import type { SelectUserItem } from "@/shared/types/select.types";
 
 interface StaffCreateTicketDialogProps {
   isOpen: boolean;
@@ -47,13 +48,12 @@ export function StaffCreateTicketDialog({
     email?: string | null;
   } | null>(targetUser ?? null);
 
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState<UserWithDetailsDTO[]>([]);
-  const [isSearching, setIsSearching] = useState(false);
-
   const [subject, setSubject] = useState("");
   const [description, setDescription] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [dialogContainer, setDialogContainer] = useState<HTMLDivElement | null>(
+    null,
+  );
 
   useEffect(() => {
     if (targetUser) {
@@ -67,40 +67,9 @@ export function StaffCreateTicketDialog({
     if (!isOpen) {
       setSubject("");
       setDescription("");
-      setSearchQuery("");
-      setSearchResults([]);
       setIsSubmitting(false);
     }
   }, [isOpen]);
-
-  // Debounced search for users if no targetUser is preselected
-  useEffect(() => {
-    if (targetUser || !isOpen) return;
-
-    const trimmed = searchQuery.trim();
-    if (!trimmed) {
-      setSearchResults([]);
-      setIsSearching(false);
-      return;
-    }
-
-    const timer = setTimeout(async () => {
-      try {
-        setIsSearching(true);
-        const res = await apiClient.users.list({
-          email: trimmed,
-          limit: 5,
-        });
-        setSearchResults(res.items);
-      } catch {
-        // Ignore user search failures
-      } finally {
-        setIsSearching(false);
-      }
-    }, 300);
-
-    return () => clearTimeout(timer);
-  }, [searchQuery, targetUser, isOpen]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -147,7 +116,7 @@ export function StaffCreateTicketDialog({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="sm:max-w-[540px]">
+      <DialogContent ref={setDialogContainer} className="sm:max-w-[540px]">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <MessageSquarePlus className="h-5 w-5 text-primary" />
@@ -159,7 +128,7 @@ export function StaffCreateTicketDialog({
         <form onSubmit={handleSubmit} className="space-y-4 py-2">
           {/* Target User selection */}
           <div className="space-y-2">
-            <Label>{t("userLabel")}</Label>
+            <Label htmlFor="support-ticket-user">{t("userLabel")}</Label>
             {targetUser || selectedUser ? (
               <div className="flex items-center justify-between p-3 rounded-lg border bg-muted/30 text-sm">
                 <div>
@@ -189,55 +158,35 @@ export function StaffCreateTicketDialog({
                 )}
               </div>
             ) : (
-              <div className="space-y-2">
-                <div className="relative">
-                  <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    placeholder={t("searchPlaceholder")}
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-9"
-                  />
-                  {isSearching && (
-                    <Loader2 className="absolute right-3 top-2.5 h-4 w-4 animate-spin text-muted-foreground" />
-                  )}
-                </div>
-
-                {searchResults.length > 0 && (
-                  <div className="max-h-40 overflow-y-auto border rounded-md divide-y">
-                    {searchResults.map((u) => (
-                      <button
-                        key={u.id}
-                        type="button"
-                        onClick={() => {
-                          setSelectedUser({
-                            id: u.id,
-                            name: u.name,
-                            email: u.email,
-                          });
-                          setSearchQuery("");
-                          setSearchResults([]);
-                        }}
-                        className="w-full text-start p-2.5 hover:bg-muted/50 transition-colors text-sm flex items-center justify-between"
-                      >
-                        <div>
-                          <div className="font-medium">
-                            {u.name || u.email || t("unknownUser")}
-                          </div>
-                          {u.email && u.name && (
-                            <div className="text-xs text-muted-foreground">
-                              {u.email}
-                            </div>
-                          )}
-                        </div>
-                        <span className="text-xs text-primary font-medium">
-                          {t("select")}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
+              <RelationSelect<SelectUserItem>
+                endpoint="/users/select"
+                value=""
+                onValueChange={(_userId, user) => {
+                  if (!user) return;
+                  setSelectedUser({
+                    id: user.id,
+                    name: user.name,
+                    email: user.email,
+                  });
+                }}
+                placeholder={t("searchPlaceholder")}
+                id="support-ticket-user"
+                enabled={isOpen}
+                disabled={isSubmitting}
+                container={dialogContainer}
+                renderOption={(user) => (
+                  <span className="flex min-w-0 flex-col">
+                    <span className="truncate font-medium">
+                      {user.name || user.email || t("unknownUser")}
+                    </span>
+                    {user.email && user.name ? (
+                      <span className="truncate text-xs text-muted-foreground">
+                        {user.email}
+                      </span>
+                    ) : null}
+                  </span>
                 )}
-              </div>
+              />
             )}
           </div>
 

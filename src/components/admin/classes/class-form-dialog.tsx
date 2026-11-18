@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import useSWR from "swr";
 import toast from "react-hot-toast";
 
 import {
@@ -16,6 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { RelationSelect } from "@/components/ui/relation-select";
 import {
   Select,
   SelectContent,
@@ -48,21 +48,15 @@ export function ClassFormDialog({
   const isEditing = Boolean(classItem);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [dialogContainer, setDialogContainer] = useState<HTMLDivElement | null>(
+    null,
+  );
   const [formData, setFormData] = useState({
     name: "",
     classType: ClassType.GROUP as ClassType,
     primaryTeacherId: "none",
     secondaryTeacherId: "none",
   });
-
-  // Fetch teachers for selection
-  const { data: teachersData, isLoading: isLoadingTeachers } = useSWR(
-    isOpen ? ["teachers-select-options"] : null,
-    () => apiClient.teachers.select({ limit: 100 }),
-    { revalidateOnFocus: false },
-  );
-
-  const teachers = teachersData?.items ?? [];
 
   // Populate on edit or reset on create
   useEffect(() => {
@@ -140,7 +134,10 @@ export function ClassFormDialog({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
+      <DialogContent
+        ref={setDialogContainer}
+        className="max-w-md max-h-[90vh] overflow-y-auto"
+      >
         <DialogHeader>
           <DialogTitle>
             {isEditing
@@ -202,27 +199,30 @@ export function ClassFormDialog({
             <Label htmlFor="primary-teacher">
               {t("dialogs.primaryTeacherLabel")}
             </Label>
-            <Select
+            <RelationSelect
+              endpoint="/teachers/select"
               value={formData.primaryTeacherId}
-              onValueChange={(val) =>
-                setFormData((prev) => ({ ...prev, primaryTeacherId: val }))
+              selectedOption={
+                classItem?.primaryTeacherId && classItem.primaryTeacherName
+                  ? {
+                      id: classItem.primaryTeacherId,
+                      name: classItem.primaryTeacherName,
+                    }
+                  : null
               }
-              disabled={isSubmitting || isLoadingTeachers}
-            >
-              <SelectTrigger id="primary-teacher">
-                <SelectValue
-                  placeholder={t("dialogs.primaryTeacherPlaceholder")}
-                />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="none">{t("dialogs.unassigned")}</SelectItem>
-                {teachers.map((tc) => (
-                  <SelectItem key={tc.id} value={tc.id}>
-                    {tc.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+              onValueChange={(primaryTeacherId) =>
+                setFormData((prev) => ({ ...prev, primaryTeacherId }))
+              }
+              placeholder={t("dialogs.primaryTeacherPlaceholder")}
+              id="primary-teacher"
+              emptyOption={{
+                value: "none",
+                label: t("dialogs.unassigned"),
+              }}
+              enabled={isOpen}
+              disabled={isSubmitting}
+              container={dialogContainer}
+            />
           </div>
 
           {/* Secondary Teacher */}
@@ -230,27 +230,31 @@ export function ClassFormDialog({
             <Label htmlFor="secondary-teacher">
               {t("dialogs.secondaryTeacherLabel")}
             </Label>
-            <Select
+            <RelationSelect
+              endpoint="/teachers/select"
               value={formData.secondaryTeacherId}
-              onValueChange={(val) =>
-                setFormData((prev) => ({ ...prev, secondaryTeacherId: val }))
+              selectedOption={
+                classItem?.secondaryTeacherId &&
+                classItem.secondaryTeacherName
+                  ? {
+                      id: classItem.secondaryTeacherId,
+                      name: classItem.secondaryTeacherName,
+                    }
+                  : null
               }
-              disabled={isSubmitting || isLoadingTeachers}
-            >
-              <SelectTrigger id="secondary-teacher">
-                <SelectValue
-                  placeholder={t("dialogs.secondaryTeacherPlaceholder")}
-                />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="none">{t("dialogs.unassigned")}</SelectItem>
-                {teachers.map((tc) => (
-                  <SelectItem key={tc.id} value={tc.id}>
-                    {tc.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+              onValueChange={(secondaryTeacherId) =>
+                setFormData((prev) => ({ ...prev, secondaryTeacherId }))
+              }
+              placeholder={t("dialogs.secondaryTeacherPlaceholder")}
+              id="secondary-teacher"
+              emptyOption={{
+                value: "none",
+                label: t("dialogs.unassigned"),
+              }}
+              enabled={isOpen}
+              disabled={isSubmitting}
+              container={dialogContainer}
+            />
           </div>
 
           <DialogFooter className="gap-2 pt-2">

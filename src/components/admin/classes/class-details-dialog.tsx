@@ -22,14 +22,12 @@ interface ClassDetailsDialogProps {
   isOpen: boolean;
   onClose: () => void;
   classItem?: ClassDTO | null;
-  teachersMap?: Record<string, string>;
 }
 
 export function ClassDetailsDialog({
   isOpen,
   onClose,
   classItem,
-  teachersMap = {},
 }: ClassDetailsDialogProps) {
   const t = useTranslations("adminClasses");
   const locale = useLocale();
@@ -37,13 +35,8 @@ export function ClassDetailsDialog({
 
   if (!classItem) return null;
 
-  const primaryTeacherName = classItem.primaryTeacherId
-    ? teachersMap[classItem.primaryTeacherId]
-    : null;
-
-  const secondaryTeacherName = classItem.secondaryTeacherId
-    ? teachersMap[classItem.secondaryTeacherId]
-    : null;
+  const primaryTeacherName = classItem.primaryTeacherName;
+  const secondaryTeacherName = classItem.secondaryTeacherName;
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>

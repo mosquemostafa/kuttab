@@ -162,6 +162,20 @@
       "when": 1794966824265,
       "tag": "0022_peaceful_mastermind",
       "breakpoints": true
+    },
+    {
+      "idx": 23,
+      "version": "7",
+      "when": 1794968297845,
+      "tag": "0023_lyrical_liz_osborn",
+      "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "7",
+      "when": 1794973356327,
+      "tag": "0024_early_zemo",
+      "breakpoints": true
     }
   ]
 }

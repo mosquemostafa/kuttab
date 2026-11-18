@@ -32,6 +32,13 @@
     "goal_already_completed": "Goal is already completed. No more progress can be added.",
     "goal_progress_exceeds_target": "Target value cannot be less than current progress."
   },
+  "relationSelect": {
+    "searchPlaceholder": "Type to search…",
+    "loading": "Loading options…",
+    "empty": "No matching options found.",
+    "loadFailed": "Could not load options.",
+    "retry": "Try again"
+  },
   "timeline": {
     "title": "Timeline & Progress",
     "timelineTrack": "Timeline",

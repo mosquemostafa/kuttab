@@ -492,12 +492,18 @@ export function DailyTeacherAttendanceView({
                   </span>
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="w-auto p-0" align="center">
+              <PopoverContent
+                className="w-auto p-0"
+                align="center"
+                dir={isArabic ? "rtl" : "ltr"}
+              >
                 <Calendar
                   mode="single"
                   selected={selectedDate}
                   onSelect={(d) => d && setSelectedDate(d)}
                   disabled={(date) => !workingDays.includes(date.getDay())}
+                  locale={dateLocale}
+                  dir={isArabic ? "rtl" : "ltr"}
                   initialFocus
                 />
               </PopoverContent>

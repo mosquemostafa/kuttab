@@ -13,6 +13,7 @@ import { Plus, Search, User, Users, XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ConfirmationDialog } from "@/components/ui/confirmation-dialog";
 import { DataTable, DataTableRefreshButton } from "@/components/ui/data-table";
+import { RelationSelect } from "@/components/ui/relation-select";
 import {
   Select,
   SelectContent,
@@ -87,23 +88,6 @@ export function ClassesTable() {
     params.set("limit", String(limit));
     router.replace(`?${params.toString()}`);
   }, [debouncedSearch, classTypeFilter, teacherFilter, page, limit, router]);
-
-  // Fetch teachers for dropdown & map
-  const { data: teachersData } = useSWR(
-    ["teachers-select-options"],
-    () => apiClient.teachers.select({ limit: 100 }),
-    { revalidateOnFocus: false },
-  );
-
-  const teachers = teachersData?.items ?? [];
-
-  const teachersMap = useMemo(() => {
-    const map: Record<string, string> = {};
-    for (const tc of teachers) {
-      map[tc.id] = tc.name;
-    }
-    return map;
-  }, [teachers]);
 
   // Fetch classes list
   const swrKey = useMemo(
@@ -180,7 +164,6 @@ export function ClassesTable() {
   };
 
   const columns = useClassColumns({
-    teachersMap,
     dateLocale,
     onEdit: handleEdit,
     onDelete: handleDeletePrompt,
@@ -268,25 +251,19 @@ export function ClassesTable() {
 
         {/* Teacher Filter */}
         <div className="col-span-1 sm:w-52">
-          <Select
+          <RelationSelect
+            endpoint="/teachers/select"
             value={teacherFilter}
-            onValueChange={(val) => {
-              setTeacherFilter(val);
+            onValueChange={(teacherId) => {
+              setTeacherFilter(teacherId);
               setPage(1);
             }}
-          >
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder={t("controls.allTeachers")} />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">{t("controls.allTeachers")}</SelectItem>
-              {teachers.map((tc) => (
-                <SelectItem key={tc.id} value={tc.id}>
-                  {tc.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+            placeholder={t("controls.allTeachers")}
+            emptyOption={{
+              value: "all",
+              label: t("controls.allTeachers"),
+            }}
+          />
         </div>
       </div>
     </div>
@@ -326,9 +303,8 @@ export function ClassesTable() {
             {t("columns.primaryTeacher")}:
           </span>
           <span className="font-medium text-foreground">
-            {classItem.primaryTeacherId &&
-            teachersMap[classItem.primaryTeacherId] ? (
-              teachersMap[classItem.primaryTeacherId]
+            {classItem.primaryTeacherName ? (
+              classItem.primaryTeacherName
             ) : (
               <span className="text-muted-foreground/60 italic font-normal">
                 {t("dialogs.unassigned")}
@@ -343,9 +319,8 @@ export function ClassesTable() {
             {t("columns.secondaryTeacher")}:
           </span>
           <span>
-            {classItem.secondaryTeacherId &&
-            teachersMap[classItem.secondaryTeacherId] ? (
-              teachersMap[classItem.secondaryTeacherId]
+            {classItem.secondaryTeacherName ? (
+              classItem.secondaryTeacherName
             ) : (
               <span className="text-muted-foreground/60 italic">
                 {t("dialogs.unassigned")}
@@ -413,7 +388,6 @@ export function ClassesTable() {
         isOpen={Boolean(selectedClassForDetails)}
         onClose={() => setSelectedClassForDetails(null)}
         classItem={selectedClassForDetails}
-        teachersMap={teachersMap}
       />
 
       {/* Delete Confirmation Dialog */}

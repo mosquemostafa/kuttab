@@ -85,6 +85,11 @@ function SelectContent({
   );
 }
 
+function SelectGroup({
+  ...props
+}: React.ComponentProps<typeof SelectPrimitive.Group>) {
+  return <SelectPrimitive.Group data-slot="select-group" {...props} />;
+}
 
 function SelectItem({
   className,
@@ -149,6 +154,7 @@ function SelectScrollDownButton({
 export {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,

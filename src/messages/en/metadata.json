@@ -100,6 +100,10 @@
       "title": "Students | Almostafa Admin",
       "description": "Manage student records, Quran memorization levels, and class enrollments."
     },
+    "studentSubscriptions": {
+      "title": "Student Subscriptions | Almostafa Admin",
+      "description": "Manage student subscription amounts, dates, and payment arrangements."
+    },
     "teachers": {
       "title": "Teachers | Almostafa Admin",
       "description": "Manage teacher roster, teaching tracks, and Quran instructor profiles."

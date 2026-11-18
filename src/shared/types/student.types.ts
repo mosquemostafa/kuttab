@@ -5,6 +5,7 @@ export interface StudentDTO {
   id: string;
   userId: string | null;
   classId: string | null;
+  className: string | null;
   name: string;
   birthDate: string | null;
   grade: string | null;

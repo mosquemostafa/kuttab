@@ -13,11 +13,39 @@ import {
 } from "drizzle-orm";
 
 import { db } from "@/server/db";
+import { classes } from "@/server/modules/classes/class.entity";
 import { student } from "@/server/modules/students/student.entity";
 import type { ListStudentsQueryDTO } from "@/server/modules/students/student.dto";
 import type { ParsedPagination } from "@/server/pipes/parse-pagination.pipe";
 
-export type StudentRow = typeof student.$inferSelect;
+export type StudentRow = typeof student.$inferSelect & {
+  className: string | null;
+};
+
+function studentSelection() {
+  return {
+    id: student.id,
+    userId: student.userId,
+    classId: student.classId,
+    className: classes.name,
+    name: student.name,
+    birthDate: student.birthDate,
+    grade: student.grade,
+    job: student.job,
+    phone: student.phone,
+    studiedTajweed: student.studiedTajweed,
+    previouslyEnrolled: student.previouslyEnrolled,
+    previousEnrolledPlace: student.previousEnrolledPlace,
+    memorizedPartsCount: student.memorizedPartsCount,
+    memorizationDetails: student.memorizationDetails,
+    status: student.status,
+    paymentMethod: student.paymentMethod,
+    registrationDate: student.registrationDate,
+    notes: student.notes,
+    createdAt: student.createdAt,
+    updatedAt: student.updatedAt,
+  };
+}
 
 export type CreateStudentInput = {
   userId?: string | null;
@@ -127,8 +155,9 @@ export const studentRepository = {
 
     const [items, totalRows] = await Promise.all([
       db
-        .select()
+        .select(studentSelection())
         .from(student)
+        .leftJoin(classes, eq(student.classId, classes.id))
         .where(where)
         .orderBy(orderColumn)
         .limit(pagination.limit)
@@ -144,8 +173,9 @@ export const studentRepository = {
 
   async findById(id: string): Promise<StudentRow | null> {
     const [found] = await db
-      .select()
+      .select(studentSelection())
       .from(student)
+      .leftJoin(classes, eq(student.classId, classes.id))
       .where(eq(student.id, id))
       .limit(1);
 
@@ -154,16 +184,18 @@ export const studentRepository = {
 
   async findByUserId(userId: string): Promise<StudentRow[]> {
     return db
-      .select()
+      .select(studentSelection())
       .from(student)
+      .leftJoin(classes, eq(student.classId, classes.id))
       .where(eq(student.userId, userId))
       .orderBy(desc(student.createdAt));
   },
 
   async findByClassId(classId: string): Promise<StudentRow[]> {
     return db
-      .select()
+      .select(studentSelection())
       .from(student)
+      .leftJoin(classes, eq(student.classId, classes.id))
       .where(eq(student.classId, classId))
       .orderBy(desc(student.createdAt));
   },
@@ -193,7 +225,13 @@ export const studentRepository = {
       })
       .returning();
 
-    return created;
+    const [row] = await db
+      .select(studentSelection())
+      .from(student)
+      .leftJoin(classes, eq(student.classId, classes.id))
+      .where(eq(student.id, created.id))
+      .limit(1);
+    return row;
   },
 
   async update(
@@ -209,7 +247,14 @@ export const studentRepository = {
       .where(eq(student.id, id))
       .returning();
 
-    return updated ?? null;
+    if (!updated) return null;
+    const [row] = await db
+      .select(studentSelection())
+      .from(student)
+      .leftJoin(classes, eq(student.classId, classes.id))
+      .where(eq(student.id, id))
+      .limit(1);
+    return row ?? null;
   },
 
   async delete(id: string): Promise<boolean> {

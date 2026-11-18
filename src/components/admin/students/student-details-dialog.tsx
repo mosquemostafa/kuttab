@@ -32,7 +32,6 @@ import {
 
 interface StudentDetailsDialogProps {
   student: StudentDTO | null;
-  classesMap: Record<string, string>;
   isOpen: boolean;
   onClose: () => void;
   onEdit?: (student: StudentDTO) => void;
@@ -40,7 +39,6 @@ interface StudentDetailsDialogProps {
 
 export function StudentDetailsDialog({
   student,
-  classesMap,
   isOpen,
   onClose,
   onEdit,
@@ -61,7 +59,7 @@ export function StudentDetailsDialog({
   };
 
   const className = student.classId
-    ? classesMap[student.classId] || student.classId
+    ? student.className
     : t("dialogs.noClass");
 
   return (

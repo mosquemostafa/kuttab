@@ -9,6 +9,7 @@ export * from "@/server/modules/announcements/announcement.entity";
 export * from "@/server/modules/notifications/notification.entity";
 export * from "@/server/modules/newsletter/newsletter.entity";
 export * from "@/server/modules/students/student.entity";
+export * from "@/server/modules/student-subscriptions/student-subscription.entity";
 export * from "@/server/modules/teachers/teacher.entity";
 export * from "@/server/modules/classes/class.entity";
 export * from "@/server/modules/teacher-attendances/teacher-attendance.entity";

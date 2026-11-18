@@ -223,11 +223,17 @@ export function WeeklyTeacherAttendanceView({
                 </span>
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-auto p-0" align="center">
+            <PopoverContent
+              className="w-auto p-0"
+              align="center"
+              dir={isArabic ? "rtl" : "ltr"}
+            >
               <Calendar
                 mode="single"
                 selected={weekStart}
                 onSelect={(date) => date && setWeekStart(getWeekStart(date))}
+                locale={dateLocale}
+                dir={isArabic ? "rtl" : "ltr"}
                 initialFocus
               />
             </PopoverContent>

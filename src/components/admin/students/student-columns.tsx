@@ -130,7 +130,6 @@ export function StudentPaymentMethodBadge({
 
 interface UseStudentColumnsOptions {
   dateLocale: Locale;
-  classesMap: Record<string, string>;
   onEdit: (student: StudentDTO) => void;
   onDelete: (student: StudentDTO) => void;
   onViewDetails: (student: StudentDTO) => void;
@@ -138,7 +137,6 @@ interface UseStudentColumnsOptions {
 
 export function useStudentColumns({
   dateLocale,
-  classesMap,
   onEdit,
   onDelete,
   onViewDetails,
@@ -211,7 +209,7 @@ export function useStudentColumns({
               </Badge>
             );
           }
-          const className = classesMap[classId] || classId;
+          const className = row.original.className;
           return (
             <Badge
               variant="outline"
@@ -282,6 +280,6 @@ export function useStudentColumns({
         ),
       },
     ],
-    [t, dateLocale, classesMap, onEdit, onDelete, onViewDetails],
+    [t, dateLocale, onEdit, onDelete, onViewDetails],
   );
 }

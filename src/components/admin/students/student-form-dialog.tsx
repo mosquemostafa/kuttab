@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import toast from "react-hot-toast";
-import useSWR from "swr";
 
 import {
   Dialog,
@@ -16,6 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { RelationSelect } from "@/components/ui/relation-select";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import {
@@ -50,16 +50,10 @@ export function StudentFormDialog({
   const t = useTranslations("adminStudents");
   const isEditing = Boolean(student);
 
-  // Fetch classes for class selection
-  const { data: classesData, isLoading: isLoadingClasses } = useSWR(
-    isOpen ? ["classes-select-options"] : null,
-    () => apiClient.classes.select({ limit: 100 }),
-    { revalidateOnFocus: false },
-  );
-
-  const classes = classesData?.items ?? [];
-
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [dialogContainer, setDialogContainer] = useState<HTMLDivElement | null>(
+    null,
+  );
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -183,7 +177,10 @@ export function StudentFormDialog({
       open={isOpen}
       onOpenChange={(open) => !open && !isSubmitting && onClose()}
     >
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent
+        ref={setDialogContainer}
+        className="max-w-2xl max-h-[90vh] overflow-y-auto"
+      >
         <DialogHeader>
           <DialogTitle>
             {isEditing && student
@@ -233,26 +230,28 @@ export function StudentFormDialog({
           {/* Row 2: Class & Status */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div className="space-y-1.5">
-              <Label>{t("dialogs.classLabel")}</Label>
-              <Select
+              <Label htmlFor="student-class">{t("dialogs.classLabel")}</Label>
+              <RelationSelect
+                endpoint="/classes/select"
                 value={formData.classId}
-                onValueChange={(val) =>
-                  setFormData((prev) => ({ ...prev, classId: val }))
+                selectedOption={
+                  student?.classId && student.className
+                    ? {
+                        id: student.classId,
+                        name: student.className,
+                      }
+                    : null
                 }
-                disabled={isLoadingClasses}
-              >
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder={t("dialogs.classPlaceholder")} />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="none">{t("dialogs.noClass")}</SelectItem>
-                  {classes.map((c) => (
-                    <SelectItem key={c.id} value={c.id}>
-                      {c.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+                onValueChange={(classId) =>
+                  setFormData((prev) => ({ ...prev, classId }))
+                }
+                placeholder={t("dialogs.classPlaceholder")}
+                id="student-class"
+                emptyOption={{ value: "none", label: t("dialogs.noClass") }}
+                enabled={isOpen}
+                disabled={isSubmitting}
+                container={dialogContainer}
+              />
             </div>
 
             <div className="space-y-1.5">
