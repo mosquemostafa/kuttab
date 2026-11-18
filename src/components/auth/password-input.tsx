@@ -2,6 +2,7 @@
 
 import { useId, useMemo, useState } from "react";
 import { CheckIcon, EyeIcon, EyeOffIcon, XIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { Input } from "@/components/ui/input";
 
@@ -22,6 +23,7 @@ export default function PasswordInput({
   showPasswordLabel = "Show password",
   hidePasswordLabel = "Hide password",
 }: PasswordInputProps) {
+  const t = useTranslations("auth.passwordRequirements");
   const id = useId();
   const inputId = idProp || id;
   const [isVisible, setIsVisible] = useState<boolean>(false);
@@ -30,10 +32,10 @@ export default function PasswordInput({
 
   const checkStrength = (pass: string) => {
     const requirements = [
-      { regex: /.{8,}/, text: "At least 8 characters" },
-      { regex: /[0-9]/, text: "At least 1 number" },
-      { regex: /[a-z]/, text: "At least 1 lowercase letter" },
-      { regex: /[A-Z]/, text: "At least 1 uppercase letter" },
+      { regex: /.{8,}/, text: t("minCharacters") },
+      { regex: /[0-9]/, text: t("number") },
+      { regex: /[a-z]/, text: t("lowercase") },
+      { regex: /[A-Z]/, text: t("uppercase") },
     ];
 
     return requirements.map((req) => ({
@@ -57,10 +59,10 @@ export default function PasswordInput({
   };
 
   const getStrengthText = (score: number) => {
-    if (score === 0) return "Enter a password";
-    if (score <= 2) return "Weak password";
-    if (score === 3) return "Medium password";
-    return "Strong password";
+    if (score === 0) return t("enterPassword");
+    if (score <= 2) return t("weak");
+    if (score === 3) return t("medium");
+    return t("strong");
   };
 
   const allRequirementsMet = strengthScore === 4;
@@ -106,7 +108,7 @@ export default function PasswordInput({
             aria-valuenow={strengthScore}
             aria-valuemin={0}
             aria-valuemax={4}
-            aria-label="Password strength"
+            aria-label={t("strength")}
           >
             <div
               className={`h-full ${getStrengthColor(
@@ -121,11 +123,11 @@ export default function PasswordInput({
             id={`${id}-description`}
             className="text-foreground mb-2 text-sm font-medium"
           >
-            {getStrengthText(strengthScore)}. Must contain:
+            {getStrengthText(strengthScore)}. {t("mustContain")}
           </p>
 
           {/* Password requirements list */}
-          <ul className="space-y-1.5" aria-label="Password requirements">
+          <ul className="space-y-1.5" aria-label={t("requirements")}>
             {strength.map((req, index) => (
               <li key={index} className="flex items-center gap-2">
                 {req.met ? (
@@ -148,7 +150,7 @@ export default function PasswordInput({
                 >
                   {req.text}
                   <span className="sr-only">
-                    {req.met ? " - Requirement met" : " - Requirement not met"}
+                    {req.met ? ` - ${t("met")}` : ` - ${t("notMet")}`}
                   </span>
                 </span>
               </li>
