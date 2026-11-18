@@ -19,7 +19,7 @@ export const Logo = ({ size = "md", className = "" }: LogoProps) => {
   return (
     <div
       className={cn(
-        "relative flex items-center justify-center bg-gradient-to-br from-emerald-600 via-emerald-700 to-emerald-950 text-white shadow-xs border border-emerald-500/30 overflow-hidden shrink-0",
+        "relative flex items-center justify-center text-white shadow-xs border border-emerald-500/30 overflow-hidden shrink-0",
         sizeMap[size],
         className,
       )}

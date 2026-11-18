@@ -1,6 +1,12 @@
 {
   "title": "Almostafa - Islamic Institute for Teaching Quran",
   "description": "Almostafa is a premier Islamic institute dedicated to teaching the Holy Quran, Tajweed, recitation, and memorization for students worldwide.",
+  "keywords": {
+    "quran": "Holy Quran",
+    "tajweed": "Quran Tajweed",
+    "memorization": "Quran memorization",
+    "islamicInstitute": "Islamic institute"
+  },
   "auth": {
     "login": {
       "title": "Sign In | Almostafa",
