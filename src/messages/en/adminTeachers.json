@@ -4,17 +4,9 @@
     "allStatuses": "All Statuses",
     "allStudentTypes": "All Teaching Tracks",
     "addTeacher": "Add Teacher",
-    "refresh": "Refresh",
-    "sortBy": "Sort by",
-    "sortCreatedAt": "Date Added",
-    "sortName": "Name",
-    "sortStatus": "Status",
-    "sortDirection": "Direction",
-    "sortAsc": "Ascending",
-    "sortDesc": "Descending"
+    "refresh": "Refresh"
   },
   "columns": {
-    "id": "ID",
     "name": "Teacher",
     "phone": "Phone",
     "studentType": "Teaching Track",

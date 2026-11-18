@@ -7,9 +7,7 @@
   "previousWeek": "Previous week",
   "nextWeek": "Next week",
   "weekRange": "{start} – {end}",
-  "selectDate": "Select Date",
   "today": "Today",
-  "yesterday": "Yesterday",
   "previousDay": "Previous day",
   "nextDay": "Next day",
   "summary": {
@@ -17,8 +15,7 @@
     "attended": "Present",
     "absent": "Absent",
     "excusedAbsence": "Excused absence",
-    "late": "Late",
-    "attendanceRate": "Attendance Rate"
+    "late": "Late"
   },
   "search": "Search teacher name...",
   "filterStatus": "Status",
@@ -29,8 +26,7 @@
   "columns": {
     "teacher": "Teacher",
     "status": "Attendance Status",
-    "deduction": "Attendance Deduction",
-    "actions": "Actions"
+    "deduction": "Attendance Deduction"
   },
   "statusLabels": {
     "present": "Present",
@@ -40,12 +36,7 @@
     "title": "Non-working day",
     "description": "Attendance is only recorded on the institute's configured working days."
   },
-  "studentTypes": {
-    "foundation": "Foundation",
-    "khatimeen": "Khatimeen",
-    "children": "Children",
-    "adults": "Adults"
-  },
+  "studentTypes": {},
   "attendanceDeductionTypes": {
     "none": "No Deduction",
     "from_35_to_45_min": "35 to 45 mins late",
@@ -54,12 +45,9 @@
     "excused_absence": "Excused absence"
   },
   "actions": {
-    "markPresent": "Mark Present",
-    "markAbsent": "Mark Absent",
     "editDeduction": "Edit Deduction",
     "markAllAttended": "Mark All Present",
     "markAllAbsent": "Mark All Absent",
-    "save": "Save",
     "cancel": "Cancel",
     "refresh": "Refresh"
   },
@@ -69,11 +57,7 @@
     "markAllAbsentTitle": "Mark all teachers absent?",
     "markAllAbsentDesc": "All attendance records for {date} will be removed, marking all teachers absent."
   },
-  "dialog": {
-    "editDeductionTitle": "Edit Attendance Deduction",
-    "editDeductionDesc": "Select an attendance deduction type for {name} on {date}",
-    "attendanceDeductionTypeLabel": "Attendance Deduction Type"
-  },
+  "dialog": {},
   "notifications": {
     "toggledPresent": "Marked {name} as present",
     "toggledAbsent": "Marked {name} as absent",

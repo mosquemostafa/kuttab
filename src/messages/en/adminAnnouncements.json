@@ -94,7 +94,6 @@
     "parent": "Parent",
     "support": "Support",
     "content": "Content",
-    "contentManager": "Content",
     "admin": "Admin"
   },
   "statuses": {

@@ -10,7 +10,6 @@
     "adminPanel": "Admin Panel",
     "dashboard": "Dashboard",
     "dashboardPanel": "Dashboard",
-    "home": "Home",
     "support": "Support",
     "content": "Content",
     "supportPanel": "Support Panel",
@@ -50,26 +49,7 @@
       "defaultName": "there"
     },
     "quickCapture": {
-      "addTask": "Quick Task",
-      "addTaskDesc": "Add a new task to today's list",
-      "taskDialog": {
-        "title": "Add Quick Task",
-        "description": "Add a new task and assign its due date, priority, or project.",
-        "taskTitlePlaceholder": "What needs to be done?...",
-        "dueDate": "Due date",
-        "today": "Today",
-        "priority": "Priority",
-        "priorityNone": "No priority",
-        "priorityLow": "Low",
-        "priorityMedium": "Medium",
-        "priorityHigh": "High",
-        "project": "Project",
-        "noProject": "No project",
-        "cancel": "Cancel",
-        "create": "Add Task",
-        "creating": "Adding...",
-        "success": "Task added successfully!"
-      }
+      "taskDialog": {}
     }
   },
   "supportOverview": {
@@ -246,7 +226,6 @@
       "unknownUser": "User",
       "changeUser": "Change user",
       "searchPlaceholder": "Search user by name or email...",
-      "select": "Select",
       "subjectLabel": "Conversation Subject",
       "subjectPlaceholder": "e.g. Inquiring about your recent feedback",
       "messageLabel": "Initial Message",

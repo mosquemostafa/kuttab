@@ -7,9 +7,7 @@
   "previousWeek": "الأسبوع السابق",
   "nextWeek": "الأسبوع التالي",
   "weekRange": "{start} – {end}",
-  "selectDate": "اختر التاريخ",
   "today": "اليوم",
-  "yesterday": "أمس",
   "previousDay": "اليوم السابق",
   "nextDay": "اليوم التالي",
   "summary": {
@@ -17,8 +15,7 @@
     "attended": "حاضر",
     "absent": "غائب",
     "excusedAbsence": "غياب بعذر",
-    "late": "متأخر",
-    "attendanceRate": "نسبة الحضور"
+    "late": "متأخر"
   },
   "search": "بحث باسم المعلم...",
   "filterStatus": "الحالة",
@@ -29,8 +26,7 @@
   "columns": {
     "teacher": "المعلم",
     "status": "حالة الحضور",
-    "deduction": "خصم الحضور",
-    "actions": "الإجراءات"
+    "deduction": "خصم الحضور"
   },
   "statusLabels": {
     "present": "حاضر",
@@ -40,12 +36,7 @@
     "title": "يوم غير مخصص للعمل",
     "description": "يتم تسجيل الحضور فقط في أيام عمل المعهد المحددة في الإعدادات."
   },
-  "studentTypes": {
-    "foundation": "تأسيس وتمهيدي",
-    "khatimeen": "الخاتمون والمجازون",
-    "children": "أطفال",
-    "adults": "كبار"
-  },
+  "studentTypes": {},
   "attendanceDeductionTypes": {
     "none": "في الموعد (بدون تأخير)",
     "from_35_to_45_min": "تأخير من 35 إلى 45 دقيقة",
@@ -54,12 +45,9 @@
     "excused_absence": "غياب بعذر"
   },
   "actions": {
-    "markPresent": "تسجيل حضور",
-    "markAbsent": "تسجيل غياب",
     "editDeduction": "تعديل الخصم",
     "markAllAttended": "تسجيل حضور الكل",
     "markAllAbsent": "تسجيل غياب الكل",
-    "save": "حفظ",
     "cancel": "إلغاء",
     "refresh": "تحديث"
   },
@@ -69,11 +57,7 @@
     "markAllAbsentTitle": "تسجيل غياب جميع المعلمين؟",
     "markAllAbsentDesc": "سيتم إلغاء سجلات الحضور لجميع المعلمين واعتبارهم غائبين ليوم {date}."
   },
-  "dialog": {
-    "editDeductionTitle": "تعديل خصم الحضور",
-    "editDeductionDesc": "اختر نوع خصم الحضور للمعلّم {name} ليوم {date}",
-    "attendanceDeductionTypeLabel": "نوع خصم الحضور"
-  },
+  "dialog": {},
   "notifications": {
     "toggledPresent": "تم تسجيل حضور {name}",
     "toggledAbsent": "تم تسجيل غياب {name}",

@@ -10,7 +10,6 @@
     "adminPanel": "لوحة الإدارة",
     "dashboard": "لوحة التحكم",
     "dashboardPanel": "لوحة التحكم",
-    "home": "الرئيسية",
     "support": "الدعم الفني",
     "content": "المحتوى",
     "supportPanel": "لوحة الدعم",
@@ -50,26 +49,7 @@
       "defaultName": "صديقي"
     },
     "quickCapture": {
-      "addTask": "مهمة سريعة",
-      "addTaskDesc": "إضافة مهمة جديدة لقائمة اليوم",
-      "taskDialog": {
-        "title": "إضافة مهمة سريعة",
-        "description": "أضف مهمة جديدة وحدد موعد استحقاقها أو أولويتها أو مشروعها.",
-        "taskTitlePlaceholder": "ما الذي تود إنجازه؟...",
-        "dueDate": "تاريخ الاستحقاق",
-        "today": "اليوم",
-        "priority": "الأولوية",
-        "priorityNone": "بدون أولوية",
-        "priorityLow": "منخفضة",
-        "priorityMedium": "متوسطة",
-        "priorityHigh": "عالية",
-        "project": "المشروع",
-        "noProject": "بدون مشروع",
-        "cancel": "إلغاء",
-        "create": "إضافة المهمة",
-        "creating": "جارٍ الإضافة...",
-        "success": "تمت إضافة المهمة بنجاح!"
-      }
+      "taskDialog": {}
     }
   },
   "supportOverview": {
@@ -246,7 +226,6 @@
       "unknownUser": "مستخدم",
       "changeUser": "تغيير المستخدم",
       "searchPlaceholder": "ابحث بالاسم أو البريد الإلكتروني...",
-      "select": "اختيار",
       "subjectLabel": "موضوع المحادثة",
       "subjectPlaceholder": "مثال: استفسار بخصوص رأيك في الميزة الأخيرة",
       "messageLabel": "الرسالة الأولى",

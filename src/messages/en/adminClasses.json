@@ -4,17 +4,9 @@
     "allTypes": "All Class Types",
     "allTeachers": "All Teachers",
     "addClass": "Add Class",
-    "refresh": "Refresh",
-    "sortBy": "Sort by",
-    "sortCreatedAt": "Date Created",
-    "sortName": "Name",
-    "sortClassType": "Class Type",
-    "sortDirection": "Direction",
-    "sortAsc": "Ascending",
-    "sortDesc": "Descending"
+    "refresh": "Refresh"
   },
   "columns": {
-    "id": "ID",
     "name": "Class Name",
     "classType": "Type",
     "primaryTeacher": "Primary Teacher",

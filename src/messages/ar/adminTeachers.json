@@ -4,17 +4,9 @@
     "allStatuses": "جميع الحالات",
     "allStudentTypes": "جميع مسارات التدريس",
     "addTeacher": "إضافة معلّم",
-    "refresh": "تحديث",
-    "sortBy": "الترتيب حسب",
-    "sortCreatedAt": "تاريخ الإضافة",
-    "sortName": "الاسم",
-    "sortStatus": "الحالة",
-    "sortDirection": "الاتجاه",
-    "sortAsc": "تصاعدي",
-    "sortDesc": "تنازلي"
+    "refresh": "تحديث"
   },
   "columns": {
-    "id": "المعرّف",
     "name": "المعلّم",
     "phone": "رقم الهاتف",
     "studentType": "مسار التدريس",

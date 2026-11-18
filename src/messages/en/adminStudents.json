@@ -5,17 +5,9 @@
     "allClasses": "All Classes",
     "allPaymentMethods": "All Payment Methods",
     "addStudent": "Add Student",
-    "refresh": "Refresh",
-    "sortBy": "Sort by",
-    "sortCreatedAt": "Registration Date",
-    "sortName": "Name",
-    "sortMemorizedParts": "Memorized Parts",
-    "sortDirection": "Direction",
-    "sortAsc": "Ascending",
-    "sortDesc": "Descending"
+    "refresh": "Refresh"
   },
   "columns": {
-    "id": "ID",
     "name": "Student",
     "phone": "Phone",
     "class": "Class",

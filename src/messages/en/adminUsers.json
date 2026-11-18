@@ -1,6 +1,5 @@
 {
   "controls": {
-    "searchEmail": "Search name, email, or phone...",
     "searchUsers": "Search name, email, or phone...",
     "allRoles": "All Roles",
     "sortBy": "Sort by",
@@ -12,7 +11,6 @@
     "admin": "Admin",
     "support": "Support",
     "content": "Content",
-    "contentManager": "Content",
     "student": "Student",
     "parent": "Parent",
     "user": "User",
@@ -165,7 +163,6 @@
     "admin": "Admin",
     "support": "Support",
     "content": "Content",
-    "contentManager": "Content",
     "student": "Student",
     "parent": "Parent",
     "user": "User"

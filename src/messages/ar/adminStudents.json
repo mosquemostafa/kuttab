@@ -5,17 +5,9 @@
     "allClasses": "جميع الحلقات",
     "allPaymentMethods": "جميع طرق الدفع",
     "addStudent": "إضافة طالب",
-    "refresh": "تحديث",
-    "sortBy": "الترتيب حسب",
-    "sortCreatedAt": "تاريخ التسجيل",
-    "sortName": "الاسم",
-    "sortMemorizedParts": "الأجزاء المحفوظة",
-    "sortDirection": "الاتجاه",
-    "sortAsc": "تصاعدي",
-    "sortDesc": "تنازلي"
+    "refresh": "تحديث"
   },
   "columns": {
-    "id": "المعرّف",
     "name": "الطالب",
     "phone": "رقم الهاتف",
     "class": "الحلقة",

@@ -4,17 +4,9 @@
     "allTypes": "جميع أنواع الحلقات",
     "allTeachers": "جميع المعلمين",
     "addClass": "إضافة حلقة",
-    "refresh": "تحديث",
-    "sortBy": "الترتيب حسب",
-    "sortCreatedAt": "تاريخ الإنشاء",
-    "sortName": "اسم الحلقة",
-    "sortClassType": "نوع الحلقة",
-    "sortDirection": "الاتجاه",
-    "sortAsc": "تصاعدي",
-    "sortDesc": "تنازلي"
+    "refresh": "تحديث"
   },
   "columns": {
-    "id": "المعرّف",
     "name": "اسم الحلقة",
     "classType": "نوع الحلقة",
     "primaryTeacher": "المعلّم الأساسي",
