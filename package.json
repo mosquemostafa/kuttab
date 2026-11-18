@@ -13,7 +13,7 @@
     "swagger:generate": "tsx scripts/generate-swagger.ts",
     "build:worker": "esbuild src/server/workers/run-worker.ts --bundle --platform=node --target=node22 --outfile=dist/worker.js --external:pg-native",
     "prebuild": "pnpm run swagger:generate",
-    "build": "pnpm run swagger:generate && next build --webpack && pnpm run build:worker",
+    "build": "next build --webpack && pnpm run build:worker",
     "start": "node .next/standalone/server.js",
     "start:local": "mkdir -p .next/standalone/.next && cp -r public .next/standalone/ && cp -r .next/static .next/standalone/.next/ && node .next/standalone/server.js",
     "test:e2e": "playwright test",
@@ -147,7 +147,7 @@
     "postcss": "^8.5.8",
     "prettier": "^3.8.1",
     "sass": "^1.105.1",
-    "tsx": "^4.19.4",
+    "tsx": "^4.23.15",
     "tw-animate-css": "^1.3.0",
     "typescript": "^6",
     "webpack": "^5.106.1"
