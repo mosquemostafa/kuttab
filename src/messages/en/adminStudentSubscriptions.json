@@ -1,5 +1,8 @@
 {
+  "title": "Student subscriptions",
+  "subtitle": "Review payment arrangements and keep subscription records up to date.",
   "controls": {
+    "filters": "Filters",
     "allStudents": "All students",
     "allTypes": "All subscription types",
     "startDate": "From date",

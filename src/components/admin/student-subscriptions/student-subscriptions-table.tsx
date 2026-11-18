@@ -156,93 +156,123 @@ export function StudentSubscriptionsTable() {
 
   const filterControls = (
     <div className="mb-4 flex w-full flex-col gap-3">
-      <div className="flex flex-col items-stretch justify-between gap-2.5 sm:flex-row sm:items-center">
-        <div className="flex flex-1 flex-col gap-2 sm:flex-row">
-          <RelationSelect
-            endpoint="/students/select"
-            value={studentFilter}
-            onValueChange={(value) => {
-              setStudentFilter(value);
-              setPage(1);
-            }}
-            placeholder={t("controls.allStudents")}
-            emptyOption={{
-              value: "all",
-              label: t("controls.allStudents"),
-            }}
-            className="sm:w-56"
-          />
-
-          <Select
-            value={typeFilter}
-            onValueChange={(value) => {
-              setTypeFilter(value);
-              setPage(1);
-            }}
-          >
-            <SelectTrigger className="w-full sm:w-48">
-              <SelectValue placeholder={t("controls.allTypes")} />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem value="all">{t("controls.allTypes")}</SelectItem>
-                {SUBSCRIPTION_TYPES.map((subscriptionType) => (
-                  <SelectItem key={subscriptionType} value={subscriptionType}>
-                    {getTypeLabel(subscriptionType)}
-                  </SelectItem>
-                ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+      <div className="hidden items-end justify-between gap-6 md:flex">
+        <div className="min-w-0">
+          <h1 className="text-2xl font-bold tracking-tight">{t("title")}</h1>
+          <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
+            {t("subtitle")}
+          </p>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2">
           <DataTableRefreshButton
             onRefresh={() => mutate()}
             isRefreshing={isValidating}
             label={t("controls.refresh")}
-            className="flex-1 sm:flex-none"
           />
-          <Button onClick={openCreate} className="flex-1 sm:flex-none">
+          <Button onClick={openCreate}>
             <Plus data-icon="inline-start" />
             {t("controls.addSubscription")}
           </Button>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:max-w-xl">
-        <Field className="gap-1.5">
-          <FieldLabel>{t("controls.startDate")}</FieldLabel>
-          <DatePicker
-            value={startDate}
-            max={endDate || undefined}
-            onChange={(date) => {
-              setStartDate(date);
-              setPage(1);
-            }}
-            placeholder={t("controls.selectStartDate")}
-            ariaLabel={t("controls.startDate")}
-            locale={dateLocale}
-            allowClear
-            clearLabel={t("controls.clearDate")}
-          />
-        </Field>
-        <Field className="gap-1.5">
-          <FieldLabel>{t("controls.endDate")}</FieldLabel>
-          <DatePicker
-            value={endDate}
-            min={startDate || undefined}
-            onChange={(date) => {
-              setEndDate(date);
-              setPage(1);
-            }}
-            placeholder={t("controls.selectEndDate")}
-            ariaLabel={t("controls.endDate")}
-            locale={dateLocale}
-            allowClear
-            clearLabel={t("controls.clearDate")}
-          />
-        </Field>
+      <div className="flex flex-col gap-3 md:mt-3 md:rounded-xl md:border md:bg-muted/20 md:p-4">
+        <div className="flex flex-col items-stretch justify-between gap-2.5 sm:flex-row sm:items-center">
+          <div className="flex flex-1 flex-col gap-2 sm:flex-row">
+            <RelationSelect
+              endpoint="/students/select"
+              value={studentFilter}
+              onValueChange={(value) => {
+                setStudentFilter(value);
+                setPage(1);
+              }}
+              placeholder={t("controls.allStudents")}
+              emptyOption={{
+                value: "all",
+                label: t("controls.allStudents"),
+              }}
+              className="sm:w-56"
+            />
+
+            <Select
+              value={typeFilter}
+              onValueChange={(value) => {
+                setTypeFilter(value);
+                setPage(1);
+              }}
+            >
+              <SelectTrigger className="w-full sm:w-48">
+                <SelectValue placeholder={t("controls.allTypes")} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem value="all">{t("controls.allTypes")}</SelectItem>
+                  {SUBSCRIPTION_TYPES.map((subscriptionType) => (
+                    <SelectItem key={subscriptionType} value={subscriptionType}>
+                      {getTypeLabel(subscriptionType)}
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="flex items-center gap-2 md:hidden">
+            <DataTableRefreshButton
+              onRefresh={() => mutate()}
+              isRefreshing={isValidating}
+              label={t("controls.refresh")}
+              className="flex-1 sm:flex-none"
+            />
+            <Button onClick={openCreate} className="flex-1 sm:flex-none">
+              <Plus data-icon="inline-start" />
+              {t("controls.addSubscription")}
+            </Button>
+          </div>
+        </div>
+
+        <div className="hidden items-center gap-2 border-t pt-3 md:flex md:border-t-0 md:pt-0">
+          <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+            {t("controls.filters")}
+          </span>
+          <div className="h-px flex-1 bg-border/70" />
+        </div>
+
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:max-w-2xl">
+          <Field className="gap-1.5">
+            <FieldLabel>{t("controls.startDate")}</FieldLabel>
+            <DatePicker
+              value={startDate}
+              max={endDate || undefined}
+              onChange={(date) => {
+                setStartDate(date);
+                setPage(1);
+              }}
+              placeholder={t("controls.selectStartDate")}
+              ariaLabel={t("controls.startDate")}
+              locale={dateLocale}
+              allowClear
+              clearLabel={t("controls.clearDate")}
+            />
+          </Field>
+          <Field className="gap-1.5">
+            <FieldLabel>{t("controls.endDate")}</FieldLabel>
+            <DatePicker
+              value={endDate}
+              min={startDate || undefined}
+              onChange={(date) => {
+                setEndDate(date);
+                setPage(1);
+              }}
+              placeholder={t("controls.selectEndDate")}
+              ariaLabel={t("controls.endDate")}
+              locale={dateLocale}
+              allowClear
+              clearLabel={t("controls.clearDate")}
+            />
+          </Field>
+        </div>
       </div>
     </div>
   );
