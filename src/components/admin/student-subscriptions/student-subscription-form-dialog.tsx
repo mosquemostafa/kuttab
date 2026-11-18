@@ -28,13 +28,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { apiClient } from "@/lib/api/api-client";
+import { DatePicker } from "@/components/ui/date-picker";
 import type {
   CreateStudentSubscriptionDTO,
   UpdateStudentSubscriptionDTO,
 } from "@/server/modules/student-subscriptions/student-subscription.dto";
 import { StudentSubscriptionType } from "@/shared/enums/student-subscription-type.enum";
 import type { StudentSubscriptionDTO } from "@/shared/types/student-subscription.types";
-import { SubscriptionDatePicker } from "./subscription-date-picker";
 import { useSubscriptionTypeLabel } from "./use-subscription-type-label";
 
 const SUBSCRIPTION_TYPES = Object.values(StudentSubscriptionType);
@@ -220,7 +220,7 @@ export function StudentSubscriptionFormDialog({
                 <FieldLabel htmlFor="subscription-date">
                   {t("dialogs.dateLabel")}
                 </FieldLabel>
-                <SubscriptionDatePicker
+                <DatePicker
                   id="subscription-date"
                   value={formData.date}
                   onChange={(date) =>

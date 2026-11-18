@@ -2,7 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import toast from "react-hot-toast";
+import { ar } from "date-fns/locale/ar";
+import { enUS } from "date-fns/locale/en-US";
 
 import {
   Dialog,
@@ -18,6 +21,7 @@ import { Label } from "@/components/ui/label";
 import { RelationSelect } from "@/components/ui/relation-select";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
+import { DatePicker } from "@/components/ui/date-picker";
 import {
   Select,
   SelectContent,
@@ -48,6 +52,8 @@ export function StudentFormDialog({
   student,
 }: StudentFormDialogProps) {
   const t = useTranslations("adminStudents");
+  const locale = useLocale();
+  const dateLocale = locale.startsWith("ar") ? ar : enUS;
   const isEditing = Boolean(student);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -393,16 +399,22 @@ export function StudentFormDialog({
               <Label htmlFor="student-birth">
                 {t("dialogs.birthDateLabel")}
               </Label>
-              <Input
+              <DatePicker
                 id="student-birth"
-                type="date"
                 value={formData.birthDate}
-                onChange={(e) =>
+                onChange={(birthDate) =>
                   setFormData((prev) => ({
                     ...prev,
-                    birthDate: e.target.value,
+                    birthDate,
                   }))
                 }
+                placeholder={t("dialogs.datePlaceholder")}
+                ariaLabel={t("dialogs.birthDateLabel")}
+                locale={dateLocale}
+                disabled={isSubmitting}
+                allowClear
+                clearLabel={t("dialogs.clearDate")}
+                container={dialogContainer}
               />
             </div>
 
@@ -410,16 +422,20 @@ export function StudentFormDialog({
               <Label htmlFor="student-reg-date">
                 {t("dialogs.registrationDateLabel")}
               </Label>
-              <Input
+              <DatePicker
                 id="student-reg-date"
-                type="date"
                 value={formData.registrationDate}
-                onChange={(e) =>
+                onChange={(registrationDate) =>
                   setFormData((prev) => ({
                     ...prev,
-                    registrationDate: e.target.value,
+                    registrationDate,
                   }))
                 }
+                placeholder={t("dialogs.datePlaceholder")}
+                ariaLabel={t("dialogs.registrationDateLabel")}
+                locale={dateLocale}
+                disabled={isSubmitting}
+                container={dialogContainer}
               />
             </div>
           </div>

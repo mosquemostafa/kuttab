@@ -58,6 +58,8 @@
     "noPaymentMethod": "غير محدد",
     "birthDateLabel": "تاريخ الميلاد",
     "registrationDateLabel": "تاريخ التسجيل",
+    "datePlaceholder": "اختر تاريخاً",
+    "clearDate": "مسح التاريخ",
     "gradeLabel": "المرحلة الدراسية / الصف",
     "gradePlaceholder": "مثال: الصف الخامس الابتدائي",
     "jobLabel": "المهنة / الوظيفة",

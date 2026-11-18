@@ -31,10 +31,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { apiClient } from "@/lib/api/api-client";
+import { DatePicker } from "@/components/ui/date-picker";
 import { StudentSubscriptionType } from "@/shared/enums/student-subscription-type.enum";
 import type { StudentSubscriptionDTO } from "@/shared/types/student-subscription.types";
 import { useSubscriptionTypeLabel } from "./use-subscription-type-label";
-import { SubscriptionDatePicker } from "./subscription-date-picker";
 
 const SUBSCRIPTION_TYPES = Object.values(StudentSubscriptionType);
 const PAGE_SIZE = 10;
@@ -187,10 +187,7 @@ export function StudentSubscriptionsTable() {
               <SelectGroup>
                 <SelectItem value="all">{t("controls.allTypes")}</SelectItem>
                 {SUBSCRIPTION_TYPES.map((subscriptionType) => (
-                  <SelectItem
-                    key={subscriptionType}
-                    value={subscriptionType}
-                  >
+                  <SelectItem key={subscriptionType} value={subscriptionType}>
                     {getTypeLabel(subscriptionType)}
                   </SelectItem>
                 ))}
@@ -216,7 +213,7 @@ export function StudentSubscriptionsTable() {
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:max-w-xl">
         <Field className="gap-1.5">
           <FieldLabel>{t("controls.startDate")}</FieldLabel>
-          <SubscriptionDatePicker
+          <DatePicker
             value={startDate}
             max={endDate || undefined}
             onChange={(date) => {
@@ -232,7 +229,7 @@ export function StudentSubscriptionsTable() {
         </Field>
         <Field className="gap-1.5">
           <FieldLabel>{t("controls.endDate")}</FieldLabel>
-          <SubscriptionDatePicker
+          <DatePicker
             value={endDate}
             min={startDate || undefined}
             onChange={(date) => {
@@ -347,9 +344,7 @@ export function StudentSubscriptionsTable() {
           openEdit(subscription);
         }}
         subscription={selectedForDetails}
-        studentName={
-          selectedForDetails?.studentName ?? ""
-        }
+        studentName={selectedForDetails?.studentName ?? ""}
         locale={locale}
         dateLocale={dateLocale}
       />

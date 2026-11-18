@@ -6,13 +6,13 @@ import {
   addWeeks,
   format,
   isSameDay,
+  parseISO,
   startOfWeek,
   subWeeks,
 } from "date-fns";
 import { ar } from "date-fns/locale/ar";
 import { enUS } from "date-fns/locale/en-US";
 import {
-  Calendar as CalendarIcon,
   Check,
   CircleAlert,
   ChevronLeft,
@@ -26,13 +26,8 @@ import toast from "react-hot-toast";
 import useSWR from "swr";
 
 import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
+import { DatePicker } from "@/components/ui/date-picker";
 import { Input } from "@/components/ui/input";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { apiClient } from "@/lib/api/api-client";
 import { useApiErrorMessage } from "@/lib/api/use-api-error-message";
 import type {
@@ -65,7 +60,6 @@ export function WeeklyTeacherAttendanceView({
   const operationGenerationRef = useRef<Record<string, number>>({});
 
   const weekStartString = format(weekStart, "yyyy-MM-dd");
-  const weekEnd = addDays(weekStart, 6);
   const weekDays = useMemo(
     () => Array.from({ length: 7 }, (_, index) => addDays(weekStart, index)),
     [weekStart],
@@ -205,39 +199,15 @@ export function WeeklyTeacherAttendanceView({
             )}
           </Button>
 
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button
-                type="button"
-                variant="outline"
-                className="h-11 min-w-0 flex-1 justify-start px-3 font-normal sm:min-w-[250px]"
-              >
-                <CalendarIcon className="me-2 h-4 w-4 shrink-0 text-muted-foreground" />
-                <span className="truncate font-medium tabular-nums">
-                  {t("weekRange", {
-                    start: format(weekStart, "d MMM", { locale: dateLocale }),
-                    end: format(weekEnd, "d MMM yyyy", {
-                      locale: dateLocale,
-                    }),
-                  })}
-                </span>
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent
-              className="w-auto p-0"
-              align="center"
-              dir={isArabic ? "rtl" : "ltr"}
-            >
-              <Calendar
-                mode="single"
-                selected={weekStart}
-                onSelect={(date) => date && setWeekStart(getWeekStart(date))}
-                locale={dateLocale}
-                dir={isArabic ? "rtl" : "ltr"}
-                initialFocus
-              />
-            </PopoverContent>
-          </Popover>
+          <DatePicker
+            value={format(weekStart, "yyyy-MM-dd")}
+            onChange={(date) => setWeekStart(getWeekStart(parseISO(date)))}
+            placeholder={t("datePickerLabel")}
+            ariaLabel={t("datePickerLabel")}
+            locale={dateLocale}
+            formatString="d MMM yyyy"
+            className="h-11 min-w-0 flex-1 justify-start px-3 font-medium tabular-nums sm:min-w-[250px]"
+          />
 
           <Button
             type="button"

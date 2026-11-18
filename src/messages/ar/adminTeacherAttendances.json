@@ -6,10 +6,12 @@
   "currentWeek": "هذا الأسبوع",
   "previousWeek": "الأسبوع السابق",
   "nextWeek": "الأسبوع التالي",
+  "datePickerLabel": "اختر الأسبوع",
   "weekRange": "{start} – {end}",
   "today": "اليوم",
   "previousDay": "اليوم السابق",
   "nextDay": "اليوم التالي",
+  "datePickerLabel": "اختر تاريخ الحضور",
   "summary": {
     "totalTeachers": "إجمالي المعلمين",
     "attended": "حاضر",

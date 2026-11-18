@@ -4,11 +4,10 @@ import { useMemo, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import useSWR from "swr";
 import toast from "react-hot-toast";
-import { format, addDays } from "date-fns";
+import { format, addDays, parseISO } from "date-fns";
 import { ar } from "date-fns/locale/ar";
 import { enUS } from "date-fns/locale/en-US";
 import {
-  Calendar as CalendarIcon,
   CalendarOff,
   Check,
   CircleAlert,
@@ -36,12 +35,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Calendar } from "@/components/ui/calendar";
+import { DatePicker } from "@/components/ui/date-picker";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -477,37 +471,16 @@ export function DailyTeacherAttendanceView({
               )}
             </Button>
 
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button
-                  type="button"
-                  variant="outline"
-                  className="h-11 min-w-0 flex-1 touch-manipulation justify-start px-3 font-normal sm:min-w-[250px]"
-                >
-                  <CalendarIcon className="me-2 h-4 w-4 shrink-0 text-muted-foreground" />
-                  <span className="truncate font-medium tabular-nums">
-                    {format(selectedDate, "EEE, d MMM yyyy", {
-                      locale: dateLocale,
-                    })}
-                  </span>
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent
-                className="w-auto p-0"
-                align="center"
-                dir={isArabic ? "rtl" : "ltr"}
-              >
-                <Calendar
-                  mode="single"
-                  selected={selectedDate}
-                  onSelect={(d) => d && setSelectedDate(d)}
-                  disabled={(date) => !workingDays.includes(date.getDay())}
-                  locale={dateLocale}
-                  dir={isArabic ? "rtl" : "ltr"}
-                  initialFocus
-                />
-              </PopoverContent>
-            </Popover>
+            <DatePicker
+              value={dateString}
+              onChange={(date) => setSelectedDate(parseISO(date))}
+              placeholder={t("datePickerLabel")}
+              ariaLabel={t("datePickerLabel")}
+              locale={dateLocale}
+              formatString="EEE, d MMM yyyy"
+              isDateDisabled={(date) => !workingDays.includes(date.getDay())}
+              className="h-11 min-w-0 flex-1 touch-manipulation px-3 font-medium tabular-nums sm:min-w-[250px]"
+            />
 
             <Button
               type="button"

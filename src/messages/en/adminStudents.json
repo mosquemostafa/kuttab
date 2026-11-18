@@ -58,6 +58,8 @@
     "noPaymentMethod": "None specified",
     "birthDateLabel": "Birth Date",
     "registrationDateLabel": "Registration Date",
+    "datePlaceholder": "Select a date",
+    "clearDate": "Clear date",
     "gradeLabel": "Academic Grade / Level",
     "gradePlaceholder": "e.g. 5th Primary, High School",
     "jobLabel": "Occupation / Job",

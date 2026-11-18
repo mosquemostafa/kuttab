@@ -6,10 +6,12 @@
   "currentWeek": "This week",
   "previousWeek": "Previous week",
   "nextWeek": "Next week",
+  "datePickerLabel": "Select week",
   "weekRange": "{start} – {end}",
   "today": "Today",
   "previousDay": "Previous day",
   "nextDay": "Next day",
+  "datePickerLabel": "Select attendance date",
   "summary": {
     "totalTeachers": "Total Teachers",
     "attended": "Present",

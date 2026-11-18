@@ -15,7 +15,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 
-interface SubscriptionDatePickerProps {
+interface DatePickerProps {
   id?: string;
   value: string;
   onChange: (value: string) => void;
@@ -25,11 +25,13 @@ interface SubscriptionDatePickerProps {
   min?: string;
   max?: string;
   disabled?: boolean;
+  isDateDisabled?: (date: Date) => boolean;
   invalid?: boolean;
   allowClear?: boolean;
   clearLabel?: string;
   container?: HTMLElement | null;
   className?: string;
+  formatString?: string;
 }
 
 function toDate(value?: string): Date | undefined {
@@ -38,7 +40,7 @@ function toDate(value?: string): Date | undefined {
   return isValid(parsed) ? parsed : undefined;
 }
 
-export function SubscriptionDatePicker({
+export function DatePicker({
   id,
   value,
   onChange,
@@ -48,12 +50,14 @@ export function SubscriptionDatePicker({
   min,
   max,
   disabled = false,
+  isDateDisabled,
   invalid = false,
   allowClear = false,
   clearLabel,
   container,
   className,
-}: SubscriptionDatePickerProps) {
+  formatString = "PPP",
+}: DatePickerProps) {
   const [isOpen, setIsOpen] = useState(false);
   const selectedDate = useMemo(() => toDate(value), [value]);
   const minDate = useMemo(() => toDate(min), [min]);
@@ -79,7 +83,7 @@ export function SubscriptionDatePicker({
           <CalendarDays data-icon="inline-start" />
           <span className="truncate">
             {selectedDate
-              ? format(selectedDate, "PPP", { locale })
+              ? format(selectedDate, formatString, { locale })
               : placeholder}
           </span>
         </Button>
@@ -100,7 +104,11 @@ export function SubscriptionDatePicker({
             setIsOpen(false);
           }}
           disabled={(date) =>
-            Boolean((minDate && date < minDate) || (maxDate && date > maxDate))
+            Boolean(
+              (minDate && date < minDate) ||
+              (maxDate && date > maxDate) ||
+              isDateDisabled?.(date),
+            )
           }
           locale={locale}
           dir={isRtl ? "rtl" : "ltr"}
