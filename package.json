@@ -142,7 +142,7 @@
     "esbuild": "^0.25.12",
     "eslint": "^10",
     "husky": "^9.1.7",
-    "knip": "^6.4.0",
+    "knip": "^6.46.1",
     "lint-staged": "^17.0.8",
     "postcss": "^8.5.8",
     "prettier": "^3.8.1",
